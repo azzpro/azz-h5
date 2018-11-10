@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../images/favicon.png" type="image/png">
+<title>爱智造平台客户端管理系统</title>
+<link href="../css/jquery.datatables.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="../css/jedate.css">
+<link href="../css/pagination.css" rel="stylesheet">
+<link href="../css/jquery.datatables.css" rel="stylesheet">
+<link href="../css/pctx.page.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<!-- Preloader -->
+<div id="preloader">
+	<div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+</div>
+
+<section>
+    <div class="leftpanel">
+        <div class="logopanel">
+        	<h1><img src="../images/logo.png" alt=""></h1>
+        </div>
+        <!-- logopanel -->
+        <div class="leftpanelinner">
+        <!-- 用户面板,小屏 -->
+            <!--<div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media userlogged">
+                    <div class="media-body">
+                        <h4 class="contactName"></h4>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <ul class="nav nav-pills nav-stacked nav-bracket mb30">
+                    <li><aonclick="app.main._stopDefasultEvent(event);app.main.forward('#!password/modify-password.html')" href="#!password/modify-password.html"><i class="fa fa-cog"></i> <span>修改密码</span></a></li>
+                    <li><a onclick="logout()"><i class="fa fa-sign-out"></i> <span>注销</span></a></li>
+                </ul>
+            </div>-->
+            
+            <h5 class="sidebartitle"></h5>
+            <ul class="nav nav-pills nav-stacked nav-bracket" id="mainMenu">
+                <!--<li class="active"><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!home/home.html')" href="#!home/home.html"><i class="fa fa-home"></i> <span>首页</span></a></li>
+					<li class="nav-parent"><a href="javascript:;"><i class="glyphicon glyphicon-shopping-cart"></i> <span>订单管理</span></a>
+							<ul class="children">
+									<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!customerorder/information.html')" href="#!customerorder/information.html"><i class="fa fa-caret-right"></i>客户订单</a></li>
+									<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!merchantorders/modify-password.html')" href="#!merchantorders/modify-password.html"><i class="fa fa-caret-right"></i>商户订单</a></li>
+							</ul>
+					</li>
+					<li class="nav-parent"><a href="javascript:;"><i class="fa fa-shield"></i> <span>财务管理</span></a>
+							<ul class="children">
+									<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!payment/information.html')" href="#!payment/information.html"><i class="fa fa-caret-right"></i>支付管理</a></li>
+									<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!putforward/modify-password.html')" href="#!putforward/modify-password.html"><i class="fa fa-caret-right"></i>提现管理</a></li>
+									<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!invoice/modify-password.html')" href="#!invoice/modify-password.html"><i class="fa fa-caret-right"></i>发票管理</a></li>
+							</ul>
+					</li>
+					<li class="nav-parent"><a href="javascript:;"><i class="fa fa-clock-o"></i> <span>选型管理</span></a>
+							<ul class="children">
+									<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!parameter/information.html')" href="#!parameter/information.html"><i class="fa fa-caret-right"></i>参数管理</a></li>
+									<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!programme/modify-password.html')" href="#!programme/modify-password.html"><i class="fa fa-caret-right"></i>方案管理</a></li>
+									<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!selectionmodule/modify-password.html')" href="#!selectionmodule/modify-password.html"><i class="fa fa-caret-right"></i>模组管理</a></li>
+									<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!examination/modify-password.html')" href="#!examination/modify-password.html"><i class="fa fa-caret-right"></i>审批管理</a></li>
+							</ul>
+					</li>
+
+					<li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!data/data-management.html')" href="#!data/data-management.html"><i class="fa fa-cogs"></i> <span>资料管理</span></a></li>-->
+            </ul>
+        
+        </div>
+        <!-- leftpanelinner -->
+    </div>
+	<!-- leftpanel -->
+
+    <div class="mainpanel">
+        <div class="headerbar">
+            <a class="menutoggle"><i class="fa fa-bars"></i></a>
+            <div class="header-right">
+                <ul class="headermenu">
+                	<li style="height: 50px; line-height: 50px; margin: 0; padding: 0 15px; border-left: none;">
+                		<span id="name"></span>，欢迎您！
+                	</li>
+                	<li>
+                        <div class="btn-group">
+                            <a class="btn btn-default dropdown-toggle tp-icon"onclick="EnterpriseCenter()">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span class="small">企业中心</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="btn-group">
+                            <a class="btn btn-default dropdown-toggle tp-icon" onclick="logout()">
+                                <i class="glyphicon glyphicon-log-out"></i>
+                                <span class="small">注销</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- header-right -->
+        </div>
+        <!-- headerbar -->
+        <div class="pageheader">
+            <h2 class="mbx-nav"><i class="fa fa-home"></i>爱智造<span>首页</span></h2>
+        </div>
+        <!-- 面包屑面板 -->
+        <div id="mainpage">
+          <!--<iframe src="home.html" width="100%" height="100%" frameborder="0" id="mainpage" name="mainpage"></iframe>-->
+        </div>
+        <!-- contentpanel -->
+    </div>
+    <!-- mainpanel -->
+
+</section>
+
+<!-- <div class="bottom">&copy;2006年10月-2018&nbsp;&nbsp;深圳普创天信科技发展有限公司 粤ICP备10095981号</div> -->
+<!-- 短信验证码 弹出窗 -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					账号注销成功!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 短信验证码 弹出窗 End-->
+<!-- 共用 -->
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/visitip.js"></script>
+<script type="text/javascript" src="../js/jquery.ztree.core.js" ></script>
+<script type="text/javascript" src="../js/jquery.ztree.excheck.js" ></script>
+<script src="../js/json2.js"></script>
+<script src="../js/jquery-migrate-1.2.1.min.js"></script>
+<script src="../js/jquery-ui-1.10.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/modernizr.min.js"></script>
+<script src="../js/jquery.sparkline.min.js"></script>
+<script src="../js/toggles.min.js"></script>
+<script src="../js/retina.min.js"></script>
+<!-- 表格插件 -->
+<script src="../js/jquery.datatables.min.js"></script>
+<script src="../js/dataTables.bootstrap.min.js"></script>
+<script src="../js/select2.min.js"></script>
+<script src="../js/jquery.cookies.js"></script>
+<script src="../js/module.js"></script>
+<script src="../js/jquery.history.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/app.js"></script>
+<!--  -->
+<!-- 表单验证 -->
+<script src="../js/jquery.validate.min.js"></script>
+<script src="../js/messages_zh.js"></script>
+<script src="../js/custom.js"></script>
+<script src="../js/echarts.common.min.js"></script>
+<!-- 框架响应式调整 -->
+<script src="../js/jquery.ui.datepicker-zh-CN.js"></script>
+<!-- 设备列表分页 -->
+<script src="../js/jquery.pagination.js"></script>
+
+<script type="text/javascript" src="../js/date.js"></script>
+<script type="text/javascript" src="../js/jedate.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#name').html(clientUserInfo.clientUserName);
+    check();
+});
+
+function check() {
+	$.ajax({
+		type: "GET",
+		url: ulrTo+"/azz/api/client/check",
+		success: function(data) {
+			if(data.code == 40001){
+				localStorage.removeItem('clientUserInfo');
+			    localStorage.removeItem('menus');
+			    localStorage.removeItem('clientUserPermissions');
+			    localStorage.removeItem('sessionId');
+			    localStorage.removeItem('clientType');
+			    window.location.href = "login.html";
+			}
+		}
+	});
+}
+function logout() {
+	$.ajax({
+		type: "get",
+		url: ulrTo+"/azz/api/client/logout",
+		success: function(data) {
+			if (data.code == 0) {
+				alert("账号注销成功!");
+			    localStorage.removeItem('clientUserInfo');
+			    localStorage.removeItem('menus');
+			    localStorage.removeItem('clientUserPermissions');
+			    localStorage.removeItem('sessionId');
+			    localStorage.removeItem('clientType');
+			    window.location.href = "login.html";
+			    
+			}
+		}
+	});
+    
+
+};
+
+function EnterpriseCenter() {
+	if(clientType == 0){
+		var datas=clientUserInfo.qualificationApplyStatus;
+		if( datas == 1){
+			window.location.href = "../enterprise-back/system/register-entThree.html";
+		}else if( datas == 0 ||  datas == 3){
+			window.location.href = "../enterprise-back/system/register-entTwo.html";
+		}
+	}else if(clientType == 1){
+		window.location.href = "../enterprise-back/main.html#!home/home.html";
+	}
+	
+};
+
+//全局ajax请求设置，页面上所有的ajax请求，如果未登陆跳转则到登录界面
+$.ajaxSetup({
+	crossDomain: true,
+	cache : false,  //关闭缓存
+	beforeSend: function(request) {
+		var sessionId = JSON.parse(localStorage.getItem('sessionId'));
+		if (!sessionId) {
+			localStorage.removeItem('clientUserInfo');
+		    localStorage.removeItem('menus');
+		    localStorage.removeItem('clientUserPermissions');
+		    localStorage.removeItem('sessionId');
+		    localStorage.removeItem('clientType');
+			window.location.href = "login.html";
+		}
+		request.setRequestHeader("token",sessionId);
+	},
+	complete: function (xhr, status, request) {
+		// 未登录，后台返回的http状态码是403
+		if (xhr.status == 200) {
+			if (xhr.responseJSON && xhr.responseJSON.code == 40001) {
+				localStorage.removeItem('clientUserInfo');
+			    localStorage.removeItem('menus');
+			    localStorage.removeItem('clientUserPermissions');
+			    localStorage.removeItem('sessionId');
+			    localStorage.removeItem('clientType');
+				window.location.href = "login.html";
+			}
+		}
+		
+	}
+});
+</script>
+<!-- <script src="../js/operationPermission.js"></script> -->
+</body>
+</html>

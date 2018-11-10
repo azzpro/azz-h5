@@ -1,0 +1,268 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<ul class="nav nav-tabs">
+      <li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!member/member-management.html')" href="#!member/member-management.html"><strong>成员管理</strong></a></li>
+      <li class="active"><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!member/department.html')" href="#!member/department.html"><strong>部门维护</strong></a></li>
+      <li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!member/jurisdiction.html')" href="#!member/jurisdiction.html"><strong>权限维护</strong></a></li>
+    </ul>
+    <div class="panel-body backgr">
+
+			<div class="panel panel-default">
+				<div class="panel-body" style="padding: 12px;">
+					<div class="col-sm-4">
+						<input type="text" name="nameNo" placeholder="请输入部门名称或者部门编号" class="form-control">
+					</div>
+					<div class="col-sm-6" style="margin-top:3px;">
+						<button type="button" id="Search" class="btn btn-primary zlan">搜索</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button class="btn btn-primary zlan" onclick="location.href='javascript:;'" data-toggle="modal" data-target="#myModal">新增</button>
+						<button class="btn btn-primary zlan" onclick="location.href='javascript:;'">导入</button>
+						&nbsp;&nbsp;&nbsp;<a href="javascript:;">部门导入模板下载</a>
+					</div>
+				
+				</div>
+
+		            <div class="panel-body backgr">
+					  <div class="table-responsive">
+						<ul class="tab1" width="100%">
+							<li class="tab-li">
+								<span>部门名称</span>
+								<span>部门编号</span>
+								<span>状态</span>
+								<span>创建人</span>
+								<span>创建时间</span>
+								<span>操作</span>
+							</li>
+						</ul>
+						<div id="tabs">
+							<!--<ul class="tab">
+								<li class="tab-li">
+									<span><i class='fa fa-plus-square-o jia'></i> 技术部</span>
+									<span>01000</span>
+									<span>11</span>
+									<span>启用</span>
+									<span>韩鼎君</span>
+									<span>2015-11-11 11:11</span>
+									<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">禁用</a>&nbsp;&nbsp;<a href="javascript:;">新增</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+								</li>
+								<ul class="add" style="padding: 0;">
+									<li class="tab-li">
+										<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-plus-square-o jia'></i> 前端</span>
+										<span>01000</span>
+										<span>11</span>
+										<span>启用</span>
+										<span>韩鼎君</span>
+										<span>2015-11-11 11:11</span>
+										<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">禁用</a>&nbsp;&nbsp;<a href="javascript:;">新增</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+									</li>
+									<ul class="add" style="padding: 0;">
+										<li class="tab-li">
+											<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o'></i> 前端</span>
+											<span>01000</span>
+											<span>11</span>
+											<span>启用</span>
+											<span>韩鼎君</span>
+											<span>2015-11-11 11:11</span>
+											<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">禁用</a>&nbsp;&nbsp;<a href="javascript:;">新增</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+										</li>
+										<li class="tab-li">
+											<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o'></i> 前端</span>
+											<span>01000</span>
+											<span>11</span>
+											<span>启用</span>
+											<span>韩鼎君</span>
+											<span>2015-11-11 11:11</span>
+											<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">禁用</a>&nbsp;&nbsp;<a href="javascript:;">新增</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+										</li>
+									</ul>
+								</ul>
+								<ul class="add" style="padding: 0;">
+									<li class="tab-li">
+										<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-plus-square-o jia'></i> 后端</span>
+										<span>01000</span>
+										<span>11</span>
+										<span>启用</span>
+										<span>韩鼎君</span>
+										<span>2015-11-11 11:11</span>
+										<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">禁用</a>&nbsp;&nbsp;<a href="javascript:;">新增</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+									</li>
+								</ul>
+						    </ul>
+						    <ul class="tab">
+								<li class="tab-li">
+									<span><i class='fa fa-plus-square-o jia'></i> 技术部</span>
+									<span>01000</span>
+									<span>11</span>
+									<span>启用</span>
+									<span>韩鼎君</span>
+									<span>2015-11-11 11:11</span>
+									<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">禁用</a>&nbsp;&nbsp;<a href="javascript:;">新增</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+								</li>
+							</ul>-->
+						</div>
+					  </div>
+					</div>
+
+			</div>
+		<div class="clearfix"></div>
+	</div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 添加 弹出窗 -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">新增部门</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">上级部门编号：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="departmentNo" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 部门名称：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="departmentname" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">部门状态：</label>
+		                  <div class="col-sm-8 mt10" style="height: 35px;">
+	                      	<div class="col-sm-3" style="padding: 0;">
+				                <div class="rdio rdio-primary">
+			                        <input type="radio" name="state" checked="" value="1" id="open2">
+			                        <label for="open2">启用</label>
+			                    </div>
+							</div>
+							<div class="col-sm-3">
+								<div class="rdio rdio-primary">
+			                        <input type="radio" name="state" value="2" id="Close2">
+			                        <label for="Close2">禁用</label>
+			                    </div>
+			                </div>
+	                      </div>
+		                </div>
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="confirm">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 添加 弹出窗 End-->
+<!-- 编辑 弹出窗 -->
+<div class="modal fade" id="myModal2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">编辑部门</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm2">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">部门编号：</label>
+		                  <div class="col-sm-8" style="padding-top: 10px;">
+		                    <span id="bbmNo"></span>
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">上级部门编号：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="departmentNo2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 部门名称：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="departmentname2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">部门状态：</label>
+		                  <div class="col-sm-8 mt10" style="height: 35px;">
+	                      	<div class="col-sm-3" style="padding: 0;">
+				                <div class="rdio rdio-primary">
+			                        <input type="radio" name="state2" checked="" value="1" id="open">
+			                        <label for="open">启用</label>
+			                    </div>
+							</div>
+							<div class="col-sm-3">
+								<div class="rdio rdio-primary">
+			                        <input type="radio" name="state2" value="2" id="Close">
+			                        <label for="Close">禁用</label>
+			                    </div>
+			                </div>
+	                      </div>
+		                </div>
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="editconfirm">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 编辑 弹出窗 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					操作成功!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<!-- 确认删除 弹出窗 -->
+<div class="modal fade" id="myModal112">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">删除部门</h4>
+			</div>
+			<form class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					您确定把“<span id="bmName"></span>”删除吗？
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="deletebunnot" data-dismiss="modal">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 确认删除 弹出窗 End-->
+<script type="text/javascript" src="member/department.js"></script>

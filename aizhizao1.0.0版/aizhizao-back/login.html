@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../images/favicon.png" type="image/png">
+<title>爱智造</title>
+<link href="../css/pctx.page.css" rel="stylesheet">
+<link href="../css/login.css" rel="stylesheet">
+<link href="../css/jquery.datatables.css" rel="stylesheet">
+<style>
+  body{ background: url(../images/login-bg.jpg) #fff no-repeat center 50px; }
+  .signinpanel form{ padding: 0; border: none; background: none; box-shadow:none}
+  .signinpanel .form-control{ margin-top: 0;}
+  label.error{ margin: 0;}
+  .form-group { margin-bottom: 0; height: 65px;}
+</style>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+  <div class="top"><h1><img src="../images/logo.png" alt=""></h1><!-- <p>没有账号？<a href="system/register-ent.html">立即注册</a></p> --></div>
+  <div class="login-k signinpanel">
+    <h4>爱智造 账号登录</h4>
+    <form id="basicForm" onsubmit="return func()">
+    <div class="userlogin">
+      <p class="form-group form-group2"><input type="text" name="username" class="form-control uname" placeholder="手机号码"><label for="username" class="error userNamehtml"></label></p>
+      <p class="form-group form-group3"><input type="password" name="password" class="form-control pword" placeholder="密码"><label for="password" class="error passwordhtml"></label></p>
+      <p class="form-group"><span class="yzm-k pull-right"><span id="code" class="mycode"></span></span><input type="text" class="form-control yzm" name="yzm" style=" width:70%;" id="inputCode" placeholder="验证码"></p>
+      <button class="btn btn-lan btn-block" id="submit">登录</button>
+       <!--<p><a href="system/back-password.html">忘记密码?</a></p>-->
+                    
+    </div>
+    </form>
+
+  </div>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/visitip.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/KinerCode.js"></script>
+
+<!-- 表单验证 -->
+<script src="../js/jquery.validate.min.js"></script>
+<script src="../js/messages_zh.js"></script>
+<!--<script src="BIBA-hybrid/js/custom.js"></script>-->
+<script>
+function login() {
+	var validFlag = $('#basicForm').valid();
+	if(!validFlag) {
+		return;
+	}
+	var uname = $(".uname").val();
+	var pword = $(".pword").val();
+	$.ajax({
+		type: "POST",
+		url: ulrTo+"/azz/api/user/login",
+		data: {'phoneNumber': uname,'password': pword},
+		success: function(data) {
+			if (data.code == 0) {
+         if(!window.localStorage){
+            return false;
+        }else{
+            var storage=window.localStorage;
+            var userInfo = JSON.stringify(data.data.userInfo);
+            var menus = JSON.stringify(data.data.menus);
+            var userPermissions = JSON.stringify(data.data.userPermissions);
+            var sessionId = JSON.stringify(data.data.sessionId);
+            storage["userInfo"]= userInfo;
+            storage["menus"]= menus;
+            storage["userPermissions"]= userPermissions;
+            storage["sessionId"]= sessionId;
+        }
+				window.location.href = "./main.html#!home/home.html";
+				return;
+			} else {
+				$(".passwordhtml").html(data.msg);
+				$('.form-group2').removeClass('has-success').addClass('has-error');
+			  $('.form-group3').removeClass('has-success').addClass('has-error');
+			}
+		}
+	});
+}
+
+function func() {
+	return false;
+}
+
+$(document).ready(function() {
+	$("#submit").bind("click", login);
+  initValidate();
+  $.validator.addMethod("validCode", function(value, element, params) {
+			return value.toLowerCase() == c.myCode.strCode.toLowerCase();
+		}, "验证码输入错误 ！");
+});
+var c = new KinerCode({
+        len: 4,//需要产生的验证码长度
+        chars: [
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 0,
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        ],//经典模式:指定产生验证码的词典，若不给或数组长度为0则试用默认字典
+        question: false,//若给定词典为算数题，则此项必须选择true,程序将自动计算出结果进行校验【若选择此项，则可不配置len属性】,若选择经典模式，必须选择false
+        copy: false,//是否允许复制产生的验证码
+        //bgColor: "#000",//背景颜色[与背景图任选其一设置]
+        randomBg: false,//若选true则采用随机背景颜色，此时设置的bgImg和bgColor将失效
+        inputArea: $("#inputCode")[0],//输入验证码的input对象绑定【 HTMLInputElement 】
+        codeArea: $("#code")[0],//验证码放置的区域【HTMLDivElement 】
+        click2refresh: true,//是否点击验证码刷新验证码
+        false2refresh: true,//在填错验证码后是否刷新验证码
+      
+        validateEven: "",//触发验证的方法名，如click，blur等
+        
+    });
+    function initValidate() {
+   	// Basic Form
+   	$("#basicForm").validate({
+   		rules: {
+   			username: {
+   				required: true,
+   				//errorUsername: true,
+   			},
+   			password: {
+   				required: true,
+   				//errorPassword: true,
+   			},
+   			yzm: {
+   				required: true,
+   				validCode: true,
+   			},
+   		},
+   		messages: {
+   			username: {
+   				required: "请输入用户名",
+   			},
+   			password: {
+   				required: "请输入密码",
+   			},
+   			yzm: {
+   				required: "请输入验证码",
+   			},
+   		},
+   		highlight: function(element) {
+   			$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+   		},
+   		success: function(element) {
+   			$(element).closest('.form-group').removeClass('has-error');
+   		}
+   	});
+   }
+</script>
+</body>
+</html>

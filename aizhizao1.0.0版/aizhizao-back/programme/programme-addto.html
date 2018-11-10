@@ -1,0 +1,170 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<button class="btn pull-right btn-primary zlan" style="margin-top: 20px; margin-right: 10px;" id="SubmissionBtn">保存</button>
+	<div class="panel-heading"><h4>新增方案</h4></div>
+	
+	<div class="panel panel-default">
+	  
+      <form class="form-horizontal" id="basicForm" name="basicForm" enctype="multipart/form-data">
+      	<div style="padding: 20px;"><h4>方案信息</h4></div>
+      	
+				<dl class="reg-xx">
+					<dd>
+						<div class="col-sm-8">
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 方案名称：</label>
+								<div class="col-sm-7">
+									<input type="text" maxlength="" name="programmename" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 所属分类：</label>
+								<div class="col-sm-7">
+									<a class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal">选择分类</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    	已选中：<span id="classifname"></span><span class="add" id="classifcord"></span><span class="add" id="assortmentId"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 方案状态：</label>
+								<div class="col-sm-7">
+									<div class="col-sm-4 mt10">
+						                <div class="rdio rdio-primary">
+					                        <input type="radio" name="fill" checked="" value="1" id="Required">
+					                        <label for="Required">上架</label>
+					                    </div>
+									</div>
+									<div class="col-sm-4 mt10">
+										<div class="rdio rdio-primary">
+					                        <input type="radio" name="fill" value="2" id="Selection">
+					                        <label for="Selection">下架</label>
+					                    </div>
+					                </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 方案主图上传：</label>
+								<div class="col-sm-7">
+									<input type="file" title="请选择图片" id="file1" name="file" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+									<div class="imgtu"><img src="" id="img1"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">方案备注：</label>
+								<div class="col-sm-7">
+									<textarea class="form-control" id="remark" rows="5"></textarea>
+								</div>
+							</div>
+
+						</div>
+					</dd>
+				</dl>
+				<div class="clearfix"></div>
+				<div style="padding: 40px 20px 0;"><h4>选型参数<span class="spacing"></span><a class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal2">新增</a></h4></div>
+				<div style="padding: 20px;">
+				<div class="tab-pane active">
+			            <div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover text-center text-nowrap dataTable no-footer dtr-inline drr" id="" width="100%">
+			                    <thead>
+									<tr>
+										<th>产品参数名称</th>
+										<th>产品参数编号</th>
+										<th>格式</th>
+										<th>存在参数值</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody id="parameData">
+									
+								</tbody>
+			                </table>
+						</div>
+		            </div>
+				</div>
+			</form>
+      <div class="clearfix"></div>
+    </div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 分类选择 弹出窗 -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog" style="width: 900px;">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">分类选择</h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-sm-4">
+					<input type="text" name="nameNo" placeholder="请输入分类名称" class="form-control">
+				</div>
+				<div class="col-sm-2" style="margin-top:3px;">
+					<button type="button" id="Search2" class="btn btn-primary zlan">搜索</button>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="modal-body" id="dianji">
+				<div class="col-sm-4"><div class="parameBG"><h4>一级分类</h4>
+					<ul class="ones">
+						
+					</ul>
+				</div></div>
+				<div class="col-sm-4"><div class="parameBG"><h4>二级分类</h4>
+					<ul class="toos add">
+						
+					</ul>
+				</div></div>
+				<div class="col-sm-4"><div class="parameBG"><h4>三级分类</h4>
+					<ul class="three add">
+						
+					</ul>
+				</div></div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="classifconfirm">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 分类选择 弹出窗 End-->
+<!-- 模组选择 弹出窗 -->
+<div class="modal fade" id="myModal2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">选型参数新增</h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-sm-6">
+					<input type="text" name="searchname" placeholder="请输入产品参数编号/名称" class="form-control">
+				</div>
+				<div class="col-sm-6" style="margin-top:3px;">
+					<button type="button" id="Search" class="btn btn-primary zlan">搜索</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-primary zlan" id="PreservationButton">保存</button>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="modal-body">
+				<div class="tab-pane active">
+		            <div class="table-responsive">
+						<table class="table table-striped table-bordered table-hover text-center dataTable no-footer dtr-inline" id="table" width="100%">
+		                    
+		                </table>
+					</div>
+	            </div>
+           </div>
+
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 模组选择 弹出窗 End-->
+<script type="text/javascript" src="programme/programme-addto.js"></script>

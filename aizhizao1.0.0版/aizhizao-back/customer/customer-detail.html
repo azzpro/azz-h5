@@ -1,0 +1,85 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="fr mt10 spacing">
+        <a class="btn btn-primary zlan" href="#!customer/customer-management.html">返回上一页</a>
+    </div>
+	<div class="panel-heading"><h4>账户详情</h4></div>
+	
+	<div class="panel panel-default">
+	  <div class="pull-right"><img class="sfz" style="width: 150px; height: 150px; margin: 20px 20px 0 0;" id="pic1" src=""></div>
+      <div class="col-sm-6">
+      	<div class="panel-heading">
+            <h4 class="panel-title">个人资料</h4>
+        </div>
+        <div class="table-responsive">
+        <table class="table mb30">
+		    <tbody id="useridcard">
+              <tr>
+    		  	<td>姓名：<span id="clientUserName"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>手机号：<span id="phoneNumber"></span></td>
+    		  </tr>
+              <tr>
+    		  	<td>邮箱地址：<span id="email"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>账户密码：点击更改</td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-sm-6">
+      	<div class="panel-heading">
+            <h4 class="panel-title">关联企业</h4>
+        </div>
+        <div class="table-responsive">
+        <table class="table mb30">
+		    <tbody id="useridcard">
+              <tr>
+    		  	<td>所属角色：<span id="companyPower"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>企业名称：<span id="companyName"></span></td>
+    		  </tr>
+              <tr>
+    		  	<td>员工姓名：<span id="employeeName"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>所在部门：<span id="deptmentName"></span></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					修改密码成功!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<script type="text/javascript" src="customer/customer-detail.js"></script>

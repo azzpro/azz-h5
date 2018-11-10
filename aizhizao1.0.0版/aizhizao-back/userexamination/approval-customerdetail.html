@@ -1,0 +1,134 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="panel panel-default" style="padding: 20px 0;">
+		<div class="pull-right spacing">
+	        <a class="btn btn-primary zlan" href="#!userexamination/approval-cusmanagement.html">返回上一页</a>
+	   </div>
+	   <div id="kzdd">
+		   <button type="button" class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal112" style=" width: 100px; margin-left: 20px;">通过</button>
+		   <button type="button" class="btn btn-default zlan" data-toggle="modal" data-target="#myModal113" style=" width: 100px; margin-left: 20px;">拒绝</button>
+	   </div>
+	   <div class="clearfix"></div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">基础信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>商户编号：<span id="companyCode"></span></td>
+    		  	<td>商户状态：<span id="statuss"></span></td>
+    		  	<td>入驻时间：<span id="createTime"></span></td>
+    		  </tr>
+              <tr>
+    		  	<td>企业名称：<span id="companyName"></span></td>
+    		  	<td>信用代码：<span id="creditCode"></span></td>
+    		  	<td>公司电话：<span id="companyTel"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>详细地址：<span id="address"></span></td>
+    		  	<td></td>
+    		  	<td></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">证件信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table">
+		    <tbody>
+    		  <tr>
+    		  	<td>公司营业执照：</td>
+    		  </tr>
+    		  <tr>
+    		  	<td><div class="col-sm-4"><img class="sfz" id="pic1" src=""><p class="picname" id="picname1"></p></div><div class="col-sm-4"><img class="sfz" id="pic2" src=""><p class="picname" id="picname2"></p></div><div class="col-sm-4"><img class="sfz" id="pic3" src=""><p class="picname" id="picname3"></p></div></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					操作成功!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<!-- 确认 弹出窗 -->
+<div class="modal fade" id="myModal112">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<form class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					您确定此客户通过审核吗？
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="adopt" data-dismiss="modal">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 确认 弹出窗 End-->
+<!-- 拒绝  弹出窗 -->
+<div class="modal fade" id="myModal113">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<form class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					您确定拒绝此客户通过审核吗？
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="refuse" data-dismiss="modal">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 拒绝 弹出窗 End-->
+<script type="text/javascript" src="userexamination/approval-customerdetail.js"></script>

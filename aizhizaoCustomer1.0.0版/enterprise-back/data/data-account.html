@@ -1,0 +1,78 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<!--<div class="fr mt5 spacing">
+        <a class="btn btn-primary zlan" href="#!data/data-management.html">编辑</a>
+    </div>-->
+	<ul class="nav nav-tabs">
+      <li class="active"><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!data/data-management.html')" href="#!data/data-management.html"><strong>账户信息</strong></a></li>
+      <li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!data/data-account.html')" href="#!data/data-account.html"><strong>成员信息</strong></a></li>
+   </ul>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">对公账户</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>法人姓名：<span id="legalPersonName"></span></td>
+    		  	<td>法人身份证号：<span id="legalPersonIdCard"></span></td>
+    		  	<td>开户名称：<span id="accountName"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>对公账号：<span id="accountBankCardNumber"></span></td>
+    		  	<td>开户银行：<span id="accountBank"></span></td>
+    		  	<td>开户支行：<span id="accountSubBranch"></span></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">证件信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table">
+		    <tbody>
+              <tr>
+    		  	<td>法人身份证：</td>
+    		  </tr>
+    		  <tr>
+    		  	<td><div class="col-sm-4"><img class="sfz" id="pic1" src=""><p class="picname" id="picname1"></p></div></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					修改密码成功!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<script type="text/javascript" src="data/data-account.js"></script>

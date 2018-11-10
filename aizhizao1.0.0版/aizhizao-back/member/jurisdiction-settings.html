@@ -1,0 +1,89 @@
+﻿<!-- 这里开始 -->
+<style>
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{background-color:#fff;}
+    .tab-content{background-color:#fff;}
+
+    .ckbox{ margin-left: 20px; position: relative; }
+    .ckbox i{ position: absolute; left: -19px; top: 3px }
+    .meix{ width: 100%; overflow: hidden; border-bottom: #eee 1px solid; padding-top: 10px;}
+    .jeeb{ width: 100%; }
+    .meix2{ padding-left: 20px; }
+    .meix3{ padding-left: 40px; }
+    .meix4{ padding-left: 60px; }
+    .font-test{font-size:14px;font-weight:400;height:21px;line-height:21px;}
+</style>
+<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" />
+<div class="container-content">
+            <div class="panel panel-default" id="saveRolePermission">
+            	<div class="fr mt10 spacing">
+                  <button class="btn btn-primary" type="button" onclick="javascript:history.back(-1);">返回上一页</button>
+              	</div>
+                <div class="panel-heading">
+                   <h4 class="panel-title">权限管理</h4>
+                </div>
+
+	            <div class="panel-body">
+	            	<div class="col-md-6">
+                        <div class="tab-content">
+                        	<ul id="apppermissionTree" class="ztree"></ul>
+                        </div>
+                    </div>
+	            </div>   
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-6" style="padding-bottom: 20px;">
+                        <button class="btn btn-primary" id="saveRole">确认提交</button>&nbsp;
+                        <a href="javascript:(0);" onclick="history.go(-1);" class="btn btn-default">取消</a>
+                    </div>
+                </div>
+            	
+          </div>
+</div>
+<!-- 这里开始 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					操作成功!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal222">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					请选择权限!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<script type="text/javascript" src="member/jurisdiction-settings.js"></script>

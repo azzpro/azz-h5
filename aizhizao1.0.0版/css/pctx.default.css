@@ -1,0 +1,32 @@
+@charset "utf-8";
+/*
+ * 基于bootstrap官方提供的主题皮肤修改
+ */
+
+@import url('bootstrap.min.css');     /*bootstrap 框架样式*/
+@import url('bootstrap-override.css');/*bootstrap 重写样式*/
+@import url('weather-icons.min.css'); /*图标样式*/
+@import url('jquery-ui-1.10.3.css');  /* jQuery UI 控件样式*/
+@import url('font-awesome.min.css');  /* 图标字体库样式*/
+@import url('animate.min.css');       /* css3动画框架样式*/
+@import url('animate.delay.css');     /* css3延迟动画样式*/
+@import url('toggles.css');           /*切换样式*/
+@import url('select2.css');           /*选择表单样式*/
+@import url('lato.css');              /*定义字体库*/
+@import url('roboto.css');            /*定义字体库*/
+@import url('style.default.css');     /*全局默认样式*/
+
+/* 公共样式 */
+.cler{ overflow:hidden; padding:0;}
+.mainpanel{min-height:auto;}
+.m--l{margin:0 -10px;}
+.yzm_tu{ margin-top:15px;}
+.pt5{ padding-top:5px;}
+/* login */
+.status{font-size: 32px;height: 30px;left: 50%;margin: -15px 0 0 -15px;position: absolute;top: 50%;width: 30px;}
+.form-load{display:none; position:relative;}
+.logopanel h1{}
+.logopanel h1 img{ padding-left: 100px; width: 50%; margin: 30px 0 0;}
+.btn-lan{ background-color: #0c93d9; border-color: #0a8ccf; color: #fff;}
+.btn-lan:hover{ color: #fff; }
+.mycode{background: #fff; height: 40px; display: block; overflow:hidden}

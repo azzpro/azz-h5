@@ -1,0 +1,74 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<ul class="nav nav-tabs">
+      <li><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!userexamination/approval-management.html')" href="#!userexamination/approval-management.html"><strong>商户认证</strong></a></li>
+      <li class="active"><a onclick="app.main._stopDefasultEvent(event);app.main.forward('#!userexamination/approval-cusmanagement.html')" href="#!userexamination/approval-cusmanagement.html"><strong>客户认证</strong></a></li>
+    </ul>
+    <div class="panel-body backgr">
+		    
+			<div class="panel panel-default">
+				<div class="panel-body" style="padding: 12px;">
+					<label class="col-sm-1 control-label pt5 text-right text-nowrap">状态：</label>
+					<div class="col-sm-2">
+						<select class="select_card form-control" name="" id="approvalType" data-placeholder="全部">
+							<option value=" ">全部</option>
+							<option value="0">未申请</option>
+							<option value="1">待审批</option>
+							<option value="2">已通过</option>
+							<option value="3">已拒绝</option>
+						</select>
+					</div>
+					<div class="col-sm-4">
+						<input type="text" name="searchname" placeholder="请输入企业编号、企业名称或者管理员姓名" class="form-control">
+					</div>
+					<div class="col-sm-4" style="margin-top:3px;">
+						<button type="button" id="Search" class="btn btn-primary zlan">搜索</button>
+					</div>
+				
+				</div>
+
+		            <div class="tab-pane active">
+			            <div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover text-center text-nowrap dataTable no-footer dtr-inline" id="table">
+			                     <!--<thead>
+									<tr>
+										<th>商户编号</th>
+										<th>企业名称</th>
+										<th>管理员</th>
+										<th>联系方式</th>
+										<th>状态</th>
+										<th>注册时间</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>151850106</td>
+										<td>韩鼎君</td>
+										<td>13123397829</td>
+										<td>产品经理</td>
+										<td>启用</td>
+										<td>2015-11-11 11:11</td>
+										<td><a class="text-nowrap" href="#!userexamination/approval-customerdetail.html">详情</a></td>
+									</tr>
+									<tr>
+										<td>151850106</td>
+										<td>韩鼎君</td>
+										<td>13123397829</td>
+										<td>产品经理</td>
+										<td>启用</td>
+										<td>2015-11-11 11:11</td>
+										<td><a class="text-nowrap" href="#!userexamination/approval-customerdetail.html">详情</a></td>
+									</tr>
+								</tbody>-->
+			                </table>
+						</div>
+		            </div>
+
+			</div>
+		<div class="clearfix"></div>
+	</div>
+
+</div>
+<!-- 这里开始 End-->
+<script type="text/javascript" src="userexamination/approval-cusmanagement.js"></script>

@@ -1,0 +1,78 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="fr mt10 spacing">
+        <a class="btn btn-primary zlan" href="#!model/model-management.html">返回上一页</a>
+    </div>
+	<div class="panel-heading"><h4>产品详情</h4></div>
+	
+	<div class="panel panel-default">
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>产品编码：<span id="productCode"></span></td>
+    		  	<td>当前状态：<span id="currentStatus"></span></td>
+    		  	<td>创建时间：<span id="createTime"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>所属商户：<span id="merchantName"></span></td>
+    		  	<td>所属模组：<span id="moduleName"></span></td>
+    		  	<td></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">交期价格</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        	<ul class="prices" id="prices">
+        		<li><p>天数</p>价格</li>
+        	</ul>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">产品参数</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        	<ul class="prices" id="params">
+				
+        	</ul>
+        </div>
+      </div>
+    </div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					修改密码成功!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<script type="text/javascript" src="model/model-detail.js"></script>

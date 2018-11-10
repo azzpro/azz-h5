@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="shortcut icon" href="../../images/favicon.png" type="image/png">
+		<title>爱智造平台商家端管理系统</title>
+		<link href="../../css/pctx.page.css" rel="stylesheet">
+		<link href="../../css/login.css" rel="stylesheet">
+		<link href="../../css/jquery.datatables.css" rel="stylesheet">
+		<style type="text/css" media="screen">
+			body {
+				background: #e8e8e8;
+				padding-bottom: 40px;
+			}
+		</style>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+	</head>
+
+	<body>
+		<div class="xian">
+			<div class="top">
+				<h1><span>[</span> 爱智造 <span>]</span></h1>
+				<p>已有帐号
+					<a href="../login.html">立即登录</a>
+				</p>
+			</div>
+		</div>
+		<div class="container mt40">
+			<div class="mm-jdt">
+				<ul>
+					<li class="lans"><span>01</span>
+						<p>账号注册认证</p>
+					</li>
+					<li><span>02</span>
+						<p>企业账户完善</p>
+					</li>
+					<li><span>03</span>
+						<p>等待平台审批</p>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<form class="form-horizontal" id="basicForm">
+				<dl class="reg-xx">
+					<dt>账号注册</dt>
+					<dd>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 姓名：</label>
+								<div class="col-sm-4">
+									<input type="text" name="username" maxlength="20" class="form-control">
+								</div>
+								<div class="col-sm-5 tz-zi">
+									支持中文、字母、数字、“-” “—”的组合，4-20个字符
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 手机号：</label>
+								<div class="col-sm-4">
+									<input type="text" maxlength="11" name="Phone" class="form-control">
+								</div>
+								<div class="col-sm-5 tz-zi">
+									请填写本人手机号，手机号为登录账号
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 col-xs-12 control-label"><span class="asterisk">*</span> 短信验证码：</label>
+								<div class="col-sm-2 col-xs-6">
+									<input type="text" maxlength="6" name="phonecode" value="123456" class="form-control">
+								</div>
+								<div class="col-sm-2 col-xs-6">
+									<a class="btn btn-primary" id="send" onclick="ronglian();">获取短信验证码</a>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 设置密码：</label>
+								<div class="col-sm-4">
+									<input type="password" name="password" maxlength="20" id="password" class="form-control">
+								</div>
+								<div class="col-sm-5 tz-zi">
+									建议使用字母、数字和符号两种及以上的组合，6-20个字符
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 确认密码：</label>
+								<div class="col-sm-4">
+									<input type="password" name="confirm_password" id="confirm_password" class="form-control">
+								</div>
+								<div class="col-sm-5 tz-zi">
+									请再次输入密码
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-3">
+									<div class="checkbox"><label><input name="agree" type="checkbox" value="">我与阅读并同意<a href="#">《爱智造平台服务协议》 </a></label><label class="error" for="agree"></label></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-3">
+									<a class="btn btn-lan baif" id="registerBtn">立即注册</a>
+								</div>
+							</div>
+						</div>
+					</dd>
+				</dl>
+			</form>
+		</div>
+
+		<!-- 短信验证码 弹出窗 -->
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<div class="panel-heading">
+						<h4 class="panel-title">提示</h4>
+					</div>
+					<div class="form-horizontal form-bordered">
+						<div class="text-center ptb20">
+							短信验证码已发送！请查看手机。
+						</div>
+						<div class="text-center ptb20">
+							<button class="btn btn-primary" data-dismiss="modal" aria-label="Close">知道了</button>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!-- 短信验证码 弹出窗 End-->
+		<!-- 短信验证码 弹出窗 -->
+		<div class="modal fade" id="myModal2">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<div class="panel-heading">
+						<h4 class="panel-title">提示</h4>
+					</div>
+					<div class="form-horizontal form-bordered">
+						<div class="text-center ptb20">
+							账户注册成功！请先完善资料在登录
+						</div>
+						<div class="text-center ptb20">
+							<button class="btn btn-primary" data-dismiss="modal" aria-label="Close">去完善</button>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!-- 短信验证码 弹出窗 End-->
+
+		<script src="../../js/jquery-1.11.1.min.js"></script>
+		<script src="../../js/visitip.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/jquery.validate.min.js"></script>
+		<script src="../../js/messages_zh.js"></script>
+		<script src="register-ent.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="shortcut icon" href="../../images/favicon.png" type="image/png">
+		<title>爱智造平台商家端管理系统</title>
+		<link href="../../css/pctx.page.css" rel="stylesheet">
+		<link href="../../css/login.css" rel="stylesheet">
+		<link href="../../css/jquery.datatables.css" rel="stylesheet">
+		<style type="text/css" media="screen">
+			body {
+				background: #e8e8e8;
+				padding-bottom: 40px;
+			}
+		</style>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+	</head>
+
+	<body>
+		<div class="xian">
+			<div class="top">
+				<h1><span>[</span> 爱智造 <span>]</span></h1>
+				<p>已有帐号
+					<a href="../login.html">立即登录</a>
+				</p>
+			</div>
+		</div>
+		<div class="container mt40">
+			<div class="mm-jdt">
+				<ul>
+					<li><span>01</span>
+						<p>账号注册认证</p>
+					</li>
+					<li class="lans"><span>02</span>
+						<p>企业账户完善</p>
+					</li>
+					<li><span>03</span>
+						<p>等待平台审批</p>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<form class="form-horizontal" id="basicForm" name="basicForm" enctype="multipart/form-data">
+				<dl class="reg-xx">
+					<dt>企业账户完善</dt>
+					<dd>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 商户名称：</label>
+								<div class="col-sm-6">
+									<input type="text" name="merchantname" maxlength="" class="form-control">
+								</div>
+								<div class="col-sm-3 tz-zi">
+									对外的常用名称
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 企业名称：</label>
+								<div class="col-sm-6">
+									<input type="text" maxlength="" name="enterprisename" class="form-control">
+								</div>
+								<div class="col-sm-3 tz-zi">
+									营业执照上的注册用名
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 信用代码：</label>
+								<div class="col-sm-6">
+									<input type="text" maxlength="" name="creditcode" class="form-control">
+								</div>
+								<div class="col-sm-3 tz-zi">
+									营业执照上的统一信用代码
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 公司电话：</label>
+								<div class="col-sm-6">
+									<input type="text" name="pohe" maxlength="20" class="form-control">
+								</div>
+								<div class="col-sm-3 tz-zi">
+									对外的联系号码
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 公司地址：</label>
+								<div class="col-sm-6" id="distpicker">
+									<span class="col-sm-4" style="padding-left: 0;">
+										<select class="select_card form-control" name="province" id="province">
+										</select>
+									</span>
+									<span class="col-sm-4">
+										<select class="select_card form-control" name="city" id="city">
+										</select>
+									</span>
+									<span class="col-sm-4">
+										<select class="select_card form-control" name="district" id="district">
+										</select>
+									</span>
+								</div>
+								
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 详细地址：</label>
+								<div class="col-sm-6">
+									<input type="text" name="address" class="form-control">
+								</div>
+								<div class="col-sm-3 tz-zi">
+									对外的联系地址详情
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 营业执照上传：</label>
+								<div class="col-sm-6">
+									<input type="file" title="请选择图片" id="file1" name="file" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+									<div class="imgtu"><img src="" id="img1"></div>
+									<input type="file" title="请选择图片" id="file2" name="file" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+									<div class="imgtu"><img src="" id="img2"></div>
+									<input type="file" title="请选择图片" id="file3" name="file" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+									<div class="imgtu"><img src="" id="img3"></div>
+								</div>
+								<div class="col-sm-3 tz-zi">
+									<label for="file" class="error"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">经营信息上传：</label>
+								<div class="col-sm-6">
+									<input type="file" title="请选择图片" id="file4" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+									<div class="imgtu"><img src="" id="img4"></div>
+								</div>
+								<div class="col-sm-3 tz-zi">
+									<label for="picsc2" class="error"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-3">
+									<a class="btn btn-lan baif" id="SubmissionBtn">提交资料</a>
+								</div>
+							</div>
+						</div>
+					</dd>
+				</dl>
+			</form>
+		</div>
+
+		<script src="../../js/jquery-1.11.1.min.js"></script>
+		<script src="../../js/visitip.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/jquery.validate.min.js"></script>
+		<script src="../../js/messages_zh.js"></script>
+		<script src="../../js/distpicker.data.js"></script>
+	    <script src="../../js/distpicker.js"></script>
+	    <script src="../../js/uploadImg.js"></script>
+		<script src="register-entTwo.js"></script>
+	</body>
+
+</html>
