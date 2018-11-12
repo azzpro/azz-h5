@@ -44,6 +44,7 @@ Module.define("system.programme", function(page, $) {
 			if($(this).hasClass('zhengc')){  //加
 				$(this).addClass('curr');
 				$(this).removeClass('zhengc');
+				$(this).siblings().removeClass('curr');
 				$(this).siblings().addClass('zhengc');
 			}
 		})
@@ -425,8 +426,19 @@ Module.define("system.programme", function(page, $) {
 	
 	function Select() {
 		paramsId.splice(0,paramsId.length);
-		paramData.splice(0,paramData.length);
 		$('input[name="deviceUuid"]:checked').each(function(){
+			var existsFlag = false;
+			for(var i=0;i<paramData.length;i++){
+				if($(this).attr("paramCode") == paramData[i].paramCode){
+					// 如果moduleCode的值在原来数组中已经存在，则标识为已存在，则跳出当前循环
+					existsFlag = true;
+					continue;
+				}
+			}
+			if(existsFlag){
+				// 如果moduleCode已存在，则不需要添加到数组
+				return true;
+			}
 			var Newsobj = {
 				"id" : $(this).attr("uuid"),
 				"paramCode" : $(this).attr("paramCode"),
