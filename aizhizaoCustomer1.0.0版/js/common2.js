@@ -299,7 +299,7 @@ $.ajaxSetup({
 		    localStorage.removeItem('clientUserPermissions');
 		    localStorage.removeItem('sessionId');
 		    localStorage.removeItem('clientType');
-			window.location.href = "login.html";
+			window.location.href = "../aizhizao-back/login.html";
 		}
 		request.setRequestHeader("token",sessionId);
 	},
@@ -312,7 +312,7 @@ $.ajaxSetup({
 			    localStorage.removeItem('clientUserPermissions');
 			    localStorage.removeItem('sessionId');
 			    localStorage.removeItem('clientType');
-				window.location.href = "login.html";
+				window.location.href = "../aizhizao-back/login.html";
 			}
 		}
 		

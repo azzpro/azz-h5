@@ -1,0 +1,54 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">订单拆单</h4>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">订单详情</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>订单编号：<span id="orderCode"></span></td>
+    		  	<td>订单状态：<span id="statuss"></span></td>
+    		  	<td>支付方式：<span id="paymentMethod"></span></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+	<div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">产品明细</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover text-center text-nowrap dataTable no-footer dtr-inline" id="table" width="100%">
+             <thead>
+				<tr>
+					<th>模组名称</th>
+					<th>数量</th>
+					<th>单价(元)</th>
+					<th>小计(元)</th>
+					<th>发货日期</th>
+				</tr>
+			</thead>
+			<tbody id="prodetail">
+				
+			</tbody>
+        </table>
+        <div class="divcs"><div class="pull-right"><a class="btn btn-primary zlan" href="#!stomerorder/stomerorder-distributiontoo.html">下一步</a></div></div>
+        </div>
+      </div>
+    </div>
+
+</div>
+<!-- 这里开始 End-->
+
+<script type="text/javascript" src="stomerorder/stomerorder-distribution.js"></script>

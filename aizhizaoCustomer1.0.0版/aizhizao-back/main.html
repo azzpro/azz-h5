@@ -148,6 +148,8 @@
 <!-- 短信验证码 弹出窗 End-->
 <!-- 共用 -->
 <script src="../js/jquery-1.11.1.min.js"></script>
+<!-- 设备列表分页 -->
+<script src="../js/jquery.pagination.js"></script>
 <script src="../js/visitip.js"></script>
 <script type="text/javascript" src="../js/jquery.ztree.core.js" ></script>
 <script type="text/javascript" src="../js/jquery.ztree.excheck.js" ></script>
@@ -176,11 +178,10 @@
 <script src="../js/echarts.common.min.js"></script>
 <!-- 框架响应式调整 -->
 <script src="../js/jquery.ui.datepicker-zh-CN.js"></script>
-<!-- 设备列表分页 -->
-<script src="../js/jquery.pagination.js"></script>
 
 <script type="text/javascript" src="../js/date.js"></script>
 <script type="text/javascript" src="../js/jedate.js"></script>
+<script src="../js/tabs.js"></script>
 
 <script>
 $(document).ready(function() {
@@ -239,37 +240,6 @@ function EnterpriseCenter() {
 	
 };
 
-//全局ajax请求设置，页面上所有的ajax请求，如果未登陆跳转则到登录界面
-$.ajaxSetup({
-	crossDomain: true,
-	cache : false,  //关闭缓存
-	beforeSend: function(request) {
-		var sessionId = JSON.parse(localStorage.getItem('sessionId'));
-		if (!sessionId) {
-			localStorage.removeItem('clientUserInfo');
-		    localStorage.removeItem('menus');
-		    localStorage.removeItem('clientUserPermissions');
-		    localStorage.removeItem('sessionId');
-		    localStorage.removeItem('clientType');
-			window.location.href = "login.html";
-		}
-		request.setRequestHeader("token",sessionId);
-	},
-	complete: function (xhr, status, request) {
-		// 未登录，后台返回的http状态码是403
-		if (xhr.status == 200) {
-			if (xhr.responseJSON && xhr.responseJSON.code == 40001) {
-				localStorage.removeItem('clientUserInfo');
-			    localStorage.removeItem('menus');
-			    localStorage.removeItem('clientUserPermissions');
-			    localStorage.removeItem('sessionId');
-			    localStorage.removeItem('clientType');
-				window.location.href = "login.html";
-			}
-		}
-		
-	}
-});
 </script>
 <!-- <script src="../js/operationPermission.js"></script> -->
 </body>

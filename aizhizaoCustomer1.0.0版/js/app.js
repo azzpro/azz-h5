@@ -9,22 +9,14 @@ Module.define("app.main", function(page, $) {
 		
 			var navli = '';
 			navli += '<li class="active"><a  href="#!home/home.html"><i class="fa fa-home"></i> <span>首页</span></a></li>'
-               + '<li class="nav-parent"><a href="javascript:;"><i class="glyphicon glyphicon-shopping-cart"></i> <span>订单管理</span></a>'
-			   + '<ul class="children">'
-			   + '<li><a href="#!customerorder/information.html"><i class="fa fa-caret-right"></i>客户订单</a></li>'
-			   + '<li><a href="#!merchantorders/modify-password.html"><i class="fa fa-caret-right"></i>商户订单</a></li>'
-			   + '</ul></li><li class="nav-parent"><a href="javascript:;"><i class="fa fa-shield"></i> <span>财务管理</span></a>'
+               + '<li><a href="#!order/order-management.html"><i class="glyphicon glyphicon-shopping-cart"></i> <span>订单管理</span></a>'
+			   + '</li><li class="nav-parent"><a href="javascript:;"><i class="fa fa-shield"></i> <span>财务管理</span></a>'
 				+ '<ul class="children">'
 				+ '<li><a  href="#!payment/information.html"><i class="fa fa-caret-right"></i>支付管理</a></li>'
 				+ '<li><a href="#!putforward/modify-password.html"><i class="fa fa-caret-right"></i>提现管理</a></li>'
 				+ '<li><a href="#!invoice/modify-password.html"><i class="fa fa-caret-right"></i>发票管理</a></li>'
-				+ '</ul></li><li class="nav-parent"><a href="javascript:;"><i class="fa fa-clock-o"></i> <span>选型管理</span></a>'
-				+ '<ul class="children">'
-				+ '<li><a href="#!parameter/information.html"><i class="fa fa-caret-right"></i>参数管理</a></li>'
-				+ '<li><a href="#!programme/modify-password.html"><i class="fa fa-caret-right"></i>方案管理</a></li>'
-				+ '<li><a href="#!selectionmodule/modify-password.html"><i class="fa fa-caret-right"></i>模组管理</a></li>'
-				+ '<li><a href="#!examination/modify-password.html"><i class="fa fa-caret-right"></i>审批管理</a></li>'
-				+ '</ul></li>'
+				+ '</ul></li><li><a href="#!model/model-management.html"><i class="fa fa-clock-o"></i> <span>选型管理</span></a>'
+				+ '</li>'
 				+ '<li><a href="#!data/data-management.html"><i class="fa fa-cogs"></i> <span>资料管理</span></a></li>';
 			$("#mainMenu").append(navli);
 		

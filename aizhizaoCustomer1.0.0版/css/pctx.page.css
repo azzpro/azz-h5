@@ -239,7 +239,7 @@
 .lr-k .row{ margin: 0;}
 .table>tbody+tbody {border-top: 0;}
 .fa{ cursor: pointer;margin: 0 10px;}
-.add{display: none;padding-left:0px; max-height: 200px; overflow: auto;}
+.add{display: none;}
 /*.add li span:nth-child(2){ padding-left: 20px;}*/
 .tab1{padding: 10px;margin: 0;border: 1px solid #eee;}
 .tab{border: 1px solid #eee;border-top:none; border-bottom:none; margin-bottom: 0; margin-left: 0;padding: 0;}
@@ -261,3 +261,36 @@
 .picname{ text-align: center; width: 320px; padding-top: 5px;}
 .imgtu{ margin: 5px 0;}
 .imgtu img{ width: 30%; height: auto;}
+
+.ycl{ display: none;}
+.divcs .pull-right span{ font-size: 18px; color: #f00; font-weight: bold;}
+.cdde{ width: 50%; border: #ccc 1px solid; padding: 0 8px; height: 30px;}
+.ALJ{ text-decoration: underline; margin-right:20px;}
+
+.protab1{ width: 100%; background: #eee; padding: 10px 0; overflow: hidden; margin: 0;}
+.protab{border: 1px solid #eee;border-top:none; border-bottom:none; margin-bottom: 0; margin-left: 0;padding: 0;}
+.protab1 .tab-lii{width:100%; list-style: none;}
+.protab .tabbt{width:100%; list-style: none; overflow: hidden; background: #eee; height: 50px; line-height: 50px; padding-left:15px; margin-top: 10px;}
+.protab .tabbt span{ float: right; padding-right: 15px;}
+.protab1 .tab-lii span{ float:left; display: flex; height: 63px; align-items:center;justify-content:center; text-align: center;}
+.protab1 .tab-lii span:nth-child(1){ width:30%;}
+.protab1 .tab-lii span:nth-child(2){ width:13%;}
+.protab1 .tab-lii span:nth-child(3){ width:16%;}
+.protab1 .tab-lii span:nth-child(4){ width:13%;}
+.protab1 .tab-lii span:nth-child(5){ width:15%;}
+.protab1 .tab-lii span:nth-child(6){ width:13%;}
+
+.protab .tab-liii{width:100%; list-style: none;border-bottom: 1px solid #eee; line-height: 40px;}
+.protab .tab-lii{width:100%; display: flex;border-bottom: 1px solid #eee;}
+.protab .tab-lii>div{ float:left; display: flex; align-items:center;justify-content:center; text-align:center;}
+.protab .tab-lii .child1{ width:59%; display: block; text-align:left; border-right:#eee 1px solid;}
+.protab .tab-lii .child2{ width:13%; border-right:#eee 1px solid}
+.protab .tab-lii .child3{ width:15%; border-right:#eee 1px solid;}
+.protab .tab-lii .child3 p{ margin: 0; display: block;}
+.protab .tab-lii .child4{ width:13%;}
+.protab .tab-lii dl{ width: 100%; overflow: hidden; margin: 0; padding: 0; display: flex; align-items:center;justify-content:center; text-align:center; border-bottom: #eee 1px solid;}
+.protab .tab-lii dl:last-child{ border-bottom: none;}
+.protab .tab-lii dl dd{ float: left;}
+.protab .tab-lii dl dd:nth-child(1){ width:52%; padding: 15px; border-right:#eee 1px solid}
+.protab .tab-lii dl dd:nth-child(2){ width:20%; text-align: center; border-right:#eee 1px solid; line-height: 75px;}
+.protab .tab-lii dl dd:nth-child(3){ width:28%; text-align: center;}

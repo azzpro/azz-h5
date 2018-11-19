@@ -184,7 +184,7 @@
 <script src="../js/jquery.cookies.js"></script>
 <script src="../js/module.js"></script>
 <script src="../js/jquery.history.js"></script>
-<script src="../js/common.js"></script>
+<script src="../js/common2.js"></script>
 <script src="../js/app2.js"></script>
 <!--  -->
 <!-- 表单验证 -->
@@ -201,7 +201,6 @@
 <script type="text/javascript" src="../js/jedate.js"></script>
 
 <script>
-var clientUserInfo = JSON.parse(localStorage.getItem('clientUserInfo'));
 $(document).ready(function() {
     $('#name').html(clientUserInfo.clientUserName);
     check();
@@ -239,40 +238,7 @@ function logout() {
 			}
 		}
 	});
-    
-
 };
-//全局ajax请求设置，页面上所有的ajax请求，如果未登陆跳转则到登录界面
-$.ajaxSetup({
-	crossDomain: true,
-	cache : false,  //关闭缓存
-	beforeSend: function(request) {
-		var sessionId = JSON.parse(localStorage.getItem('sessionId'));
-		if (!sessionId) {
-			localStorage.removeItem('clientUserInfo');
-		    localStorage.removeItem('menus');
-		    localStorage.removeItem('clientUserPermissions');
-		    localStorage.removeItem('sessionId');
-		    localStorage.removeItem('clientType');
-			window.location.href = "../aizhizao-back/login.html";
-		}
-		request.setRequestHeader("token",sessionId);
-	},
-	complete: function (xhr, status, request) {
-		// 未登录，后台返回的http状态码是403
-		if (xhr.status == 200) {
-			if (xhr.responseJSON && xhr.responseJSON.code == 40001) {
-				localStorage.removeItem('clientUserInfo');
-			    localStorage.removeItem('menus');
-			    localStorage.removeItem('clientUserPermissions');
-			    localStorage.removeItem('sessionId');
-			    localStorage.removeItem('clientType');
-				window.location.href = "../aizhizao-back/login.html";
-			}
-		}
-		
-	}
-});
 </script>
 <!-- <script src="../js/operationPermission.js"></script> -->
 </body>

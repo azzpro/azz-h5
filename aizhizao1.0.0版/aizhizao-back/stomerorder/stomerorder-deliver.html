@@ -1,0 +1,87 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="fr mt5 spacing">
+        <a class="btn btn-primary zlan" href="#!stomerorder/stomerorder.html">返回上一页</a>
+    </div>
+	<ul class="nav nav-tabs">
+      <li><a href="#!stomerorder/stomerorder-detail.html"><strong>订单信息</strong></a></li>
+      <li class="active"><a href="#!stomerorder/stomerorder-deliver.html"><strong>发货信息</strong></a></li>
+      <li><a href="#!stomerorder/stomerorder-record.html"><strong>操作记录</strong></a></li>
+	</ul>
+    <!--<div class="panel panel-default">
+      <div class="panel-heading">
+            <a class="btn btn-primary zlan" href="javascript:;">重新拆单</a>
+      </div>
+    </div>-->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">订单详情</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>订单编号：<span id="clientOrderCode"></span></td>
+    		  	<td>订单状态：<span id="statuss"></span></td>
+    		  	<td>支付方式：<span id="paymentMethod"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>拆单时间：<span id="handlerTime"></span></td>
+    		  	<td>订单合计：<span id="grandTotal"></span>元</td>
+    		  	<td></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+	<div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">拆单信息</h4>
+      </div>
+      <!--<div class="panel-body">
+      	<div class="panel-heading">
+      		<h4 class="pull-right">订单状态：待确认   <small>100086726-1</small></h4>
+            <h4 class="panel-title">银狐信息科技</h4>
+	    </div>
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover text-center text-nowrap dataTable no-footer dtr-inline" id="table" width="100%">
+             <thead>
+				<tr>
+					<th>模组名称</th>
+					<th>数量</th>
+					<th>单价(元)</th>
+					<th>小计(元)</th>
+					<th>发货日期</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img class="pull-left" src="../images/ewma.jpg" width="45" height="45" alt="" /><div class="pull-left spacing  text-left">产品编码：6183411916<br>模组名称：测试111</div></td>
+					<td>韩鼎君</td>
+					<td>13123397829</td>
+					<td>产品经理</td>
+					<td>Node组</td>
+				</tr>
+				<tr>
+					<td><img class="pull-left" src="../images/ewma.jpg" width="45" height="45" alt="" /><div class="pull-left spacing  text-left">产品编码：6183411916<br>模组名称：测试111</div></td>
+					<td>韩鼎君</td>
+					<td>13123397829</td>
+					<td>产品经理</td>
+					<td>Node组</td>
+				</tr>
+			</tbody>
+        </table>
+        <div class="divcs"><div class="pull-right">含税总金额(元)：<span>101988.49</span></div><a class="btn btn-primary zlan" href="javascript:;">物流信息</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-primary zlan" href="javascript:;">开票信息</a></div>
+        </div>
+      </div>-->
+      <div id="distributCD">
+      	
+      </div>
+    </div>
+
+</div>
+<!-- 这里开始 End-->
+
+<script type="text/javascript" src="stomerorder/stomerorder-deliver.js"></script>
