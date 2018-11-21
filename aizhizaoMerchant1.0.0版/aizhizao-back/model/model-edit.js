@@ -239,9 +239,9 @@ Module.define("system.model", function(page, $) {
 		var threeAssortmentcode = $('.three li.curr').attr('assortmentcode');
 		var threeassortmentId = $('.three li.curr').attr('assortmentId');
 		//判断li的个数
-		var oneslength = $('.ones li.zhengc').length;
-		var tooslength = $('.toos li.zhengc').length;
-		var threelength = $('.three li.zhengc').length;
+		var oneslength = $('.ones li.zhengc').length + $('.ones li.curr').length;
+		var tooslength = $('.toos li.zhengc').length + $('.toos li.curr').length;
+		var threelength = $('.three li.zhengc').length + $('.three li.curr').length;
 		if(!ones || !onesAssortmentcode){
 			alert('请选择一级分类');
 			return;
@@ -335,7 +335,8 @@ Module.define("system.model", function(page, $) {
 								"paramName" : paramName,
 								"values" : 0,
 								"type" : data.data.pvs[i].type,
-								'choice' : data.data.pvs[i].choice
+								'choice' : data.data.pvs[i].choice,
+								'termId' : data.data.pvs[i].termId,
 							}
 							params.push(Newsobj2);
 						}

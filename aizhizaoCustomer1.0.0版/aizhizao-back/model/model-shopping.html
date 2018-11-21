@@ -1,0 +1,199 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+    <div class="panel panel-default">
+      <button type="button" id="" class="btn btn-primary zlan pull-right mr20 mt10" data-toggle="modal" data-target="#myModal">选择地址</button>
+      <div class="panel-heading">
+            <h4 class="panel-title">收货地址</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td width="10%" class="text-right">收货地址：</td>
+    		  	<td width="90%" id="address"></td>
+    		  </tr>
+    		  <tr>
+    		  	<td class="text-right">收货人：</td>
+    		  	<td id="consignee"></td>
+    		  </tr>
+    		  <tr>
+    		  	<td class="text-right">手机号：</td>
+    		  	<td id="pohe"></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    
+
+</div>
+<!-- 这里开始 End-->
+<!-- 收货地址 弹出窗 -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">收货地址信息</h4>
+			</div>
+			<div class="text-center"><button type="button" class="btn btn-primary zlan mr20 mt10" data-toggle="modal" data-target="#myModal2">新增收货地址</button></div>
+			<div class="panel-body">
+                <div class="table-responsive">
+			        <table width="100%" class="table mb30">
+					    <tbody id="addressList">
+			              
+					    </tbody>
+			        </table>
+		        </div>
+            </div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 收货地址 弹出窗 End-->
+
+<!-- 添加收货地址 弹出窗 -->
+<div class="modal fade" id="myModal2">
+	<div class="modal-dialog" style="width: 700px;">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">新增收货地址</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 收货人：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="consignee" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 手机号码：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="Phone" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                    <label class="col-sm-3 control-label"><span class="hong">*</span> 所在地址：</label>
+		                    <div class="col-sm-8" id="distpicker">
+								<span class="col-sm-4" style="padding-left: 0;">
+									<select class="select_card form-control" name="province" id="province">
+									</select>
+								</span>
+								<span class="col-sm-4">
+									<select class="select_card form-control" name="city" id="city">
+									</select>
+								</span>
+								<span class="col-sm-4">
+									<select class="select_card form-control" name="district" id="district">
+									</select>
+								</span>
+						    </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 详细地址：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="detailaddress" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 地址别名：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="addressalias" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                	<label class="col-sm-3 control-label"></label>
+		                	<div class="col-sm-8">
+		               			<div class="checkbox"><label><input name="default" id="default" type="checkbox" value=""> 选中为默认地址</label><label class="error" for="default"></label></div>
+		               		</div>
+						</div>
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="addShippingAddress">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 添加收货地址  弹出窗 End-->
+<!-- 编辑收货地址 弹出窗 -->
+<div class="modal fade" id="myModal3">
+	<div class="modal-dialog" style="width: 700px;">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">编辑收货地址</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm2">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 收货人：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="consignee2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 手机号码：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="Phone2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                    <label class="col-sm-3 control-label"><span class="hong">*</span> 所在地址：</label>
+		                    <div class="col-sm-8" id="distpicker2">
+								<span class="col-sm-4" style="padding-left: 0;">
+									<select class="select_card form-control" name="province2" id="province2">
+									</select>
+								</span>
+								<span class="col-sm-4">
+									<select class="select_card form-control" name="city2" id="city2">
+									</select>
+								</span>
+								<span class="col-sm-4">
+									<select class="select_card form-control" name="district2" id="district2">
+									</select>
+								</span>
+						    </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 详细地址：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="detailaddress2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 地址别名：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="addressalias2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                	<label class="col-sm-3 control-label"></label>
+		                	<div class="col-sm-8">
+		               			<div class="checkbox"><label><input name="default2" id="default2" type="checkbox" value=""> 选中为默认地址</label><label class="error" for="default2"></label></div>
+		               		</div>
+						</div>
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="addShippingAddress2">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 编辑收货地址  弹出窗 End-->
+<script type="text/javascript" src="model/model-shopping.js"></script>

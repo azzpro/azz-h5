@@ -256,9 +256,9 @@ Module.define("system.parame", function(page, $) {
 		var three = $('.three li.curr').text();
 		var threeAssortmentcode = $('.three li.curr').attr('assortmentcode');
 		//判断li的个数
-		var oneslength = $('.ones li.zhengc').length;
-		var tooslength = $('.toos li.zhengc').length;
-		var threelength = $('.three li.zhengc').length;
+		var oneslength = $('.ones li.zhengc').length + $('.ones li.curr').length;
+		var tooslength = $('.toos li.zhengc').length + $('.toos li.curr').length;
+		var threelength = $('.three li.zhengc').length + $('.three li.curr').length;
 		if(!ones || !onesAssortmentcode){
 			alert('请选择一级分类')  
 		}else if(tooslength >= 1){
@@ -273,6 +273,7 @@ Module.define("system.parame", function(page, $) {
 					$('#myModal2').modal('hide');
 				}
 			}else{
+				
 				$('#classifname').html(toos);
 				$('#classifcord').html(toosAssortmentcode);
 				$('#myModal2').modal('hide');

@@ -205,6 +205,27 @@ Module.define("system.order", function(page, $) {
 						$('#fhdID').show();
 						$('#invoice').show();
 						$('#signintoo').show();
+						var shipmentFileInfos = data.shipInfo.shipmentFileInfos;
+						var atr = "";
+						for(var i = 0;i < shipmentFileInfos.length; i++){
+							var fileUrl = shipmentFileInfos[i].fileUrl;
+							var fileName = shipmentFileInfos[i].fileName;
+							atr += "<a class='ALJ' href='" + fileUrl + "' target='_blank'>" + fileName + "</a>";
+						}
+						$("#signFileInfos").append(atr);
+						
+						var signForInfo = data.signForInfo;
+						$('#consignee').html(signForInfo.consignee);
+						$('#createTime').html(signForInfo.createTime);
+						
+						var signFileInfos = signForInfo.signFileInfos;
+						var atr2 = "";
+						for(var i = 0;i < signFileInfos.length; i++){
+							var fileUrl = signFileInfos[i].fileUrl;
+							var fileName = signFileInfos[i].fileName;
+							atr2 += "<a class='ALJ' href='" + fileUrl + "' target='_blank'>" + fileName + "</a>";
+						}
+						$("#signFileInfos2").append(atr2);
 					}else{
 						$('#deliver').hide();
 						$('#fhstatus').hide();
@@ -232,40 +253,21 @@ Module.define("system.order", function(page, $) {
 					}
 					$("#prodetail").append(tr);
 					
-					var receiverAddress = data.receiverAddress;
-					$('#receiverName').html(receiverAddress.receiverName);
-					$('#number').html(receiverAddress.number);
-					$('#addressAlias').html(receiverAddress.addressAlias);
-					$('#address').html(receiverAddress.address);
-					
-					var shipInfo = data.shipInfo;
-					$('#createTimeS').html(shipInfo.createTime);
-					$('#creatorS').html(shipInfo.creator);
-					$('#companyNameS').html(shipInfo.companyName);
-					$('#numberS').html(shipInfo.number);
-					
-					var shipmentFileInfos = shipInfo.shipmentFileInfos;
-					var atr = "";
-					for(var i = 0;i < shipmentFileInfos.length; i++){
-						var fileUrl = shipmentFileInfos[i].fileUrl;
-						var fileName = shipmentFileInfos[i].fileName;
-						atr += "<a class='ALJ' href='" + fileUrl + "' target='_blank'>" + fileName + "</a>";
+					if(data.orderStatusId != 1){
+						var receiverAddress = data.receiverAddress;
+						$('#receiverName').html(receiverAddress.receiverName);
+						$('#number').html(receiverAddress.number);
+						$('#addressAlias').html(receiverAddress.addressAlias);
+						$('#address').html(receiverAddress.address);
 					}
-					$("#signFileInfos").append(atr);
 					
-					var signForInfo = data.signForInfo;
-					$('#consignee').html(signForInfo.consignee);
-					$('#createTime').html(signForInfo.createTime);
-					$('#createTime').html(signForInfo.createTime);
-					
-					var signFileInfos = signForInfo.signFileInfos;
-					var atr2 = "";
-					for(var i = 0;i < signFileInfos.length; i++){
-						var fileUrl = signFileInfos[i].fileUrl;
-						var fileName = signFileInfos[i].fileName;
-						atr2 += "<a class='ALJ' href='" + fileUrl + "' target='_blank'>" + fileName + "</a>";
+					if(data.orderStatusId == 3 || data.orderStatusId == 4){
+						var shipInfo = data.shipInfo;
+						$('#createTimeS').html(shipInfo.createTime);
+						$('#creatorS').html(shipInfo.creator);
+						$('#companyNameS').html(shipInfo.companyName);
+						$('#numberS').html(shipInfo.number);
 					}
-					$("#signFileInfos2").append(atr2);
 					
 				} else {
 					alert(data.msg)

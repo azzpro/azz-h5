@@ -27,6 +27,17 @@ Module.define("system.stomerorder", function(page, $) {
 					}
 					if(orderInfo.orderStatusId == 11){
 						$('#Signin').show();
+						var signInfo = data.data.signInfo;
+						$('#consignee').html(signInfo.consignee);
+						$('#signTime').html(signInfo.signTime);
+						var signFileInfos = signInfo.signFileInfos;
+						var atr = "";
+						for(var i = 0;i < signFileInfos.length; i++){
+							var fileUrl = signFileInfos[i].fileUrl;
+							var fileName = signFileInfos[i].fileName;
+							atr += "<a class='ALJ' href='" + fileUrl + "' target='_blank'>" + fileName + "</a>";
+						}
+						$("#signFileInfos").append(atr);
 					}else{
 						$('#Signin').hide();
 					}
@@ -89,18 +100,6 @@ Module.define("system.stomerorder", function(page, $) {
 						+ "<td>"+ deliveryTime +"</td></tr>";
 					}
 					$("#prodetail").append(tr);
-					
-					var signInfo = data.data.signInfo;
-					$('#consignee').html(signInfo.consignee);
-					$('#signTime').html(signInfo.signTime);
-					var signFileInfos = signInfo.signFileInfos;
-					var atr = "";
-					for(var i = 0;i < signFileInfos.length; i++){
-						var fileUrl = signFileInfos[i].fileUrl;
-						var fileName = signFileInfos[i].fileName;
-						atr += "<a class='ALJ' href='" + fileUrl + "' target='_blank'>" + fileName + "</a>";
-					}
-					$("#signFileInfos").append(atr);
 					
 				} else {
 					alert(data.msg)

@@ -191,56 +191,58 @@ Module.define("system.order", function(page, $) {
 					$("#prodetail").append(tr);
 					
 					
-					var deliveryInfos = data.data.deliveryInfos;
-					var tab = "";
-					var content = "";
-					for(var i = 0;i < deliveryInfos.length; i++){
-						var deliveryType = deliveryInfos[i].deliveryType;
-						var expressCompany = deliveryInfos[i].expressCompany;
-						var number = deliveryInfos[i].number;
-						var logistiscCompanyName = deliveryInfos[i].logistiscCompanyName;
-						var deliveryPerson = deliveryInfos[i].deliveryPerson;
-						var deliveryPhoneNumber = deliveryInfos[i].deliveryPhoneNumber;
-						var deliveryTime = deliveryInfos[i].deliveryTime;
-						var productCodes = deliveryInfos[i].productCodes;
-						
-						
-						switch(deliveryType) {
-							case 1:
-								var deliveryTypes = '快递配送';
-								break;
-							case 2:
-								var deliveryTypes = '物流配送';
-								break;
-							case 3:
-							var deliveryTypes = '商家配送';
-								break;
+					if(orderInfo.orderStatusId == 10 || orderInfo.orderStatusId == 11){
+						var deliveryInfos = data.data.deliveryInfos;
+						var tab = "";
+						var content = "";
+						for(var i = 0;i < deliveryInfos.length; i++){
+							var deliveryType = deliveryInfos[i].deliveryType;
+							var expressCompany = deliveryInfos[i].expressCompany;
+							var number = deliveryInfos[i].number;
+							var logistiscCompanyName = deliveryInfos[i].logistiscCompanyName;
+							var deliveryPerson = deliveryInfos[i].deliveryPerson;
+							var deliveryPhoneNumber = deliveryInfos[i].deliveryPhoneNumber;
+							var deliveryTime = deliveryInfos[i].deliveryTime;
+							var productCodes = deliveryInfos[i].productCodes;
+							
+							
+							switch(deliveryType) {
+								case 1:
+									var deliveryTypes = '快递配送';
+									break;
+								case 2:
+									var deliveryTypes = '物流配送';
+									break;
+								case 3:
+								var deliveryTypes = '商家配送';
+									break;
+							}
+							if(deliveryType == 1){
+								var distributions = expressCompany +'-'+ number
+							}else if(deliveryType == 2){
+								var distributions = logistiscCompanyName +'-'+ number
+							}else if(deliveryType == 3){
+								var distributions = deliveryPerson +'-'+ deliveryPhoneNumber
+							}
+							
+							var expressFileInfos = deliveryInfos[i].expressFileInfos;
+							var signFileInfos = "";
+							for(var j = 0;j < expressFileInfos.length; j++){
+								var fileUrl = expressFileInfos[j].fileUrl;
+								var fileName = expressFileInfos[j].fileName;
+								signFileInfos += "<a class='ALJ' href='" + fileUrl + "' target='_blank'>" + fileName + "</a>";
+							}
+							tab += "<li>包裹"+ (i+1) +"</li>";
+							content += "<div><table width='100%' class='table mb30'><tbody><tr>"
+				    		  	    + "<td>配送方式："+ deliveryTypes +"</td>"
+				    		  	    + "<td>配送信息："+ distributions +"</td>"
+				    		  	    + "<td>发货时间："+ deliveryTime +"</td></tr>"
+				    		        + "<tr><td colspan='3'>发货单："+ signFileInfos +"</td></tr>"
+				    		        + "<tr><td colspan='3'>产品信息："+ productCodes +"</td></tr></tbody></table></div>";
 						}
-						if(deliveryType == 1){
-							var distributions = expressCompany +'-'+ number
-						}else if(deliveryType == 2){
-							var distributions = logistiscCompanyName +'-'+ number
-						}else if(deliveryType == 3){
-							var distributions = deliveryPerson +'-'+ deliveryPhoneNumber
-						}
-						
-						var expressFileInfos = deliveryInfos[i].expressFileInfos;
-						var signFileInfos = "";
-						for(var j = 0;j < expressFileInfos.length; j++){
-							var fileUrl = expressFileInfos[j].fileUrl;
-							var fileName = expressFileInfos[j].fileName;
-							signFileInfos += "<a class='ALJ' href='" + fileUrl + "' target='_blank'>" + fileName + "</a>";
-						}
-						tab += "<li>包裹"+ (i+1) +"</li>";
-						content += "<div><table width='100%' class='table mb30'><tbody><tr>"
-			    		  	    + "<td>配送方式："+ deliveryTypes +"</td>"
-			    		  	    + "<td>配送信息："+ distributions +"</td>"
-			    		  	    + "<td>发货时间："+ deliveryTime +"</td></tr>"
-			    		        + "<tr><td colspan='3'>发货单："+ signFileInfos +"</td></tr>"
-			    		        + "<tr><td colspan='3'>产品信息："+ productCodes +"</td></tr></tbody></table></div>";
+						$("#tab-menu").append(tab);
+						$("#tab-content").append(content);
 					}
-					$("#tab-menu").append(tab);
-					$("#tab-content").append(content);
 					
 				} else {
 					alert(data.msg)

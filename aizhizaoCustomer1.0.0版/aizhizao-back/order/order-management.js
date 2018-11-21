@@ -3,7 +3,7 @@ Module.define("system.order", function(page, $) {
 		initDataTable();
 		Pagination();
 		$("#Search").bind("click", function() {
-			$("#orderTable").empty()
+			$("#orderTable").empty();
 			initDataTable();
 			Pagination();
 		});

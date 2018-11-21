@@ -118,7 +118,6 @@ Module.define("system.stomerorder", function(page, $) {
 			data:JSON.stringify(GetJsonData()),
 			success: function(data) {
 				if (data.code == 0) {
-					debugger
 					alert('拆分成功！');
 					window.location.href = "#!stomerorder/stomerorder.html";
 				} else {
