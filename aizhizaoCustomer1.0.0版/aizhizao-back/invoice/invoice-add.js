@@ -3,7 +3,13 @@ Module.define("system.invoice", function(page, $) {
 		init();
 		getShippingAddressList();
 		getInvoiceTemplateList();
+		getDefaultShippingAddress()
 		$("#addShippingAddress").bind("click", addShippingAddress);
+		$("#Submission").bind("click", Submission);
+		initDataTable();
+		$("#Search").bind("click", function() {
+			dataTable.ajax.reload();
+		});
 		$('#distpicker').distpicker({
 	   		autoSelect: false,
 		    /*province: '广东省',
@@ -42,7 +48,238 @@ Module.define("system.invoice", function(page, $) {
 		
 	}
 	
+	function initDataTable() {
+		dataTable = $('#table').DataTable({
+			"language": {url: "../js/chinese.json"},
+			"lengthChangevar": false, //去掉每页显示数据条数
+			"bPaginate" : true,// 分页按钮  
+			"stateSave": false, //状态保存
+			"deferRender": true, //延迟渲染数据
+			"processing": false,//等待加载效果 
+			"serverSide": true,
+			"lengthChange": false,
+			"responsive": true,
+			"searching":false,
+			"ordering":false,
+			"info":false,
+			"ajax": function (data, callback, settings) {
+				
+				//封装请求参数  
+				var param = {};
+				param = data;
+				param.pageNum = data.start/10+1;
+				param.pageSize = data.length;
+				param.clientOrderCode = $("input[name='searchcod']").val();
+				//当前页码
+				 $.ajax({
+				 	type: "POST",   
+				 	url: ulrTo + "/azz/api/client/invoice/getInvoiceClientList",
+				 	cache: false, //禁用缓存   
+				 	data: param, //传入组装的参数   
+				 	dataType: "json", 
+				 	success: function (result) {
+			 			//封装返回数据   
+			 			var returnData = {};
+			 			returnData = param;
+			 			returnData.draw = result.pageNum;//这里直接自行返回了draw计数器,应该由后台返回
+			 			returnData.recordsTotal = result.data.total;//返回数据全部记录
+			 			returnData.recordsFiltered = result.data.total;//后台不实现过滤功能，每次查询均视作全部结果   
+			 			if(null == result.data.rows){
+			 				result.data.rows = [];
+			 			}
+			 			returnData.data = result.data.rows;//返回的数据列表   
+			 			//调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染   
+			 			//此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕   
+			 			callback(returnData);   
+				 	}  
+				 });
+			},
+			"columns": [{
+					"title": "订单编号",
+					"data": "clientOrderCode",
+					"className": "all",
+					"defaultContent": "-"
+				}, 
+				{
+					"title": "订单金额",
+					"data": "grandTotal",
+					"className": "all",
+					"defaultContent": "-",
+				},
+				{
+					"title": "订单状态",
+					"data": "",
+					"className": "all",
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						switch(row.orderStatusId) {
+							case 7:
+								return '待支付';
+								break;
+							case 8:
+								return '待确认';
+								break;
+							case 9:
+								return '待配货 ';
+								break;
+							case 10:
+								return '代签收';
+								break;
+							case 11:
+								return '已完成';
+								break;
+							case 12:
+								return '已关闭';
+								break;
+						};
+					}
+				},
+				{
+					"title": "申请状态",
+					"data": "",
+					"className": "all",
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						switch(row.invoiceStatus) {
+							case 0:
+								return '未开票';
+								break;
+							case 1:
+								return '已开票';
+								break;
+						};
+					}
+				},
+				{
+					"title": "创建时间",
+					"data": "createTime",
+					"className": "all",
+					"defaultContent": "-",
+				},
+				{
+					"title": "操作",
+					"data": "",
+					"className": "desktop testview",
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						if (row) {
+			            	var html = '<div class="am-btn-toolbar">';
+			            		html += '<div class="am-btn-group am-btn-group-xs">';
+			            		html += '<a href="javascript:;" onclick="system.invoice.details(\'' + row.clientOrderCode +"','" + row.grandTotal +'\');">申请开票</a>';
+			            		html += '</div>';
+			            		html += '</div>';
+				            return html;
+						}
+		            }
+				}
+			],
+		});
+	}
 	
+	//选中
+	page.details = function (clientOrderCode,grandTotal) {
+		$('#clientOrderCode').html(clientOrderCode);
+		$('#grandTotal').html(grandTotal);
+		$("#prodetail").empty();
+		getClientOrderItems(clientOrderCode);
+		$('#myModal4').modal('hide');
+	}
+	
+	//产品明细
+	function getClientOrderItems(clientOrderCode) {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/invoice/getClientOrderItems",
+			cache: false, //禁用缓存
+			data: {
+				'searchInput' : clientOrderCode
+			},
+			dataType: "json", 
+			success: function(data) {
+				if (data.code == 0) {
+					var orderItems = data.data;
+					var tr = "";
+					for(var i = 0;i < orderItems.length; i++){
+						var modulePicUrl = orderItems[i].modulePicUrl;
+						var productCode = orderItems[i].productCode;
+						var moduleName = orderItems[i].moduleName;
+						var quantity = orderItems[i].quantity;
+						var productPrice = orderItems[i].productPrice;
+						var productPriceSum = orderItems[i].productPriceSum;
+						var deliveryTime = orderItems[i].deliveryTime;
+						
+						tr += "<tr><td><img class='pull-left' src='"+ modulePicUrl +"' width='45' height='45' alt='' /><div class='pull-left spacing  text-left'>产品编码："+ productCode +"<br>模组名称："+ moduleName +"</div></td>"
+						+ "<td>"+ quantity +"</td>"
+						+ "<td>"+ productPrice +"</td>"
+						+ "<td>"+ productPriceSum +"</td>"
+						+ "<td>"+ deliveryTime +"</td></tr>";
+					}
+					$("#prodetail").append(tr);
+					
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	//默认地址
+	function getDefaultShippingAddress() {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/order/getDefaultShippingAddress",
+			cache: false, //禁用缓存
+			data: {},
+			dataType: "json", 
+			success: function(data) {
+				if (data.code == 0) {
+					var data=data.data;
+					$('#address').html(data.provinceName + data.cityName + data.areaName + data.detailAddress);
+					$('#consignee').html(data.receiverName);
+					$('#pohe').html(data.receiverPhoneNumber);
+					$('#addressAlias').html(data.addressAlias);
+					$('#shippingId').html(data.shippingId)
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	//提交申请
+	function Submission() {
+		if(!$('#Invoicetypeid').html()){
+			alert('请选择开票模板');
+			return;
+		}
+		if(!$('#shippingId').html()){
+			alert('请选择寄送地址');
+			return;
+		}
+		if(!$('#clientOrderCode').html()){
+			alert('请选择订单');
+			return;
+		}
+		$.ajax({
+	        type :'POST',
+	        url : ulrTo+'/azz/api/client/invoice/addInvoiceApply',
+	        cache: false, //禁用缓存    
+			dataType: "json",
+			data: {
+				'amount' : $('#grandTotal').html(),
+				'clientOrderCode' : $('#clientOrderCode').html(),
+				'invoiceTemplateId' : $('#Invoicetypeid').html(),
+				'shippingAddressId' : $('#shippingId').html()
+			},
+	        success : function(data) {
+	        	if (data.code == 0) {
+	        		window.location.href = "#!invoice/invoice-management.html"
+				} else {
+					alert(data.msg);
+				}
+	        }
+	    });
+	}
 	
 	//发票模板
 	function getInvoiceTemplateList() {
@@ -59,19 +296,16 @@ Module.define("system.invoice", function(page, $) {
 					var data = data.data;
 					var tr = "";
 					for(var i = 0;i < data.length; i++){
-						var shippingId = data[i].shippingId;
-						var receiverName = data[i].receiverName;
-						var receiverPhoneNumber = data[i].receiverPhoneNumber;
-						var provinceName = data[i].provinceName;
-						var cityName = data[i].cityName;
-						var areaName = data[i].areaName;
-						var detailAddress = data[i].detailAddress;
-						var address = provinceName + cityName + areaName + detailAddress;
+						var title = data[i].title;
+						var number = data[i].number;
+						var id = data[i].id;
+						var remark = data[i].remark;
+						var ordinary = '普通发票';
 						
 						
-						tr += "<tr><td><a href='javascript:;' onclick=\"system.invoice.Selection(\'" + receiverName+ "','" + receiverPhoneNumber + "','" + address + "\');\">选用</a></td>"
-						+ "<td>发票摇头："+ receiverPhoneNumber +"<br>纳税人识别号："+ address +"</td>"
-						+ "<td>黄志成</td></tr>";
+						tr += "<tr>"
+						+ "<td>发票抬头："+ title +"<br>纳税人识别号："+ number +"</td>"
+						+ "<td><a class='btn btn-primary zlan' href='javascript:;' onclick=\"system.invoice.SelecS(\'" + title+ "','" + number + "','" + id + "','" + remark + "','" + ordinary + "\');\">选用</a></td></tr>";
 					}
 					$("#addinvoices").append(tr);
 					
@@ -80,6 +314,17 @@ Module.define("system.invoice", function(page, $) {
 				}
 			}
 		});
+	}
+	//选中
+	page.SelecS = function (title,number,id,remark,ordinary) {
+		$('#Invoicetype').html(ordinary);
+		$('#Invoiceraised').html(title);
+		$('#taxpayer').html(number);
+		$('#remark').html(remark);
+		$('#Invoicetypeid').html(id);
+		$('#myModal5').modal('hide');
+		$('#ordinarySS').show();
+		$('#incrementSS').hide();
 	}
 	//发票模板
 	function getInvoiceTemplateList2() {
@@ -96,19 +341,20 @@ Module.define("system.invoice", function(page, $) {
 					var data = data.data;
 					var tr = "";
 					for(var i = 0;i < data.length; i++){
-						var shippingId = data[i].shippingId;
-						var receiverName = data[i].receiverName;
-						var receiverPhoneNumber = data[i].receiverPhoneNumber;
-						var provinceName = data[i].provinceName;
-						var cityName = data[i].cityName;
-						var areaName = data[i].areaName;
-						var detailAddress = data[i].detailAddress;
-						var address = provinceName + cityName + areaName + detailAddress;
+						var companyName = data[i].companyName;
+						var number = data[i].number;
+						var id = data[i].id;
+						var createTime = data[i].createTime;
+						var ordinary2 = '增值税专用发票';
+						var regAddress = data[i].regAddress;
+						var regTelephone = data[i].regTelephone;
+						var bank = data[i].bank;
+						var bankAccount = data[i].bankAccount;
 						
 						
-						tr += "<tr><td><a href='javascript:;' onclick=\"system.invoice.Selection(\'" + receiverName+ "','" + receiverPhoneNumber + "','" + address + "\');\">选用</a></td>"
-						+ "<td>发票摇头："+ receiverPhoneNumber +"<br>纳税人识别号："+ address +"</td>"
-						+ "<td>黄志成</td></tr>";
+						tr += "<tr>"
+						+ "<td>公司名称："+ companyName +"<br>纳税人识别号："+ number +"</td>"
+						+ "<td><a class='btn btn-primary zlan' href='javascript:;' onclick=\"system.invoice.SelecStar(\'" + companyName+ "','" + number + "','" + id + "','" + createTime + "','" + ordinary2 + "','" + regAddress + "','" + regTelephone + "','" + bank + "','" + bankAccount + "\');\">选用</a></td></tr>";
 					}
 					$("#addinvoices").append(tr);
 					
@@ -117,6 +363,22 @@ Module.define("system.invoice", function(page, $) {
 				}
 			}
 		});
+	}
+	//选中
+	page.SelecStar = function (companyName,number,id,createTime,ordinary2,regAddress,regTelephone,bank,bankAccount) {
+		$('#incrementtype').html(ordinary2);
+		$('#companyName').html(companyName);
+		$('#createTime').html(createTime);
+		$('#number').html(number);
+		$('#Invoicetypeid').html(id);
+		$('#regAddress').html(regAddress);
+		$('#regTelephone').html(regTelephone);
+		$('#bank').html(bank);
+		$('#bankAccount').html(bankAccount);
+		
+		$('#myModal5').modal('hide');
+		$('#incrementSS').show();
+		$('#ordinarySS').hide();
 	}
 	
 	function getShippingAddressList() {
@@ -139,6 +401,7 @@ Module.define("system.invoice", function(page, $) {
 						var cityName = data[i].cityName;
 						var areaName = data[i].areaName;
 						var detailAddress = data[i].detailAddress;
+						var addressAlias = data[i].addressAlias;
 						var address = provinceName + cityName + areaName + detailAddress;
 						if(isDefault == 1){
 							var isDefaultS = '默认' 
@@ -148,7 +411,7 @@ Module.define("system.invoice", function(page, $) {
 						
 						tr += "<tr><td>"+ isDefaultS +"</td>"
 						+ "<td>"+ receiverName +"&nbsp;&nbsp;&nbsp;"+ receiverPhoneNumber +"<br>"+ address +"</td>"
-						+ "<td><a href='javascript:;' onclick=\"system.invoice.Selection(\'" + receiverName+ "','" + receiverPhoneNumber + "','" + address + "\');\">选用</a>&nbsp;&nbsp;<a href='javascript:;' onclick=\"system.invoice.edit(\'" + shippingId + "\');\">编辑</a>&nbsp;&nbsp;<a href='javascript:;' onclick=\"system.invoice.deletes(\'" + shippingId + "\');\">删除</a></td></tr>";
+						+ "<td><a href='javascript:;' onclick=\"system.invoice.Selection(\'" + receiverName+ "','" + receiverPhoneNumber + "','" + address + "','" + shippingId + "','" + addressAlias + "\');\">选用</a>&nbsp;&nbsp;<a href='javascript:;' onclick=\"system.invoice.edit(\'" + shippingId + "\');\">编辑</a>&nbsp;&nbsp;<a href='javascript:;' onclick=\"system.invoice.deletes(\'" + shippingId + "\');\">删除</a></td></tr>";
 					}
 					$("#addressList").append(tr);
 					
@@ -200,10 +463,12 @@ Module.define("system.invoice", function(page, $) {
 	}
 	
 	//选中
-	page.Selection = function (receiverName,receiverPhoneNumber,address) {
+	page.Selection = function (receiverName,receiverPhoneNumber,address,shippingId,addressAlias) {
 		$('#address').html(address);
 		$('#consignee').html(receiverName);
 		$('#pohe').html(receiverPhoneNumber);
+		$('#shippingId').html(shippingId);
+		$('#addressAlias').html(addressAlias);
 		$('#myModal').modal('hide');
 	}
 	
@@ -262,7 +527,7 @@ Module.define("system.invoice", function(page, $) {
 			}
 		});
 		$('#myModal3').modal('show');
-		$('#addShippingAddress2').attr("onclick", "system.model.editGroup(\'" + shippingId +"\');")
+		$('#addShippingAddress2').attr("onclick", "system.invoice.editGroup(\'" + shippingId +"\');")
 	}
 	
 	page.editGroup = function (shippingId) {
@@ -276,7 +541,7 @@ Module.define("system.invoice", function(page, $) {
 		}
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/client/order/addShippingAddress",
+			url: ulrTo+"/azz/api/client/order/editShippingAddress",
 			cache: false, //禁用缓存
 			data: {
 				'shippingId':shippingId,

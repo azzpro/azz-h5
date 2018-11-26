@@ -208,7 +208,7 @@ Module.define("system.model", function(page, $) {
 		}
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/client/order/addShippingAddress",
+			url: ulrTo+"/azz/api/client/order/editShippingAddress",
 			cache: false, //禁用缓存
 			data: {
 				'shippingId':shippingId,

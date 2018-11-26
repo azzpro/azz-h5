@@ -31,8 +31,8 @@ Module.define("system.invoice", function(page, $) {
 				param.status = $("#approvalType").val();
 				//当前页码
 				 $.ajax({
-				 	type: "GET",   
-				 	url: ulrTo + "/azz/api/client/invoice/getClientInvoiceList",
+				 	type: "POST",   
+				 	url: ulrTo + "/azz/api/merchant/invoice/getMerchantInvoiceList",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -54,8 +54,8 @@ Module.define("system.invoice", function(page, $) {
 				 });
 			},
 			"columns": [{
-					"title": "申请编号",
-					"data": "clientApplyCode",
+					"title": "发票申请编号",
+					"data": "merchantApplyCode",
 					"className": "all",
 					"defaultContent": "-"
 				}, 
@@ -76,20 +76,26 @@ Module.define("system.invoice", function(page, $) {
 					}
 				},
 				{
-					"title": "开票金额",
-					"data": "amount",
+					"title": "关联订单编号",
+					"data": "clientOrderCode",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
-					"title": "状态",
-					"data": "",
+					"title": "申请金额",
+					"data": "applyAmount",
 					"className": "all",
 					"defaultContent": "-",
+				},
+				{
+					"title": "申请状态",
+					"data": "",
+					"className": "all",
+					"defaultContent": "无",
 					"render" : function (data, type, row, meta) {
-						switch(row.status) {
+						switch(row.applyStatus) {
 							case 0:
-								return '待审批';
+								return '待确认';
 								break;
 							case 1:
 								return '待开票';
@@ -98,34 +104,22 @@ Module.define("system.invoice", function(page, $) {
 								return '待签收';
 								break;
 							case 3:
-								return '已拒绝';
-								break;
-							case 4:
 								return '已完成';
-								break;
-							case 5:
-								return '已取消';
 								break;
 						};
 					}
 				},
 				{
-					"title": "申请时间",
+					"title": "发起人",
+					"data": "creator",
+					"className": "all",
+					"defaultContent": "-",
+				},
+				{
+					"title": "发起时间",
 					"data": "createTime",
 					"className": "all",
 					"defaultContent": "-",
-				},
-				{
-					"title": "票据数量",
-					"data": "quantity",
-					"className": "all",
-					"defaultContent": "-",
-				},
-				{
-					"title": "关联订单编号",
-					"data": "clientOrderCode",
-					"className": "all",
-					"defaultContent": "无"
 				},
 				{
 					"title": "操作",

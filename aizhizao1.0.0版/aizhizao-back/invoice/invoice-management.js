@@ -31,8 +31,8 @@ Module.define("system.invoice", function(page, $) {
 				param.status = $("#approvalType").val();
 				//当前页码
 				 $.ajax({
-				 	type: "GET",   
-				 	url: ulrTo + "/azz/api/client/invoice/getClientInvoiceList",
+				 	type: "POST",   
+				 	url: ulrTo + "/azz/api/platform/client/invoice/getPlatformClientInvoiceList",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -54,7 +54,7 @@ Module.define("system.invoice", function(page, $) {
 				 });
 			},
 			"columns": [{
-					"title": "申请编号",
+					"title": "发票申请编号",
 					"data": "clientApplyCode",
 					"className": "all",
 					"defaultContent": "-"
@@ -76,16 +76,34 @@ Module.define("system.invoice", function(page, $) {
 					}
 				},
 				{
-					"title": "开票金额",
+					"title": "关联订单编号",
+					"data": "clientOrderCode",
+					"className": "all",
+					"defaultContent": "-",
+				},
+				{
+					"title": "申请金额",
 					"data": "amount",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
-					"title": "状态",
-					"data": "",
+					"title": "申请账户",
+					"data": "phoneNumber",
 					"className": "all",
 					"defaultContent": "-",
+				},
+				{
+					"title": "申请时间",
+					"data": "createTime",
+					"className": "all",
+					"defaultContent": "-",
+				},
+				{
+					"title": "申请状态",
+					"data": "",
+					"className": "all",
+					"defaultContent": "无",
 					"render" : function (data, type, row, meta) {
 						switch(row.status) {
 							case 0:
@@ -108,24 +126,6 @@ Module.define("system.invoice", function(page, $) {
 								break;
 						};
 					}
-				},
-				{
-					"title": "申请时间",
-					"data": "createTime",
-					"className": "all",
-					"defaultContent": "-",
-				},
-				{
-					"title": "票据数量",
-					"data": "quantity",
-					"className": "all",
-					"defaultContent": "-",
-				},
-				{
-					"title": "关联订单编号",
-					"data": "clientOrderCode",
-					"className": "all",
-					"defaultContent": "无"
 				},
 				{
 					"title": "操作",

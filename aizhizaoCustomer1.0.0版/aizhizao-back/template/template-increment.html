@@ -1,0 +1,196 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<ul class="nav nav-tabs">
+      <li><a href="#!template/template-management.html"><strong>普通发票</strong></a></li>
+      <li class="active"><a href="#!template/template-increment.html"><strong>增值税专用发票</strong></a></li>
+    </ul>
+    <div class="panel-body backgr">
+		
+			<div class="panel panel-default">
+				<div class="panel-body" style="padding: 12px;">
+					<div class="col-sm-6" style="margin-top:3px;">
+						<button class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal">新增发票模板</button>
+					</div>
+				
+				</div>
+
+		            <div class="tab-pane active">
+			            <div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover text-center text-nowrap dataTable no-footer dtr-inline" id="table" width="100%">
+			                   
+			                </table>
+						</div>
+		            </div>
+
+			</div>
+		<div class="clearfix"></div>
+	</div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 添加 弹出窗 -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">新增发票模板</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>公司名称：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="companyname" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>纳税识别号：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="paytaxes" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>注册地址：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="registered" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>注册电话：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="telephone" maxlength="11" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>开户银行：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="bank" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>银行账号：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="account" class="form-control">
+		                  </div>
+		                </div>
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="confirm">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 添加 弹出窗 End-->
+<!-- 编辑 弹出窗 -->
+<div class="modal fade" id="myModal2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">编辑发票模板</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm2">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>公司名称：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="companyname2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>纳税识别号：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="paytaxes2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>注册地址：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="registered2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>注册电话：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="telephone2" maxlength="11" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>开户银行：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="bank2" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span>银行账号：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="account2" class="form-control">
+		                  </div>
+		                </div>
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="editconfirm">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 编辑 弹出窗 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					操作成功!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<!-- 确认删除 弹出窗 -->
+<div class="modal fade" id="myModal112">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">删除成员</h4>
+			</div>
+			<form class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					您确定把“<span id="bmName"></span>”发票模板删除吗？
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="deletebunnot" data-dismiss="modal">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 确认删除 弹出窗 End-->
+<script type="text/javascript" src="template/template-increment.js"></script>
