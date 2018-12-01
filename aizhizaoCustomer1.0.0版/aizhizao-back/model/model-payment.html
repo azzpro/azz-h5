@@ -1,0 +1,69 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">订单支付</h4>
+		</div>
+		<div class="panel-body">
+			<h4>订单明细</h4>
+			<p><b>收货人：</b><span id="receiverName"></span></p>
+			<p><b>地址：</b><span id="receiverAddress"></span></p>
+			<p><b>手机：</b><span id="receiverPhoneNumber"></span></p>
+			<p><b>应付金额(元)：</b><span id="grandTotal"></span></p><br>
+			<h4>选择支付方式</h4>
+			<div class="xzzf">
+				<a class="bg" val='1' href="javascript:;"><img src="../images/wx-ico.png" alt=""></a>
+				<a class="bgno" val='2' href="javascript:;"><img src="../images/zfb-ico.png" alt=""></a>
+				<a class="bgno" val='3' href="javascript:;"><img src="../images/gryl-ico.png" alt=""></a>
+			</div>
+			<div class="text-left ptb20" style="border-top: 1px solid #eee;">&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="btn btn-primary" id="payment">立即支付</a>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center" style="padding: 50px 0;">
+					<button class="btn btn-primary zlan" id="Paid">已付款</button>
+					<button class="btn btn-default zlan" id="problem">支付遇到问题</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<!-- 失败  弹出窗 -->
+<div class="modal fade" id="myModal2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<form class="form-horizontal form-bordered">
+				<div class="text-center ptb20" id="dataMSG">
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal">知道了</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 失败 弹出窗 End-->
+<script type="text/javascript" src="model/model-payment.js"></script>

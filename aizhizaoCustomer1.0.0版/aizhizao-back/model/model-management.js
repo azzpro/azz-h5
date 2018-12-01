@@ -1,10 +1,14 @@
 Module.define("system.model", function(page, $) {
+	var ordercordId = [];
 	page.ready = function() {
 		initDataTable();
+		initDataTable2();
 		$("#Search").bind("click", function() {
 			dataTable.ajax.reload();
 		});
 		$("#shoppingcart").bind("click", shoppingcart);
+		$("#bulkorder").bind("click", bulkorder);
+		$("#bulkdel").bind("click", bulkdel);
 	}
 	
 	function initDataTable() {
@@ -31,7 +35,7 @@ Module.define("system.model", function(page, $) {
 				//当前页码
 				 $.ajax({
 				 	type: "POST",   
-				 	url: ulrTo + "/azz/api/merchant/combination/getModuleInfoList",
+				 	url: ulrTo + "/azz/api/client/selection/getSelectionRecord",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -48,38 +52,39 @@ Module.define("system.model", function(page, $) {
 			 			returnData.data = result.data.rows;//返回的数据列表   
 			 			//调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染   
 			 			//此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕   
-			 			callback(returnData);   
+			 			callback(returnData);
+			 			$('#GogNumber').html(result.data.total);
 				 	}  
 				 });
 			},
 			"columns": [{
-					"title": '<input id="checkUuid" onclick="system.parameter.checkAll()" type="checkbox">',
+					"title": '<input id="checkUuid" onclick="system.model.checkAll()" type="checkbox">',
 					"data": "",
-					"className": "text-nowrap",
+					"className": "",
 					"defaultContent": "-",
 					"render": function(data, type, row, meta) {
-						return '<input onclick="system.parameter.checkQx()" name="deviceUuid" moduleName="'+row.moduleName+'" type="checkbox">';
+						return '<input onclick="system.model.checkQx()" name="deviceUuid" selectionRecordId="'+row.selectionRecordId+'" type="checkbox">';
 					}
 				}, // 序号
 				{
 					"title": "产品编码",
-					"data": "moduleName",
-					"className": "text-nowrap",
+					"data": "productCode",
+					"className": "",
 					"defaultContent": "-"
 				}, // 序号
 				{
-					"title": "单价",
-					"data": "moduleCode",
-					"className": "text-nowrap",
+					"title": "参考单价",
+					"data": "price",
+					"className": "",
 					"defaultContent": "-"
 				},
 				{
 					"title": "状态",
 					"data": "",
-					"className": "text-nowrap",
+					"className": "",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
-						switch(row.moduleStatus) {
+						switch(row.productStatus) {
 							case 1:
 								return '上架';
 								break;
@@ -91,38 +96,39 @@ Module.define("system.model", function(page, $) {
 				},
 				{
 					"title": "交期",
-					"data": "merchantName",
-					"className": "text-nowrap",
+					"data": "deliveryDate",
+					"className": "",
 					"defaultContent": "-"
 				},
 				{
 					"title": "所属模组",
-					"data": "merchantName",
-					"className": "text-nowrap",
+					"data": "moduleName",
+					"className": "",
+					"defaultContent": "-"
+				},
+				{
+					"title": "保存时间",
+					"data": "createTime",
+					"className": "",
 					"defaultContent": "-"
 				},
 				{
 					"title": "参数值",
-					"data": "merchantName",
-					"className": "text-nowrap",
+					"data": "paramsValue",
+					"className": "",
 					"defaultContent": "-"
 				},
 				{
 					"title": "操作",
 					"data": "merchantName",
-					"className": "text-nowrap",
+					"className": "",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
 						if (row) {
-			            	if(row.status == 2){
-								var statustoo = '上架'
-							}else{
-								var statustoo = '下架'
-							}
 		            		var html = '<div class="am-btn-toolbar">';
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
-		            		html += '<a href="#!parameter/parameter-edit.html?combinationCode={0}">订购</a>'.format(row.combinationCode);
-		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.parameter.delDeptInfo(\'' + row.combinationCode + "','"+ row.combinationName + '\');">删除</a>';
+		            		html += '<a href="javascript:;" onclick="system.model.OrderInfo(\'' + row.selectionRecordId + '\');">订购</a>'
+		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.model.delDeptInfo(\'' + row.selectionRecordId + '\');">删除</a>';
 		            		html += '</div>';
 		            		html += '</div>';
 			         		return html;
@@ -161,8 +167,233 @@ Module.define("system.model", function(page, $) {
          }
 	}
 	
+	function bulkorder() {
+		ordercordId.splice(0,ordercordId.length);
+		$('input[name="deviceUuid"]:checked').each(function(){
+			ordercordId.push($(this).attr("selectionRecordId"));
+		});
+		if(!ordercordId || !ordercordId.length){
+			alert('请选择产品');
+			return
+		}
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/selection/addProductsToShoppingCart",
+			cache: false, //禁用缓存   
+			contentType: "application/json; charset=utf-8",
+			dataType: "json", 
+			data:JSON.stringify(GetJsonData()),
+			success: function(data) {
+				if (data.code == 0) {
+					dataTable2.ajax.reload();
+					alert('订购成功，请到购物车下单!');
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	function bulkdel() {
+		ordercordId.splice(0,ordercordId.length);
+		$('input[name="deviceUuid"]:checked').each(function(){
+			ordercordId.push($(this).attr("selectionRecordId"));
+		});
+		if(!ordercordId || !ordercordId.length){
+			alert('请选择产品');
+			return
+		}
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/selection/delSelectionRecord",
+			cache: false, //禁用缓存   
+			contentType: "application/json; charset=utf-8",
+			dataType: "json", 
+			data:JSON.stringify(GetJsonData()),
+			success: function(data) {
+				if (data.code == 0) {
+					dataTable.ajax.reload();
+					alert('删除成功!');
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	function GetJsonData() {
+	    var json = {
+	        'selectionRecordIds': ordercordId,
+	    };
+	    return json;
+	}
+	
+	page.OrderInfo = function(selectionRecordId) {
+		ordercordId.splice(0,ordercordId.length);
+		ordercordId.push(selectionRecordId);
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/selection/addProductsToShoppingCart",
+			cache: false, //禁用缓存   
+			contentType: "application/json; charset=utf-8",
+			dataType: "json", 
+			data:JSON.stringify(GetJsonData()),
+			success: function(data) {
+				if (data.code == 0) {
+					dataTable2.ajax.reload();
+					alert('订购成功!')
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	page.delDeptInfo = function(selectionRecordId) {
+		ordercordId.splice(0,ordercordId.length);
+		ordercordId.push(selectionRecordId);
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/selection/delSelectionRecord",
+			cache: false, //禁用缓存   
+			contentType: "application/json; charset=utf-8",
+			dataType: "json", 
+			data:JSON.stringify(GetJsonData()),
+			success: function(data) {
+				if (data.code == 0) {
+					dataTable.ajax.reload();
+					alert('删除成功!')
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	function initDataTable2() {
+		dataTable2 = $('#table2').DataTable({
+			"language": {url: "../js/chinese.json"},
+			"lengthChangevar": false, //去掉每页显示数据条数
+			"bPaginate" : false,// 分页按钮  
+			"stateSave": false, //状态保存
+			"deferRender": true, //延迟渲染数据
+			"processing": false,//等待加载效果 
+			"serverSide": true,
+			"lengthChange": false,
+			"responsive": true,
+			"searching":false,
+			"ordering":false,
+			"info":false,
+			"ajax": function (data, callback, settings) {
+				//封装请求参数  
+				var param = {};
+				param = data;
+				//当前页码
+				 $.ajax({
+				 	type: "POST",   
+				 	url: ulrTo + "/azz/api/client/selection/getShoppingCartProductInfos",
+				 	cache: false, //禁用缓存   
+				 	data: param, //传入组装的参数   
+				 	dataType: "json", 
+				 	success: function (result) {
+			 			//封装返回数据   
+			 			var returnData = {};
+			 			returnData = param;
+			 			if(null == result.data){
+			 				result.data = [];
+			 			}
+			 			returnData.data = result.data;//返回的数据列表   
+			 			//调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染   
+			 			//此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕   
+			 			callback(returnData);
+			 			$('.stripNumber').html(result.data.length);
+				 	}  
+				 });
+			},
+			"columns": [{
+					"title": "产品编码",
+					"data": "productCode",
+					"className": "",
+					"defaultContent": "-"
+				}, // 序号
+				{
+					"title": "单价",
+					"data": "price",
+					"className": "",
+					"defaultContent": "-"
+				},
+				{
+					"title": "状态",
+					"data": "",
+					"className": "",
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						switch(row.productStatus) {
+							case 1:
+								return '上架';
+								break;
+							case 2:
+								return '下架';
+								break;
+						};
+					}
+				},
+				{
+					"title": "交期",
+					"data": "deliveryDate",
+					"className": "",
+					"defaultContent": "-"
+				},
+				{
+					"title": "所属模组",
+					"data": "moduleName",
+					"className": "",
+					"defaultContent": "-"
+				},
+				{
+					"title": "操作",
+					"data": "merchantName",
+					"className": "",
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						if (row) {
+		            		var html = '<div class="am-btn-toolbar">';
+		            		html += '<div class="am-btn-group am-btn-group-xs">';
+		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.model.delDeptInfo2(\'' + row.shoppingCartId + '\');">移除</a>';
+		            		html += '</div>';
+		            		html += '</div>';
+			         		return html;
+			            	
+						}
+		            }
+				}
+			],
+		});
+	}
+	
+	page.delDeptInfo2 = function(shoppingCartId) {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/selection/removeShoppingCartProduct",
+			cache: false, //禁用缓存   
+			dataType: "json", 
+			data: {
+				'shoppingCartId': shoppingCartId
+			},
+			success: function(data) {
+				if (data.code == 0) {
+					dataTable2.ajax.reload();
+					alert('移除成功!')
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
 	//购物车
 	function shoppingcart() {
+		window.location.reload();
         window.location.href = "#!model/model-shopping.html"
 	}
 	

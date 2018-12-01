@@ -179,7 +179,7 @@ Module.define("system.order", function(page, $) {
 						var moduleName = orderItems[i].moduleName;
 						var quantity = orderItems[i].quantity;
 						var productPrice = orderItems[i].productPrice;
-						var productPriceSum = orderItems[i].subtotal;
+						var productPriceSum = orderItems[i].productPriceSum;
 						var deliveryTime = orderItems[i].deliveryTime;
 						
 						tr += "<tr><td><img class='pull-left' src='"+ modulePicUrl +"' width='45' height='45' alt='' /><div class='pull-left spacing  text-left'>产品编码："+ productCode +"<br>模组名称："+ moduleName +"</div></td>"

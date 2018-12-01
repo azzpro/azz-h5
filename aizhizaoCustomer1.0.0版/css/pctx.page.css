@@ -294,3 +294,5 @@
 .protab .tab-lii dl dd:nth-child(1){ width:52%; padding: 15px; border-right:#eee 1px solid}
 .protab .tab-lii dl dd:nth-child(2){ width:20%; text-align: center; border-right:#eee 1px solid; line-height: 75px;}
 .protab .tab-lii dl dd:nth-child(3){ width:28%; text-align: center;}
+
+.Number{ width:100px; border: #ccc 1px solid; text-align: center;}

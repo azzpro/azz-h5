@@ -1,9 +1,13 @@
 Module.define("system.model", function(page, $) {
+	var orderItems = [];
 	page.ready = function() {
 		init();
 		getShippingAddressList();
 		getDefaultShippingAddress();
+		initDataTable();
+		NumberpriceQz();
 		$("#addShippingAddress").bind("click", addShippingAddress);
+		$("#OrderOK").bind("click", checkOrderOpt);
 		$('#distpicker').distpicker({
 	   		autoSelect: false,
 		    /*province: '广东省',
@@ -29,6 +33,34 @@ Module.define("system.model", function(page, $) {
 			validFlag.resetForm();
 			$(".has-error").removeClass('has-error');
 		});
+		$('.Number').keyup(function() {
+		    var val = $(this).val();
+  			$(this).val(val.replace(/[^\d]/g, ''));
+		});
+		
+		
+		$(".Number").blur(function(){
+			var Numbers = $('#table').find('input');
+			var Numberprice = $('#table').find('.Numberprice');
+			var price = $('#table').find('.price');
+			for(var i = 0;i < Numbers.length; i++){
+				var NumbersSf = Numbers[i].value;
+				var NumberpriceSf = Numberprice[i];
+				var priceSf = price[i].innerHTML;
+				$(NumberpriceSf).html((Number(NumbersSf*priceSf)).toFixed(2))
+			}
+			NumberpriceQz();
+		});
+	}
+	function NumberpriceQz() {
+		var Numberprice = $('#table').find('.Numberprice');
+		var total =0;
+		for(var i = 0;i < Numberprice.length; i++){
+			var NumberpriceQz = Numberprice[i].innerHTML;
+			total = total + parseFloat(NumberpriceQz);
+		}
+		$('#grandTotal').html(total.toFixed(2));
+		
 	}
 	function getShippingAddressList() {
 		$.ajax({
@@ -59,7 +91,7 @@ Module.define("system.model", function(page, $) {
 						
 						tr += "<tr><td>"+ isDefaultS +"</td>"
 						+ "<td>"+ receiverName +"&nbsp;&nbsp;&nbsp;"+ receiverPhoneNumber +"<br>"+ address +"</td>"
-						+ "<td><a href='javascript:;' onclick=\"system.model.Selection(\'" + receiverName+ "','" + receiverPhoneNumber + "','" + address + "\');\">选用</a>&nbsp;&nbsp;<a href='javascript:;' onclick=\"system.model.edit(\'" + shippingId + "\');\">编辑</a>&nbsp;&nbsp;<a href='javascript:;' onclick=\"system.model.deletes(\'" + shippingId + "\');\">删除</a></td></tr>";
+						+ "<td><a href='javascript:;' onclick=\"system.model.Selection(\'" + receiverName+ "','" + receiverPhoneNumber + "','" + address + "','" + shippingId + "\');\">选用</a>&nbsp;&nbsp;<a href='javascript:;' onclick=\"system.model.edit(\'" + shippingId + "\');\">编辑</a>&nbsp;&nbsp;<a href='javascript:;' onclick=\"system.model.deletes(\'" + shippingId + "\');\">删除</a></td></tr>";
 					}
 					$("#addressList").append(tr);
 					
@@ -111,10 +143,11 @@ Module.define("system.model", function(page, $) {
 	}
 	
 	//选中
-	page.Selection = function (receiverName,receiverPhoneNumber,address) {
+	page.Selection = function (receiverName,receiverPhoneNumber,address,shippingId) {
 		$('#address').html(address);
 		$('#consignee').html(receiverName);
 		$('#pohe').html(receiverPhoneNumber);
+		$('#addressID').html(shippingId);
 		$('#myModal').modal('hide');
 	}
 	
@@ -190,6 +223,7 @@ Module.define("system.model", function(page, $) {
 					$('#address').html(data.provinceName + data.cityName + data.areaName + data.detailAddress);
 					$('#consignee').html(data.receiverName);
 					$('#pohe').html(data.receiverPhoneNumber);
+					$('#addressID').html(data.shippingId);
 				} else {
 					alert(data.msg)
 				}
@@ -236,6 +270,115 @@ Module.define("system.model", function(page, $) {
 				}
 			}
 		});
+	}
+	
+	function initDataTable() {
+		
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/selection/getConfirmOrderProductInfos",
+			cache: false, //禁用缓存
+			async: false,
+			dataType: "json", 
+			success: function(data) {
+				if (data.code == 0) {
+					var data = data.data;
+					var tr = "";
+					for(var i = 0;i < data.length; i++){
+						var productCode = data[i].productCode;
+						var deliveryDate = data[i].deliveryDate;
+						var paramValues = data[i].paramValues;
+						var inputdata = "<input type='text' class='Number' value='1'>";
+
+						if(paramValues == null){
+							var paramValues='-'
+						}
+						var price = (Number(data[i].price*1)).toFixed(2);
+						var totalprice = (Number(price*1)).toFixed(2);
+						
+						tr += "<tr><td class='productCode'>"+ productCode +"</td>"
+						+ "<td>"+ deliveryDate +"</td>"
+						+ "<td>"+ paramValues +"</td>"
+						+ "<td>"+ inputdata +"</td>"
+						+ "<td class='price'>"+ price +"</td>"
+						+ "<td class='Numberprice'>"+ totalprice +"</td>"
+						+ "</tr>";
+					}
+					$("#table").append(tr);
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	function checkOrderOpt() {
+		
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/selection/checkOrderOpt",
+			cache: false, //禁用缓存
+			async: false,
+			dataType: "json", 
+			success: function(data) {
+				if (data.code == 0) {
+					addOrder()
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	function addOrder() {
+		orderItems.splice(0,orderItems.length);
+		var Numbers = $('#table').find('input');
+		var productCode = $('#table').find('.productCode');
+		for(var i = 0;i < Numbers.length; i++){
+			var Numberslen = Numbers[i].value;
+			var productCodelen = productCode[i].innerHTML;
+			var Newsobj = {
+				"productCode" : productCodelen,
+				"quantity" : Numberslen,
+			}
+			orderItems.push(Newsobj);
+		}
+		if(!$('#addressID').html()){
+			alert('请选择收货地址')
+			return;
+		}
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/client/selection/addOrder",
+			cache: false, //禁用缓存
+			async: false,
+			contentType: "application/json; charset=utf-8",
+			dataType: "json", 
+			data:JSON.stringify(GetJsonDatatoo()),
+			success: function(data) {
+				if (data.code == 0) {
+					if(!window.localStorage){
+				        return false;
+				    }else{
+				        var storage=window.localStorage;
+				        var ordercode = JSON.stringify(data.data);
+				        storage["ordercode"]= ordercode;
+				    }
+				    window.location.href = "#!model/model-payment.html"
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	function GetJsonDatatoo() {
+	    var json = {
+	        'shippingId': $('#addressID').html(),
+	        'remark': $('#Orderremark').val(),
+	        'orderItems':orderItems
+	    };
+	    return json;
 	}
 	
 	function init() {

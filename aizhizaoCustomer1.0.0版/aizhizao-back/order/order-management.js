@@ -43,6 +43,8 @@ Module.define("system.order", function(page, $) {
 							var paymentMethodS = '在线支付'
 						}else if(paymentMethod == 2){
 							var paymentMethodS = '线下支付'
+						}else{
+							var paymentMethodS = ''
 						}
 						switch(orderStatusId) {
 							case 7:
@@ -64,6 +66,12 @@ Module.define("system.order", function(page, $) {
 								var orderStatusIdS = '已关闭';
 								break;
 						}
+						
+						if(orderStatusId==7){
+							var paymentStatus="<a href='javascript:;' onclick=\"system.order.payment(\'" + clientOrderCode + "\');\" class='btn btn-primary zlan'>付款</a>"
+						}else{
+							var paymentStatus="-"
+						}
 
 						var tr = "";
 						for(var j = 0;j < orderItems.length; j++){
@@ -80,7 +88,7 @@ Module.define("system.order", function(page, $) {
 								+ tr
 								+ "</div><div class='child2'>"+ grandTotal +"<br />"+ paymentMethodS +"</div><div class='child3'><p>"+ orderStatusIdS +"<br>"
 								+ "<a href='javascript:;' onclick=\"system.order.details(\'" + clientOrderCode + "\');\">订单详情</a>"
-								+ "</p></div><div class='child4'><a href='javascript:;' class='btn btn-primary zlan'>付款</a></div>"
+								+ "</p></div><div class='child4'>"+paymentStatus+"</div>"
 								+ "</li>";
 					}
 					$("#orderTable").append(htmlArr);
@@ -167,7 +175,7 @@ Module.define("system.order", function(page, $) {
 									+ tr
 									+ "</div><div class='child2'>"+ grandTotal +"<br />"+ paymentMethodS +"</div><div class='child3'><p>"+ orderStatusIdS +"<br>"
 									+ "<a href='javascript:;' onclick=\"system.order.details(\'" + clientOrderCode + "\');\">订单详情</a>"
-									+ "</p></div><div class='child4'><a href='javascript:;' class='btn btn-primary zlan'>付款</a></div>"
+									+ "</p></div><div class='child4'><a href='javascript:;' onclick=\"system.order.payment(\'" + clientOrderCode + "\');\" class='btn btn-primary zlan'>付款</a></div>"
 									+ "</li>";
 						}
 						$("#orderTable").append(htmlArr);
@@ -190,6 +198,17 @@ Module.define("system.order", function(page, $) {
             storage["clientOrderCode"]= clientOrderCode;
         }
         window.location.href = "#!order/order-detail.html"
+	}
+	//付款
+	page.payment = function(clientOrderCode) {
+		if(!window.localStorage){
+	        return false;
+	    }else{
+	        var storage=window.localStorage;
+	        var ordercode = JSON.stringify(clientOrderCode);
+	        storage["ordercode"]= ordercode;
+	    }
+	    window.location.href = "#!model/model-payment.html"
 	}
 	
 	$('.datepicker_start').datepicker({

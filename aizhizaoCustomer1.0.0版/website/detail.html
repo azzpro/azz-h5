@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+<title>爱智造科技服务有限公司</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link href="css/style.css" rel="stylesheet">
+<style>
+	.btn{ float: none; line-height: 30px; font-size: 16px; font-weight: normal;}
+</style>
+</head>
+
+<body>
+<!-- Swiper -->
+<header>
+  <div class="logo"><a href="index.html"><img src="images/logo.png" title="爱智造科技服务有限公司" alt="爱智造科技服务有限公司"></a></div>
+  <nav>
+  	<a class="bg" href="index.html">首页</a>
+  	<a href="cd-exhibition.html">解决方案</a>
+  	<a href="cq-exhibition.html">智造联盟</a>
+  	<a href="sz-exhibition.html">联系我们</a>
+ 	</nav>
+ 	<div class="top-right"><a href="cd-exhibition.html">客户登录</a> | <a href="cd-exhibition.html">商户登录</a><span>400-888-888</span></div>
+</header>
+<article>
+	<div class="mm-jdt">
+		<ul class="c">
+			<li><span>01</span>
+				<p>参数信息完善</p>
+			</li>
+			<li><span>02</span>
+				<p>产品组合推荐</p>
+			</li>
+			<li class="lans"><span>03</span>
+				<p>产品编码挑选</p>
+			</li>
+		</ul>
+	</div>
+  <h2 class="Sbt">组合详情</h2>
+  <div class="combination c">
+  	<div class="combination-l left">
+  		<img src="" id="combinationPicUrl" class="tj-tu left" alt="" />
+  		<div class="tj-zi left"><h2 id="combinationName"></h2>
+					<p id="recommendReason"></p></div>
+  	</div>
+  	<div class="combination-r right">
+  		<div id="prodse"><h2>请先选择产品</h2></div>
+  		<div id="prodseyes" style=" display: none;">
+	  		<p><b>已选型号：</b>	<span id="productCode"></span></p>
+	  		<p><b>产品交期：</b>	<span id="deliveryDate"></span></p>
+	  		<p><b>参考价格：</b>	<b id="price">-</b>元</p>
+	  		<p class="xdwz">产品具体价格以下单时为准！</p>
+	  		<p><a id="saverecord" href="javascript:;">保存记录</a></p>
+  		</div>
+  	</div>
+  </div>
+  
+  <div class="combination2 c">
+  	<div class="combination2-l left">
+  		<h3>选型器</h3>
+  		<div class="aaList" id="inputList">
+  			
+  		</div>
+  		<div class="aaList" id="parameter">
+  			
+  		</div>
+  	</div>
+  	<div class="combination2-r right">
+  		<h3>型号列表</h3>
+  		<table class="table table1" id="table">
+					
+			</table>
+  	</div>
+  </div>
+ 	
+</article>
+
+
+<div class="bottom-bg">
+  <footer class="c">
+    <h2>合作伙伴</h2>
+    <ul class="link">
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    </ul>
+    <div class="bottom-lr">
+    	<div class="right">Website Design & Power by<br>IZZ</div>
+    	<p><b>爱智造科技服务有限公司</b></p>
+    	沪ICP备15045455号 - 1 Copyright © 2015-2018 IZZ All rights reserved. 
+    </div>
+  </footer>
+</div>
+
+
+<!-- 登录 弹出窗 -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">登录</h4>
+			</div>
+			<form class="form-horizontal">
+				<div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-3 control-label"><span class="hong">*</span> 手机号：</label>
+              <div class="col-sm-8">
+                <input type="text" name="username" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label"><span class="hong">*</span> 密码：</label>
+              <div class="col-sm-8">
+                <input type="password" name="password" class="form-control"><br><span class="passwordhtml"></span>
+              </div>
+            </div>
+        </div>
+			</form>
+			<div class="text-center ptb20">
+				<button class="btn btn-primary zlan" id="submit">登录</button>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 登录 End-->
+
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<form class="form-horizontal form-bordered">
+				<div class="text-center ptb20" style="font-size: 18px;">
+					保存成功！需要去到订单页面？
+				</div>
+				<div class="text-center ptb20">
+					<a class="btn btn-primary zlan" href="../aizhizao-back/main.html#!model/model-management.html">去订单页面</a>
+					<button class="btn btn-primary zlan" data-dismiss="modal">留在当前页面</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!--提示  弹出窗 End-->
+
+
+<!-- script -->
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="../js/visitip.js"></script>
+<script src="js/detail.js"></script>
+</body>
+</html>
