@@ -255,6 +255,7 @@ function upperCase() {
 	var Params = $.extend(inputParamstest, selectParamstest);
 	if(!Params || !Params.length){
 		window.location.reload();
+		return;
 	}
 	
 	$.ajax({

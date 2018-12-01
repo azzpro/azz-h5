@@ -1,0 +1,184 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="panel-heading">
+		<h4 class="panel-title">栏目管理</h4>
+	</div>
+    <div class="panel-body backgr">
+		    
+			<div class="panel panel-default">
+				<div class="panel-body" style="padding: 12px;">
+					<!--<label class="col-sm-1 control-label pt5 text-right text-nowrap">所属栏目：</label>
+					<div class="col-sm-2">
+						<select class="select_card form-control" name="" id="approvalType" data-placeholder="全部">
+							<option value=" ">全部</option>
+							
+						</select>
+					</div>-->
+					<div class="col-sm-4" style="margin-top:3px;">
+						<button class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal">新增</button>
+					</div>
+				
+				</div>
+
+		            <div class="tab-pane active">
+			            <div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover text-center dataTable no-footer dtr-inline" id="table" width="100%">
+			                    
+			                </table>
+						</div>
+		            </div>
+
+			</div>
+		<div class="clearfix"></div>
+	</div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 添加 弹出窗 -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">新增栏目</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm" name="basicForm" enctype="multipart/form-data">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 栏目名称：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="columnname" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 栏目代码：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="columncode" class="form-control">
+		                    <p>栏目代码备注：首页幻灯片：homeslide 首页导航1：homenav1 首页导航2：homenav2</p>
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 栏目类型：</label>
+		                  <div class="col-sm-8 mt10">
+		                    <div class="col-sm-5">
+				                <div class="rdio rdio-primary">
+			                        <input type="radio" name="types" checked="" value="1" id="Required">
+			                        <label for="Required">图片展示</label>
+			                    </div>
+							</div>
+							<div class="col-sm-5">
+								<div class="rdio rdio-primary">
+			                        <input type="radio" name="types" value="2" id="Selection">
+			                        <label for="Selection">文章展示</label>
+			                    </div>
+			                </div>
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">栏目主图：</label>
+		                  <div class="col-sm-8">
+		                    <input type="file" title="请选择图片" id="file1" name="file" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+							<div class="imgtu"><img src="" id="img1"></div>
+		                  </div>
+		                </div>
+		                
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="confirm">保存</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 添加 弹出窗 End-->
+<!-- 编辑 弹出窗 -->
+<div class="modal fade" id="myModal2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">编辑栏目</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm2" name="basicForm2" enctype="multipart/form-data">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 栏目名称：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="columnname2" class="form-control">
+		                    <span id="idedi" class="add"></span>
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 栏目代码：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="columncode2" class="form-control">
+		                    <p>栏目代码备注：首页幻灯片：homeslide 首页导航1：homenav1 首页导航2：homenav2</p>
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 栏目类型：</label>
+		                  <div class="col-sm-8 mt10">
+		                    <div class="col-sm-5">
+				                <div class="rdio rdio-primary">
+			                        <input type="radio" name="types2" checked="" value="1" id="Required2">
+			                        <label for="Required2">图片展示</label>
+			                    </div>
+							</div>
+							<div class="col-sm-5">
+								<div class="rdio rdio-primary">
+			                        <input type="radio" name="types2" value="2" id="Selection2">
+			                        <label for="Selection2">文章展示</label>
+			                    </div>
+			                </div>
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">栏目主图：</label>
+		                  <div class="col-sm-8">
+		                    <input type="file" title="请选择图片" id="file2" name="file" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+							<div class="imgtu"><img src="" id="img1"></div>
+		                  </div>
+		                </div>
+		                
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="modifyconfirm">保存</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 编辑 弹出窗 End-->
+<!-- 确认删除 弹出窗 -->
+<div class="modal fade" id="myModal112">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">删除栏目</h4>
+			</div>
+			<form class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					您确定把“<span id="bmName"></span>”栏目删除吗？
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="deletebunnot" data-dismiss="modal">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 确认删除 弹出窗 End-->
+<script type="text/javascript" src="picture/picture-management.js"></script>
