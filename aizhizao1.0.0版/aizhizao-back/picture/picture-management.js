@@ -31,10 +31,12 @@ Module.define("system.picture", function(page, $) {
 				//封装请求参数  
 				var param = {};
 				param = data;
+				param.pageNum = data.start/10+1;
+				param.pageSize = data.length;
 				//当前页码
 				 $.ajax({
 				 	type: "POST",   
-				 	url: ulrTo + "/azz/api/index/getColumnLsit",
+				 	url: ulrTo + "/azz/api/index/getImageList",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -57,41 +59,31 @@ Module.define("system.picture", function(page, $) {
 			},
 			"columns": [{
 					"title": "图片",
-					"data": "combinationCode",
+					"data": "",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
-						var img = '<img src=' + row.columnPicUrl +' width="60" height="60" alt="" />';
+						var img = '<img src=' + row.picUrl +' width="60" height="60" alt="" />';
 						return img;
 					}
 				}, // 序号
 				{
 					"title": "跳转链接",
-					"data": "columnName",
+					"data": "jumpLink",
 					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
 					"title": "所属栏目",
-					"data": "columnCode",
+					"data": "columnName",
 					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
 					"title": "创建人",
-					"data": "",
+					"data": "creator",
 					"className": "text-nowrap",
 					"defaultContent": "-",
-					"render" : function (data, type, row, meta) {
-						switch(row.columnType) {
-							case 1:
-								return '图片展示';
-								break;
-							case 2:
-								return '文章展示';
-								break;
-						};
-					}
 				},
 				{
 					"title": "创建时间",
@@ -108,8 +100,8 @@ Module.define("system.picture", function(page, $) {
 						if (row) {
 		            		var html = '<div class="am-btn-toolbar">';
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
-	            			html += '&nbsp;&nbsp;<a href="javascript:;" onclick="system.picture.getColumnInfo(\'' + row.id + '\');">编辑</a>';
-		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.picture.delDeptInfo(\'' + row.id + "','"+ row.columnName + '\');">删除</a>';
+	            			html += '&nbsp;&nbsp;<a href="javascript:;" onclick="system.picture.getColumnInfo(\'' + row.imageId + '\');">编辑</a>';
+		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.picture.delDeptInfo(\'' + row.imageId + '\');">删除</a>';
 		            		html += '</div>';
 		            		html += '</div>';
 			         		return html;
@@ -121,19 +113,18 @@ Module.define("system.picture", function(page, $) {
 		});
 	}
 	//删除
-	page.delDeptInfo = function(id,columnName) {
-		$('#bmName').html(columnName);
+	page.delDeptInfo = function(imageId) {
 		$('#myModal112').modal('show');
-		$('#deletebunnot').attr("onclick", "system.picture.delDeptInfotoo(\'" + id + "\');")
+		$('#deletebunnot').attr("onclick", "system.picture.delDeptInfotoo(\'" + imageId + "\');")
 	}
-	page.delDeptInfotoo = function(id) {
+	page.delDeptInfotoo = function(imageId) {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/index/delColumn",
+			url: ulrTo+"/azz/api/index/delImage",
 			cache: false, //禁用缓存    
 			dataType: "json", 
 			data: {
-				'columnId': id,
+				'imageId': imageId,
 			},
 			success: function(data) {
 				if (data.code == 0) {
@@ -155,13 +146,12 @@ Module.define("system.picture", function(page, $) {
 	   	var file1 = document.basicForm.file1.files[0];
 			
 		var fm = new FormData();
-		fm.append('columnName', $("input[name='columnname']").val());
-		fm.append('columnCode', $("input[name='columncode']").val());
-		fm.append('columnType', $("input[name='types']:checked").val());
-		if(!file1){}else{fm.append('mainPicture', file1);}
+		fm.append('indexColumnId', $("#subordinate").val());
+		fm.append('jumpLink', $("input[name='jumplink']").val());
+		fm.append('mainPicture', file1)
 		$.ajax({
 	        type :'POST',
-	        url : ulrTo+'/azz/api/index/addColumn',
+	        url : ulrTo+'/azz/api/index/addImage',
 	        cache: false, //禁用缓存    
 			dataType: "json",
 			contentType: false, //禁止设置请求类型
@@ -179,25 +169,19 @@ Module.define("system.picture", function(page, $) {
 	}
 	
 	//详情
-	page.getColumnInfo = function(columnId) {
+	page.getColumnInfo = function(imageId) {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/index/getColumnInfo",
+			url: ulrTo+"/azz/api/index/getImageInfo",
 			cache: false, //禁用缓存    
 			dataType: "json", 
 			data: {
-				'columnId': columnId,
+				'imageId': imageId,
 			},
 			success: function(data) {
 				if (data.code == 0) {
-					$("input[name='columnname2']").val(data.data.columnName);
-					$("input[name='columncode2']").val(data.data.columnCode);
-					$("#idedi").html(data.data.id);
-					if(data.data.columnType == 1) {
-						$("#Required2").attr("checked", "checked");
-					}else if(data.data.columnType == 2){
-						$("#Selection2").attr("checked", "checked");
-					}
+					$("input[name='jumplink2']").val(data.data.jumpLink);
+					$("#imageId").html(data.data.id)
 				} else {
 					alert(data.msg)
 				}
@@ -220,15 +204,14 @@ Module.define("system.picture", function(page, $) {
 			var editStatus=1
 		}
 		var fm = new FormData();
-		fm.append('columnId', $("#idedi").html());
-		fm.append('columnName', $("input[name='columnname2']").val());
-		fm.append('columnCode', $("input[name='columncode2']").val());
-		fm.append('columnType', $("input[name='types2']:checked").val());
+		fm.append('imageId', $("#imageId").html());
+		fm.append('columnId', $("#subordinate2").val());
+		fm.append('jumpLink', $("input[name='jumplink2']").val());
 		fm.append('editStatus', editStatus);
 		if(!file2){}else{fm.append('mainPicture', file2);}
 		$.ajax({
 	        type :'POST',
-	        url : ulrTo+'/azz/api/index/editColumn',
+	        url : ulrTo+'/azz/api/index/editImage',
 	        cache: false, //禁用缓存    
 			dataType: "json",
 			contentType: false, //禁止设置请求类型
@@ -248,19 +231,19 @@ Module.define("system.picture", function(page, $) {
 	function init() {
 		$("#basicForm").validate({
 			rules: {
-				columnname: {
+				jumplink: {
 					required: true,
 				},
-				columncode: {
+				file: {
 					required: true,
 				},
 			},
 			messages: {
-				columnname: {
-					required: "请输入栏目名称",
+				jumplink: {
+					required: "请输入跳转链接",
 				},
-				columncode: {
-					required: "请输入栏目代码",
+				file: {
+					required: "请上传图片",
 				},
 			},
 			highlight: function(element) {
@@ -272,20 +255,14 @@ Module.define("system.picture", function(page, $) {
 		});
 		$("#basicForm2").validate({
 			rules: {
-				columnname2: {
+				jumplink2: {
 					required: true,
-				},
-				columncode2: {
-					required: true,
-				},
+				}
 			},
 			messages: {
-				columnname2: {
-					required: "请输入栏目名称",
-				},
-				columncode2: {
-					required: "请输入栏目代码",
-				},
+				jumplink2: {
+					required: "请输入跳转链接",
+				}
 			},
 			highlight: function(element) {
 				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');

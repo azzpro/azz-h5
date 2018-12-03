@@ -54,7 +54,7 @@ Module.define("system.column", function(page, $) {
 			},
 			"columns": [{
 					"title": "栏目主图",
-					"data": "combinationCode",
+					"data": "",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {

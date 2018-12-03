@@ -113,7 +113,7 @@ footer h2{ font-size: 24px; font-weight: bold; padding: 30px 0 10px;}
 .combination2 .combination2-r{ width: 67%; overflow: auto;}
 
 .combination2 .combination2-l dl dd a{ float: left; width: 45.5%; color: #a8a8a8; margin: 0 0 10px 2%; border: #a8a8a8 1px solid; height: 30px; line-height: 30px; text-indent: 15px; font-size: 16px;}
-.combination2 .combination2-l dl dd a:hover{color: #28b7eb; border: #28b7eb 1px solid;}
+.combination2 .combination2-l dl dd a:hover{color: #28b7eb; border: #28b7eb 1px solid; text-decoration: none;}
 .combination2 .combination2-l dl dd a:hover .jia{ display: block; float: right; padding-right: 10px;}
 .combination2 .combination2-l dl dd .curr{color: #28b7eb; border: #28b7eb 1px solid;}
 .combination2 .combination2-l dl dd .curr .del{ display: block; float: right; padding-right: 10px;}
@@ -126,8 +126,8 @@ footer h2{ font-size: 24px; font-weight: bold; padding: 30px 0 10px;}
 .sort-h{ background: url(../images/sort-h.png) no-repeat;}
 .sort-t{ background: url(../images/sort-t.png) no-repeat;}
 .sort-b{ background: url(../images/sort-b.png) no-repeat;}
-.defaultsortNo{ float: right; font-weight: normal; font-size: 18px;}
-.defaultsort{ cursor: pointer; float: right; font-weight: normal; font-size: 18px; color: #3acbff;}
+.defaultsortNo{ float: right; font-weight: normal; font-size: 18px; color: #3acbff;}
+.defaultsort{ cursor: pointer; float: right; font-weight: normal; font-size: 18px;}
 .mlr{ margin-right: 10px; margin-top: 8px;}
 .passwordhtml{ font-size: 14px; color: #f00;}
 /*@media screen and (min-width:1000px) and (max-width:1200px){

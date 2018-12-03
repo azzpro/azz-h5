@@ -322,7 +322,7 @@ function productselection(productInfo) {
 				var prices = data.prices;
 				for(var i = 0;i<prices.length;i++){
 					var deliveryDate = prices[i].deliveryDate;
-					var price = prices[i].price;
+					var price = prices[i].price.toFixed(2);
 					var productPriceId = prices[i].productPriceId;
 					inputs +="<label><input type='radio' onclick=\"priceselection(\'" + price + "\');\" name='productprice' value='"+ productPriceId +"'> "+ deliveryDate +"天</label>&nbsp;&nbsp;&nbsp;&nbsp;";
 			    }

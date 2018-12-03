@@ -399,17 +399,19 @@ function getCombinationInfos() {
 		success: function(data) {
 			if (data.code == 0) {
 				$('#total').html(data.data.total);
+				$('#Totalquantity').html(data.data.total);
 				var rows = data.data.rows;
 				var tr = '';
 				if(!rows || !rows.length){
 					tr += "<tr><td colspan='3'>无任何内容</td></tr>";
 				}else{
+					
 					for(var i = 0;i<rows.length;i++){
 						var combinationPicUrl = rows[i].combinationPicUrl;
 						var combinationName = rows[i].combinationName;
 						var combinationCode = rows[i].combinationCode;
 						var deliveryDate = rows[i].deliveryDate;
-						var price = rows[i].price;
+						var price = rows[i].price.toFixed(2);
 						var recommendReason = rows[i].recommendReason;
 						if(recommendReason){
 							
@@ -451,6 +453,7 @@ function Pagination(){
 					data:JSON.stringify(getCombinationData2(api)),
 					success: function(data) {
 				        	$("#table").empty();
+				        	$('#Totalquantity').html(data.data.total);
 				        	var rows = data.data.rows;
 							var tr = '';
 						if(!rows || !rows.length){
@@ -461,7 +464,7 @@ function Pagination(){
 								var combinationName = rows[i].combinationName;
 								var combinationCode = rows[i].combinationCode;
 								var deliveryDate = rows[i].deliveryDate;
-								var price = rows[i].price;
+								var price = rows[i].price.toFixed(2);
 								var recommendReason = rows[i].recommendReason;
 								if(recommendReason){
 									
