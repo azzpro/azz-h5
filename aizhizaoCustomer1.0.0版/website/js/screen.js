@@ -1,10 +1,15 @@
 var caseCode = JSON.parse(localStorage.getItem('caseCode'));
+var inputParamsurl = JSON.parse(localStorage.getItem('inputParamss'));
+var selectParamsurl = JSON.parse(localStorage.getItem('selectParamss'));
 var inputParams = JSON.parse(localStorage.getItem('inputParamss'));
 var selectParams = JSON.parse(localStorage.getItem('selectParamss'));
 var inputParams2 = [];
 var selectParams2 = [];
 var inputParamstest = [];
 var selectParamstest = [];
+var inputParamsId = [];
+var selectParamsId = [];
+var selectedParamTermIds = [];
 var priceSort,deliverySort;
 $(document).ready(function() {
     getCombinationInitParams();
@@ -217,6 +222,25 @@ function upperCase() {
 			"paramsTermId" : inputListid[i].textContent
 		}
 		inputParams.push(Newsobj);
+		
+		/*if(!inputParamsurl || !inputParamsurl.length){
+			
+		}else{
+			var Newsobjurl = {
+				"paramsValue" : inputParamsurl[i].paramsValue,
+				"paramsTermId" : inputParamsurl[i].paramsTermId
+			}
+			inputParams.push(Newsobjurl);
+		}*/
+	}
+	inputParamsId.splice(0,inputParamsId.length);
+	for(var i = 0; i<inputParamsurl.length; i++){
+		var Newsobjurl = {
+			"paramsValue" : inputParamsurl[i].paramsValue,
+			"paramsTermId" : inputParamsurl[i].paramsTermId
+		}
+		inputParams.push(Newsobjurl);
+		inputParamsId.push(inputParamsurl[i].paramsTermId);
 	}
 	
 	selectParams.splice(0,selectParams.length);
@@ -228,9 +252,30 @@ function upperCase() {
 			"paramsTermId" : parameterid[i].textContent
 		}
 		selectParams.push(Newsobj2);
+		
+		/*if(!selectParamsurl || !selectParamsurl.length){
+			
+		}else{
+			var Newsobj2url = {
+				"paramsValue" : selectParamsurl[i].paramsValue,
+				"paramsTermId" : selectParamsurl[i].paramsTermId
+			}
+			selectParams.push(Newsobj2url);
+		}*/
+	}
+	selectParamsId.splice(0,selectParamsId.length);
+	for(var i = 0; i<selectParamsurl.length; i++){
+		var Newsobj2url = {
+			"paramsValue" : selectParamsurl[i].paramsValue,
+			"paramsTermId" : selectParamsurl[i].paramsTermId
+		}
+		selectParams.push(Newsobj2url);
+		selectParamsId.push(selectParamsurl[i].paramsTermId);
 	}
 	
-	inputParamstest.splice(0,inputParamstest.length);
+	selectedParamTermIds = $.extend(inputParamsId, selectParamsId);
+	
+	/*inputParamstest.splice(0,inputParamstest.length);
 	var inputListVal2 = $('#inputList').find('.curr span');
 	var inputListid2 = $('#inputList').find('.curr p');
 	for(var i = 0; i<inputListVal2.length; i++){
@@ -256,7 +301,7 @@ function upperCase() {
 	if(!Params || !Params.length){
 		window.location.reload();
 		return;
-	}
+	}*/
 	
 	$.ajax({
 		type: "POST",
@@ -375,14 +420,15 @@ function GetJsonData() {
         'caseCode': caseCode,
 		'inputParams' : inputParams,
 		'selectParams' : selectParams,
+		'selectedParamTermIds' : selectedParamTermIds
     };
     return json;
 }
 function GetJsonDatatoo() {
     var json = {
         'caseCode': caseCode,
-        'inputParams' : inputParams,
-		'selectParams' : selectParams,
+        'inputParams' : inputParamsurl,
+		'selectParams' : selectParamsurl,
     };
     return json;
 }
