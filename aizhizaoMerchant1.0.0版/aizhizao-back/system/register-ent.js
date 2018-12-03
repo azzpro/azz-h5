@@ -71,7 +71,7 @@
    		},
    		success: function(data) {
 
-   			if(data.status == 0) {
+   			if(data.code == 0) {
    				//alert('发送成功！');
    				$('#myModal').modal('show');
    				//smsCode = data.data;
