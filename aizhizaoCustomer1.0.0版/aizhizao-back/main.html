@@ -187,7 +187,11 @@
 
 <script>
 $(document).ready(function() {
-    $('#name').html(clientUserInfo.clientUserName);
+	if(!clientUserInfo.clientUserName){
+    	$('#name').html(clientUserInfo.phoneNumber);
+	}else{
+		$('#name').html(clientUserInfo.clientUserName);
+	}
     check();
 });
 

@@ -300,17 +300,21 @@ Module.define("system.invoice", function(page, $) {
 				if (data.code == 0) {
 					var data = data.data;
 					var tr = "";
-					for(var i = 0;i < data.length; i++){
-						var title = data[i].title;
-						var number = data[i].number;
-						var id = data[i].id;
-						var remark = data[i].remark;
-						var ordinary = '普通发票';
-						
-						
-						tr += "<tr>"
-						+ "<td>发票抬头："+ title +"<br>纳税人识别号："+ number +"</td>"
-						+ "<td><a class='btn btn-primary zlan' href='javascript:;' onclick=\"system.invoice.SelecS(\'" + title+ "','" + number + "','" + id + "','" + remark + "','" + ordinary + "\');\">选用</a></td></tr>";
+					if(!data || !data.length){
+						tr = "<tr><td>暂无内容</td></tr>"
+					}else{
+						for(var i = 0;i < data.length; i++){
+							var title = data[i].title;
+							var number = data[i].number;
+							var id = data[i].id;
+							var remark = data[i].remark;
+							var ordinary = '普通发票';
+							
+							
+							tr += "<tr>"
+							+ "<td>发票抬头："+ title +"<br>纳税人识别号："+ number +"</td>"
+							+ "<td><a class='btn btn-primary zlan' href='javascript:;' onclick=\"system.invoice.SelecS(\'" + title+ "','" + number + "','" + id + "','" + remark + "','" + ordinary + "\');\">选用</a></td></tr>";
+						}
 					}
 					$("#addinvoices").append(tr);
 					
@@ -345,21 +349,25 @@ Module.define("system.invoice", function(page, $) {
 				if (data.code == 0) {
 					var data = data.data;
 					var tr = "";
-					for(var i = 0;i < data.length; i++){
-						var companyName = data[i].companyName;
-						var number = data[i].number;
-						var id = data[i].id;
-						var createTime = data[i].createTime;
-						var ordinary2 = '增值税专用发票';
-						var regAddress = data[i].regAddress;
-						var regTelephone = data[i].regTelephone;
-						var bank = data[i].bank;
-						var bankAccount = data[i].bankAccount;
-						
-						
-						tr += "<tr>"
-						+ "<td>公司名称："+ companyName +"<br>纳税人识别号："+ number +"</td>"
-						+ "<td><a class='btn btn-primary zlan' href='javascript:;' onclick=\"system.invoice.SelecStar(\'" + companyName+ "','" + number + "','" + id + "','" + createTime + "','" + ordinary2 + "','" + regAddress + "','" + regTelephone + "','" + bank + "','" + bankAccount + "\');\">选用</a></td></tr>";
+					if(!data || !data.length){
+						tr = "<tr><td>暂无内容</td></tr>"
+					}else{
+						for(var i = 0;i < data.length; i++){
+							var companyName = data[i].companyName;
+							var number = data[i].number;
+							var id = data[i].id;
+							var createTime = data[i].createTime;
+							var ordinary2 = '增值税专用发票';
+							var regAddress = data[i].regAddress;
+							var regTelephone = data[i].regTelephone;
+							var bank = data[i].bank;
+							var bankAccount = data[i].bankAccount;
+							
+							
+							tr += "<tr>"
+							+ "<td>公司名称："+ companyName +"<br>纳税人识别号："+ number +"</td>"
+							+ "<td><a class='btn btn-primary zlan' href='javascript:;' onclick=\"system.invoice.SelecStar(\'" + companyName+ "','" + number + "','" + id + "','" + createTime + "','" + ordinary2 + "','" + regAddress + "','" + regTelephone + "','" + bank + "','" + bankAccount + "\');\">选用</a></td></tr>";
+						}
 					}
 					$("#addinvoices").append(tr);
 					
