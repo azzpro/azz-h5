@@ -5,7 +5,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 h1,h2,h3,h4,h5,h6{ font-weight:normal;}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
 audio,canvas,video{display:inline-block;*display: inline;*zoom:1;}
-body{font:normal 100% Arial,\5FAE\8F6F\96C5\9ED1; color:#333; font-size:12px; background: url(../images/top_bg.jpg) #fff repeat-x left top;}
+body{font:normal 100% Arial,\5FAE\8F6F\96C5\9ED1; color:#333; font-size:12px; background: #fff;}
 a{ color: #333; text-decoration: none; }
 a:hover{ color: #28b7eb;}
 input,select,textarea,button{font-size:100%;padding:0;margin:0; font-family:Arial,\5FAE\8F6F\96C5\9ED1; outline:none;}
@@ -25,23 +25,31 @@ select::-ms-expand { display: none; }
 .pb40{ padding-bottom: 40px;}
 button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 
-header{width: 100%; min-width: 1000px; max-width:1200px; margin:0 auto; height: 130px; position: relative;}
-.logo{ left: 0px; top: 15px; position: absolute;}
-nav{font-size: 18px; font-weight: bold; margin-left: 350px; padding-top: 45px;}
-nav a{ margin: 0 20px; }
-nav a:hover,nav a.bg{ color: #30b8e2; border-bottom: #30b8e2 3px solid; padding-bottom: 20px;}
+header{ width: 100%; background: #333;}
+.top{width: 100%; min-width: 1000px; max-width:1200px; margin:0 auto; height: 66px; position: relative; color: #ccc;}
+.topzi{ line-height: 66px; font-size: 18px;}
+.logo{ padding: 20px 0;}
+nav{font-size: 18px; font-weight: bold; right: 350px; line-height: 66px; position: absolute; top: 0;}
+nav a{ margin: 0 20px; color: #ccc; font-weight: normal;}
+nav a:hover,nav a.bg{ color: #30b8e2;}
+.top-right{ font-size: 18px; top: 0; right: 0; position: absolute; line-height: 66px;}
+.top-right span{ padding-left: 30px;}
+.top-right a{ color: #ccc;}
+
 .swiper-container { width: 100%; height: 680px;}
 article{ width: 100%; min-width: 1000px; max-width:1200px; margin: 0 auto;}
-.top-right{ font-size: 18px; top: 45px; right: 0; position: absolute;}
-.top-right span{ padding-left: 30px; font-size: 24px; color: #666;}
-.bottom-bg{ border-top: #f0f0f0 5px solid; width: 100%;}
-footer{ width: 100%; min-width: 1000px; max-width:1200px; margin: 0 auto;}
-footer h2{ font-size: 24px; font-weight: bold; padding: 30px 0 10px;}
-.link{ width: 100%; overflow: hidden;}
-.link li{ float: left; width: 18%; margin: 20px 1%; height: 90px; background: #000;}
-.link li:first-child{ margin-left: 0;}
-.bottom-lr{ font-size: 14px; padding: 30px 0; line-height: 25px;}
-.bottom-lr .right{ text-align: right;}
+
+.bottom-bg{background: #414141; width: 100%; margin-top: 50px; padding: 30px 0;}
+footer{ width: 100%; min-width: 1000px; max-width:1200px; margin: 0 auto; text-align: center; font-size: 16px; line-height: 30px; color: #999;}
+footer a{ color: #999;}
+.case{ width: 100%; overflow: hidden; margin-top: 80px;}
+.case h2{ color: #070707; font-size: 36px; line-height: 40px;}
+.case h2 samp{font-size: 16px; padding-left: 20px; font-family: Arial,\5FAE\8F6F\96C5\9ED1;}
+.case h2 a{font-size: 16px; float: right;}
+.listlist{ width: 100%; margin-top: 20px;}
+.listlist li{ float: left; width: 19%; margin-left: 1.2%;}
+.listlist li:nth-child(1){ margin-left: 0;}
+.ljlist li .lj-zi span{ display: block; font-size: 15px; color: #666; padding: 10px 0; margin-bottom: 30px;}
 .bt-zi{ font-size: 24px; font-weight: bold; text-align: center; padding: 50px 0;}
 .list{ width: 100%; overflow: hidden;}
 .list li{ width: 30.33%; margin: 0 1.5% 40px; float: left;}
