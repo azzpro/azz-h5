@@ -177,7 +177,7 @@ Module.define("system.order", function(page, $) {
 					if(data.orderStatusId == 1){
 						$('#receiptS').show();
 					}else{
-						$('#receiptS').hide();
+						
 					}
 					if(data.orderStatusId == 2){
 						$('#fhstatus').show();
@@ -185,18 +185,14 @@ Module.define("system.order", function(page, $) {
 						$('#dingdfh').show();
 						
 					}else{
-						$('#fhstatus').hide();
-						$('#sharr').hide();
-						$('#dingdfh').hide();
+						
 					}
 					if(data.orderStatusId == 3){
 						$('#deliver').show();
 						$('#fhstatus').show();
 						$('#sharr').show();
 					}else{
-						$('#deliver').hide();
-						$('#fhstatus').hide();
-						$('#sharr').hide();
+						
 					}
 					if(data.orderStatusId == 4){
 						$('#deliver').show();
@@ -227,12 +223,7 @@ Module.define("system.order", function(page, $) {
 						}
 						$("#signFileInfos2").append(atr2);
 					}else{
-						$('#deliver').hide();
-						$('#fhstatus').hide();
-						$('#sharr').hide();
-						$('#fhdID').hide();
-						$('#invoice').hide();
-						$('#signintoo').hide();
+						
 					}
 					var orderItems = data.orderItems;
 					var tr = "";
@@ -289,6 +280,7 @@ Module.define("system.order", function(page, $) {
 			dataType: "json", 
 			success: function(data) {
 				if (data.code == 0) {
+					window.location.reload();
 					window.location.href = "#!order/order-management.html"				
 				} else {
 					alert(data.msg)
@@ -322,6 +314,7 @@ Module.define("system.order", function(page, $) {
 			data: fm,
 	        success : function(data) {
 	        	if (data.code == 0) {
+	        		window.location.reload();
 	        		window.location.href = "#!order/order-management.html"
 				} else {
 					alert(data.msg);
@@ -354,6 +347,7 @@ Module.define("system.order", function(page, $) {
 			data: fm,
 	        success : function(data) {
 	        	if (data.code == 0) {
+	        		window.location.reload();
 	        		window.location.href = "#!order/order-management.html"
 				} else {
 					alert(data.msg);
@@ -386,6 +380,7 @@ Module.define("system.order", function(page, $) {
 			data: fm,
 	        success : function(data) {
 	        	if (data.code == 0) {
+	        		window.location.reload();
 	        		window.location.href = "#!order/order-management.html"
 				} else {
 					alert(data.msg);

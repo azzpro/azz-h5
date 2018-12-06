@@ -1,8 +1,11 @@
-Module.define("system.stomerorder", function(page, $) {
+Module.define("system.signup", function(page, $) {
 	page.ready = function() {
 		initDataTable();
 		$("#Search").bind("click", function() {
 			dataTable.ajax.reload();
+		});
+		$('#myModal').on('hidden.bs.modal', function(e){
+			$('#tips').val('');
 		});
 	}
 	
@@ -26,12 +29,12 @@ Module.define("system.stomerorder", function(page, $) {
 				param = data;
 				param.pageNum = data.start/10+1;
 				param.pageSize = data.length;
-				param.searchInput = $("input[name='searchname']").val();
-				param.orderStatus = $('#approvalType').val();
+				param.courseName = $("input[name='searchname']").val();
+				param.status = $("#approvalType").val();
 				//当前页码
 				 $.ajax({
 				 	type: "POST",   
-				 	url: ulrTo + "/azz/api/platform/client/order/getClientOrderInfoList",
+				 	url: ulrTo + "/azz/api/index/getClientSignUpList",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -53,68 +56,110 @@ Module.define("system.stomerorder", function(page, $) {
 				 });
 			},
 			"columns": [{
-					"title": "客户订单编号",
-					"data": "clientOrderCode",
+					"title": "提交时间",
+					"data": "creatTime",
 					"className": "text-nowrap",
-					"defaultContent": "-"
+					"defaultContent": "-",
 				}, // 序号
 				{
-					"title": "下单人姓名",
-					"data": "orderCreator",
+					"title": "状态",
+					"data": "",
+					"className": "text-nowrap",
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						switch(row.status) {
+							case 0:
+								return '待处理';
+								break;
+							case 1:
+								return '已处理';
+								break;
+						};
+					}
+				},
+				{
+					"title": "课程名称",
+					"data": "articleName",
 					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
-					"title": "订单金额",
-					"data": "grandTotal",
+					"title": "姓名",
+					"data": "name",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{
-					"title": "下单时间",
-					"data": "orderTime",
+					"title": "性别",
+					"data": "createTime",
+					"className": "text-nowrap",
+					"defaultContent": "无",
+					"render" : function (data, type, row, meta) {
+						switch(row.gender) {
+							case 0:
+								return '男';
+								break;
+							case 1:
+								return '女';
+								break;
+						};
+					}
+				},
+				{
+					"title": "联系方式",
+					"data": "",
+					"className": "text-nowrap",
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						if(row.mobilePhone){
+							var mobilePhone = row.mobilePhone
+						}else{
+							var mobilePhone = ''
+						}
+						if(row.email){
+							var email = row.email
+						}else{
+							var email = ''
+						}
+						return mobilePhone +'<br>' + email
+					}
+				},
+				{
+					"title": "公司",
+					"data": "company",
+					"className": "text-nowrap",
+					"defaultContent": "-",
+				},
+				{
+					"title": "职位",
+					"data": "post",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{
 					"title": "处理人",
-					"data": "handler",
-					"className": "all",
-					"defaultContent": "-",
-				},
-				{
-					"title": "处理时间",
-					"data": "handlerTime",
-					"className": "text-nowrap",
-					"defaultContent": "-"
-				},
-				{
-					"title": "订单状态",
-					"data": "",
+					"data": "post",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
-						switch(row.orderStatus) {
-							case 7:
-								return '待支付';
-								break;
-							case 8:
-								return '待确认';
-								break;
-							case 9:
-								return '待配货';
-								break;
-							case 10:
-								return '待签收';
-								break;
-							case 11:
-								return '已完成';
-								break;
-							case 12:
-								return '已关闭';
-								break;
-						};
+						if(row.modifier){
+							var modifier = row.modifier
+						}else{
+							var modifier = ''
+						}
+						if(row.modifierTime){
+							var modifierTime = row.modifierTime
+						}else{
+							var modifierTime = ''
+						}
+						return modifier +'<br>' + modifierTime
 					}
+				},
+				{
+					"title": "备注",
+					"data": "remark",
+					"className": "text-nowrap",
+					"defaultContent": "-",
 				},
 				{
 					"title": "操作",
@@ -123,9 +168,14 @@ Module.define("system.stomerorder", function(page, $) {
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
 						if (row) {
+			            	if(row.status==0){
+								var statustoo = '<a class="text-nowrap" href="javascript:;" onclick="system.signup.delDeptInfo(\'' + row.id + '\');">处理</a>'
+							}else{
+								var statustoo = '-'
+							}
 		            		var html = '<div class="am-btn-toolbar">';
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
-		            		html += '<a href="javascript:;" onclick="system.stomerorder.details(\'' + row.clientOrderCode + "','"+ row.orderStatus + '\');">详情</a>';
+		            		html += statustoo;
 		            		html += '</div>';
 		            		html += '</div>';
 			         		return html;
@@ -136,28 +186,33 @@ Module.define("system.stomerorder", function(page, $) {
 			],
 		});
 	}
-	
-	//详情
-	page.details = function(clientOrderCode,orderStatus) {
-		if(!window.localStorage){
-            return false;
-        }else{
-            var storage=window.localStorage;
-            var clientOrderCode = JSON.stringify(clientOrderCode);
-            storage["clientOrderCode"]= clientOrderCode;
-        }
-        window.location.href = "#!stomerorder/stomerorder-detail.html"
+	//处理
+	page.delDeptInfo = function(id) {
+		$('#myModal').modal('show');
+		$('#confirm').attr("onclick", "system.signup.delDeptInfotoo(\'" + id + "\');")
+	}
+	page.delDeptInfotoo = function(id) {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/index/editSignUp",
+			cache: false, //禁用缓存    
+			dataType: "json", 
+			data: {
+				'id': id,
+				'remark': $('#tips').val(),
+			},
+			success: function(data) {
+				if (data.code == 0) {
+					$('#myModal').modal('hide');
+					dataTable.ajax.reload();
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
 	}
 	
-	$('.datepicker_start').datepicker({
-		minDate: new Date()
-	});
-	$('.datepicker_end').datepicker({
-		minDate: new Date()
-	});
-	$('.datepicker_start2').css({
-		zIndex: "1052"
-	}).datepicker();
+	
 
 	// search_class
 	$(".search_class").select2({

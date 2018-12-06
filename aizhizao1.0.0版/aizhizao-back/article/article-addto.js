@@ -84,18 +84,12 @@ Module.define("system.article", function(page, $) {
    			column: "required",
    			title: "required",
    			file: "required",
-   			price: "required",
-   			supplement: "required",
-   			supplement2: "required",
    			content: "required",
    		},
    		messages: {
    			modulename: "请输入所属栏目",
    			title: "请输入文章标题",
    			file: "请上传文章主图",
-   			price: "请输入价格",
-   			supplement: "请输入",
-   			supplement2: "请输入",
    			content: "请填写文章详情",
    		},
    		highlight: function(element) {

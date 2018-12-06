@@ -102,15 +102,13 @@ Module.define("system.order", function(page, $) {
 						$('#receiptS').show();
 						$('#gqBH').show();
 					}else{
-						$('#receiptS').hide();
-						$('#gqBH').hide();
+						
 					}
 					if(orderInfo.orderStatusId == 10){
 						$('#Signin').show();
 						$('#deliver').show();
 					}else{
-						$('#Signin').hide();
-						$('#deliver').hide();
+						
 					}
 					if(orderInfo.orderStatusId == 11){
 						$('#deliver').show();
@@ -129,8 +127,7 @@ Module.define("system.order", function(page, $) {
 						}
 						$("#signFileInfos2").append(atr2);
 					}else{
-						$('#signintoo').hide();
-						$('#deliver').hide();
+						
 					}
 					$('#clientOrderCode').html(orderInfo.clientOrderCode);
 					switch(orderInfo.orderStatusId) {

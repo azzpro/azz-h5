@@ -251,7 +251,7 @@ Module.define("system.templateincer", function(page, $) {
 	   			},
 				telephone: {
 	   				required: true,
-	   				isMobile: true,
+	   				/*isMobile: true,*/
 	   			},
 				bank: {
 	   				required: true,
@@ -300,7 +300,7 @@ Module.define("system.templateincer", function(page, $) {
 	   			},
 				telephone2: {
 	   				required: true,
-	   				isMobile: true,
+	   				/*isMobile: true,*/
 	   			},
 				bank2: {
 	   				required: true,

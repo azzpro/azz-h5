@@ -109,7 +109,7 @@ function initValidate(){
    			pohe: "required",
    			province: "required",
    			city: "required",
-   			district: "required",
+   			/*district: "required",*/
    			address: "required",
    			file: "required",
    		},
@@ -120,7 +120,7 @@ function initValidate(){
    			pohe: "请输入公司电话",
    			province: "请选择省",
    			city: "请选择市",
-   			district: "请选择区",
+   			/*district: "请选择区",*/
    			address: "请输入详细地址",
    			file: "请上传营业执照",
    		},

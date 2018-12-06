@@ -163,9 +163,14 @@ Module.define("system.invoice", function(page, $) {
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
 						if (row) {
+							if(row.orderStatusId == 11){
+								var metatoos ='<a href="javascript:;" onclick="system.invoice.details(\'' + row.clientOrderCode +"','" + row.grandTotal +'\');">申请开票</a>'
+							}else{
+								var metatoos ='-'
+							}
 			            	var html = '<div class="am-btn-toolbar">';
 			            		html += '<div class="am-btn-group am-btn-group-xs">';
-			            		html += '<a href="javascript:;" onclick="system.invoice.details(\'' + row.clientOrderCode +"','" + row.grandTotal +'\');">申请开票</a>';
+			            		html += metatoos;
 			            		html += '</div>';
 			            		html += '</div>';
 				            return html;

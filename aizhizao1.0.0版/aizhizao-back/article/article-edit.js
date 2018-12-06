@@ -119,17 +119,17 @@ Module.define("system.article", function(page, $) {
    		rules: {
    			column: "required",
    			title: "required",
-   			price: "required",
+   			/*price: "required",
    			supplement: "required",
-   			supplement2: "required",
+   			supplement2: "required",*/
    			content: "required",
    		},
    		messages: {
    			modulename: "请输入所属栏目",
    			title: "请输入文章标题",
-   			price: "请输入价格",
+   			/*price: "请输入价格",
    			supplement: "请输入",
-   			supplement2: "请输入",
+   			supplement2: "请输入",*/
    			content: "请填写文章详情",
    		},
    		highlight: function(element) {

@@ -164,7 +164,7 @@ Module.define("system.invoice", function(page, $) {
 							
 							trr += "<tr><td>"+ merchantOrderCode +"</td>"
 							+ "<td>"+ grandTotal +"</td>"
-							+ "<td>"+ merchantApplyCode +"</td>"
+							+ "<td>"+ statuss +"</td>"
 							+ "<td>"+ merchantApplyCode +"</td>"
 							+ "<td>"+ invoiceinfo +"</td></tr>";
 						}

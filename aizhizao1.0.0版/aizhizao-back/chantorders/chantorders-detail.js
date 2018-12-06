@@ -23,7 +23,7 @@ Module.define("system.chantorders", function(page, $) {
 					if(data.orderStatusId == 1){
 						$('#receiptS').show();
 					}else{
-						$('#receiptS').hide();
+						
 					}
 					if(data.orderStatusId == 2){
 						
@@ -32,14 +32,13 @@ Module.define("system.chantorders", function(page, $) {
 					if(data.orderStatusId == 3){
 						$('#deliver').show();
 					}else{
-						$('#deliver').hide();
+						
 					}
 					if(data.orderStatusId == 4){
 						$('#deliver').show();
 						$('#signintoo').show();
 					}else{
-						$('#deliver').hide();
-						$('#signintoo').hide();
+						
 					}
 					var orderItems = data.orderItems;
 					var tr = "";

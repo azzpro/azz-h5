@@ -18,12 +18,11 @@ Module.define("system.stomerorder", function(page, $) {
 					if(orderInfo.orderStatusId == 7){
 						$('#cancelTime').show();
 					}else{
-						$('#cancelTime').hide();
+						
 					}
 					if(orderInfo.orderStatusId == 8){
 						$('#distribution').show();
 					}else{
-						$('#distribution').hide();
 					}
 					if(orderInfo.orderStatusId == 11){
 						$('#Signin').show();
@@ -39,7 +38,6 @@ Module.define("system.stomerorder", function(page, $) {
 						}
 						$("#signFileInfos").append(atr);
 					}else{
-						$('#Signin').hide();
 					}
 					
 					
