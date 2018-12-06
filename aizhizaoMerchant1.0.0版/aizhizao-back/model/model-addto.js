@@ -274,16 +274,21 @@ Module.define("system.model", function(page, $) {
 					$('#myModal').modal('hide');
 				}
 			}else{
-				$('#classifname').html(toos);
+				/*$('#classifname').html(toos);
 				$('#classifcord').html(toosAssortmentcode);
 				$('#assortmentId').html(toosassortmentId);
-				$('#myModal').modal('hide');
+				$('#myModal').modal('hide');*/
+				alert('请选择有三级的分类组');
+				return;
+				
 			}
 		}else{
-			$('#classifname').html(ones);
+			/*$('#classifname').html(ones);
 			$('#classifcord').html(onesAssortmentcode);
 			$('#assortmentId').html(onesassortmentId);
-			$('#myModal').modal('hide');
+			$('#myModal').modal('hide');*/
+			alert('请选择有三级的分类组');
+			return;
 		}
 		$('#parameterData').empty();
 		getPrams();

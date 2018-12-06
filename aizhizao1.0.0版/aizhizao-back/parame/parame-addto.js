@@ -274,14 +274,18 @@ Module.define("system.parame", function(page, $) {
 				}
 			}else{
 				
-				$('#classifname').html(toos);
+				/*$('#classifname').html(toos);
 				$('#classifcord').html(toosAssortmentcode);
-				$('#myModal2').modal('hide');
+				$('#myModal2').modal('hide');*/
+				alert('请选择有三级的分类组');
+				return;
 			}
 		}else{
-			$('#classifname').html(ones);
+			/*$('#classifname').html(ones);
 			$('#classifcord').html(onesAssortmentcode);
-			$('#myModal2').modal('hide');
+			$('#myModal2').modal('hide');*/
+			alert('请选择有三级的分类组');
+			return;
 		}
 		
 	}

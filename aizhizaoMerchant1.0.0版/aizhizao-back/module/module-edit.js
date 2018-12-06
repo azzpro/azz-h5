@@ -163,14 +163,18 @@ Module.define("system.module", function(page, $) {
 					$('#myModal').modal('hide');
 				}
 			}else{
-				$('#classifname').html(toos);
+				/*$('#classifname').html(toos);
 				$('#classifcord').html(toosAssortmentcode);
-				$('#myModal').modal('hide');
+				$('#myModal').modal('hide');*/
+				alert('请选择有三级的分类组');
+				return;
 			}
 		}else{
-			$('#classifname').html(ones);
+			/*$('#classifname').html(ones);
 			$('#classifcord').html(onesAssortmentcode);
-			$('#myModal').modal('hide');
+			$('#myModal').modal('hide');*/
+			alert('请选择有三级的分类组');
+			return;
 		}
 		
 	}
