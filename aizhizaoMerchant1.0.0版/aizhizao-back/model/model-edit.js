@@ -42,6 +42,7 @@ Module.define("system.model", function(page, $) {
 			if($(this).hasClass('zhengc')){  //加
 				$(this).addClass('curr');
 				$(this).removeClass('zhengc');
+				$(this).siblings().removeClass('curr');
 				$(this).siblings().addClass('zhengc');
 			}
 		})
@@ -54,6 +55,22 @@ Module.define("system.model", function(page, $) {
 		});
 		
 	}
+	
+	$('.paramePrice').keyup(function() {
+		$(this).val($(this).val().replace(/[^\d.]/g,""));
+	});
+	$('.paramePrice').blur(function() {
+	    var money = $(this).val() - 0.0;
+	    $(this).val(money.toFixed(2));
+	});
+	
+	$('.valuess').keyup(function() {
+		$(this).val($(this).val().replace(/[^\d.]/g,""));
+	});
+	$('.valuess').blur(function() {
+	    var money = $(this).val() - 0.0;
+	    $(this).val(money.toFixed(2));
+	});
 	
 	//新增价格
 	function addDeptInfo() {
@@ -361,6 +378,7 @@ Module.define("system.model", function(page, $) {
 	
 	//增加产品
 	function submitForm() {
+		valueArra.splice(0,valueArra.length);
 		var valuess = $('.valuess');
 		for(var i = 0;i < valuess.length; i++){
 			valueArra.push(valuess[i].value);

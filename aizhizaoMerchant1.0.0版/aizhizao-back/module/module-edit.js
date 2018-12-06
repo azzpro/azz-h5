@@ -34,6 +34,7 @@ Module.define("system.module", function(page, $) {
 			if($(this).hasClass('zhengc')){  //加
 				$(this).addClass('curr');
 				$(this).removeClass('zhengc');
+				$(this).siblings().removeClass('curr');
 				$(this).siblings().addClass('zhengc');
 			}
 		})

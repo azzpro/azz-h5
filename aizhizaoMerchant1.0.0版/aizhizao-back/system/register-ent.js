@@ -139,7 +139,7 @@
    			},
    			Phone: {
    				required: "请输入您的电话号码",
-   				minlength: "请输入正确的电话号码"
+   				minlength: "请输入正确的手机号码"
    			},
    			phonecode: {
    				required: "请输入手机验证码",

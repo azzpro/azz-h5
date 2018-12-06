@@ -85,6 +85,7 @@ Module.define("system.parameter", function(page, $) {
 		if(!validFlag) {
 				return;
 		}
+		paramsId.splice(0,paramsId.length);
 		for(var i = 0 ; i < paramData.length;i++){
 	    	paramsId.push(paramData[i].moduleCode)
 	    }
@@ -236,6 +237,7 @@ Module.define("system.parameter", function(page, $) {
 		$('#caseName').html(caseName);
 		$('#caseCode').html(caseCode);
 		$('#myModal').modal('hide');
+		dataTable.ajax.reload();
 	}
 	
 	function initDataTable() {
@@ -259,6 +261,7 @@ Module.define("system.parameter", function(page, $) {
 				param.pageNum = data.start/10+1;
 				param.pageSize = data.length;
 				param.searchInput = $("input[name='searchname']").val();
+				param.caseCode = $('#caseCode').html();
 				//当前页码
 				 $.ajax({
 				 	type: "POST",   

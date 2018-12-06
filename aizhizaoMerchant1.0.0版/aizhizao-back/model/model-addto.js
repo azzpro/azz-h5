@@ -42,6 +42,7 @@ Module.define("system.model", function(page, $) {
 			if($(this).hasClass('zhengc')){  //加
 				$(this).addClass('curr');
 				$(this).removeClass('zhengc');
+				$(this).siblings().removeClass('curr');
 				$(this).siblings().addClass('zhengc');
 			}
 		})
@@ -370,6 +371,7 @@ Module.define("system.model", function(page, $) {
 	
 	//增加产品
 	function submitForm() {
+		valueArra.splice(0,valueArra.length);
 		var valuess = $('.valuess');
 		for(var i = 0;i < valuess.length; i++){
 			valueArra.push(valuess[i].value);

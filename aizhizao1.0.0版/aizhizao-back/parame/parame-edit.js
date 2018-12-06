@@ -45,9 +45,12 @@ Module.define("system.parame", function(page, $) {
    	   			alert('请输入参数值');
    	   			return;
    	   		}
-   	   		if($('#parVal').val() == $('.shuzi').html()){
-   	   			alert('参数值已存在');
-   	   			return;
+   	   		var shuzi = $('.shuzi')
+   	   		for(var i = 0; i<shuzi.length; i++){
+   	   			if($('#parVal').val() == shuzi[i].innerHTML){
+	   	   			alert('参数值已存在');
+	   	   			return;
+	   	   		}
    	   		}
 		    $("#addParVal").append("<div class='jdf'><div class='shuzi'>"+ $('#parVal').val() +"</div><i class='fa fa-times'></i></div>");
 		    
@@ -78,6 +81,7 @@ Module.define("system.parame", function(page, $) {
 			if($(this).hasClass('zhengc')){  //加
 				$(this).addClass('curr');
 				$(this).removeClass('zhengc');
+				$(this).siblings().removeClass('curr');
 				$(this).siblings().addClass('zhengc');
 			}
 		})
