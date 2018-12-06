@@ -172,6 +172,11 @@ Module.define("system.order", function(page, $) {
 					$('#orderCode').html(data.orderCode);
 					$('#orderTime').html(data.orderTime);
 					$('#orderStatus').html(data.orderStatus);
+					if(data.invoiceStatus == 0){
+						$('#invoiceStatus').html('未开票')
+					}else if(data.invoiceStatus == 1){
+						$('#invoiceStatus').html('已开票')
+					}
 					$('#remark').html(data.remark);
 					$('#grandTotal').html(data.grandTotal);
 					if(data.orderStatusId == 1){

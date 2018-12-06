@@ -54,7 +54,21 @@ Module.define("system.model", function(page, $) {
 		});
 		
 	}
+	$('.paramePrice').keyup(function() {
+		$(this).val($(this).val().replace(/[^\d.]/g,""));
+	});
+	$('.paramePrice').blur(function() {
+	    var money = $(this).val() - 0.0;
+	    $(this).val(money.toFixed(2));
+	});
 	
+	$('.valuess').keyup(function() {
+		$(this).val($(this).val().replace(/[^\d.]/g,""));
+	});
+	$('.valuess').blur(function() {
+	    var money = $(this).val() - 0.0;
+	    $(this).val(money.toFixed(2));
+	});
 	//新增价格
 	function addDeptInfo() {
 		var validFlag = $('#basicForm2').valid();
@@ -365,10 +379,7 @@ Module.define("system.model", function(page, $) {
 			alert('请选择分类');
 			return;
 		}
-		if(!$("#moduleID").html()){
-			alert('请选择模组');
-			return;
-		}
+		
 		if(!prices || !prices.length){
 			alert('请添加产品价格');
 			return;
