@@ -71,6 +71,7 @@ article{ width: 100%; min-width: 1000px; max-width:1200px; margin: 0 auto;}
 .ljlist li{ float: left; width: 24%; margin-left: 1.25%;}
 .ljlist li:nth-child(1),.ljlist li:nth-child(5),.ljlist li:nth-child(9),.ljlist li:nth-child(13),.ljlist li:nth-child(17){ margin-left: 0;}
 .ljlist li .lj-zi{ font-size: 18px; margin-top: 10px; font-weight: bold;}
+.ljlist li img{ width: 330px; height: 330px;}
 .ljlist li .lj-zi p{ color: #d4282d; font-weight: normal; padding-top: 5px;}
 .tab-menu{ float: left; margin-left: 20px;}
 .tab-menu li{ float: left; font-size: 18px; margin: 0 20px; cursor: pointer;}

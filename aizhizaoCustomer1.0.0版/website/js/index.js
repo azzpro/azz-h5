@@ -47,6 +47,20 @@ $(document).ready(function() {
 	
 	$("#faidmore").bind("click", faidmore);
 	$("#ljlistmore").bind("click", ljlistmore);
+	
+	jQuery.fn.limit=function(){
+	var self = $("[limit]");
+	self.each(function(){
+	var objString = $(this).text();
+	var objLength = $(this).text().length;
+	var num = $(this).attr("limit");
+	if(objLength > num){
+	$(this).attr("title",objString);
+	objString = $(this).text(objString.substring(0,num)+"...");
+	}
+	$(this).attr("title"," ")
+	})
+	}
 });
 
 function faidmore() {
@@ -91,12 +105,14 @@ function searchNavOne() {
 		success: function(data) {
 			if (data.code == 0) {
 				var data = data.data;
-				var	wrapper ="<ul class='left left-l'><li><a href='list-detail.html?articleId="+data[0].articleId+"'><img src='"+data[0].articlePicUrl+"' alt='' /><h3>"+data[0].articleTitle+"  <span>推荐</span></h3></a></li>"
-  			 				+ "<li><a href='list-detail.html?articleId="+data[1].articleId+"'><img src='"+data[1].articlePicUrl+"' alt='' /><h3>"+data[1].articleTitle+"  <span>推荐</span></h3></a></li></ul><ul class='right left-r'>"
-  							+ "<li><a href='list-detail.html?articleId="+data[2].articleId+"'><img src='"+data[2].articlePicUrl+"' alt='' /><div class='bg'></div><div class='zi'>"+data[2].articleTitle+" <span>推荐</span></div></a></li>"
-  							+ "<li><a href='list-detail.html?articleId="+data[3].articleId+"'><img src='"+data[3].articlePicUrl+"' alt='' /><div class='bg'></div><div class='zi'>"+data[3].articleTitle+"  <span>推荐</span></div></a></li></ul>";
+				var	wrapper ="<ul class='left left-l'><li><a href='list-detail.html?articleId="+data[0].articleId+"'><img src='"+data[0].articlePicUrl+"' alt='' /><h3><font class='jqzi'>"+data[0].articleTitle+"</font>  <span>推荐</span></h3></a></li>"
+  			 				+ "<li><a href='list-detail.html?articleId="+data[1].articleId+"'><img src='"+data[1].articlePicUrl+"' alt='' /><h3><font class='jqzi'>"+data[1].articleTitle+"</font>  <span>推荐</span></h3></a></li></ul><ul class='right left-r'>"
+  							+ "<li><a href='list-detail.html?articleId="+data[2].articleId+"'><img src='"+data[2].articlePicUrl+"' alt='' /><div class='bg'></div><div class='zi'><font class='jqzi'>"+data[2].articleTitle+"</font><span>推荐</span></div></a></li>"
+  							+ "<li><a href='list-detail.html?articleId="+data[3].articleId+"'><img src='"+data[3].articlePicUrl+"' alt='' /><div class='bg'></div><div class='zi'><font class='jqzi'>"+data[3].articleTitle+"</font>  <span>推荐</span></div></a></li></ul>";
 				$("#faid").append(wrapper);
 				$("#faidcolumnCode").html(data[0].columnCode);
+				$(".jqzi").attr("limit",15)
+				$("[limit]").limit();
 			} else {
 				alert(data.msg)
 			}
@@ -119,10 +135,12 @@ function searchNavTwo() {
 					var articlePicUrl = data[i].articlePicUrl;
 					var articleTitle = data[i].articleTitle;
 					var price = data[i].price;
-					li +="<li><a href='list-detail.html?articleId="+articleId+"'><img src='"+articlePicUrl+"' alt='' /><div class='lj-zi'>"+articleTitle+"<p>¥"+price+"</p></div></a></li>";
+					li +="<li><a href='list-detail.html?articleId="+articleId+"'><img src='"+articlePicUrl+"' alt='' /><div class='lj-zi'><font class='jqzi2'>"+articleTitle+"</font><p>¥"+price+"</p></div></a></li>";
 			    }
 				$("#ljlist").append(li);
 				$("#ljlistcolumnCode").html(data[0].columnCode);
+				$(".jqzi2").attr("limit",13)
+				$("[limit]").limit();
 			} else {
 				alert(data.msg)
 			}

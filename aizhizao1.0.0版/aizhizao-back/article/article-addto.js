@@ -1,17 +1,34 @@
 Module.define("system.article", function(page, $) {
 	page.ready = function() {
-		$("#SubmissionBtn").bind("click", submitForm);
-		initValidate();
-		getColumnLsit();
 		KindEditor.ready(function(K) {
                 window.editor = K.create('#editor_id');
                 editor.sync();
         });
+		$("#SubmissionBtn").bind("click", submitForm);
+		initValidate();
+		getColumnLsit();
+		
 
 		$("#file1").change(function(){
 		    $("#img1").attr("src",URL.createObjectURL($(this)[0].files[0]));
 		});
 	}
+	
+	$('.paramePrice').keyup(function() {
+		var value = $(this).val();
+		//先把非数字的都替换掉，除了数字和.
+		value = value.replace(/[^\d.]/g,"");
+		//保证只有出现一个.而没有多个.
+		value = value.replace(/\.{2,}/g,".");
+		//必须保证第一个为数字而不是.
+		value = value.replace(/^\./g,"");
+		//保证.只出现一次，而不能出现两次以上
+		value = value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+		//只能输入两个小数
+		value = value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
+		
+		$(this).val(value);
+	});
 	
 	function getColumnLsit() {
 		$.ajax({
