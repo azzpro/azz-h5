@@ -55,21 +55,23 @@ Module.define("system.model", function(page, $) {
 		});
 		
 	}
+
 	$('.paramePrice').keyup(function() {
-		$(this).val($(this).val().replace(/[^\d.]/g,""));
+		var value = $(this).val();
+		//先把非数字的都替换掉，除了数字和.
+		value = value.replace(/[^\d.]/g,"");
+		//保证只有出现一个.而没有多个.
+		value = value.replace(/\.{2,}/g,".");
+		//必须保证第一个为数字而不是.
+		value = value.replace(/^\./g,"");
+		//保证.只出现一次，而不能出现两次以上
+		value = value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+		//只能输入两个小数
+		value = value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
+		
+		$(this).val(value);
 	});
-	$('.paramePrice').blur(function() {
-	    var money = $(this).val() - 0.0;
-	    $(this).val(money.toFixed(2));
-	});
-	
-	$('.valuess').keyup(function() {
-		$(this).val($(this).val().replace(/[^\d.]/g,""));
-	});
-	$('.valuess').blur(function() {
-	    var money = $(this).val() - 0.0;
-	    $(this).val(money.toFixed(2));
-	});
+
 	//新增价格
 	function addDeptInfo() {
 		var validFlag = $('#basicForm2').valid();
