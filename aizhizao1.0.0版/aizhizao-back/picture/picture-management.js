@@ -11,6 +11,23 @@ Module.define("system.picture", function(page, $) {
 		$("#file2").change(function(){
 		    $("#img2").attr("src",URL.createObjectURL($(this)[0].files[0]));
 		});
+		$('#myModal').on('hidden.bs.modal', function(e){
+			$('#basicForm')[0].reset();
+			var validFlag = $('#basicForm').validate();
+			validFlag.resetForm();
+			$(".has-error").removeClass('has-error');
+			$("#img1").attr("src",'');
+			
+		});
+		$('#myModal2').on('hidden.bs.modal', function(e){
+			$('#basicForm2')[0].reset();
+			var validFlag = $('#basicForm2').validate();
+			validFlag.resetForm();
+			$(".has-error").removeClass('has-error');
+			
+			$("#img2").attr("src",'');
+			
+		});
 	}
 	
 	function initDataTable() {

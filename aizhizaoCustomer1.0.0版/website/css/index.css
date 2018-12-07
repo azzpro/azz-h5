@@ -75,7 +75,7 @@ article{ width: 100%; min-width: 1000px; max-width:1200px; margin: 0 auto;}
 .tab-menu{ float: left; margin-left: 20px;}
 .tab-menu li{ float: left; font-size: 18px; margin: 0 20px; cursor: pointer;}
 .tab-menu li.curr{ color: #22b1e5; border-bottom: #22b1e5 3px solid;}
-.banner2{ background: #333; height: 500px; width: 100%; margin-top: 30px;}
+.banner2{ background: #333; width: 100%; margin-top: 30px;}
 .listlist{ width: 100%; margin-top: 20px;}
 .listlist li{ float: left; width: 19%; margin-left: 1.2%;}
 .listlist li:nth-child(1){ margin-left: 0;}
