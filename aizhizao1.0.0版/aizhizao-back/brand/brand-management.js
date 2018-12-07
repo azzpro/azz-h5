@@ -19,12 +19,14 @@ Module.define("system.brand", function(page, $) {
 			var validFlag = $('#basicForm').validate();
 			validFlag.resetForm();
 			$(".has-error").removeClass('has-error');
+			$("#img1").attr("src",'');
 
 		});
 		$('#myModal2').on('hidden.bs.modal', function(e){
 			var validFlag = $('#basicForm2').validate();
 			validFlag.resetForm();
 			$(".has-error").removeClass('has-error');
+			$("#img2").attr("src",'');
 
 		});
 	}

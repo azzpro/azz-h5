@@ -6,6 +6,11 @@ Module.define("system.customerdetail", function(page, $) {
 		$("#file1").change(function(){
 		    $("#img1").attr("src",URL.createObjectURL($(this)[0].files[0]));
 		});
+		
+		$('#myModal').on('hidden.bs.modal', function(e){
+			$("#img1").attr("src",'');
+			
+		});
 	}
 	function selectClientUserInfo() {
 		$.ajax({
