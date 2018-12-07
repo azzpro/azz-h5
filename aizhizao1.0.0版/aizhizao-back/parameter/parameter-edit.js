@@ -94,11 +94,6 @@ Module.define("system.parameter", function(page, $) {
 			return;
 		}
 		
-		if(!paramsId || !paramsId.length){
-			alert('请添加关联商家模组');
-			return false;
-		}
-		
 	    var file1 = document.basicForm2.file2.files[0];
 		if(!file1){
 	   		var isEditPic = 0

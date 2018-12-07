@@ -79,8 +79,8 @@ footer a{ color: #999;}
 .parameter{ width: 100%; overflow: hidden; margin-bottom: 30px; border-top: #d6d6d6 1px solid; font-size: 18px;}
 .parameter li{ border-bottom: #d6d6d6 1px solid; width: 100%; padding: 15px 0;}
 .del,.jia{ display: none;}
-.parameter li dl dt{ width:10%; float: left; text-align: right; color: #969696;}
-.parameter li dl dd.parlr{ width: 77%; float: left; margin-left: 2%; font-size: 16px;}
+.parameter li dl dt{ width:15%; float: left; text-align: right; color: #969696;}
+.parameter li dl dd.parlr{ width: 72%; float: left; margin-left: 2%; font-size: 16px;}
 .parameter li dl dd.parlr a{ float: left; width: 17.5%; margin: 0 0 20px 2%; border: #fff 1px solid; height: 30px; line-height: 30px; text-indent: 15px;}
 .parameter li dl dd.parlr a:hover{color: #28b7eb; border: #28b7eb 1px solid;}
 .parameter li dl dd.parlr a:hover .jia{ display: block; float: right; padding-right: 10px;}
@@ -100,7 +100,7 @@ footer a{ color: #999;}
 .table th{ background: #e7e7e7;position: relative;}
 .table1 tr:first-child{ background: #e7e7e7;}
 .table1 tr:first-child .jiahao{ display: none;}
-.table .textleft{ text-align: left;}
+.table .textleft{ text-align: left; white-space:normal;}
 .tj-zi{ width: 65%; padding-left: 3%;}
 .tj-zi h2{ font-size: 24px;font-weight: bold;}
 .tj-zi p{ color: #9e9e9e; padding-top: 20px; font-size: 22px;}

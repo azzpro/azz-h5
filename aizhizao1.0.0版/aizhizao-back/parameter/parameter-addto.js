@@ -37,11 +37,6 @@ Module.define("system.parameter", function(page, $) {
 			return;
 		}
 		
-		if(!paramsId || !paramsId.length){
-			alert('请添加关联商家模组');
-			return false;
-		}
-		
 	    var file1 = document.basicForm.file1.files[0];
 			
 		var fm = new FormData();
