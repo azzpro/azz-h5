@@ -44,7 +44,7 @@ Module.define("system.parameter", function(page, $) {
 		fm.append('combinationName', $("input[name='programmename']").val());
 		fm.append('status', $("input[name='fill']:checked").val());
 		fm.append('recommendReason', $('#remark').val());
-		fm.append('moduleCodes', paramsId);
+		if(!paramsId || !paramsId.length){}else{fm.append('moduleCodes', paramsId)};
 		fm.append('combinationPicFile', file1);
 		$.ajax({
 	        type :'POST',

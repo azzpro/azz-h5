@@ -1,11 +1,10 @@
 Module.define("system.module", function(page, $) {
 	var param = getRequest();
 	var moduleCode = param["moduleCode"];
-	KindEditor.ready(function(K) {
-        window.editor = K.create('#editor_id');
-        editor.sync();
-    });
 	page.ready = function() {
+		page.editor = KindEditor.create('#editor_id');
+	    page.editor.sync();
+	    
 		getGoodModuleInfo();
 		$("#SubmissionBtn").bind("click", submitForm);
 		$("#classifconfirm").bind("click", classifconfirm);

@@ -1,9 +1,8 @@
 Module.define("system.module", function(page, $) {
-	KindEditor.ready(function(K) {
-        window.editor = K.create('#editor_id');
-        editor.sync();
-    });
 	page.ready = function() {
+		page.editor = KindEditor.create('#editor_id');
+	    page.editor.sync();
+	    
 		$("#SubmissionBtn").bind("click", submitForm);
 		$("#classifconfirm").bind("click", classifconfirm);
 		initValidate();

@@ -106,7 +106,7 @@ Module.define("system.parameter", function(page, $) {
 		fm.append('combinationName', $("input[name='programmename']").val());
 		fm.append('status', $("input[name='fill']:checked").val());
 		fm.append('recommendReason', $('#remark').val());
-		fm.append('moduleCodes', paramsId);
+		if(!paramsId || !paramsId.length){}else{fm.append('moduleCodes', paramsId)};
 		if(!file1){}else{fm.append('combinationPicFile', file1);}
 		fm.append('isChangeCombinationPic', isEditPic);
 		
