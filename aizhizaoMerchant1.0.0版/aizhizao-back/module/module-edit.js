@@ -1,16 +1,16 @@
 Module.define("system.module", function(page, $) {
 	var param = getRequest();
 	var moduleCode = param["moduleCode"];
+	KindEditor.ready(function(K) {
+        window.editor = K.create('#editor_id');
+        editor.sync();
+    });
 	page.ready = function() {
 		getGoodModuleInfo();
 		$("#SubmissionBtn").bind("click", submitForm);
 		$("#classifconfirm").bind("click", classifconfirm);
 		initValidate();
 		getClassificationParent();
-		KindEditor.ready(function(K) {
-                window.editor = K.create('#editor_id');
-                editor.sync();
-        });
         
         $("#dianji").on('click','.ones li',function(){
 			if($(this).hasClass('zhengc')){  //加

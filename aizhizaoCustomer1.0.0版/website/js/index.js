@@ -105,11 +105,16 @@ function searchNavOne() {
 		success: function(data) {
 			if (data.code == 0) {
 				var data = data.data;
-				var	wrapper ="<ul class='left left-l'><li><a href='list-detail.html?articleId="+data[0].articleId+"'><img src='"+data[0].articlePicUrl+"' alt='' /><h3><font class='jqzi'>"+data[0].articleTitle+"</font>  <span>推荐</span></h3></a></li>"
-  			 				+ "<li><a href='list-detail.html?articleId="+data[1].articleId+"'><img src='"+data[1].articlePicUrl+"' alt='' /><h3><font class='jqzi'>"+data[1].articleTitle+"</font>  <span>推荐</span></h3></a></li></ul><ul class='right left-r'>"
-  							+ "<li><a href='list-detail.html?articleId="+data[2].articleId+"'><img src='"+data[2].articlePicUrl+"' alt='' /><div class='bg'></div><div class='zi'><font class='jqzi'>"+data[2].articleTitle+"</font><span>推荐</span></div></a></li>"
-  							+ "<li><a href='list-detail.html?articleId="+data[3].articleId+"'><img src='"+data[3].articlePicUrl+"' alt='' /><div class='bg'></div><div class='zi'><font class='jqzi'>"+data[3].articleTitle+"</font>  <span>推荐</span></div></a></li></ul>";
+				var wrapper='';
+				var wrapper2='';
+				for(var i = 0;i<2;i++){
+					wrapper +="<li><a href='list-detail.html?articleId="+data[i].articleId+"'><img src='"+data[i].articlePicUrl+"' alt='' /><h3><font class='jqzi'>"+data[i].articleTitle+"</font>  <span>推荐</span></h3></a></li>";
+				}
+				for(var y = 1;y<3;y++){
+					wrapper2 +="<li><a href='list-detail.html?articleId="+data[y].articleId+"'><img src='"+data[y].articlePicUrl+"' alt='' /><div class='bg'></div><div class='zi'><font class='jqzi'>"+data[y].articleTitle+"</font><span>推荐</span></div></a></li>";
+				}
 				$("#faid").append(wrapper);
+				$("#faid2").append(wrapper2);
 				$("#faidcolumnCode").html(data[0].columnCode);
 				$(".jqzi").attr("limit",15)
 				$("[limit]").limit();

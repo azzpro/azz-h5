@@ -1,9 +1,9 @@
 Module.define("system.article", function(page, $) {
 	page.ready = function() {
 		KindEditor.ready(function(K) {
-                window.editor = K.create('#editor_id');
-                editor.sync();
-        });
+		    window.editor = K.create('#editor_id');
+		    editor.sync();
+		});
 		$("#SubmissionBtn").bind("click", submitForm);
 		initValidate();
 		getColumnLsit();
