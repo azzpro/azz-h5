@@ -2,6 +2,19 @@ var param = getRequest();
 var columnCode = param["columnCode"];
 $(document).ready(function() {
 	searchNavList();
+	jQuery.fn.limit=function(){
+	var self = $("[limit]");
+	self.each(function(){
+	var objString = $(this).text();
+	var objLength = $(this).text().length;
+	var num = $(this).attr("limit");
+	if(objLength > num){
+	$(this).attr("title",objString);
+	objString = $(this).text(objString.substring(0,num)+"...");
+	}
+	$(this).attr("title"," ")
+	})
+	}
 });
 
 function searchNavList() {
@@ -38,9 +51,11 @@ function searchNavList() {
 						var remark = ''
 					}
 					
-					li +="<li><a href='list-detail.html?articleId="+articleId+"'><img src='"+articlePicUrl+"' alt='' /><div class='lj-zi'>"+articleTitle+""+priceK+""+remark+"</div></a></li>";
+					li +="<li><a href='list-detail.html?articleId="+articleId+"'><img src='"+articlePicUrl+"' alt='' /><div class='lj-zi'><font class='jqzi'>"+articleTitle+"</font>"+priceK+""+remark+"</div></a></li>";
 			    }
 				$("#listId").append(li);
+				$(".jqzi").attr("limit",15)
+				$("[limit]").limit();
 			} else {
 				alert(data.msg)
 			}

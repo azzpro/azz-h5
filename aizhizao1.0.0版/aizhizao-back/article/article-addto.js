@@ -61,7 +61,7 @@ Module.define("system.article", function(page, $) {
 				return;
 		}
 		
-		if(!editor.html()){
+		if(!page.editor.html()){
 			alert('请输入文章详情');
 			return;
 		}
@@ -75,7 +75,7 @@ Module.define("system.article", function(page, $) {
 		fm.append('remark1', $("input[name='supplement']").val());
 		fm.append('remark2', $("input[name='supplement2']").val());
 		fm.append('mainPicture', file1);
-		fm.append('articleDetail', editor.html());
+		fm.append('articleDetail', page.editor.html());
 		$.ajax({
 	        type :'POST',
 	        url : ulrTo+'/azz/api/index/addArticle',

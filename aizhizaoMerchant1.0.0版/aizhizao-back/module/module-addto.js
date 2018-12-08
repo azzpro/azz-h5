@@ -186,7 +186,7 @@ Module.define("system.module", function(page, $) {
 			alert('请选择分类');
 			return;
 		}
-		if(!editor.html()){
+		if(!page.editor.html()){
 			alert('请输入模组详情');
 			return;
 		}
@@ -199,7 +199,7 @@ Module.define("system.module", function(page, $) {
 		fm.append('moduleName', $("input[name='modulename']").val());
 		fm.append('moduleStatus', $("input[name='fill']:checked").val());
 		fm.append('goodsModulePicFile', file1);
-		fm.append('moduleInfo', editor.html());
+		fm.append('moduleInfo', page.editor.html());
 		$.ajax({
 	        type :'POST',
 	        url : ulrTo+'/azz/api/merchant/goodsModule/addGoodsModule',

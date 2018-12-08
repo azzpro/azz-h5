@@ -110,7 +110,7 @@ function searchNavOne() {
 				for(var i = 0;i<2;i++){
 					wrapper +="<li><a href='list-detail.html?articleId="+data[i].articleId+"'><img src='"+data[i].articlePicUrl+"' alt='' /><h3><font class='jqzi'>"+data[i].articleTitle+"</font>  <span>推荐</span></h3></a></li>";
 				}
-				for(var y = 1;y<3;y++){
+				for(var y = 2;y<4;y++){
 					wrapper2 +="<li><a href='list-detail.html?articleId="+data[y].articleId+"'><img src='"+data[y].articlePicUrl+"' alt='' /><div class='bg'></div><div class='zi'><font class='jqzi'>"+data[y].articleTitle+"</font><span>推荐</span></div></a></li>";
 				}
 				$("#faid").append(wrapper);
