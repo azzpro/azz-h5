@@ -124,7 +124,7 @@ Module.define("system.column", function(page, $) {
 			            	if(row.columnCode == 'homeslide'){
 								var statustoo = '-'
 							}else{
-								var statustoo = '<a class="text-nowrap" href="javascript:;">链接</a>'
+								var statustoo = '<a class="text-nowrap" onclick="system.column.ljlcolumnCode(\'' + row.columnCode + '\');" href="javascript:;">链接</a>'
 							}
 		            		var html = '<div class="am-btn-toolbar">';
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
@@ -197,6 +197,12 @@ Module.define("system.column", function(page, $) {
 				}
 	        }
 	    });
+	}
+	
+	//链接
+	page.ljlcolumnCode = function(columnCode) {
+		$('#ljl').html('http://www.izz2025.com/list.html?columnCode='+columnCode);
+		$('#myModal113').modal('show');
 	}
 	
 	//详情
