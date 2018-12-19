@@ -278,9 +278,13 @@
 .prices li{list-style: none; float: left; border:#ccc 1px solid; text-align: center; border-left:none; line-height: 40px;}
 .prices li:nth-child(1){border-left:#ccc 1px solid;}
 .prices li p{ border-bottom: #ccc 1px solid; padding: 0 25px; margin: 0;}
-.drr input,.drr select{ width: 200px; border: #ccc 1px solid; height: 35px; padding-left: 15px;}
+.drr input,.drr select{ width: 200px; border: #ccc 1px solid; height: 35px; padding-left: 15px; border-radius: 3px;}
 
 .ycl{ display: none;}
 .divcs .pull-right span{ font-size: 18px; color: #f00; font-weight: bold;}
 .cdde{ width: 50%; border: #ccc 1px solid; padding: 0 8px; height: 30px;}
 .ALJ{ text-decoration: underline; margin-right:20px;}
+
+.fz18{ font-size: 18px;}
+#parameterData tr:first-child td .fz18{ display: none;}
+.drr2 input{ width: 100px; border: #ccc 1px solid; height: 35px; padding-left: 15px; border-radius: 3px;}

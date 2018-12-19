@@ -127,6 +127,7 @@ Module.define("system.module", function(page, $) {
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
 		            		html += '<a href="#!module/module-edit.html?moduleCode={0}">编辑</a>'.format(row.moduleCode);
 		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.module.editUserStatus(\'' + row.moduleCode + "','"+ statustoo + '\');">'+ statustoo +'</a>';
+		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="#!module/module-import.html?moduleCode={0}">产品导入</a>'.format(row.moduleCode);
 		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.module.delDeptInfo(\'' + row.moduleCode + "','"+ row.moduleName + '\');">删除</a>';
 		            		html += '</div>';
 		            		html += '</div>';

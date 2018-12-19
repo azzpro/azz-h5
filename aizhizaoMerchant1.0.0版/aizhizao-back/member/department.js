@@ -3,6 +3,7 @@ Module.define("system.department", function(page, $) {
 		init();
 		getDeptList();
 		$("#confirm").bind("click", addDeptInfo);
+		$("#fileconfirm").bind("click", importExcel);
 		
 		$('#myModal').on('hidden.bs.modal', function(e){
 			$('#basicForm')[0].reset();
@@ -386,6 +387,36 @@ Module.define("system.department", function(page, $) {
 		});
 	}
 	
+	//批量导入
+	function importExcel(){
+		var validFlag = $('#basicForm3').valid();
+		if(!validFlag) {
+			return;
+		}
+		var file = document.basicForm3.file.files[0];
+		
+		var fm = new FormData();
+		fm.append('file', file);
+		$.ajax({
+	        type :'POST',
+	        url : ulrTo + '/azz/api/merchant/dept/importMerchantDept',
+	        cache: false, //禁用缓存    
+			dataType: "json",
+			contentType: false, //禁止设置请求类型
+            processData: false, //禁止jquery对DAta数据的处理,默认会处理
+			data: fm,
+	        success : function(data) {
+	        	if (data.code == 0) {
+	        		$("#tabs").empty();
+					getDeptList();
+	        		$('#myModal4').modal('hide');
+				} else {
+					alert(data.msg)
+				}
+	        }
+	    });
+	}
+	
 	function init() {
 		$("#basicForm").validate({
 			rules: {
@@ -433,6 +464,24 @@ Module.define("system.department", function(page, $) {
 				departmentname3: {
 					required: "请输入部门名称",
 				}
+			},
+			highlight: function(element) {
+				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+			},
+			success: function(element) {
+				$(element).closest('.form-group').removeClass('has-error');
+			}
+		});
+		$("#basicForm3").validate({
+			rules: {
+				file: {
+	   				required: true,
+	   			}
+			},
+			messages: {
+				file: {
+	   				required: "请选择文件",
+	   			}
 			},
 			highlight: function(element) {
 				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');

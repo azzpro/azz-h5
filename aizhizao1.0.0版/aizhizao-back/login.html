@@ -28,7 +28,7 @@
 <body>
   <div class="top"><h1><img src="../images/logo.png" alt=""></h1><!-- <p>没有账号？<a href="system/register-ent.html">立即注册</a></p> --></div>
   <div class="login-k signinpanel">
-    <h4>爱智造 账号登录</h4>
+    <h4>爱智造平台端管理系统</h4>
     <form id="basicForm" onsubmit="return func()">
     <div class="userlogin">
       <p class="form-group form-group2"><input type="text" name="username" class="form-control uname" placeholder="手机号码"><label for="username" class="error userNamehtml"></label></p>
@@ -64,7 +64,7 @@ function login() {
 		data: {'phoneNumber': uname,'password': pword},
 		success: function(data) {
 			if (data.code == 0) {
-         if(!window.localStorage){
+        if(!window.localStorage){
             return false;
         }else{
             var storage=window.localStorage;

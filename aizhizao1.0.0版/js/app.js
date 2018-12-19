@@ -1,3 +1,4 @@
+var userInfo = JSON.parse(localStorage.getItem('userInfo'));
 var menus = JSON.parse(localStorage.getItem('menus'));
 Module.define("app.main", function(page, $) {
 	//var request = getRequest();

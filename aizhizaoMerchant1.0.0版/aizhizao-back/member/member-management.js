@@ -18,6 +18,7 @@ Module.define("system.member", function(page, $) {
 		}, "输入的密码不一致！");
 		
 		$("#confirm").bind("click", addUser);
+		$("#fileconfirm").bind("click", importExcel);
 		
 		$('#myModal').on('hidden.bs.modal', function(e){
 			$('#basicForm')[0].reset();
@@ -179,8 +180,6 @@ Module.define("system.member", function(page, $) {
 				'merchantUserName': $("input[name='memberName']").val(),
          	    'phoneNumber': $("input[name='phone']").val(),
 				'email': $("input[name='eMail']").val(),
-				'password': $("input[name='Password']").val(),
-				'confirmPassword': $("input[name='ConfirmPassword']").val(),
 				'postName': $("input[name='Postname']").val(),
 				'deptCode': $("input[name='DepartmentNo']").val(),
 				'roleCode': $("input[name='RoleNo']").val()
@@ -243,8 +242,6 @@ Module.define("system.member", function(page, $) {
 				'merchantUserName': $("input[name='memberName2']").val(),
          	    'phoneNumber': $("input[name='phone2']").val(),
 				'email': $("input[name='eMail2']").val(),
-				'password': $("input[name='Password2']").val(),
-				'confirmPassword': $("input[name='ConfirmPassword2']").val(),
 				'postName': $("input[name='Postname2']").val(),
 				'deptCode': $("input[name='DepartmentNo2']").val(),
 				'roleCode': $("input[name='RoleNo2']").val()
@@ -327,6 +324,35 @@ Module.define("system.member", function(page, $) {
 		});
 	}
 	
+	//批量导入
+	function importExcel(){
+		var validFlag = $('#basicForm3').valid();
+		if(!validFlag) {
+			return;
+		}
+		var file = document.basicForm3.file.files[0];
+		
+		var fm = new FormData();
+		fm.append('file', file);
+		$.ajax({
+	        type :'POST',
+	        url : ulrTo + '/azz/api/merchant/importMerchantUser',
+	        cache: false, //禁用缓存    
+			dataType: "json",
+			contentType: false, //禁止设置请求类型
+            processData: false, //禁止jquery对DAta数据的处理,默认会处理
+			data: fm,
+	        success : function(data) {
+	        	if (data.code == 0) {
+	        		dataTable.ajax.reload();
+	        		$('#myModal3').modal('hide');
+				} else {
+					alert(data.msg)
+				}
+	        }
+	    });
+	}
+	
 	function init() {
 		$("#basicForm").validate({
 			rules: {
@@ -339,12 +365,8 @@ Module.define("system.member", function(page, $) {
 	   				maxlength: 11,
 	   				isMobile: true,
 	   			},
-				Password: {
-	   				required: true,
-	   			},
-				ConfirmPassword: {
-	   				required: true,
-	   				checkpassword: true,
+				eMail: {
+	   				required: false,
 	   			},
 				DepartmentNo: {
 	   				required: true,
@@ -361,11 +383,6 @@ Module.define("system.member", function(page, $) {
 	   				required: "请输入您的电话号码",
 	   				minlength: "请输入正确的电话号码"
 	   			},
-				Password: "请输输入密码",
-				ConfirmPassword: {
-					required: "请输入密码",
-					checkpassword: "两次密码输入不一致"
-				},
 				DepartmentNo: "请输入部门编号",
 				RoleNo: "请输入角色编号",
 			},
@@ -387,12 +404,8 @@ Module.define("system.member", function(page, $) {
 	   				maxlength: 11,
 	   				isMobile: true,
 	   			},
-				Password2: {
+				eMail2: {
 	   				required: false,
-	   			},
-				ConfirmPassword2: {
-	   				required: false,
-	   				checkpassword: false,
 	   			},
 				DepartmentNo2: {
 	   				required: true,
@@ -409,13 +422,26 @@ Module.define("system.member", function(page, $) {
 	   				required: "请输入您的电话号码",
 	   				minlength: "请输入正确的电话号码"
 	   			},
-				Password2: "请输输入密码",
-				ConfirmPassword2: {
-					required: "请输入密码",
-					checkpassword: "两次密码输入不一致"
-				},
 				DepartmentNo2: "请输入部门编号",
 				RoleNo2: "请输入角色编号",
+			},
+			highlight: function(element) {
+				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+			},
+			success: function(element) {
+				$(element).closest('.form-group').removeClass('has-error');
+			}
+		});
+		$("#basicForm3").validate({
+			rules: {
+				file: {
+	   				required: true,
+	   			}
+			},
+			messages: {
+				file: {
+	   				required: "请选择文件",
+	   			}
 			},
 			highlight: function(element) {
 				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');

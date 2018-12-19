@@ -1,4 +1,5 @@
 var menus = JSON.parse(localStorage.getItem('menus'));
+var merchantUserInfo = JSON.parse(localStorage.getItem('merchantUserInfo'));
 Module.define("app.main", function(page, $) {
 	//var request = getRequest();
 

@@ -14,9 +14,9 @@
 					</div>
 					<div class="col-sm-6" style="margin-top:3px;">
 						<button type="button" id="Search" class="btn btn-primary zlan">搜索</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-primary zlan" onclick="location.href='javascript:;'" data-toggle="modal" data-target="#myModal">新增</button>
-						<button class="btn btn-primary zlan" onclick="location.href='javascript:;'">导入</button>
-						&nbsp;&nbsp;&nbsp;<a href="javascript:;">部门导入模板下载</a>
+						<button class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal">新增</button>
+						<button class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal3">导入</button>
+						&nbsp;&nbsp;&nbsp;<a href="../download/bmmoban.xls">部门导入模板下载</a>
 					</div>
 				
 				</div>
@@ -218,6 +218,36 @@
 </div>
 <!-- /.modal -->
 <!-- 编辑 弹出窗 End-->
+<!-- 批量导入 弹出窗 -->
+<div class="modal fade" id="myModal3">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">批量导入</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm3" name="basicForm3">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">导入文件：</label>
+		                  <div class="col-sm-8">
+		                    <input type="file" name="file" id="file" class="form-control">
+		                  </div>
+		                </div>
+	                
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="fileconfirm">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 批量导入 弹出窗 End-->
 <!-- 提示 弹出窗 -->
 <div class="modal fade" id="myModal111">
 	<div class="modal-dialog">
