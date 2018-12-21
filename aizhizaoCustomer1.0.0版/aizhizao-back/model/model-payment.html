@@ -10,12 +10,12 @@
 			<p><b>地址：</b><span id="receiverAddress"></span></p>
 			<p><b>手机：</b><span id="receiverPhoneNumber"></span></p>
 			<p><b>应付金额(元)：</b><span id="grandTotal"></span></p><br>
-			<h4>选择支付方式</h4>
+			<!--<h4>选择支付方式</h4>
 			<div class="xzzf">
 				<a class="bg" val='1' href="javascript:;"><img src="../images/wx-ico.png" alt=""></a>
 				<a class="bgno" val='2' href="javascript:;"><img src="../images/zfb-ico.png" alt=""></a>
 				<a class="bgno" val='3' href="javascript:;"><img src="../images/gryl-ico.png" alt=""></a>
-			</div>
+			</div>-->
 			<div class="text-left ptb20" style="border-top: 1px solid #eee;">&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="btn btn-primary" id="payment">立即支付</a>
 			</div>
@@ -66,4 +66,35 @@
 </div>
 <!-- /.modal -->
 <!-- 失败 弹出窗 End-->
+
+<form method="post" name="gatewayFORM" id="gatewayFORM" action="" target="_blank">
+    <input type="hidden" name="acct_name" value="">
+    <input type="hidden" name="back_url" value="">
+    <input type="hidden" name="bank_code" value="">
+    <input type="hidden" name="busi_partner" value="">
+    <input type="hidden" name="card_no" value="">
+    <input type="hidden" name="dt_order" value="">
+    <input type="hidden" name="flag_modify" value="">
+    <input type="hidden" name="id_no" value="">
+    <input type="hidden" name="id_type" value="">
+    <input type="hidden" name="info_order" value="">
+    <input type="hidden" name="money_order" value="">
+    <input type="hidden" name="name_goods" value="">
+    <input type="hidden" name="no_agree" value="">
+    <input type="hidden" name="no_order" value="">
+    <input type="hidden" name="notify_url" value="">
+    <input type="hidden" name="oid_partner" value="">
+    <input type="hidden" name="pay_type" value="">
+    <input type="hidden" name="req_url" value="">
+    <input type="hidden" name="risk_item" value="">
+    <input type="hidden" name="sign" value="">
+    <input type="hidden" name="sign_type" value="">
+    <input type="hidden" name="timestamp" value="">
+    <input type="hidden" name="url_order" value="">
+    <input type="hidden" name="url_return" value="">
+    <input type="hidden" name="user_id" value="">
+    <input type="hidden" name="userreq_ip" value="">
+    <input type="hidden" name="valid_order" value="">
+    <input type="hidden" name="version" value="">
+</form>
 <script type="text/javascript" src="model/model-payment.js"></script>

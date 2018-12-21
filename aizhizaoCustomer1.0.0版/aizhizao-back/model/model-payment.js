@@ -42,13 +42,43 @@ Module.define("system.model", function(page, $) {
 			url: ulrTo+"/azz/api/pay/submitOrderPay",
 			cache: false, //禁用缓存
 			data: {
-				'orderNumber':ordercode,
-				'orderPayType':$('.bg').attr("val"),
+				'orderCode':ordercode,
 			},
 			dataType: "json", 
 			success: function(data) {
 				if (data.code == 0) {
 					$('#myModal').modal('show');
+					var data = data.data;
+					$("#gatewayFORM").attr('action',data.req_url)
+					$("input[name='acct_name']").val(data.acct_name);
+					$("input[name='back_url']").val(data.back_url);
+					$("input[name='bank_code']").val(data.bank_code);
+					$("input[name='busi_partner']").val(data.busi_partner);
+					$("input[name='card_no']").val(data.card_no);
+					$("input[name='dt_order']").val(data.dt_order);
+					$("input[name='flag_modify']").val(data.flag_modify);
+					$("input[name='id_no']").val(data.id_no);
+					$("input[name='id_type']").val(data.id_type);
+					$("input[name='info_order']").val(data.info_order);
+					$("input[name='money_order']").val(data.money_order);
+					$("input[name='name_goods']").val(data.name_goods);
+					$("input[name='no_agree']").val(data.no_agree);
+					$("input[name='no_order']").val(data.no_order);
+					$("input[name='notify_url']").val(data.notify_url);
+					$("input[name='oid_partner']").val(data.oid_partner);
+					$("input[name='pay_type']").val(data.pay_type);
+					$("input[name='req_url']").val(data.req_url);
+					$("input[name='risk_item']").val(data.risk_item);
+					$("input[name='sign']").val(data.sign);
+					$("input[name='sign_type']").val(data.sign_type);
+					$("input[name='timestamp']").val(data.timestamp);
+					$("input[name='url_order']").val(data.url_order);
+					$("input[name='url_return']").val(data.url_return);
+					$("input[name='user_id']").val(data.user_id);
+					$("input[name='userreq_ip']").val(data.userreq_ip);
+					$("input[name='valid_order']").val(data.valid_order);
+					$("input[name='version']").val(data.version);
+					document.getElementById("gatewayFORM").submit();
 				} else {
 					alert(data.msg)
 				}

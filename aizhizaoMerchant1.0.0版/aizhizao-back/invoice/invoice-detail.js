@@ -35,7 +35,7 @@ Module.define("system.invoice", function(page, $) {
 		});
 		
 		$('#myModal2').on('hidden.bs.modal', function(e){
-			$("input[name='mode']:checked").val(1);
+			$("#express").attr("checked","checked");
 			if($("input[name='mode']:checked").val() == 1){
 				$('#expressDY').show();
 				$('#expressCif').show();

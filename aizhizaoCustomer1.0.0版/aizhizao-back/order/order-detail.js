@@ -49,14 +49,15 @@ Module.define("system.order", function(page, $) {
 				file_size = this.files[j].size;
 				all_size = all_size + this.files[j].size;
 				var size = all_size / 1024;
-				if(size > 500) {
+				if(size > 10240) {
 					$(".shade").fadeIn(500);
-					$(".text_span").text("上传的图片大小不能超过100k！");
+					$(".text_span").text("上传的图片大小不能超过10M！");
 					this.value = "";
 					$(".img_div").html("");
 					return false;
 				}
 			}
+			$(".text_span").text("");
 			return true;
 		});
 		/*
