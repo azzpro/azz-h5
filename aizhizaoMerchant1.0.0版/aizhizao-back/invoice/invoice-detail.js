@@ -186,9 +186,9 @@ Module.define("system.invoice", function(page, $) {
 						$('#deliveryCreator').html(data.deliveryCreator);
 						$('#deliveryCreateTime').html(data.deliveryCreateTime);
 						if(data.deliveryType == 0){
-							$('#addressAlias').html(data.deliveryCompanyName+'-'+data.number);
+							$('#delivery').html(data.deliveryCompanyName+'-'+data.number);
 						}else if(data.deliveryType == 1){
-							$('#addressAlias').html(data.deliveryPerson+'-'+data.deliveryPhone);
+							$('#delivery').html(data.deliveryPerson+'-'+data.deliveryPhone);
 						}
 					}
 					//产品明细
