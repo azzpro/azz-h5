@@ -261,8 +261,14 @@ Module.define("system.order", function(page, $) {
 						var shipInfo = data.shipInfo;
 						$('#createTimeS').html(shipInfo.createTime);
 						$('#creatorS').html(shipInfo.creator);
-						$('#companyNameS').html(shipInfo.companyName);
-						$('#numberS').html(shipInfo.number);
+						if(shipInfo.deliveryType == 1){
+							$('#companyNameS').html(shipInfo.companyName +'-'+ shipInfo.number);
+						}else if(shipInfo.deliveryType == 2){
+							$('#companyNameS').html(shipInfo.logistiscCompanyName +'-'+ shipInfo.number);
+						}else if(shipInfo.deliveryType == 3){
+							$('#companyNameS').html(shipInfo.deliveryPerson +'-'+ shipInfo.deliveryPhoneNumber);
+						}
+						
 					}
 					
 				} else {
