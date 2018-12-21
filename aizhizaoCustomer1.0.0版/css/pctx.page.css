@@ -296,3 +296,18 @@
 .protab .tab-lii dl dd:nth-child(3){ width:28%; text-align: center;}
 
 .Number{ width:100px; border: #ccc 1px solid; text-align: center;}
+.faan{ text-align: center; font-size: 16px; padding-top: 8px; color: #636e7b;}
+.nodecoration:hover{ text-decoration: none;}
+
+.daohang{ background: #eee; padding:15px 6px;}
+.modelList{ margin: 0; padding: 0;}
+.modelList li{ list-style: none; padding: 5px 0;}
+.modelList li a{ color: #636e7b;}
+.modelList li a:hover,.modelList li a:focus{ text-decoration: none;}
+.modelList2{ margin: 0; padding: 0; margin-left: 20px; margin-top:5px;}
+.modelList3{ margin: 0; padding: 0; margin-left: 20px; margin-top:5px;}
+.modelbt{ font-size: 16px; border-bottom: #eee 1px solid; padding-bottom: 10px; margin-bottom: 20px;}
+.modelbt a{ font-size: 14px;}
+.modelfl{ margin-bottom: 20px;}
+.modelfl .col-xs-2{ margin-bottom: 20px;}
+.curr{ font-weight: bold;}

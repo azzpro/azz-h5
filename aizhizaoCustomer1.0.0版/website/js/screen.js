@@ -272,8 +272,13 @@ function upperCase() {
 		selectParams.push(Newsobj2url);
 		selectParamsId.push(selectParamsurl[i].paramsTermId);
 	}
-	
-	selectedParamTermIds = $.extend(inputParamsId, selectParamsId);
+	selectedParamTermIds.splice(0,selectedParamTermIds.length);
+	for(var i=0;i<selectParamsId.length;i++){
+      selectedParamTermIds.push(selectParamsId[i]);
+	}
+	for(var i=0;i<inputParamsId.length;i++){
+      selectedParamTermIds.push(inputParamsId[i]);
+	}
 	
 	/*inputParamstest.splice(0,inputParamstest.length);
 	var inputListVal2 = $('#inputList').find('.curr span');
