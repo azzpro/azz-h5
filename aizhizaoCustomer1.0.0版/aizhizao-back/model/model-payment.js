@@ -41,6 +41,7 @@ Module.define("system.model", function(page, $) {
 			type: "POST",
 			url: ulrTo+"/azz/api/pay/submitOrderPay",
 			cache: false, //禁用缓存
+			async:false,
 			data: {
 				'orderCode':ordercode,
 			},

@@ -39,11 +39,12 @@ Module.define("system.model", function(page, $) {
 					for(var i = 0;i<data.length;i++){
 						var assortmentCode = data[i].assortmentCode;
 						var assortmentName = data[i].assortmentName;
+						var assortmentTop = 1;
 						if(data[i].childList==null || !data[i].childList.length!=0){
 							
-							li += "<li><a href='javascript:;' class='jia' onclick=\"system.model.screen(\'" + assortmentCode + "\');\"><i class='fa fa-caret-right'></i> "+ assortmentName +"</a>"
+							li += "<li><a href='javascript:;' class='jia' onclick=\"system.model.screen(\'" + assortmentCode + "','" + assortmentTop + "','" + assortmentName + "\');\"><i class='fa fa-caret-right'></i> "+ assortmentName +"</a>"
 							    + "</li>";
-							divarr += "<div class='modelbt'><a class='pull-right' onclick=\"system.model.screen(\'" + assortmentCode + "\');\" href='javascript:;'>查看更多</a><i class='fa fa-caret-right'></i> "+ assortmentName +"</div><div class='row modelfl'></div>";
+							divarr += "<div class='modelbt'><a class='pull-right' onclick=\"system.model.screen(\'" + assortmentCode + "','" + assortmentTop + "\');\" href='javascript:;'>查看更多</a><i class='fa fa-caret-right'></i> "+ assortmentName +"</div><div class='row modelfl'></div>";
 						}else{
 							var lii = "";
 							var divarr2 = "";
@@ -51,30 +52,32 @@ Module.define("system.model", function(page, $) {
 								var assortmentCode2 = data[i].childList[j].assortmentCode;
 								var assortmentName2 = data[i].childList[j].assortmentName;
 								var assortmentPicUrl2 = data[i].childList[j].assortmentPicUrl;
+								var assortmentTop2 = 2;
 								if(data[i].childList[j].childList==null || !data[i].childList[j].childList.length!=0){
-									lii += "<ul class='modelList2 add'><li><a href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode2 + "\');\" class='jia2'><i class='fa fa-caret-right'></i> "+ assortmentName2 +"</a>"
+									lii += "<ul class='modelList2 add'><li><a href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode2 + "','" + assortmentTop2 + "','" + assortmentName2 + "\');\" class='jia2'><i class='fa fa-caret-right'></i> "+ assortmentName2 +"</a>"
 									+ "</li></ul>";
-									divarr2 += "<div class='col-xs-2'><a class='nodecoration' href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode2 + "\');\"><img src='"+ assortmentPicUrl2 +"' width='100%' height='80px' alt='' /><div class='faan'>"+ assortmentName2 +"</div></a></div>";
+									divarr2 += "<div class='col-xs-2'><a class='nodecoration' href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode2 + "','" + assortmentTop2 + "','" + assortmentName2 + "\');\"><img src='"+ assortmentPicUrl2 +"' width='100%' height='80px' alt='' /><div class='faan'>"+ assortmentName2 +"</div></a></div>";
 								}else{
 									var liii = "";
 									for(var f = 0;f < data[i].childList[j].childList.length;f++){
 										var assortmentCode3 = data[i].childList[j].childList[f].assortmentCode;
 										var assortmentName3 = data[i].childList[j].childList[f].assortmentName;
-										liii += "<ul class='modelList3 add'><li><a href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode3 + "\');\" class='jia3'><i class='fa fa-caret-right'></i> "+ assortmentName3 +"</a></li>"
+										var assortmentTop3 = 3;
+										liii += "<ul class='modelList3 add'><li><a href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode3 + "','" + assortmentTop3 + "','" + assortmentName3 + "\');\" class='jia3'><i class='fa fa-caret-right'></i> "+ assortmentName3 +"</a></li>"
 										+ "</ul>";
 									}
-									lii += "<ul class='modelList2 add'><li><a href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode2 + "\');\" class='jia2'><i class='fa fa-caret-right'></i> "+ assortmentName2 +"</a>"
+									lii += "<ul class='modelList2 add'><li><a href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode2 + "','" + assortmentTop2 + "','" + assortmentName2 + "\');\" class='jia2'><i class='fa fa-caret-right'></i> "+ assortmentName2 +"</a>"
 									+ liii
 									+ "</li></ul>";
-									divarr2 += "<div class='col-xs-2'><a class='nodecoration' href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode2 + "\');\"><img src='"+ assortmentPicUrl2 +"' width='100%' height='80px' alt='' /><div class='faan'>"+ assortmentName2 +"</div></a></div>";
+									divarr2 += "<div class='col-xs-2'><a class='nodecoration' href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode2 + "','" + assortmentTop2 + "','" + assortmentName2 + "\');\"><img src='"+ assortmentPicUrl2 +"' width='100%' height='80px' alt='' /><div class='faan'>"+ assortmentName2 +"</div></a></div>";
 								}
 								
 							}
 							
-							li += "<li><a href='javascript:;' class='jia' onclick=\"system.model.screen(\'" + assortmentCode + "\');\"><i class='fa fa-caret-right'></i> "+ assortmentName +"</a>"
+							li += "<li><a href='javascript:;' class='jia' onclick=\"system.model.screen(\'" + assortmentCode + "','" + assortmentTop + "','" + assortmentName + "\');\"><i class='fa fa-caret-right'></i> "+ assortmentName +"</a>"
 							    + lii
 							    + "</li>";
-							divarr += "<div class='modelbt'><a onclick=\"system.model.screen(\'" + assortmentCode + "\');\" class='pull-right' href='javascript:;'>查看更多</a><i class='fa fa-caret-right'></i> "+ assortmentName +"</div><div class='row modelfl'>"+ divarr2 +"</div>";
+							divarr += "<div class='modelbt'><a onclick=\"system.model.screen(\'" + assortmentCode + "','" + assortmentTop + "','" + assortmentName + "\');\" class='pull-right' href='javascript:;'>查看更多</a><i class='fa fa-caret-right'></i> "+ assortmentName +"</div><div class='row modelfl'>"+ divarr2 +"</div>";
 							
 						}
 				    }
@@ -88,13 +91,17 @@ Module.define("system.model", function(page, $) {
 		});
 	}
 	
-	page.screen = function(assortmentCode) {
+	page.screen = function(assortmentCode,assortmentTop,assortmentName) {
 		if(!window.localStorage){
 	        return false;
 	    }else{
 	        var storage=window.localStorage;
 	        var assortmentCodeModel = JSON.stringify(assortmentCode);
 	        storage["assortmentCodeModel"]= assortmentCodeModel;
+	        var assortmentTopModel = JSON.stringify(assortmentTop);
+	        storage["assortmentTopModel"]= assortmentTopModel;
+	        var assortmentNameModel = JSON.stringify(assortmentName);
+	        storage["assortmentNameModel"]= assortmentNameModel;
 	    }
 	    window.location.href = "#!model/model-screen.html"
 	}

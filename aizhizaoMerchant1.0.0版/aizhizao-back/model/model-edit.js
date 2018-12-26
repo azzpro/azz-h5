@@ -362,12 +362,29 @@ Module.define("system.model", function(page, $) {
 							params.push(Newsobj2);
 						}
 						$("#parameterData").append(tr);
+						$('.valuess').keyup(function() {
+							var value = $(this).val();
+							//先把非数字的都替换掉，除了数字和.
+							value = value.replace(/[^\d.]/g,"");
+							//保证只有出现一个.而没有多个.
+							value = value.replace(/\.{2,}/g,".");
+							//必须保证第一个为数字而不是.
+							value = value.replace(/^\./g,"");
+							//保证.只出现一次，而不能出现两次以上
+							value = value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+							//只能输入两个小数
+							value = value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
+							
+							$(this).val(value);
+						});
 					}
-				
 				var valuess = $('.valuess');
 				for(var i = 0;i < valuess.length; i++){
 					valuess[i].value = paramsDatass[i];
 					
+					if(valuess[i].value == 'undefined'){
+						$(valuess[i]).val('')
+					}
 				}
 				} else {
 					alert(data.msg)
@@ -393,10 +410,7 @@ Module.define("system.model", function(page, $) {
 			alert('请选择分类');
 			return;
 		}
-		if(!$("#moduleID").html()){
-			alert('请选择模组');
-			return;
-		}
+
 		if(!prices || !prices.length){
 			alert('请添加产品价格');
 			return;
@@ -568,6 +582,7 @@ Module.define("system.model", function(page, $) {
 					$('#modulename').html(data.data.moduleName);
 					$('#moduleID').html(data.data.moduleId);
 					var pricesData = data.data.prices;
+					
 					for(var i = 0;i < pricesData.length; i++){
 						var Newsobj3 = {
 							"deliveryDate" : pricesData[i].deliveryDate,
@@ -580,7 +595,6 @@ Module.define("system.model", function(page, $) {
 					for(var i = 0 ; i < paramsData.length;i++){
 				    	paramsDatass.push(paramsData[i].paramsValue)
 				    }
-
 				} else {
 					alert(data.msg)
 				}

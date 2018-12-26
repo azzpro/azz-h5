@@ -362,9 +362,9 @@ Module.define("system.programme", function(page, $) {
          }
          //选中复选框的个数==获取复选框的个数 
          if(count==userids.length){
-             document.getElementById("checkUuid").checked=true;
+            document.getElementById("checkUuid").checked=true;
          }else{
-             document.getElementById("checkUuid").checked=false;
+            document.getElementById("checkUuid").checked=false;
          }
 	}
 	

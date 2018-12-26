@@ -310,4 +310,54 @@
 .modelbt a{ font-size: 14px;}
 .modelfl{ margin-bottom: 20px;}
 .modelfl .col-xs-2{ margin-bottom: 20px;}
+.modelfl .col-xs-2 a:focus{ text-decoration: none;}
 .curr{ font-weight: bold;}
+
+.table-mole{ text-align: left; font-size: 18px; margin-bottom: 30px; border-left: #d6d6d6 1px solid; border-top: #d6d6d6 1px solid; width: auto; white-space: nowrap;}
+.table-mole th,.table-mole td{ padding: 15px; border-right: #d6d6d6 1px solid; border-bottom: #d6d6d6 1px solid; text-align: center; font-weight: normal;}
+.table-mole th{ background: #e7e7e7;position: relative;}
+.table-mole .textleft{ text-align: left; white-space:normal;}
+.tj-zi{ width: 65%; padding-left: 3%; float: left;}
+.tj-zi h2{ font-size: 24px;font-weight: bold; font-weight: normal;}
+.tj-zi p{ color: #9e9e9e; padding-top: 20px; font-size: 22px;}
+.tj-tu{ width: 32%; height: 200px; float: left;}
+
+.sort{ display: block; position: absolute; top: 20px; right: 12%; width: 14px ; height: 14px; cursor: pointer;}
+.sort-h{ background: url(../images/sort-h.png) no-repeat;}
+.sort-t{ background: url(../images/sort-t.png) no-repeat;}
+.sort-b{ background: url(../images/sort-b.png) no-repeat;}
+.defaultsortNo{ float: right; font-weight: normal; font-size: 18px; color: #3acbff;}
+.defaultsort{ cursor: pointer; float: right; font-weight: normal; font-size: 18px;}
+.radio-inline+.radio-inline, .checkbox-inline {
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+.combination{ padding-bottom: 22px;}
+.combination .combination-l{ width: 50%; float: left;}
+.combination .combination-r{ width: 45%; font-size: 16px; float: right;}
+.combination-r p{ padding: 5px 0;}
+.combination-r p.xdwz{ padding: 0; font-size: 12px; color: #969696;}
+.combination-r p a{ width: 107px; line-height: 42px; text-align: center; background: #1dbaf3; color: #fff; display: block; margin-top: 10px;}
+.combination-r p a:hover,.combination-r p a:focus{ text-decoration: none;}
+
+.combination2{ border-top: #e7e7e7 1px solid; padding: 20px 0;}
+.combination2 h3{ font-size: 24px; font-weight: normal; margin: 10px 0 30px;}
+.combination2 .combination2-l{ width: 23%; border-right: #969696 1px dashed; float: left;}
+.combination2 .combination2-l dl{ width: 90%; margin: 0; padding: 0;}
+.combination2 .combination2-l dl dt{ font-size: 20px; color: #333; margin-bottom: 10px;}
+.combination2 .combination2-r{ width: 74%; overflow: auto; float: right;}
+
+.combination2 .combination2-l dl{ width: 100%; overflow: hidden;}
+.combination2 .combination2-l dl dd a{ float: left; width: 45.5%; color: #a8a8a8; margin: 0 0 10px 2%; border: #a8a8a8 1px solid; height: 30px; line-height: 30px; text-indent: 15px; font-size: 16px;}
+.combination2 .combination2-l dl dd a:hover{color: #28b7eb; border: #28b7eb 1px solid; text-decoration: none;}
+.combination2 .combination2-l dl dd a:hover .jia{ display: block; float: right; padding-right: 10px;}
+.combination2 .combination2-l dl dd .curr{color: #28b7eb; border: #28b7eb 1px solid;}
+.combination2 .combination2-l dl dd .curr .del{ display: block; float: right; padding-right: 10px;}
+.combination2 .combination2-l dl dd .curr:hover .jia{ display: none;}
+.jiahao{ display: block; background: url(../images/jia.png) no-repeat; background-size: cover; width: 26px; height: 26px; margin: 0 auto; cursor: pointer;}
+.guohao{ display: block; background: url(../images/gou.png) no-repeat; background-size: cover; width: 26px; height: 26px; margin: 0 auto;}
+.m-style{ float: right;}
+#inputList .del,#inputList .jia,#parameter .del,#parameter .jia{ display: none; font-style:normal}
+.table1 tr:first-child{ background: #e7e7e7;}
+.table1 tr:first-child .jiahao{ display: none;}

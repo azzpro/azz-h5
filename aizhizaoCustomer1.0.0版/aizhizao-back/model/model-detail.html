@@ -1,0 +1,83 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="panel-heading">
+		<h4 class="panel-title">产品详情</h4>
+	</div>
+    <div class="panel-body backgr">
+	  <div class="combination">
+	  	<div class="combination-l left">
+	  		<img src="" id="combinationPicUrl" class="tj-tu left" alt="" />
+	  		<div class="tj-zi left"><h2 id="combinationName"></h2>
+						<p id="recommendReason"></p></div>
+	  	</div>
+	  	<div class="combination-r right">
+	  		<div id="prodse"><h2>请先选择产品</h2></div>
+	  		<div id="prodseyes" class="add">
+		  		<p><b>已选型号：</b>	<span id="productCode"></span></p>
+		  		<p><b>产品交期：</b>	<span id="deliveryDate"></span></p>
+		  		<p><b>参考价格：</b>	<b id="price">-</b>元</p>
+		  		<p class="xdwz">产品具体价格以下单时为准！</p>
+		  		<p><a id="saverecord" href="javascript:;">保存记录</a></p>
+	  		</div>
+	  	</div>
+	  	<div class="clearfix"></div>
+	  </div>
+	  <div class="combination2">
+	  	<div class="combination2-l left">
+	  		<h3>选型器</h3>
+	  		<div class="aaList" id="inputList">
+	  			
+	  		</div>
+	  		<div class="aaList" id="parameter">
+	  			
+	  		</div>
+	  	</div>
+	  	<div class="combination2-r right">
+	  		<ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">模组详情</a></li>
+			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">型号列表</a></li>
+			</ul>
+			<div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="home">
+			    	
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="profile">
+			    	<table class="table table1" id="table">
+						
+					</table>
+			    </div>
+		    </div>
+	  		
+	  	</div>
+	  	<div class="clearfix"></div>
+	  </div>
+	</div>
+
+</div>
+<!-- 这里开始 End-->
+
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<form class="form-horizontal form-bordered">
+				<div class="text-center ptb20" style="font-size: 18px;">
+					保存成功！需要去到订单页面？
+				</div>
+				<div class="text-center ptb20">
+					<a class="btn btn-primary zlan" id="dgyime">去订购</a>
+					<button class="btn btn-primary zlan" data-dismiss="modal">留在当前页面</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!--提示  弹出窗 End-->
+<script type="text/javascript" src="model/model-detail.js"></script>
