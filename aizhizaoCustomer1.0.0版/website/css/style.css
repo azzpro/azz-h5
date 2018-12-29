@@ -26,7 +26,7 @@ select::-ms-expand { display: none; }
 button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 
 header{ width: 100%; background: #333;}
-.top{width: 100%; min-width: 1000px; max-width:1360px; margin:0 auto; height: 48px; position: relative; color: #ccc;}
+.top{width: 100%; min-width: 800px; max-width:1360px; margin:0 auto; height: 48px; position: relative; color: #ccc;}
 .topzi{ line-height: 48px; font-size: 16px;}
 .logo{ padding: 20px 0;}
 nav{font-size: 16px; font-weight: bold; right: 350px; line-height: 48px; position: absolute; top: 0;}
@@ -37,10 +37,10 @@ nav a:hover,nav a.bg{ color: #30b8e2;}
 .top-right a{ color: #ccc;}
 
 .swiper-container { width: 100%; height: 680px;}
-article{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto;}
+article{ width: 100%; min-width: 800px; max-width:1360px; margin: 0 auto;}
 
 .bottom-bg{background: #414141; width: 100%; margin-top: 50px; padding: 30px 0;}
-footer{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto; text-align: center; font-size: 16px; line-height: 30px; color: #999;}
+footer{ width: 100%; min-width: 800px; max-width:1360px; margin: 0 auto; text-align: center; font-size: 16px; line-height: 30px; color: #999;}
 footer a{ color: #999;}
 .case{ width: 100%; overflow: hidden; margin-top: 80px;}
 .case h2{ color: #070707; font-size: 36px; line-height: 40px;}
