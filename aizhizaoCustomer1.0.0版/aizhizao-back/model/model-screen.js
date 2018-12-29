@@ -311,7 +311,8 @@ Module.define("system.model", function(page, $) {
 									var paramsName = paramsTerms[j].paramsName;
 									var paramsTermId = paramsTerms[j].paramsTermId;
 									var liii = '';
-									for(var r = 0;r<paramValuess.length;r++){
+									
+									for(var r = 0;r<paramValuess.sort().length;r++){
 										liii +="<label class='checkbox-inline'><input onclick='system.model.checkQx(this)' type='checkbox' paramsTermId='"+ paramsTermId +"' value='"+ paramValuess[r] +"'> "+ paramValuess[r] +"</label>";
 									}
 									lii += "<tr><td width='20%' align='right'>"+ paramsName +"：</td><td width='80%'>"
@@ -343,7 +344,7 @@ Module.define("system.model", function(page, $) {
 									var paramsName = paramsTerms[y].paramsName;
 									var paramsTermId = paramsTerms[y].paramsTermId;
 									var liit = '';
-									for(var r = 0;r<paramValuess.length;r++){
+									for(var r = 0;r<paramValuess.sort().length;r++){
 										liit +="<label class='checkbox-inline'><input type='checkbox' onclick='system.model.checkQx2(this)' paramsTermId='"+ paramsTermId +"' value='"+ paramValuess[r] +"'> "+ paramValuess[r] +"</label>";
 									}
 									lii += "<tr><td width='20%' align='right'>"+ paramsName +"：</td><td width='80%'>"

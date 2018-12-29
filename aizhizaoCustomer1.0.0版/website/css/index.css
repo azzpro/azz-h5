@@ -42,12 +42,13 @@ article{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto;}
 
 .banner{ width: 95%; background: #3f3f3f; margin: 0 auto; overflow: hidden;}
 .pro-dh{ width: 25%; float: left; height: 100%;}
-.pro-dh li{ width: 100%; border-bottom:#545148 1px dashed; background: url(../images/ico1.png) no-repeat 90% center; text-indent: 40px;}
-.pro-dh li a{ font-size: 16px; color: #fff; display: block; padding: 37.8px 0;}
+.pro-dh li{ width: 100%; border-bottom:#545148 1px dashed; text-indent: 40px;}
+.pro-dh li:last-child{ border-bottom: none;}
+.pro-dh li a{ font-size: 16px; color: #fff; display: block; background: url(../images/ico1.png) no-repeat 90% center; padding: 37.6px 0;}
 .pro-dh li a:hover{ background: #28b7ec url(../images/ico1.png) no-repeat 90% center;}
 .swiper-container{ width: 75%; height: auto;}
 .case{ width: 95%; overflow: hidden; margin: 80px auto 0;}
-.case h2{ color: #070707; font-size: 28px; line-height: 40px;}
+.case h2{ color: #070707; font-size: 24px; line-height: 40px;}
 .case h2 samp{font-size: 16px; padding-left: 20px; color: #999; font-family: Arial,\5FAE\8F6F\96C5\9ED1;}
 .case h2 a{font-size: 16px; float: right;}
 .bt-d{ color: #070707; font-size: 36px; line-height: 40px; margin: 20px 0;}
@@ -62,9 +63,9 @@ article{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto;}
 .left-l li a h3 span{ color: #22b1e5; font-size: 14px; margin-left: 10px; border: #22b1e5 1px solid; padding:2px 5px; border-radius: 3px;}
 .left-l li a p{ margin-top: 10px; font-size: 16px; color: #666;}
 .left-l2{ width: 100%; margin-top: 20px;}
-.left-l2 li{ width: 32.43%; margin-right: 1.2%;}
+.left-l2 li{ width: 32.43%; margin-right: 1.2%; margin-bottom: 30px;}
 .left-l2 li:nth-child(2){ margin-right: 1.2%;}
-.left-l2 li:nth-child(3){ margin-right: 0;}
+.left-l2 li:nth-child(3),.left-l2 li:nth-child(6){ margin-right: 0;}
 .left-r{ width: 29%; float: right;}
 .left-r li{ margin-bottom: 3%; position: relative;}
 .left-r li a{ display: block; border: #dfdfdf 1px solid;}
@@ -84,7 +85,7 @@ article{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto;}
 .fd img:hover{ transform: scale(1.2);  /* 放大1.2倍 */}  
 .ljlist li .lj-zi p{ color: #d4282d; font-weight: normal; padding-top: 5px;}
 .tab-menu{ float: left; margin-left: 20px;}
-.tab-menu li{ float: left; font-size: 18px; margin: 0 20px; cursor: pointer;}
+.tab-menu li{ float: left; font-size: 16px; margin: 0 20px; cursor: pointer;}
 .tab-menu li.curr{ color: #22b1e5; border-bottom: #22b1e5 3px solid;}
 .banner2{ background: #333; width: 100%; margin-top: 30px;}
 .listlist{ width: 100%; margin-top: 20px;}
@@ -109,7 +110,7 @@ article{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto;}
 .tip{ text-align: center; font-size: 20px; color: #666; margin-top: 80px;}
 .tip h3{ font-size: 25px; color: #333; margin-bottom: 10px;}
 
-.bottom-bg{background: #414141; width: 100%; margin-top: 50px; padding: 30px 0;}
+.bottom-bg{background: #414141; width: 100%; margin-top: 50px; padding: 20px 0;}
 footer{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto; text-align: center; font-size: 16px; line-height: 30px; color: #999;}
 footer a{ color: #999;}
 

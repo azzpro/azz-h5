@@ -78,7 +78,7 @@ function getCombinationDetail() {
 								var paramsName = paramsTerms[j].paramsName;
 								var paramsTermId = paramsTerms[j].paramsTermId;
 								var liii = '';
-								for(var r = 0;r<paramValuess.length;r++){
+								for(var r = 0;r<paramValuess.sort().length;r++){
 									liii +="<dd><a class='csxz' href='javascript:;'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuess[r] +"</span><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
 								}
 								lii += "<dl class='c'><dt>"+ paramsName +"</dt>"
@@ -95,7 +95,7 @@ function getCombinationDetail() {
 								var paramsName = paramsTerms[y].paramsName;
 								var paramsTermId = paramsTerms[y].paramsTermId;
 								var liit = '';
-								for(var r = 0;r<paramValuess.length;r++){
+								for(var r = 0;r<paramValuess.sort().length;r++){
 									liit +="<dd><a class='csxz' href='javascript:;'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuess[r] +"</span><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
 								}
 								li += "<dl class='c'><dt>"+ paramsName +"</dt>"
@@ -217,7 +217,7 @@ function upperCase() {
 								var paramsName = paramsTerms[j].paramsName;
 								var paramsTermId = paramsTerms[j].paramsTermId;
 								var liii = '';
-								for(var r = 0;r<paramValuess.length;r++){
+								for(var r = 0;r<paramValuess.sort().length;r++){
 									liii +="<dd><a class='csxz' href='javascript:;'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuess[r] +"</span><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
 								}
 								lii += "<dl class='c'><dt>"+ paramsName +"</dt>"
@@ -234,7 +234,7 @@ function upperCase() {
 								var paramsName = paramsTerms[y].paramsName;
 								var paramsTermId = paramsTerms[y].paramsTermId;
 								var liit = '';
-								for(var r = 0;r<paramValuess.length;r++){
+								for(var r = 0;r<paramValuess.sort().length;r++){
 									liit +="<dd><a class='csxz' href='javascript:;'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuess[r] +"</span><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
 								}
 								li += "<dl class='c'><dt>"+ paramsName +"</dt>"

@@ -39,7 +39,7 @@ nav a:hover,nav a.bg{ color: #30b8e2;}
 .swiper-container { width: 100%; height: 680px;}
 article{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto;}
 
-.bottom-bg{background: #414141; width: 100%; margin-top: 50px; padding: 30px 0;}
+.bottom-bg{background: #414141; width: 100%; margin-top: 50px; padding: 20px 0;}
 footer{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto; text-align: center; font-size: 16px; line-height: 30px; color: #999;}
 footer a{ color: #999;}
 .case{  width: 95%; overflow: hidden; margin: 80px auto 0;}
