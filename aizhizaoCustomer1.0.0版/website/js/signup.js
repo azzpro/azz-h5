@@ -3,7 +3,28 @@ var articleId = param["articleId"];
 var articleTitle = param["articleTitle"];
 $(document).ready(function() {
 	$("#addSignUpCourse").bind("click", addSignUpCourse);
-	$('#articleTitle').html(articleTitle)
+	$('#articleTitle').html(articleTitle);
+	var sideBar = $ ("header"), tp = sideBar.prop ("offsetTop");
+    $(window).scroll (function (){
+        var top=$(window).scrollTop();
+        //top = top <= tp ? tp : top;
+        //console.info(top);
+        if( top>=40 ){
+        	sideBar.css (
+        {
+            "position" : "fixed",
+            "z-index" : "33",
+            "width" :"100%",
+            "background" : "#333",
+            "top": "0",
+        });
+        } else if( top <= 40 ){
+        	sideBar.css (
+        {
+            "position" : "relative",
+        });
+        }
+    })
 });
 
 function addSignUpCourse() {

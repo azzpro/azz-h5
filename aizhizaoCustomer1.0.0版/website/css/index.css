@@ -27,28 +27,28 @@ select::-ms-expand { display: none; }
 button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 
 header{ width: 100%; background: #333;}
-.top{width: 100%; min-width: 800px; max-width:1360px; margin:0 auto; height: 48px; position: relative; color: #ccc;}
-.topzi{ line-height: 48px; font-size: 16px;}
-.logo{ padding: 20px 0;}
-nav{font-size: 16px; font-weight: bold; right: 350px; line-height: 48px; position: absolute; top: 0;}
+.top{width: 100%; min-width: 1000px; max-width:1360px; margin:0 auto; height: 48px; position: relative; color: #ccc;}
+.topzi{ line-height: 48px; font-size: 16px; padding-left: 30px;}
+.logo{ padding: 20px 0; padding-left: 30px;}
+nav{font-size: 16px; font-weight: bold; right: 320px; line-height: 48px; position: absolute; top: 0;}
 nav a{ margin: 0 20px; color: #ccc; font-weight: normal;}
 nav a:hover,nav a.bg{ color: #30b8e2;}
 .swiper-container { width: 100%; height: 680px;}
-article{ width: 100%; min-width: 800px; max-width:1360px; margin: 0 auto;}
-.top-right{ font-size: 16px; top: 0; right: 0; position: absolute; line-height: 48px;}
+article{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto;}
+.top-right{ font-size: 16px; top: 0; right: 30px; position: absolute; line-height: 48px;}
 .top-right span{ padding-left: 30px;}
 .top-right a{ color: #ccc;}
 .baibg{ width: 100%; background: #fff; padding: 5px 0 50px; margin-top: 30px;}
 
-.banner{ width: 100%; background: #3f3f3f; overflow: hidden;}
+.banner{ width: 95%; background: #3f3f3f; margin: 0 auto; overflow: hidden;}
 .pro-dh{ width: 25%; float: left; height: 100%;}
 .pro-dh li{ width: 100%; border-bottom:#545148 1px dashed; background: url(../images/ico1.png) no-repeat 90% center; text-indent: 40px;}
-.pro-dh li a{ font-size: 16px; color: #fff; display: block; padding: 40px 0;}
+.pro-dh li a{ font-size: 16px; color: #fff; display: block; padding: 37.8px 0;}
 .pro-dh li a:hover{ background: #28b7ec url(../images/ico1.png) no-repeat 90% center;}
 .swiper-container{ width: 75%; height: auto;}
-.case{ width: 100%; overflow: hidden; margin-top: 80px;}
-.case h2{ color: #070707; font-size: 36px; line-height: 40px;}
-.case h2 samp{font-size: 16px; padding-left: 20px; font-family: Arial,\5FAE\8F6F\96C5\9ED1;}
+.case{ width: 95%; overflow: hidden; margin: 80px auto 0;}
+.case h2{ color: #070707; font-size: 28px; line-height: 40px;}
+.case h2 samp{font-size: 16px; padding-left: 20px; color: #999; font-family: Arial,\5FAE\8F6F\96C5\9ED1;}
 .case h2 a{font-size: 16px; float: right;}
 .bt-d{ color: #070707; font-size: 36px; line-height: 40px; margin: 20px 0;}
 .left-l{ width: 70%; float: left;}
@@ -56,10 +56,10 @@ article{ width: 100%; min-width: 800px; max-width:1360px; margin: 0 auto;}
 .left-l li:nth-child(2){ margin-right: 0;}
 .left-l li a{ display: block;}
 .left-l li p{ padding-top: 10px; color: #999; font-size: 16px;}
-.left-l li a img{ border: #dfdfdf 1px solid; width: 100%; height:246px;}
-.left-l li a:hover img{ border: #5dc6ec 1px solid;}
-.left-l li a h3{ font-size: 22px; margin-top: 20px;}
-.left-l li a h3 span{ color: #22b1e5; font-size: 16px; margin-left: 10px; border: #22b1e5 1px solid; padding:2px 5px; border-radius: 3px;}
+.left-l li a .fd{ border: #dfdfdf 1px solid; width: 100%; height:246px;}
+.left-l li a:hover .fd{ border: #5dc6ec 1px solid;}
+.left-l li a h3{ font-size: 20px; margin-top: 20px;}
+.left-l li a h3 span{ color: #22b1e5; font-size: 14px; margin-left: 10px; border: #22b1e5 1px solid; padding:2px 5px; border-radius: 3px;}
 .left-l li a p{ margin-top: 10px; font-size: 16px; color: #666;}
 .left-l2{ width: 100%; margin-top: 20px;}
 .left-l2 li{ width: 32.43%; margin-right: 1.2%;}
@@ -76,8 +76,12 @@ article{ width: 100%; min-width: 800px; max-width:1360px; margin: 0 auto;}
 .ljlist{ width: 100%; overflow: hidden; margin-top: 20px;}
 .ljlist li{ float: left; width: 24%; margin-left: 1.25%; margin-bottom: 30px;}
 .ljlist li:nth-child(1),.ljlist li:nth-child(5),.ljlist li:nth-child(9),.ljlist li:nth-child(13),.ljlist li:nth-child(17){ margin-left: 0;}
-.ljlist li .lj-zi{ font-size: 18px; margin-top: 10px; font-weight: bold;}
-.ljlist li img{ width: 330px; height: 330px;}
+.ljlist li .lj-zi{ font-size: 16px; margin-top: 10px; font-weight: bold;}
+.ljlist2 li{ width: 19%; margin-left: 1.25%;}
+.ljlist2 li:nth-child(5){ margin-left: 1.25%;}
+.fd{ overflow: hidden;}  
+.fd img{ transition: all 0.6s; -moz-transition: all 0.6s;  /* 0.6s完成过渡效果 */ -webkit-transition: all 0.6s;}  
+.fd img:hover{ transform: scale(1.2);  /* 放大1.2倍 */}  
 .ljlist li .lj-zi p{ color: #d4282d; font-weight: normal; padding-top: 5px;}
 .tab-menu{ float: left; margin-left: 20px;}
 .tab-menu li{ float: left; font-size: 18px; margin: 0 20px; cursor: pointer;}
@@ -106,7 +110,7 @@ article{ width: 100%; min-width: 800px; max-width:1360px; margin: 0 auto;}
 .tip h3{ font-size: 25px; color: #333; margin-bottom: 10px;}
 
 .bottom-bg{background: #414141; width: 100%; margin-top: 50px; padding: 30px 0;}
-footer{ width: 100%; min-width: 800px; max-width:1360px; margin: 0 auto; text-align: center; font-size: 16px; line-height: 30px; color: #999;}
+footer{ width: 100%; min-width: 1000px; max-width:1360px; margin: 0 auto; text-align: center; font-size: 16px; line-height: 30px; color: #999;}
 footer a{ color: #999;}
 
 
@@ -114,20 +118,21 @@ footer a{ color: #999;}
 .bannerly img{ width: 100%; height: 320px;}
 .articleTitle{ text-align: center;}
 
-.kclbBt{ font-size: 20px; color: #ababab; text-align: center; margin-top: 30px;}
+.kclbBt{ font-size: 28px; color: #333; text-align: center; margin: 60px 0;}
 .kclbList{ width: 100%; overflow: hidden; margin-top: 30px;}
 .kclbList .left{ width: 20%; text-align: center; padding: 70px 0;}
 .kclbList .left h4{font-size: 20px; color: #fff; margin-bottom: 80px;}
 .kclbList .right{ width: 75%;}
-.kclbList .right h4{ font-size: 20px; padding-top: 15px; color: #888;}
+.kclbList .right h4{ font-size: 20px; padding-top: 15px; color: #333;}
 .kclbList .right h4 span{ color: #999; font-size: 14px; padding-left: 20px;}
 .lubg{ background: #8adde0;}
 .lanbg{ background: #59d2ff;}
 .listbd{ width: 100%; overflow: hidden; margin-top: 90px;}
-.listbd li{ width: 27.33%; float: left; text-align: center; padding: 0 3%;}
+.listbd li{ width: 28.33%; float: left; text-align: center; padding: 0 2%;}
 .listbd li h3{ color: #8c8c8c; font-size: 18px; margin: 20px 0;}
-.listbd li p{ color: #8adde0; text-align: left; line-height: 25px; margin: 30px auto 0;}
-
+.listbd li p{ color: #666; text-align: left; line-height: 25px; margin: 30px auto 0; font-size: 13px;}
+#return-top{position:fixed;bottom:6%;right:30px; width:30px;height:30px;text-align:center; display:none; transition: all 0.5s; -webkit-transition: all 0.5s;}
+#return-top a{ text-indent: -9999px; display: block; background: url(../images/top.png) no-repeat; background-size: 90% auto; width:30px;height:30px; outline:none;blr:expression(this.onFocus=this.blur());}
 
 @media screen and (min-width:1000px) and (max-width:1200px){
 	.pro-dh li a{ padding: 30px 0;}
