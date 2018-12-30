@@ -1,8 +1,13 @@
 var articleId = JSON.parse(localStorage.getItem('articleId'));
 Module.define("system.article", function(page, $) {
 	page.ready = function() {
-		page.editor = KindEditor.create('#editor_id');
-	    page.editor.sync();
+		/*page.editor = KindEditor.create('#editor_id');
+	    page.editor.sync();*/
+	   
+	    var E = window.wangEditor;
+        page.editor = new E('#editor');
+        page.editor.customConfig.uploadImgShowBase64 = true;
+        page.editor.create();
 	    
 		$("#SubmissionBtn").bind("click", submitForm);
 		initValidate();
@@ -66,7 +71,7 @@ Module.define("system.article", function(page, $) {
 			},
 			success: function(data) {
 				if(data.code == 0) {
-					page.editor.html(data.data.articleContent);
+					page.editor.txt.html(data.data.articleContent);
 					$("#img1").attr("src",data.data.articlePicUrl);
 					$("input[name='title']").val(data.data.articleTitle);
 					$("input[name='price']").val(data.data.price);
@@ -87,7 +92,7 @@ Module.define("system.article", function(page, $) {
 				return;
 		}
 		
-		if(!page.editor.html()){
+		if(!page.editor.txt.text()){
 			alert('请输入文章详情');
 			return;
 		}
@@ -108,7 +113,7 @@ Module.define("system.article", function(page, $) {
 		fm.append('remark2', $("input[name='supplement2']").val());
 		if(!file1){}else{fm.append('mainPicture', file1)};
 		fm.append('editStatus', editStatus);
-		fm.append('articleDetail', page.editor.html());
+		fm.append('articleDetail', page.editor.txt.text());
 		$.ajax({
 	        type :'POST',
 	        url : ulrTo+'/azz/api/index/editArticle',

@@ -2,8 +2,12 @@ Module.define("system.module", function(page, $) {
 	var param = getRequest();
 	var moduleCode = param["moduleCode"];
 	page.ready = function() {
-		page.editor = KindEditor.create('#editor_id');
-	    page.editor.sync();
+		/*page.editor = KindEditor.create('#editor_id');
+	    page.editor.sync();*/
+	    var E = window.wangEditor;
+        page.editor = new E('#editor');
+        page.editor.customConfig.uploadImgShowBase64 = true;
+        page.editor.create();
 	    
 		getGoodModuleInfo();
 		$("#SubmissionBtn").bind("click", submitForm);
@@ -188,7 +192,7 @@ Module.define("system.module", function(page, $) {
 			alert('请选择分类');
 			return;
 		}
-		if(!page.editor.html()){
+		if(!page.editor.txt.text()){
 			alert('请输入模组详情');
 			return;
 		}
@@ -207,7 +211,7 @@ Module.define("system.module", function(page, $) {
 		fm.append('moduleStatus', $("input[name='fill']:checked").val());
 		if(!file1){}else{fm.append('goodsModulePicFile', file1);}
 		fm.append('isChangeGoodsModulePic', isEditPic);
-		fm.append('moduleInfo', page.editor.html());
+		fm.append('moduleInfo', page.editor.txt.html());
 		$.ajax({
 	        type :'POST',
 	        url : ulrTo+'/azz/api/merchant/goodsModule/editGoodsModule',
@@ -240,7 +244,7 @@ Module.define("system.module", function(page, $) {
 			success: function(data) {
 				if (data.code == 0) {
 					var data = data.data;
-					page.editor.html(data.moduleInfo);
+					page.editor.txt.html(data.moduleInfo);
 					$("input[name='modulename']").val(data.moduleName);
 					$('#classifname').html(data.classificationName);
 					$('#classifcord').html(data.assortmentCode);

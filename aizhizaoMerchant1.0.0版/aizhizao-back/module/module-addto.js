@@ -1,7 +1,12 @@
 Module.define("system.module", function(page, $) {
 	page.ready = function() {
-		page.editor = KindEditor.create('#editor_id');
-	    page.editor.sync();
+		/*page.editor = KindEditor.create('#editor_id');
+	    page.editor.sync();*/
+	   
+	    var E = window.wangEditor;
+        page.editor = new E('#editor');
+        page.editor.customConfig.uploadImgShowBase64 = true;
+        page.editor.create();
 	    
 		$("#SubmissionBtn").bind("click", submitForm);
 		$("#classifconfirm").bind("click", classifconfirm);
@@ -186,7 +191,7 @@ Module.define("system.module", function(page, $) {
 			alert('请选择分类');
 			return;
 		}
-		if(!page.editor.html()){
+		if(!page.editor.txt.text()){
 			alert('请输入模组详情');
 			return;
 		}
@@ -199,7 +204,7 @@ Module.define("system.module", function(page, $) {
 		fm.append('moduleName', $("input[name='modulename']").val());
 		fm.append('moduleStatus', $("input[name='fill']:checked").val());
 		fm.append('goodsModulePicFile', file1);
-		fm.append('moduleInfo', page.editor.html());
+		fm.append('moduleInfo', /*page.editor.html()*/page.editor.txt.html());
 		$.ajax({
 	        type :'POST',
 	        url : ulrTo+'/azz/api/merchant/goodsModule/addGoodsModule',
@@ -210,6 +215,7 @@ Module.define("system.module", function(page, $) {
 			data: fm,
 	        success : function(data) {
 	        	if (data.code == 0) {
+	        		debugger
 	        		alert('新增模组成功！');
 	        		window.location.href = "#!module/module-management.html";
 				} else {

@@ -79,7 +79,7 @@ Module.define("system.model", function(page, $) {
 				{
 					"title": "参数项",
 					"data": "params",
-					"className": "all",
+					"className": "w350",
 					"defaultContent": "-",
 				},
 				{
