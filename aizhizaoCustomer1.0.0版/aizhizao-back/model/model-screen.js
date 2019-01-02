@@ -14,12 +14,12 @@ Module.define("system.model", function(page, $) {
 			$('#fltheer').show();
 			$('#flonetwo').hide();
 			getSelectionModuleParams();
+			getCombinationInfos();
 		}else{
 			$('#flonetwo').show();
 			$('#fltheer').hide();
 			getClassificationChildPagination();
 			getCombinationInfos();
-    		Pagination();
 		}
 		$("#tabs").on('click','.jia',function(){
 			$(this).siblings('.modelList2').show();
@@ -65,7 +65,6 @@ Module.define("system.model", function(page, $) {
 				deliverySort='';
 				$("#table").empty();
 				getCombinationInfos();
-	    		Pagination();
 	
 			}else if($(this).hasClass('sort-b')){
 				$(this).addClass('sort-t');
@@ -79,7 +78,6 @@ Module.define("system.model", function(page, $) {
 				priceSort = 1;
 				$("#table").empty();
 				getCombinationInfos();
-	    		Pagination();
 	
 			}else if($(this).hasClass('sort-t')){
 				$(this).addClass('sort-b');
@@ -93,7 +91,6 @@ Module.define("system.model", function(page, $) {
 				priceSort = 0;
 				$("#table").empty();
 				getCombinationInfos();
-	    		Pagination();
 			}
 		})
 	    
@@ -111,7 +108,6 @@ Module.define("system.model", function(page, $) {
 				priceSort='';
 				$("#table").empty();
 				getCombinationInfos();
-	    		Pagination();
 	
 			}else if($(this).hasClass('sort-b')){
 				$(this).addClass('sort-t');
@@ -125,7 +121,6 @@ Module.define("system.model", function(page, $) {
 				deliverySort = 1;
 				$("#table").empty();
 				getCombinationInfos();
-	    		Pagination();
 	
 			}else if($(this).hasClass('sort-t')){
 				$(this).addClass('sort-b');
@@ -139,7 +134,6 @@ Module.define("system.model", function(page, $) {
 				deliverySort = 0;
 				$("#table").empty();
 				getCombinationInfos();
-	    		Pagination();
 			}
 		})
 	    
@@ -155,7 +149,6 @@ Module.define("system.model", function(page, $) {
 			deliverySort='';
 			$("#table").empty();
 			getCombinationInfos();
-			Pagination();
 			$(this).addClass('defaultsortNo');
 			$(this).removeClass('defaultsort')
 		})
@@ -231,7 +224,6 @@ Module.define("system.model", function(page, $) {
 		getClassificationChildPagination();
 		$("#table").empty();
 		getCombinationInfos();
-		Pagination();
 		
 	}
 	page.screen2 = function(assortmentCode,assortmentTop,assortmentName) {
@@ -245,7 +237,6 @@ Module.define("system.model", function(page, $) {
 		getSelectionModuleParams();
 		$("#table").empty();
 		getCombinationInfos();
-		Pagination();
 	}
 
 	function getClassificationChildPagination() {
@@ -408,7 +399,6 @@ Module.define("system.model", function(page, $) {
 		getSelectionModuleParams();
 		$("#table").empty();
 		getCombinationInfos();
-		Pagination();
 	}
 	
 	page.checkQx2 = function (inputcheckbox) {
@@ -432,7 +422,6 @@ Module.define("system.model", function(page, $) {
 		getSelectionModuleParams();
 		$("#table").empty();
 		getCombinationInfos();
-		Pagination();
 	}
 	
 	function getCombinationInfos() {
@@ -471,6 +460,7 @@ Module.define("system.model", function(page, $) {
 				    }
 				}
 				$("#table").append(tr);
+				Pagination();
 			} else {
 				alert(data.msg)
 			}

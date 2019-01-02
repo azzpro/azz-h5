@@ -318,7 +318,8 @@
 .table-mole th{ background: #e7e7e7;position: relative;}
 .table-mole .textleft{ text-align: left; white-space:normal;}
 .tj-zi{ width: 65%; padding-left: 3%; float: left;}
-.tj-zi h2{ font-size: 24px;font-weight: bold; font-weight: normal;}
+.tj-zi h2{ font-size: 18px;font-weight: bold; font-weight: normal; line-height: 22px;}
+.tj-zi h2 a:hover{ text-decoration: none;}
 .tj-zi p{ color: #9e9e9e; padding-top: 20px; font-size: 22px;}
 .tj-tu{ width: 32%; height: 200px; float: left;}
 

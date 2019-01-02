@@ -95,7 +95,7 @@ Module.define("system.model", function(page, $) {
 				{
 					"title": "创建人",
 					"data": "creator",
-					"className": "all",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{

@@ -55,7 +55,7 @@ Module.define("system.module", function(page, $) {
 			"columns": [{
 					"title": "模组主图",
 					"data": "",
-					"className": "all",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
 						var img = '<img src=' + row.modulePicUrl +' width="45" height="45" alt="" />';
@@ -71,7 +71,7 @@ Module.define("system.module", function(page, $) {
 				{
 					"title": "模组编码",
 					"data": "moduleCode",
-					"className": "all",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{
@@ -83,7 +83,7 @@ Module.define("system.module", function(page, $) {
 				{
 					"title": "状态",
 					"data": "",
-					"className": "all",
+					"className": "text-nowrap",
 					"defaultContent": "无",
 					"render" : function (data, type, row, meta) {
 						switch(row.moduleStatus) {
@@ -102,19 +102,19 @@ Module.define("system.module", function(page, $) {
 				{
 					"title": "创建人",
 					"data": "creator",
-					"className": "all",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{
 					"title": "创建时间",
 					"data": "createTime",
-					"className": "all",
+					"className": "text-nowrap",
 					"defaultContent": "无"
 				},
 				{
 					"title": "操作",
 					"data": "mobile",
-					"className": "desktop testview",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
 						if(row.moduleStatus == 2){

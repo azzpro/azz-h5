@@ -71,6 +71,11 @@ Module.define("system.model", function(page, $) {
 		
 		$(this).val(value);
 	});
+	/*$('.paramePrice').blur(function() {
+		var value = $(this).val();
+		value = value.toFixed(2);
+		$(this).val(value);
+	});*/
 
 	//新增价格
 	function addDeptInfo() {
