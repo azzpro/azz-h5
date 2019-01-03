@@ -69,19 +69,19 @@ Module.define("system.model", function(page, $) {
 				{
 					"title": "产品编码",
 					"data": "productCode",
-					"className": "",
+					"className": "text-nowrap",
 					"defaultContent": "-"
 				}, // 序号
 				{
 					"title": "参考单价",
 					"data": "price",
-					"className": "",
+					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
 					"title": "状态",
 					"data": "",
-					"className": "",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
 						switch(row.productStatus) {
@@ -97,7 +97,7 @@ Module.define("system.model", function(page, $) {
 				{
 					"title": "交期",
 					"data": "deliveryDate",
-					"className": "",
+					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
@@ -109,7 +109,7 @@ Module.define("system.model", function(page, $) {
 				{
 					"title": "保存时间",
 					"data": "createTime",
-					"className": "",
+					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
@@ -121,7 +121,7 @@ Module.define("system.model", function(page, $) {
 				{
 					"title": "操作",
 					"data": "merchantName",
-					"className": "",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
 						if (row) {
