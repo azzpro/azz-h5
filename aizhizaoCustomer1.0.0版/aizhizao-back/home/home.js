@@ -22,7 +22,7 @@ function getSelectionIndexData() {
 						var assortmentPicUrl = classificationInfos[i].assortmentPicUrl;
 						var assortmentCode = classificationInfos[i].assortmentCode;
 						var assortmentTop = 1;
-						divarr += "<div class='col-xs-12 col-sm-6 col-md-3'><a class='nodecoration' onclick=\"screen(\'" + assortmentCode + "','" + assortmentTop + "','" + assortmentName + "\');\" href='javascript:;'><img src='"+ assortmentPicUrl +"' width='100%' height='80px' alt='' /><div class='faan'>"+ assortmentName +"</div></a></div>"
+						divarr += "<div class='col-xs-12 col-sm-6 col-md-3 text-center'><a class='nodecoration' onclick=\"screen(\'" + assortmentCode + "','" + assortmentTop + "','" + assortmentName + "\');\" href='javascript:;'><img src='"+ assortmentPicUrl +"' width='150px'  alt='' /><div class='faan'>"+ assortmentName +"</div></a></div>"
 					}
 		    	}
 				$("#molelist").append(divarr);
