@@ -267,8 +267,8 @@ Module.define("system.invoice", function(page, $) {
 			success: function(data) {
 				if (data.code == 0) {
 					$('#myModal2').modal('hide');
+					window.location.href = "#!invoice/invoice-management.html";
 					window.location.reload();
-					window.location.href = "#!invoice/invoice-management.html"
 				} else {
 					alert(data.msg)
 				}
@@ -296,8 +296,8 @@ Module.define("system.invoice", function(page, $) {
 			success: function(data) {
 				if (data.code == 0) {
 					$('#myModal2').modal('hide');
+					window.location.href = "#!invoice/invoice-management.html";
 					window.location.reload();
-					window.location.href = "#!invoice/invoice-management.html"
 				} else {
 					alert(data.msg)
 				}

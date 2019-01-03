@@ -393,8 +393,8 @@ Module.define("system.model", function(page, $) {
 	
 	//购物车
 	function shoppingcart() {
-		window.location.reload();
-        window.location.href = "#!model/model-shopping.html"
+        window.location.href = "#!model/model-shopping.html";
+        window.location.reload();
 	}
 	
 	$('.datepicker_start').datepicker({

@@ -369,8 +369,8 @@ Module.define("system.model", function(page, $) {
 	}
 	
 	function dgyime() {
+		window.location.href = "#!model/model-management.html";
 		window.location.reload();
-		window.location.href = "#!model/model-management.html"
 	}
 	
 	

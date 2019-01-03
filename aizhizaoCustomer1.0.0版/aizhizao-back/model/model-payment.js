@@ -98,8 +98,8 @@ Module.define("system.model", function(page, $) {
 			dataType: "json", 
 			success: function(data) {
 				if (data.code == 0) {
+					window.location.href = "#!model/model-paymentOK.html";
 					window.location.reload();
-					window.location.href = "#!model/model-paymentOK.html"
 				} else {
 					$('#myModal').modal('hide');
 					$('#myModal2').modal('show');

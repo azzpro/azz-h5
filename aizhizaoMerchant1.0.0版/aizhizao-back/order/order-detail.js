@@ -292,8 +292,8 @@ Module.define("system.order", function(page, $) {
 			dataType: "json", 
 			success: function(data) {
 				if (data.code == 0) {
+					window.location.href = "#!order/order-management.html";
 					window.location.reload();
-					window.location.href = "#!order/order-management.html"				
 				} else {
 					alert(data.msg)
 				}
@@ -326,8 +326,8 @@ Module.define("system.order", function(page, $) {
 			data: fm,
 	        success : function(data) {
 	        	if (data.code == 0) {
+	        		window.location.href = "#!order/order-management.html";
 	        		window.location.reload();
-	        		window.location.href = "#!order/order-management.html"
 				} else {
 					alert(data.msg);
 				}
@@ -359,8 +359,8 @@ Module.define("system.order", function(page, $) {
 			data: fm,
 	        success : function(data) {
 	        	if (data.code == 0) {
+	        		window.location.href = "#!order/order-management.html";
 	        		window.location.reload();
-	        		window.location.href = "#!order/order-management.html"
 				} else {
 					alert(data.msg);
 				}
@@ -392,8 +392,8 @@ Module.define("system.order", function(page, $) {
 			data: fm,
 	        success : function(data) {
 	        	if (data.code == 0) {
+	        		window.location.href = "#!order/order-management.html";
 	        		window.location.reload();
-	        		window.location.href = "#!order/order-management.html"
 				} else {
 					alert(data.msg);
 				}
