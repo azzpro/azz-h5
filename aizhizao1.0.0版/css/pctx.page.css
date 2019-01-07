@@ -285,3 +285,14 @@
 .ALJ{ text-decoration: underline; margin-right:20px;}
 
 .w350{ width: 350px;}
+
+.activity a{ display: block; color: #636e7b;}
+.activity a:hover{ text-decoration: none;}
+.activity-tu{}
+.activity-tu img{ width: 100%;}
+.activity-name{ font-size: 18px; margin-bottom: 20px;}
+.activity-name span{ float: right; font-size: 12px; color: #fff; padding: 5px 10px; border-radius: 5px;}
+.jxz{ background: #108cee;}
+.yxj{ background: #999;}
+.activity-zi p{ margin: 0; padding: 0; font-size: 12px;}
+.activity-zi p span{ width: 120px; float: left;}

@@ -1,0 +1,70 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<ul class="nav nav-tabs">
+      <li class="active"><a href="#!activity/activity-detail.html"><strong>基础详情</strong></a></li>
+      <li><a href="#!activity/activity-recommend.html"><strong>推荐管理</strong></a></li>
+      <li><a href="#!activity/activity-module.html"><strong>模组管理</strong></a></li>
+    </ul>
+    <div class="panel-body backgr">
+    	<div class="panel-body" style="padding: 12px;">
+			<div class="col-sm-12" style="margin-top:3px;">
+				<button class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal">编辑专场</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" id="Search" class="btn btn-primary zlan">下架专场</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				专场链接：www.izz2025.com/hd/专场ID
+			</div>
+		<div class="clearfix"></div>
+		</div>
+    	<div id="activityList">
+			
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 添加 弹出窗 -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">编辑专场</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm" name="basicForm" enctype="multipart/form-data">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 专场名称：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="zcname" placeholder="请输入活动名称" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 专场主图：</label>
+		                  <div class="col-sm-8">
+		                    <input type="file" title="请选择图片" id="file1" name="file1" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+							<div class="imgtu"><img src="" id="img1"></div>
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 专场背景：</label>
+		                  <div class="col-sm-8">
+		                    <input type="file" title="请选择图片" id="file2" name="file2" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+							<div class="imgtu"><img src="" id="img2"></div>
+		                  </div>
+		                </div>
+		                
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="confirm">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 添加 弹出窗 End-->
+
+<script type="text/javascript" src="activity/activity-detail.js"></script>

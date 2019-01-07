@@ -1,0 +1,270 @@
+﻿<style>
+.tab1{padding: 10px;margin: 0;border: 1px solid #eee;}
+.tab{border: 1px solid #eee;border-top:none; border-bottom:none; margin-bottom: 0; margin-left: 0;padding: 0;}
+.tab .tab-li{width:100%; height:60px; list-style: none;border-bottom: 1px solid #eee; overflow: hidden;}
+.tab1 .tab-li{width:100%; height:60px; list-style: none; overflow: hidden;}
+.tab .tab-li:last-child,.tab1 .tab-li:last-child{/* border-bottom: 0;*/}
+.tab-li span{ float:left;display: inline-block; height:60px; line-height: 60px;}
+.tab-li span:nth-child(1){ width:18%;}
+.tab-li span:nth-child(2){ width:16%;}
+.tab-li span:nth-child(3){ width:13%;}
+.tab-li span:nth-child(4){ width:10%;}
+.tab-li span:nth-child(5){ width:10%;}
+.tab-li span:nth-child(6){ width:18%;}
+.tab-li span:nth-child(7){ width:15%;}
+</style>
+<!-- 这里开始 -->
+<div class="container-content">
+	<div class="panel-heading">
+		<h4 class="panel-title">分类管理</h4>
+	</div>
+    <div class="panel-body backgr">
+
+			<div class="panel panel-default">
+				<div class="panel-body" style="padding: 12px;">
+					<div class="col-sm-4">
+						<input type="text" name="nameNo" placeholder="请输入分类名称/编码" class="form-control">
+					</div>
+					<div class="col-sm-6" style="margin-top:3px;">
+						<button type="button" id="Search" class="btn btn-primary zlan">搜索</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal">新增</button>
+						<button class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal2">导入</button>
+						&nbsp;&nbsp;&nbsp;<a href="javascript:;">分类导入模板下载</a>
+					</div>
+				
+				</div>
+
+		            <div class="panel-body backgr">
+					  <div class="table-responsive">
+						<ul class="tab1" width="100%">
+							<li class="tab-li">
+								<span>分类主图</span>
+								<span>分类编号</span>
+								<span>分类名称</span>
+								<span>排序值</span>
+								<span>产品数量</span>
+								<span>创建时间</span>
+								<span>操作</span>
+							</li>
+						</ul>
+						<div id="tabs">
+							<!--<ul class="tab">
+								<li class="tab-li">
+									<span><i class='fa fa-plus-square-o jia'></i> <img src="../images/ewma.jpg" width="48" height="48" alt="" /></span>
+									<span>01000</span>
+									<span>11</span>
+									<span>启用</span>
+									<span>韩鼎君</span>
+									<span>2015-11-11 11:11</span>
+									<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+								</li>
+								<ul class="add tab2" style="padding: 0;">
+									<li class="tab-li">
+										<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-plus-square-o jia2'></i> </span>
+										<span>01000</span>
+										<span>11</span>
+										<span>启用</span>
+										<span>韩鼎君</span>
+										<span>2015-11-11 11:11</span>
+										<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+									</li>
+									<ul class="add tab3" style="padding: 0;">
+										<li class="tab-li">
+											<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o'></i> </span>
+											<span>01000</span>
+											<span>11</span>
+											<span>启用</span>
+											<span>韩鼎君</span>
+											<span>2015-11-11 11:11</span>
+											<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+										</li>
+										<li class="tab-li">
+											<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o'></i> </span>
+											<span>01000</span>
+											<span>11</span>
+											<span>启用</span>
+											<span>韩鼎君</span>
+											<span>2015-11-11 11:11</span>
+											<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+										</li>
+									</ul>
+								</ul>
+								<ul class="add" style="padding: 0;">
+									<li class="tab-li">
+										<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-plus-square-o jia'></i> 后端</span>
+										<span>01000</span>
+										<span>11</span>
+										<span>启用</span>
+										<span>韩鼎君</span>
+										<span>2015-11-11 11:11</span>
+										<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+									</li>
+								</ul>
+						    </ul>
+						    <ul class="tab">
+								<li class="tab-li">
+									<span><i class='fa fa-plus-square-o jia'></i> <img src="../images/ewma.jpg" width="48" height="48" alt="" /></span>
+									<span>01000</span>
+									<span>11</span>
+									<span>启用</span>
+									<span>韩鼎君</span>
+									<span>2015-11-11 11:11</span>
+									<span><a href="javascript:;">编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+								</li>
+							</ul>-->
+						</div>
+					  </div>
+					</div>
+
+			</div>
+		<div class="clearfix"></div>
+	</div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 添加 弹出窗 -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">新增分类</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm" name="basicForm" enctype="multipart/form-data">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">所属分类：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="classificationcode" placeholder="上级分类编号（顶级分类无需填写）" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 分类名称：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="classificationname" placeholder="请输入分类名称" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">分类排序：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="classificationsort" placeholder="请输入分类排序值(默认为0)" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 分类主图：</label>
+		                  <div class="col-sm-8">
+		                    <input type="file" title="请选择图片" id="file1" name="file" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+							<div class="imgtu"><img src="" id="img1"></div>
+		                  </div>
+		                </div>
+		                
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="confirm">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 添加 弹出窗 End-->
+<!-- 编辑 弹出窗 -->
+<div class="modal fade" id="myModal2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">编辑分类</h4>
+			</div>
+			<form class="form-horizontal" id="basicForm2" name="basicForm2" enctype="multipart/form-data">
+				<div class="panel-body">
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">所属分类：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="classificationcode2" placeholder="上级分类编号（顶级分类无需填写）" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 分类名称：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="classificationname2" placeholder="请输入分类名称" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">分类排序：</label>
+		                  <div class="col-sm-8">
+		                    <input type="text" name="classificationsort2" placeholder="请输入分类排序值(默认为0)" class="form-control">
+		                  </div>
+		                </div>
+		                <div class="form-group">
+		                  <label class="col-sm-3 control-label">分类主图：</label>
+		                  <div class="col-sm-8">
+		                    <input type="file" title="请选择图片" id="file2" name="file2" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+							<div class="imgtu"><img src="" id="img2"></div>
+		                  </div>
+		                </div>
+		                
+	            </div>
+			</form>
+			<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="editconfirm">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 编辑 弹出窗 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					操作成功!
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<!-- 确认删除 弹出窗 -->
+<div class="modal fade" id="myModal112">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">删除分类</h4>
+			</div>
+			<form class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					您确定把“<span id="bmName"></span>”分类删除吗？
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" id="deletebunnot" data-dismiss="modal">确认</button>
+					<button class="btn btn-default zlan" data-dismiss="modal">取消</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 确认删除 弹出窗 End-->
+<script type="text/javascript" src="courfication/courfication-management.js"></script>
