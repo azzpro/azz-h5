@@ -148,6 +148,14 @@ footer a{ color: #999;}
 .linkd li .kj-sd h4{ font-size: 18px; margin-bottom: 10px; text-align: center;}
 .linkd li .kj-sd h4 span{ display: block; width: 35px; height: 1px; background: #22b1e5; margin: 5px auto 0;}
 .linkd li .kj-sd p{ line-height: 20px; padding-left: 26px;}
+.aigy{ background: #fff; border-left: #8adde0 25px solid;}
+.aigy2{ border-left: #59d2ff 25px solid; margin-top: 20px;}
+.aigylr{ width: 70%; margin: 0 auto; padding: 120px 0; line-height: 25px; font-size: 14px; color: #666;}
+.aigylr h3{ font-size: 18px; margin-bottom: 20px; color: #333;}
+.aigy3{ background: #fff; width: 100%; margin-top: 20px;}
+.aigylr2{ padding: 120px 10%; font-size: 14px; color: #666;}
+.aigylr2 h3{ font-size: 18px; margin-bottom: 40px; color: #333;}
+.aigylr2 b{ font-size: 16px;}
 @media screen and (min-width:1000px) and (max-width:1200px){
 	.pro-dh li a{ padding: 30px 0;}
 }
