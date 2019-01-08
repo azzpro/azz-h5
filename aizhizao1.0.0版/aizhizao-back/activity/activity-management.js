@@ -103,7 +103,7 @@ Module.define("system.activity", function(page, $) {
 						if(productNumber == null){
 							var productNumber = "-"
 						}
-						htmlArr += "<div class='col-sm-3 col-lg-2'><div class='well activity'><a href='javascript:;'><div class='activity-tu'><img src='"+ specialPerformanceMainPicUrl +"' alt='' /></div>"
+						htmlArr += "<div class='col-sm-3 col-lg-2'><div class='well activity'><a onclick=\"system.activity.getColumnInfo(\'" + specialPerformanceCode + "\');\" href='javascript:;'><div class='activity-tu'><img src='"+ specialPerformanceMainPicUrl +"' alt='' /></div>"
 							+ "<h3 class='activity-name'>"+ statustoo + specialPerformanceName +"</h3><div class='activity-zi'>"
 							+ "<p><span>访问人数："+ interviewNumber +"</span>"+ createTime +"</p><p><span>模组数量："+ moduleNumber +"</span>产品数量："+ productNumber +"</p></div></a></div></div>"
 							
@@ -134,7 +134,7 @@ Module.define("system.activity", function(page, $) {
 					specialPerformanceName : $("input[name='nameNo']").val(),
 					status : $('#approvalType').val()
 		        };
-		        $.getJSON(ulrTo + '/azz/api/client/order/getClientOrderInfoList#!method=POST', data, function (data) {
+		        $.getJSON(ulrTo + '/azz/api/platform/specialPerformance/searchSpecialList#!method=POST', data, function (data) {
 		        	
 		        	$("#activityList").empty();
 		        	var rows = data.data.rows;
@@ -166,7 +166,7 @@ Module.define("system.activity", function(page, $) {
 							if(productNumber == null){
 								var productNumber = "-"
 							}
-							htmlArr += "<div class='col-sm-3 col-lg-2'><div class='well activity'><a href='javascript:;'><div class='activity-tu'><img src='"+ specialPerformanceBgPicUrl +"' alt='' /></div>"
+							htmlArr += "<div class='col-sm-3 col-lg-2'><div class='well activity'><a onclick=\"system.activity.getColumnInfo(\'" + specialPerformanceCode + "\');\" href='javascript:;'><div class='activity-tu'><img src='"+ specialPerformanceBgPicUrl +"' alt='' /></div>"
 								+ "<h3 class='activity-name'>"+ statustoo + specialPerformanceName +"</h3><div class='activity-zi'>"
 								+ "<p><span>访问人数："+ interviewNumber +"</span>"+ createTime +"</p><p><span>模组数量："+ moduleNumber +"</span>产品数量："+ productNumber +"</p></div></a></div></div>"
 								
@@ -181,6 +181,18 @@ Module.define("system.activity", function(page, $) {
 		        
 		    }
 		});
+	}
+	
+	//编辑
+	page.getColumnInfo = function(specialPerformanceCode) {
+		if(!window.localStorage){
+            return false;
+        }else{
+            var storage=window.localStorage;
+            var specialPerformanceCode = JSON.stringify(specialPerformanceCode);
+            storage["specialPerformanceCode"]= specialPerformanceCode;
+        }
+        window.location.href = "#!activity/activity-detail.html"
 	}
 
 	function init() {

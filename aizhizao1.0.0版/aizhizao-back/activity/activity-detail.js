@@ -19,6 +19,38 @@ Module.define("system.activity", function(page, $) {
 		    $("#img2").attr("src",URL.createObjectURL($(this)[0].files[0]));
 		});
 	}
+	
+	//编辑
+	function addSpecial() {
+		var validFlag = $('#basicForm').valid();
+		if(!validFlag) {
+				return;
+		}
+		var file1 = document.basicForm.file1.files[0];
+		var file2 = document.basicForm.file2.files[0];
+		var fm = new FormData();
+		fm.append('specialName', $('input[name="zcname"]').val());
+		fm.append('mainFile', file1);
+		fm.append('bgFile', file2);
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/platform/specialPerformance/addSpecial",
+			cache: false, //禁用缓存
+			contentType: false, //禁止设置请求类型
+	        processData: false, //禁止jquery对DAta数据的处理,默认会处理
+			data: fm,
+			dataType: "json", 
+			success: function(data) {
+				if (data.code == 0) {
+					$('#myModal').modal('hide');
+					$("#activityList").empty();
+					initDataTable();
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
 
 	function init() {
 		$("#basicForm").validate({
