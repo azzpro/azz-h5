@@ -225,6 +225,12 @@ Module.define("system.activity", function(page, $) {
 	page.initDataTable = function(recommendCode,recommendName) {
 		$('#myModal3').modal('show');
 		$('#recommendNameA').html(recommendName);
+		$('#recommendCode').html(recommendCode);
+		initDataTableList();
+		dataTable.ajax.reload();
+	}
+	
+	function initDataTableList() {
 		dataTable = $('#table').DataTable({
 			"language": {url: "../js/chinese.json"},
 			"lengthChangevar": false, //去掉每页显示数据条数
@@ -244,7 +250,7 @@ Module.define("system.activity", function(page, $) {
 				param = data;
 				param.pageNum = data.start/10+1;
 				param.pageSize = data.length;
-				param.recommendCode = recommendCode;
+				param.recommendCode = $('#recommendCode').html();
 				param.searchInput = $("input[name='searchname']").val();
 				//当前页码
 				 $.ajax({
