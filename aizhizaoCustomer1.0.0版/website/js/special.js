@@ -86,7 +86,7 @@ function getSpecialPerformanceOfIndex(recommendCode) {
 				
 				var rows = data.moduleInfos.rows;
 				if(!rows || !rows.length){
-					var nodata = "<p class='text-center'>表中数据为空</p>";
+					var nodata = "<p align='center' style='color: #fff;'>表中数据为空</p>";
 					$("#speciallistId").append(nodata);
 				}else{
 					var htmlArr = "";

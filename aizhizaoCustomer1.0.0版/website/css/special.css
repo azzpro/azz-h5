@@ -1,5 +1,5 @@
 @charset "utf-8";
-.special-bg{ padding: 50px 0 30px;}
+.special-bg{ padding: 50px 0 30px; height:1890px;}
 .bottom-bg,.case{ margin-top: 0;}
 .special{ width: 100%; overflow: hidden;}
 .special li{ float: left; width: 23%; background: #fff; margin: 0 1% 2%;}
