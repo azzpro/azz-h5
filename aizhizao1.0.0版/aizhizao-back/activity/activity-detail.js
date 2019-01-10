@@ -3,6 +3,7 @@ Module.define("system.activity", function(page, $) {
 	page.ready = function() {
 		init();
 		specialInfo();
+		$('#specialCodetoo').html(specialPerformanceCode);
 		$('#myModal').on('hidden.bs.modal', function(e){
 			$('#basicForm')[0].reset();
 			var validFlag = $('#basicForm').validate();
