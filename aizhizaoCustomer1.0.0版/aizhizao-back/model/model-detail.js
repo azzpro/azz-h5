@@ -59,7 +59,11 @@ Module.define("system.model", function(page, $) {
 									var paramsTermId = paramsTerms[j].paramsTermId;
 									var liii = '';
 									for(var r = 0;r<paramValuess.sort().length;r++){
-										liii +="<dd><a class='csxz' href='javascript:;'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuess[r] +"</span><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
+										var paramValuessR = paramValuess[r];
+										if(paramValuessR.length > 6){
+											var paramValuessR = paramValuessR.substring(0,6)+'...'
+										}
+										liii +="<dd><a class='csxz' href='javascript:;' title='"+ paramValuess[r] +"'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuessR +"</span><font style='display: none;'>"+ paramValuess[r] +"</font><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
 									}
 									lii += "<dl class=''><dt>"+ paramsName +"</dt>"
 		  								+ liii
@@ -76,7 +80,11 @@ Module.define("system.model", function(page, $) {
 									var paramsTermId = paramsTerms[y].paramsTermId;
 									var liit = '';
 									for(var r = 0;r<paramValuess.sort().length;r++){
-										liit +="<dd><a class='csxz' href='javascript:;'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuess[r] +"</span><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
+										var paramValuessR = paramValuess[r];
+										if(paramValuessR.length > 6){
+											var paramValuessR = paramValuessR.substring(0,6)+'...'
+										}
+										liit +="<dd><a class='csxz' href='javascript:;' title='"+ paramValuess[r] +"'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuessR +"</span><font style='display: none;'>"+ paramValuess[r] +"</font><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
 									}
 									li += "<dl class=''><dt>"+ paramsName +"</dt>"
 		  								+ liit
@@ -119,7 +127,7 @@ Module.define("system.model", function(page, $) {
 	function upperCase() {
 		
 		inputParams.splice(0,inputParams.length);
-		var inputListVal = $('#inputList').find('.curr span');
+		var inputListVal = $('#inputList').find('.curr font');
 		var inputListid = $('#inputList').find('.curr p');
 		for(var i = 0; i<inputListVal.length; i++){
 			var Newsobj = {
@@ -130,7 +138,7 @@ Module.define("system.model", function(page, $) {
 		}
 		
 		selectParams.splice(0,selectParams.length);
-		var parameterVal = $('#parameter').find('.curr span');
+		var parameterVal = $('#parameter').find('.curr font');
 		var parameterid = $('#parameter').find('.curr p');
 		for(var i = 0; i<parameterVal.length; i++){
 			var Newsobj2 = {
@@ -141,7 +149,7 @@ Module.define("system.model", function(page, $) {
 		}
 		
 		inputParamstest.splice(0,inputParamstest.length);
-		var inputListVal2 = $('#inputList').find('.curr span');
+		var inputListVal2 = $('#inputList').find('.curr font');
 		var inputListid2 = $('#inputList').find('.curr p');
 		for(var i = 0; i<inputListVal2.length; i++){
 			var Newsobj5 = {
@@ -152,7 +160,7 @@ Module.define("system.model", function(page, $) {
 		}
 		
 		selectParamstest.splice(0,selectParamstest.length);
-		var parameterVal2 = $('#parameter').find('.curr span');
+		var parameterVal2 = $('#parameter').find('.curr font');
 		var parameterid2 = $('#parameter').find('.curr p');
 		for(var i = 0; i<parameterVal2.length; i++){
 			var Newsobj6 = {
@@ -199,7 +207,11 @@ Module.define("system.model", function(page, $) {
 									var paramsTermId = paramsTerms[j].paramsTermId;
 									var liii = '';
 									for(var r = 0;r<paramValuess.sort().length;r++){
-										liii +="<dd><a class='csxz' href='javascript:;'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuess[r] +"</span><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
+										var paramValuessR = paramValuess[r];
+										if(paramValuessR.length > 6){
+											var paramValuessR = paramValuessR.substring(0,6)+'...'
+										}
+										liii +="<dd><a class='csxz' href='javascript:;' title='"+ paramValuess[r] +"'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuessR +"</span><font style='display: none;'>"+ paramValuess[r] +"</font><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
 									}
 									lii += "<dl class='c'><dt>"+ paramsName +"</dt>"
 		  								+ liii
@@ -216,7 +228,11 @@ Module.define("system.model", function(page, $) {
 									var paramsTermId = paramsTerms[y].paramsTermId;
 									var liit = '';
 									for(var r = 0;r<paramValuess.sort().length;r++){
-										liit +="<dd><a class='csxz' href='javascript:;'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuess[r] +"</span><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
+										var paramValuessR = paramValuess[r];
+										if(paramValuessR.length > 6){
+											var paramValuessR = paramValuessR.substring(0,6)+'...'
+										}
+										liit +="<dd><a class='csxz' href='javascript:;' title='"+ paramValuess[r] +"'><i class='jia'>+</i><i class='del'>x</i><span>"+ paramValuessR +"</span><font style='display: none;'>"+ paramValuess[r] +"</font><p style='display: none;'>"+ paramsTermId +"</p></a></dd>";
 									}
 									li += "<dl class='c'><dt>"+ paramsName +"</dt>"
 		  								+ liit
@@ -227,7 +243,7 @@ Module.define("system.model", function(page, $) {
 					    }
 					}
 					
-					var inputListcss = $('#inputList').find('.csxz span');
+					var inputListcss = $('#inputList').find('.csxz font');
 					var inputListooid = $('#inputList').find('.csxz p');
 					for(var i = 0; i<inputListcss.length; i++){
 						var Newsobj3 = {
@@ -245,7 +261,7 @@ Module.define("system.model", function(page, $) {
 						}
 					}
 					
-					var parametercss = $('#parameter').find('.csxz span');
+					var parametercss = $('#parameter').find('.csxz font');
 					var parameterooid = $('#parameter').find('.csxz p');
 					for(var i = 0; i<parametercss.length; i++){
 						var Newsobj4 = {
