@@ -108,7 +108,7 @@ Module.define("system.activity", function(page, $) {
 							if(productNumber == null){
 								var productNumber = "-"
 							}
-							htmlArr += "<div class='col-sm-3 col-lg-2'><div class='well activity'><a onclick=\"system.activity.getColumnInfo(\'" + specialPerformanceCode + "\');\" href='javascript:;'><div class='activity-tu'><img src='"+ specialPerformanceMainPicUrl +"' alt='' /></div>"
+							htmlArr += "<div class='col-sm-3'><div class='well activity'><a onclick=\"system.activity.getColumnInfo(\'" + specialPerformanceCode + "\');\" href='javascript:;'><div class='activity-tu'><img src='"+ specialPerformanceMainPicUrl +"' alt='' /></div>"
 								+ "<h3 class='activity-name'>"+ statustoo + specialPerformanceName +"</h3><div class='activity-zi'>"
 								+ "<p><span>访问人数："+ interviewNumber +"</span>"+ createTime +"</p><p><span>模组数量："+ moduleNumber +"</span>产品数量："+ productNumber +"</p></div></a></div></div>"
 								
