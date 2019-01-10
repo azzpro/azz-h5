@@ -206,7 +206,7 @@ function check() {
 			    localStorage.removeItem('clientUserPermissions');
 			    localStorage.removeItem('sessionId');
 			    localStorage.removeItem('clientType');
-			    window.location.href = "login.html";
+			    window.location.href = "login.html?redirct=" + encodeURIComponent(window.location.href);
 			}
 		}
 	});
@@ -223,7 +223,7 @@ function logout() {
 			    localStorage.removeItem('clientUserPermissions');
 			    localStorage.removeItem('sessionId');
 			    localStorage.removeItem('clientType');
-			    window.location.href = "login.html";
+			    window.location.href = "login.html?redirct=" + encodeURIComponent(window.location.href);
 			    
 			}
 		}

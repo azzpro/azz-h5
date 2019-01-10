@@ -170,5 +170,7 @@ Module.define("app.main", function(page, $) {
 	        }
 	    });
 	};*/
-	
+	page.func = function () {
+        return false;
+    }
 });

@@ -72,47 +72,54 @@ Module.define("system.activity", function(page, $) {
 			},
 			dataType: "json", 
 			success: function (data) {
-				$('#total').html(data.data.total);
-				var rows = data.data.rows;
-				
-				if(!rows || !rows.length){
-					var nodata = "<p class='text-center'>表中数据为空</p>";
-					$("#activityList").append(nodata);
-				}else{
-					var htmlArr = "";
-					for(var i = 0;i < rows.length; i++){
-						var specialPerformanceName = rows[i].specialPerformanceName;//专场名称
-						var specialPerformanceCode = rows[i].specialPerformanceCode;//专场编码
-						var specialPerformanceMainPicUrl = rows[i].specialPerformanceMainPicUrl;//专场主图
-						var interviewNumber = rows[i].interviewNumber;//访问人数
-						var moduleNumber = rows[i].moduleNumber;//模组数量
-						var productNumber = rows[i].productNumber;//产品数量
-						var status = rows[i].status;//状态
-						var createTime = rows[i].createTime.substring(0,10);//创建时间
-						if(status == 1){
-							var statustoo = "<span class='jxz'>进行中</span>";
-						}else{
-							var statustoo = "<span class='yxj'>已下架</span>";
-						}
-						if(interviewNumber == null){
-							var interviewNumber = "-"
-						}
-						if(moduleNumber == null){
-							var moduleNumber = "-"
-						}
-						if(productNumber == null){
-							var productNumber = "-"
-						}
-						htmlArr += "<div class='col-sm-3 col-lg-2'><div class='well activity'><a onclick=\"system.activity.getColumnInfo(\'" + specialPerformanceCode + "\');\" href='javascript:;'><div class='activity-tu'><img src='"+ specialPerformanceMainPicUrl +"' alt='' /></div>"
-							+ "<h3 class='activity-name'>"+ statustoo + specialPerformanceName +"</h3><div class='activity-zi'>"
-							+ "<p><span>访问人数："+ interviewNumber +"</span>"+ createTime +"</p><p><span>模组数量："+ moduleNumber +"</span>产品数量："+ productNumber +"</p></div></a></div></div>"
+				if (data.code == 0) {
+					$('#total').html(data.data.total);
+					var rows = data.data.rows;
+					
+					if(!rows || !rows.length){
+						var nodata = "<p class='text-center'>表中数据为空</p>";
+						$("#activityList").append(nodata);
+					}else{
+						var htmlArr = "";
+						for(var i = 0;i < rows.length; i++){
+							var specialPerformanceName = rows[i].specialPerformanceName;//专场名称
+							var specialPerformanceCode = rows[i].specialPerformanceCode;//专场编码
+							var specialPerformanceMainPicUrl = rows[i].specialPerformanceMainPicUrl;//专场主图
+							var interviewNumber = rows[i].interviewNumber;//访问人数
+							var moduleNumber = rows[i].moduleNumber;//模组数量
+							var productNumber = rows[i].productNumber;//产品数量
+							var status = rows[i].status;//状态
+							if(rows[i].createTime){
+									var createTime = rows[i].createTime.substring(0,10);//创建时间
+								}else{
+									var createTime = "-"
+								}
+							if(status == 1){
+								var statustoo = "<span class='jxz'>进行中</span>";
+							}else{
+								var statustoo = "<span class='yxj'>已下架</span>";
+							}
+							if(interviewNumber == null){
+								var interviewNumber = "-"
+							}
+							if(moduleNumber == null){
+								var moduleNumber = "-"
+							}
+							if(productNumber == null){
+								var productNumber = "-"
+							}
+							htmlArr += "<div class='col-sm-3 col-lg-2'><div class='well activity'><a onclick=\"system.activity.getColumnInfo(\'" + specialPerformanceCode + "\');\" href='javascript:;'><div class='activity-tu'><img src='"+ specialPerformanceMainPicUrl +"' alt='' /></div>"
+								+ "<h3 class='activity-name'>"+ statustoo + specialPerformanceName +"</h3><div class='activity-zi'>"
+								+ "<p><span>访问人数："+ interviewNumber +"</span>"+ createTime +"</p><p><span>模组数量："+ moduleNumber +"</span>产品数量："+ productNumber +"</p></div></a></div></div>"
+								
 							
-						
+						}
+						$("#activityList").append(htmlArr);
 					}
-					$("#activityList").append(htmlArr);
+					Pagination();
+				}else{
+					alert(data.msg)
 				}
-				Pagination();
-		
 			}
 		});
 		
@@ -151,7 +158,12 @@ Module.define("system.activity", function(page, $) {
 							var moduleNumber = rows[i].moduleNumber;//模组数量
 							var productNumber = rows[i].productNumber;//产品数量
 							var status = rows[i].status;//状态
-							var createTime = rows[i].createTime.substring(0,10);//创建时间
+							if(rows[i].createTime){
+								var createTime = rows[i].createTime.substring(0,10);//创建时间
+							}else{
+								var createTime = "-"
+							}
+							
 							if(status == 1){
 								var statustoo = "<span class='jxz'>进行中</span>";
 							}else{
