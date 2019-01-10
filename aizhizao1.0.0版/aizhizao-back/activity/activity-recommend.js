@@ -22,6 +22,7 @@ Module.define("system.activity", function(page, $) {
 			$(".has-error").removeClass('has-error');
 		});
 		$('#myModal3').on('hidden.bs.modal', function(e){
+			$("input[name='searchname']").val('');
 			$("#activityListToo").empty();
 			getRecommendInfos();
 		});
@@ -338,6 +339,7 @@ Module.define("system.activity", function(page, $) {
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
+						var recommendCode = $('#recommendCode').html();
 						if(row.relatedStatus == 0){
 							var removeincrease = '<a onclick="system.activity.increase(\'' + row.moduleCode + "','"+ recommendCode + '\');" class="btn btn-primary zlan" href="javascript:;">新增</a>'
 						}else{
