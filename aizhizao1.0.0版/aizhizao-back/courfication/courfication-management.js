@@ -80,7 +80,7 @@ Module.define("system.courfication", function(page, $) {
 		/*if(!file2){}else{fm.append('tradingCertificateFiles[1]', file2);}*/
 		$.ajax({
 	        type :'POST',
-	        url : ulrTo+'/azz/api/merchant/product/addClassification',
+	        url : ulrTo+'/azz/api/platform/course/addClassification',
 	        cache: false, //禁用缓存    
 			dataType: "json",
 			contentType: false, //禁止设置请求类型
@@ -101,7 +101,7 @@ Module.define("system.courfication", function(page, $) {
 	function getClassificationList() {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/product/getClassificationList",
+			url: ulrTo+"/azz/api/platform/course/getClassificationList",
 			cache: false, //禁用缓存   
 			async: false,
 			dataType: "json", 
@@ -113,10 +113,10 @@ Module.define("system.courfication", function(page, $) {
 					var data = data.data;
 					var li = '';
 					for(var i = 0;i<data.length;i++){
-						var assortmentPicUrl = data[i].assortmentPicUrl;
-						var assortmentCode = data[i].assortmentCode;
-						var assortmentName = data[i].assortmentName;
-						var assortmentSort = data[i].assortmentSort;
+						var assortmentPicUrl = data[i].classificationPicUrl;
+						var assortmentCode = data[i].classificationCode;
+						var assortmentName = data[i].classificationName;
+						var assortmentSort = data[i].sort;
 						var createTime = data[i].createTime;
 						if(data[i].childList==null || !data[i].childList.length!=0){
 							
@@ -131,10 +131,10 @@ Module.define("system.courfication", function(page, $) {
 						}else{
 							var lii = "";
 							for(var j = 0;j < data[i].childList.length;j++){
-								var assortmentPicUrl2 = data[i].childList[j].assortmentPicUrl;
-								var assortmentCode2 = data[i].childList[j].assortmentCode;
-								var assortmentName2 = data[i].childList[j].assortmentName;
-								var assortmentSort2 = data[i].childList[j].assortmentSort;
+								var assortmentPicUrl2 = data[i].childList[j].classificationPicUrl;
+								var assortmentCode2 = data[i].childList[j].classificationCode;
+								var assortmentName2 = data[i].childList[j].classificationName;
+								var assortmentSort2 = data[i].childList[j].sort;
 								var createTime2 = data[i].childList[j].createTime;
 								if(data[i].childList[j].childList==null || !data[i].childList[j].childList.length!=0){
 									lii += "<ul class='add tab2' style='padding: 0;'><li class='tab-li'><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o'></i> <img src=" + assortmentPicUrl2 +" width='48' height='48' alt='' /></span>"
@@ -148,10 +148,10 @@ Module.define("system.courfication", function(page, $) {
 								}else{
 									var liii = "";
 									for(var f = 0;f < data[i].childList[j].childList.length;f++){
-										var assortmentPicUrl3 = data[i].childList[j].childList[f].assortmentPicUrl;
-										var assortmentCode3 = data[i].childList[j].childList[f].assortmentCode;
-										var assortmentName3 = data[i].childList[j].childList[f].assortmentName;
-										var assortmentSort3 = data[i].childList[j].childList[f].assortmentSort;
+										var assortmentPicUrl3 = data[i].childList[j].childList[f].classificationPicUrl;
+										var assortmentCode3 = data[i].childList[j].childList[f].classificationCode;
+										var assortmentName3 = data[i].childList[j].childList[f].classificationName;
+										var assortmentSort3 = data[i].childList[j].childList[f].sort;
 										var createTime3 = data[i].childList[j].childList[f].createTime;
 										liii += "<ul class='add tab3' style='padding: 0;'><li class='tab-li'><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o'></i> <img src=" + assortmentPicUrl3 +" width='48' height='48' alt='' /></span>"
 										+ "<span>" + assortmentCode3 +"</span>"
@@ -200,7 +200,7 @@ Module.define("system.courfication", function(page, $) {
 	page.editDeptInfo = function(assortmentCode,assortmentName) {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/product/getClassificationInfo",
+			url: ulrTo+"/azz/api/platform/course/getClassificationInfo",
 			cache: false, //禁用缓存    
 			dataType: "json", 
 			data: {
@@ -208,9 +208,9 @@ Module.define("system.courfication", function(page, $) {
 			},
 			success: function(data) {
 				if (data.code == 0) {
-					$("input[name='classificationcode2']").val(data.data.assortmentParentCode);
-					$("input[name='classificationname2']").val(data.data.assortmentName);
-					$("input[name='classificationsort2']").val(data.data.assortmentSort);
+					$("input[name='classificationcode2']").val(data.data.classificationParentCode);
+					$("input[name='classificationname2']").val(data.data.classificationName);
+					$("input[name='classificationsort2']").val(data.data.sort);
 					
 				} else {
 					alert(data.msg)
@@ -243,7 +243,7 @@ Module.define("system.courfication", function(page, $) {
 		
 		$.ajax({
 	        type :'POST',
-	        url : ulrTo+'/azz/api/merchant/product/editClassification',
+	        url : ulrTo+'/azz/api/platform/course/editClassification',
 	        cache: false, //禁用缓存    
 			dataType: "json",
 			contentType: false, //禁止设置请求类型
@@ -271,7 +271,7 @@ Module.define("system.courfication", function(page, $) {
 	page.delDeptInfotoo = function(assortmentCode) {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/product/delClassification",
+			url: ulrTo+"/azz/api/platform/course/delClassification",
 			cache: false, //禁用缓存    
 			dataType: "json", 
 			data: {

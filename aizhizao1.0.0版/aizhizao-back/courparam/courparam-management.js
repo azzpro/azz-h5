@@ -1,4 +1,4 @@
-Module.define("system.module", function(page, $) {
+Module.define("system.courparam", function(page, $) {
 	page.ready = function() {
 		initDataTable();
 		$("#Search").bind("click", function() {
@@ -26,12 +26,11 @@ Module.define("system.module", function(page, $) {
 				param = data;
 				param.pageNum = data.start/10+1;
 				param.pageSize = data.length;
-				param.searchInput = $("input[name='searchname']").val();
-				param.moduleStatus = $('#approvalType').val();
+				param.param = $("input[name='searchname']").val();
 				//当前页码
 				 $.ajax({
 				 	type: "POST",   
-				 	url: ulrTo + "/azz/api/merchant/goodsModule/getGoodModuleInfoList",
+				 	url: ulrTo + "/azz/api/platform/course/searchParamsList",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -53,80 +52,51 @@ Module.define("system.module", function(page, $) {
 				 });
 			},
 			"columns": [{
-					"title": "模组主图",
-					"data": "",
-					"className": "text-nowrap",
-					"defaultContent": "-",
-					"render" : function (data, type, row, meta) {
-						var img = '<img src=' + row.modulePicUrl +' width="45" height="45" alt="" />';
-						return img;
-					}
-				}, // 序号
-				{
-					"title": "模组名称",
-					"data": "moduleName",
+					"title": "参数编号",
+					"data": "paramCode",
 					"className": "all",
 					"defaultContent": "-"
-				},
-				{
-					"title": "模组编码",
-					"data": "moduleCode",
-					"className": "text-nowrap",
-					"defaultContent": "-",
-				},
+				}, // 序号
 				{
 					"title": "所属分类",
-					"data": "classificationName",
+					"data": "assortmentName",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
-					"title": "所属商户",
-					"data": "merchantName",
-					"className": "text-nowrap",
+					"title": "课程使用量",
+					"data": "productUseCount",
+					"className": "all",
 					"defaultContent": "-",
 				},
 				{
-					"title": "状态",
-					"data": "",
-					"className": "text-nowrap",
-					"defaultContent": "无",
-					"render" : function (data, type, row, meta) {
-						switch(row.moduleStatus) {
-							case 0:
-								return '无效';
-								break;
-							case 1:
-								return '上架';
-								break;
-							case 2:
-								return '下架';
-								break;
-						};
-					}
+					"title": "参数项数量",
+					"data": "paramsCount",
+					"className": "all",
+					"defaultContent": "-",
 				},
 				{
 					"title": "创建时间",
 					"data": "createTime",
-					"className": "text-nowrap",
+					"className": "all",
 					"defaultContent": "无"
 				},
 				{
 					"title": "操作",
 					"data": "mobile",
-					"className": "text-nowrap",
+					"className": "desktop testview",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
-						if(row.moduleStatus == 2){
-							var statustoo = '上架'
+						if(row.flag==0){
+							var flag = '编辑'
 						}else{
-							var statustoo = '下架'
+							var flag = '详情'
 						}
 						if (row) {
 		            		var html = '<div class="am-btn-toolbar">';
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
-		            		html += '<a href="#!module/module-detail.html?moduleCode={0}">详情</a>'.format(row.moduleCode);
-		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.module.editUserStatus(\'' + row.moduleCode + "','"+ statustoo + '\');">'+ statustoo +'</a>';
+		            		html += '<a href="javascript:;" onclick="system.courparam.parameDetail(\'' + row.paramCode + "','"+ row.flag + '\');">'+ flag +'</a>';
+		            		html += '&nbsp;&nbsp;<a href="javascript:;" onclick="system.courparam.delDeptInfo(\'' + row.paramCode + "','"+ row.assortmentName + '\');">删除</a>';
 		            		html += '</div>';
 		            		html += '</div>';
 			         		return html;
@@ -137,45 +107,44 @@ Module.define("system.module", function(page, $) {
 		});
 	}
 	
-	//启用禁用
-	page.editUserStatus = function(moduleCode,statustoo) {
-		if(statustoo == '上架') {
-			$.ajax({
-				type: "POST",
-				url: ulrTo+"/azz/api/merchant/goodsModule/putOnOrPutOffGoodsModule",
-				cache: false, //禁用缓存    
-				dataType: "json", 
-				data: {
-					'moduleCode': moduleCode,
-					'moduleStatus': 1
-				},
-				success: function(data) {
-					if (data.code == 0) {
-						dataTable.ajax.reload();
-					} else {
-						alert(data.msg)
-					}
+	page.parameDetail = function(paramCode,flag)  {
+		if(!window.localStorage){
+	        return false;
+	    }else{
+	        var storage=window.localStorage;
+	        var paramCode = JSON.stringify(paramCode);
+	        var flag = JSON.stringify(flag);
+	        storage["paramCode"]= paramCode;
+	        storage["flag"]= flag;
+	        }
+	    window.location.href = "#!courparam/courparam-edit.html"
+	}
+	
+	//删除
+	page.delDeptInfo = function(paramCode,assortmentName) {
+		$('#bmName').html(assortmentName);
+		$('#myModal112').modal('show');
+		$('#deletebunnot').attr("onclick", "system.courparam.delDeptInfotoo(\'" + paramCode + "\');")
+	}
+	
+	page.delDeptInfotoo = function(paramCode) {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/platform/course/deleteParams",
+			cache: false, //禁用缓存    
+			dataType: "json", 
+			data: {
+				'code': paramCode
+			},
+			success: function(data) {
+				if (data.code == 0) {
+					dataTable.ajax.reload();
+	        		$('#myModal112').modal('hide');
+				} else {
+					alert(data.msg)
 				}
-			});
-		}else if(statustoo == '下架'){
-			$.ajax({
-				type: "POST",
-				url: ulrTo+"/azz/api/merchant/goodsModule/putOnOrPutOffGoodsModule",
-				cache: false, //禁用缓存    
-				dataType: "json", 
-				data: {
-					'moduleCode': moduleCode,
-					'moduleStatus': 2
-				},
-				success: function(data) {
-					if (data.code == 0) {
-						dataTable.ajax.reload();
-					} else {
-						alert(data.msg)
-					}
-				}
-			});
-		}
+			}
+		});
 	}
 	
 	$('.datepicker_start').datepicker({

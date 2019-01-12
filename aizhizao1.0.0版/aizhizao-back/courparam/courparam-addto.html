@@ -1,13 +1,13 @@
 ﻿<!-- 这里开始 -->
 <div class="container-content">
 	<div class="panel-heading">
-		<h4 class="panel-title">参数编辑</h4>
+		<h4 class="panel-title">参数新增</h4>
 	</div>
     <div class="panel-body backgr">
-	    <button class="btn pull-right btn-primary zlan ycl" id="addParams">保存</button>
-	    <h5><span class="hong">*</span> 所属分类 <span class="spacing"></span><button class="btn btn-primary zlan ycl" data-toggle="modal" data-target="#myModal2">选择分类</button>&nbsp;&nbsp;&nbsp;&nbsp;
-	    	已选中：<span id="classifname"></span><span class="add" id="classifcord"></span><span class="add" id="paramsCode"></span></h5>
-	    <h5><span class="hong">*</span> 参数项&nbsp;&nbsp;&nbsp;&nbsp;<span class="spacing"></span><button class="btn btn-primary zlan ycl" data-toggle="modal" data-target="#myModal">新增</button></h5>
+	    <button class="btn pull-right btn-primary zlan" id="addParams">保存</button>
+	    <h5><span class="hong">*</span> 所属分类 <span class="spacing"></span><button class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal2">选择分类</button>&nbsp;&nbsp;&nbsp;&nbsp;
+	    	已选中：<span id="classifname"></span><span class="add" id="classifcord"></span></h5>
+	    <h5><span class="hong">*</span> 参数项&nbsp;&nbsp;&nbsp;&nbsp;<span class="spacing"></span><button class="btn btn-primary zlan" data-toggle="modal" data-target="#myModal">新增</button></h5>
 	    <div class="tab-pane active">
 			            <div class="table-responsive">
 							<table class="table table-striped table-bordered table-hover text-center dataTable no-footer dtr-inline" id="table" width="100%">
@@ -16,7 +16,6 @@
 										<th class='text-nowrap'>参数名称</th>
 										<th class='text-nowrap'>是否必选</th>
 										<th class='text-nowrap'>格式</th>
-										<th class='text-nowrap'>状态</th>
 										<th width="400">参数值</th>
 										<th class='text-nowrap'>操作</th>
 									</tr>
@@ -77,23 +76,6 @@
 								<div class="rdio rdio-primary">
 			                        <input type="radio" name="fill" value="2" id="Selection">
 			                        <label for="Selection">选填</label>
-			                    </div>
-			                </div>
-	                      </div>
-		                </div>
-		                <div class="form-group">
-		                  <label class="col-sm-3 control-label">选型状态：</label>
-		                  <div class="col-sm-8 mt10" style="height: 35px;">
-	                      	<div class="col-sm-5" style="padding: 0;">
-				                <div class="rdio rdio-primary">
-			                        <input type="radio" name="selection" checked="" value="1" id="seUse">
-			                        <label for="seUse">使用</label>
-			                    </div>
-							</div>
-							<div class="col-sm-5">
-								<div class="rdio rdio-primary">
-			                        <input type="radio" name="selection" value="0" id="seHide">
-			                        <label for="seHide">隐藏</label>
 			                    </div>
 			                </div>
 	                      </div>
@@ -195,4 +177,4 @@
 </div>
 <!-- /.modal -->
 <!-- 确认删除 弹出窗 End-->
-<script type="text/javascript" src="parame/parame-edit.js"></script>
+<script type="text/javascript" src="courparam/courparam-addto.js"></script>

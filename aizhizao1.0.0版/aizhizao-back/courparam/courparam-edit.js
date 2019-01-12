@@ -1,6 +1,9 @@
-Module.define("system.parame", function(page, $) {
+var paramCode = JSON.parse(localStorage.getItem('paramCode'));
+var flag = JSON.parse(localStorage.getItem('flag'));
+Module.define("system.courparam", function(page, $) {
 	var paramss = [];
 	page.ready = function() {
+		toUpdateParams();
 		init();
 		paramslist();
 		getClassificationParent();
@@ -23,6 +26,12 @@ Module.define("system.parame", function(page, $) {
 			getClassificationParent();
 		});
 		
+		if(flag==0){
+			$('.ycl').show();
+		}else{
+			$('.ycl').hide();
+		}
+		
 		//添加隐藏项
 		$("input[name='format']").bind("change", function(){
 	   	    if($("input[name='format']:checked").val() == 1){
@@ -36,14 +45,13 @@ Module.define("system.parame", function(page, $) {
    	   			alert('请输入参数值');
    	   			return;
    	   		}
-   	   		var shuzi = $('.shuzi');
+   	   		var shuzi = $('.shuzi')
    	   		for(var i = 0; i<shuzi.length; i++){
    	   			if($('#parVal').val() == shuzi[i].innerHTML){
 	   	   			alert('参数值已存在');
 	   	   			return;
 	   	   		}
    	   		}
-   	   		
 		    $("#addParVal").append("<div class='jdf'><div class='shuzi'>"+ $('#parVal').val() +"</div><i class='fa fa-times'></i></div>");
 		    
 		});
@@ -110,6 +118,7 @@ Module.define("system.parame", function(page, $) {
 		if(csmks==1) {
 			return;
 		}
+		
 		var parVal = [];
 		$('.shuzi').each(function(){
 			parVal.push($(this).html());
@@ -118,14 +127,17 @@ Module.define("system.parame", function(page, $) {
 			"paramName" : $("input[name='parameName']").val(),
 			"paramsType" : $("input[name='format']:checked").val(),
 			"paramsChoice" : $("input[name='fill']:checked").val(),
-			"paramsHidden" : $("input[name='selection']:checked").val(),
 			"param" : parVal
 		}
 		paramss.push(Newsobj);
-		
 		$('#myModal').modal('hide');
 		$("#paramsData").empty();
 		paramslist();
+		if(flag==0){
+			$('.ycl').show();
+		}else{
+			$('.ycl').hide();
+		}
 	}
 	
 	function paramslist() {
@@ -138,8 +150,8 @@ Module.define("system.parame", function(page, $) {
 				var paramName = paramss[i].paramName;
 				var paramsType = paramss[i].paramsType;
 				var paramsChoice = paramss[i].paramsChoice;
-				var paramsHidden = paramss[i].paramsHidden;
 				var param = paramss[i].param;
+				
 				if(paramsType==1){
 					var paramsType = '下拉选择'
 				}else{
@@ -150,19 +162,12 @@ Module.define("system.parame", function(page, $) {
 				}else{
 					var paramsChoice = '选填'
 				}
-				if(paramsHidden == 0){
-					var paramsHiddenT = '隐藏';
-					var showhide = "<a onclick=\"system.parame.showhide1(\'" + paramName + "\');\" href='javascript:;'>使用</a>"
-				}else{
-					var paramsHiddenT = '使用';
-					var showhide = "<a onclick=\"system.parame.showhide2(\'" + paramName + "\');\" href='javascript:;'>隐藏</a>"
-				}
+				
 				tr += "<tr><td class='text-nowrap'>"+ paramName +"</td>"
 				+ "<td class='text-nowrap'>"+ paramsChoice +"</td>"
 				+ "<td class='text-nowrap'>"+ paramsType +"</td>"
-				+ "<td class='text-nowrap'>"+ paramsHiddenT +"</td>"
 				+ "<td class='break-word'>"+ param +"</td>"
-				+ "<td class='text-nowrap'>"+ showhide +"&nbsp;&nbsp;&nbsp;&nbsp;<a onclick=\"system.parame.delDeptInfo2(\'" + paramName + "\');\" href='javascript:;'>删除</a></td></tr>";
+				+ "<td class='text-nowrap'><a class='ycl' onclick=\"system.courparam.delDeptInfo2(\'" + paramName + "\');\" href='javascript:;'>删除</a></td></tr>";
 			}
 			$("#paramsData").append(tr);
 		}
@@ -178,34 +183,12 @@ Module.define("system.parame", function(page, $) {
 			}
 		});
 	}
-	page.showhide1 = function(paramName) {
-		$.each(paramss,function(index,item){
-			// index是索引值（即下标）   item是每次遍历得到的值；
-			if(item.paramName== paramName){
-				item.paramsHidden = '1';
-				$("#paramsData").empty();
-				paramslist();
-				return false;
-			}
-		});
-	}
-	page.showhide2 = function(paramName) {
-		$.each(paramss,function(index,item){
-			// index是索引值（即下标）   item是每次遍历得到的值；
-			if(item.paramName== paramName){
-				item.paramsHidden = '0';
-				$("#paramsData").empty();
-				paramslist();
-				return false;
-			}
-		});
-	}
 	
 	//分类列表
 	function getClassificationParent() {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/product/getClassificationParent",
+			url: ulrTo+"/azz/api/platform/course/getClassificationParent",
 			cache: false, //禁用缓存   
 			async: false,
 			dataType: "json", 
@@ -219,7 +202,7 @@ Module.define("system.parame", function(page, $) {
 					for(var i = 0;i<data.length;i++){
 						var assortmentCode = data[i].assortmentCode;
 						var assortmentName = data[i].assortmentName;
-						li += "<li class='zhengc' assortmentCode='" + assortmentCode + "' onclick=\"system.parame.getClassificationChild(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i>" + assortmentName + "</li>"
+						li += "<li class='zhengc' assortmentCode='" + assortmentCode + "' onclick=\"system.courparam.getClassificationChild(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i>" + assortmentName + "</li>"
 				    }
 					$(".ones").append(li);
 				} else {
@@ -234,7 +217,7 @@ Module.define("system.parame", function(page, $) {
 		$('.three').empty();
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/product/getClassificationChild",
+			url: ulrTo+"/azz/api/platform/course/getClassificationChild",
 			cache: false, //禁用缓存   
 			async: false,
 			dataType: "json", 
@@ -252,7 +235,7 @@ Module.define("system.parame", function(page, $) {
 						for(var i = 0;i<data.length;i++){
 							var assortmentCode = data[i].assortmentCode;
 							var assortmentName = data[i].assortmentName;
-							li += "<li class='zhengc' assortmentCode='" + assortmentCode + "' onclick=\"system.parame.getClassificationChild2(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i>" + assortmentName + "</li>"
+							li += "<li class='zhengc' assortmentCode='" + assortmentCode + "' onclick=\"system.courparam.getClassificationChild2(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i>" + assortmentName + "</li>"
 					    }
 						$(".toos").append(li);
 					}
@@ -267,7 +250,7 @@ Module.define("system.parame", function(page, $) {
 		$('.three').empty();
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/product/getClassificationChild",
+			url: ulrTo+"/azz/api/platform/course/getClassificationChild",
 			cache: false, //禁用缓存   
 			async: false,
 			dataType: "json", 
@@ -322,7 +305,6 @@ Module.define("system.parame", function(page, $) {
 					$('#myModal2').modal('hide');
 				}
 			}else{
-				
 				/*$('#classifname').html(toos);
 				$('#classifcord').html(toosAssortmentcode);
 				$('#myModal2').modal('hide');*/
@@ -339,7 +321,7 @@ Module.define("system.parame", function(page, $) {
 		
 	}
 	
-	//添加参数
+	//修改参数
 	function addParams() {
 		if(!paramss || !paramss.length){
 			alert('请添加参数');
@@ -352,7 +334,7 @@ Module.define("system.parame", function(page, $) {
 		
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/addParams",
+			url: ulrTo+"/azz/api/platform/course/updateParams",
 			cache: false, //禁用缓存   
 			async: false,
 			contentType: "application/json; charset=utf-8",
@@ -360,20 +342,65 @@ Module.define("system.parame", function(page, $) {
 			data:JSON.stringify(GetJsonData()),
 			success: function(data) {
 				if (data.code == 0) {
-					window.location.href = "#!parame/parame-management.html";
+					window.location.href = "#!courparam/courparam-management.html";
 				} else {
 					alert(data.msg)
 				}
 			}
 		});
 	}
-	
 	function GetJsonData() {
 	    var json = {
 	        'params': paramss,
-			'assortmentCode' :$('#classifcord').html()
+			'assortmentCode' :$('#classifcord').html(),
+			'parentCode' : paramCode,
+			'paramCode' : $('#paramsCode').html()
 	    };
 	    return json;
+	}
+	
+	//参数详情
+	function toUpdateParams() {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/platform/course/toUpdateParams",
+			cache: false, //禁用缓存
+			async: false,
+			data: {
+				'code':paramCode,
+			},
+			dataType: "json", 
+			success: function(data) {
+				if (data.code == 0) {
+					var Paramsdata = data.data;
+					paramss.splice(0,paramss.length);
+					for(var i = 0;i < Paramsdata.length; i++){
+						var valuesArr = Paramsdata[i].values;
+						if(!valuesArr || !valuesArr.length){
+							var values = []
+						}else{
+							var values = valuesArr.split(',');
+						}
+						
+						var Newsobj2 = {
+							"paramName" : Paramsdata[i].paramsName,
+							"paramsType" : Paramsdata[i].paramsType,
+							"paramsChoice" : Paramsdata[i].paramsChoice,
+							"paramParentId" : Paramsdata[i].paramParentId,
+							"paramCode" : Paramsdata[i].paramsCode,
+							"param" : values
+						}
+						paramss.push(Newsobj2);
+						$('#classifname').html(Paramsdata[0].assortName);
+						$('#classifcord').html(Paramsdata[0].assortCode);
+						$('#paramsCode').html(Paramsdata[0].paramsCode);
+					}
+					
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
 	}
 	
 	function init() {

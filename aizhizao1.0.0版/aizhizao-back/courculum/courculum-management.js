@@ -1,4 +1,4 @@
-Module.define("system.module", function(page, $) {
+Module.define("system.courculum", function(page, $) {
 	page.ready = function() {
 		initDataTable();
 		$("#Search").bind("click", function() {
@@ -31,7 +31,7 @@ Module.define("system.module", function(page, $) {
 				//当前页码
 				 $.ajax({
 				 	type: "POST",   
-				 	url: ulrTo + "/azz/api/merchant/goodsModule/getGoodModuleInfoList",
+				 	url: ulrTo + "/azz/api/platform/course/getCourseInfos",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -53,36 +53,48 @@ Module.define("system.module", function(page, $) {
 				 });
 			},
 			"columns": [{
-					"title": "模组主图",
+					"title": "课程主图",
 					"data": "",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
-						var img = '<img src=' + row.modulePicUrl +' width="45" height="45" alt="" />';
+						var img = '<img src=' + row.coursePicUrl +' width="45" height="45" alt="" />';
 						return img;
 					}
 				}, // 序号
 				{
-					"title": "模组名称",
-					"data": "moduleName",
+					"title": "课程名称",
+					"data": "courseName",
 					"className": "all",
 					"defaultContent": "-"
 				},
 				{
-					"title": "模组编码",
-					"data": "moduleCode",
+					"title": "品牌",
+					"data": "brandName",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{
-					"title": "所属分类",
-					"data": "classificationName",
+					"title": "最近开课时间",
+					"data": "latelyStartClassTime",
+					"className": "text-nowrap",
+					"defaultContent": "-",
+				},
+				{
+					"title": "最近开课地点",
+					"data": "latelyStartClassLocation",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
-					"title": "所属商户",
-					"data": "merchantName",
+					"title": "开课人数",
+					"data": "peopleNumber",
+					"className": "text-nowrap",
+					"defaultContent": "-",
+				},
+				{
+					"title": "开课课时",
+					"data": "hours",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
@@ -92,10 +104,7 @@ Module.define("system.module", function(page, $) {
 					"className": "text-nowrap",
 					"defaultContent": "无",
 					"render" : function (data, type, row, meta) {
-						switch(row.moduleStatus) {
-							case 0:
-								return '无效';
-								break;
+						switch(row.status) {
 							case 1:
 								return '上架';
 								break;
@@ -117,7 +126,7 @@ Module.define("system.module", function(page, $) {
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
-						if(row.moduleStatus == 2){
+						if(row.status == 2){
 							var statustoo = '上架'
 						}else{
 							var statustoo = '下架'
@@ -125,8 +134,9 @@ Module.define("system.module", function(page, $) {
 						if (row) {
 		            		var html = '<div class="am-btn-toolbar">';
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
-		            		html += '<a href="#!module/module-detail.html?moduleCode={0}">详情</a>'.format(row.moduleCode);
-		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.module.editUserStatus(\'' + row.moduleCode + "','"+ statustoo + '\');">'+ statustoo +'</a>';
+		            		html += '<a href="javascript:;">编辑</a>';
+		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.courculum.editUserStatus(\'' + row.courseCode + "','"+ statustoo + '\');">'+ statustoo +'</a>';
+		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.courculum.dele(\'' + row.courseCode + "','"+ row.courseName + '\');">删除</a>';
 		            		html += '</div>';
 		            		html += '</div>';
 			         		return html;
@@ -138,16 +148,16 @@ Module.define("system.module", function(page, $) {
 	}
 	
 	//启用禁用
-	page.editUserStatus = function(moduleCode,statustoo) {
+	page.editUserStatus = function(courseCode,statustoo) {
 		if(statustoo == '上架') {
 			$.ajax({
 				type: "POST",
-				url: ulrTo+"/azz/api/merchant/goodsModule/putOnOrPutOffGoodsModule",
+				url: ulrTo+"/azz/api/platform/course/putOnOrPutOffOrDelCourse",
 				cache: false, //禁用缓存    
 				dataType: "json", 
 				data: {
-					'moduleCode': moduleCode,
-					'moduleStatus': 1
+					'courseCode': courseCode,
+					'status': 1
 				},
 				success: function(data) {
 					if (data.code == 0) {
@@ -160,12 +170,12 @@ Module.define("system.module", function(page, $) {
 		}else if(statustoo == '下架'){
 			$.ajax({
 				type: "POST",
-				url: ulrTo+"/azz/api/merchant/goodsModule/putOnOrPutOffGoodsModule",
+				url: ulrTo+"/azz/api/platform/course/putOnOrPutOffOrDelCourse",
 				cache: false, //禁用缓存    
 				dataType: "json", 
 				data: {
-					'moduleCode': moduleCode,
-					'moduleStatus': 2
+					'courseCode': courseCode,
+					'status': 2
 				},
 				success: function(data) {
 					if (data.code == 0) {
@@ -176,6 +186,31 @@ Module.define("system.module", function(page, $) {
 				}
 			});
 		}
+	}
+	//删除
+	page.dele = function(courseCode,courseName) {
+		$('#bmName').html(courseName);
+		$('#myModal112').modal('show');
+		$('#deletebunnot').attr("onclick", "system.courculum.delDeptInfo(\'" + courseCode + "\');")
+	}
+	page.delDeptInfo = function(courseCode) {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/platform/course/putOnOrPutOffOrDelCourse",
+			cache: false, //禁用缓存    
+			dataType: "json", 
+			data: {
+				'courseCode': courseCode,
+				'status': 0
+			},
+			success: function(data) {
+				if (data.code == 0) {
+					dataTable.ajax.reload();
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
 	}
 	
 	$('.datepicker_start').datepicker({

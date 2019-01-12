@@ -106,6 +106,19 @@ Module.define("system.parame", function(page, $) {
 				return;
 			}
 		}
+		var csmks = 2;
+		$.each(paramss,function(index,item){
+			// index是索引值（即下标）   item是每次遍历得到的值；
+			if(item.paramName== $("input[name='parameName']").val()){
+				csmks = 1;
+				alert('参数名称已存在！')
+				return;
+			}
+		});
+		if(csmks==1) {
+			return;
+		}
+		
 		var parVal = [];
 		$('.shuzi').each(function(){
 			parVal.push($(this).html());
@@ -114,6 +127,7 @@ Module.define("system.parame", function(page, $) {
 			"paramName" : $("input[name='parameName']").val(),
 			"paramsType" : $("input[name='format']:checked").val(),
 			"paramsChoice" : $("input[name='fill']:checked").val(),
+			"paramsHidden" : $("input[name='selection']:checked").val(),
 			"param" : parVal
 		}
 		paramss.push(Newsobj);
@@ -121,11 +135,16 @@ Module.define("system.parame", function(page, $) {
 		$('#myModal').modal('hide');
 		$("#paramsData").empty();
 		paramslist();
+		if(flag==0){
+			$('.ycl').show();
+		}else{
+			$('.ycl').hide();
+		}
 	}
 	
 	function paramslist() {
 		if(!paramss || !paramss.length){
-			nodata = "<tr><td colspan='5' height='30'>表中数据为空</td></tr>";
+			nodata = "<tr><td colspan='6' height='30'>表中数据为空</td></tr>";
 			$("#paramsData").append(nodata);
 		}else{
 			var tr = "";
@@ -133,7 +152,26 @@ Module.define("system.parame", function(page, $) {
 				var paramName = paramss[i].paramName;
 				var paramsType = paramss[i].paramsType;
 				var paramsChoice = paramss[i].paramsChoice;
+				var paramsHidden = paramss[i].paramsHidden;
 				var param = paramss[i].param;
+				if(flag == 1){
+					var paramParentId = paramss[i].paramParentId;
+					if(paramsHidden == 0){
+						var paramsHiddenT = '隐藏';
+						var showhide = "<a onclick=\"system.parame.showhideSC1(\'" + paramParentId + "\');\" href='javascript:;'>使用</a>"
+					}else{
+						var paramsHiddenT = '使用';
+						var showhide = "<a onclick=\"system.parame.showhideSC2(\'" + paramParentId + "\');\" href='javascript:;'>隐藏</a>"
+					}
+				}else{
+					if(paramsHidden == 0){
+					var paramsHiddenT = '隐藏';
+						var showhide = "<a onclick=\"system.parame.showhide1(\'" + paramName + "\');\" href='javascript:;'>使用</a>"
+					}else{
+						var paramsHiddenT = '使用';
+						var showhide = "<a onclick=\"system.parame.showhide2(\'" + paramName + "\');\" href='javascript:;'>隐藏</a>"
+					}
+				}
 				if(paramsType==1){
 					var paramsType = '下拉选择'
 				}else{
@@ -144,11 +182,13 @@ Module.define("system.parame", function(page, $) {
 				}else{
 					var paramsChoice = '选填'
 				}
-				tr += "<tr><td>"+ paramName +"</td>"
-				+ "<td>"+ paramsChoice +"</td>"
-				+ "<td>"+ paramsType +"</td>"
-				+ "<td>"+ param +"</td>"
-				+ "<td><a class='ycl' onclick=\"system.parame.delDeptInfo2(\'" + paramName + "\');\" href='javascript:;'>删除</a></td></tr>";
+				
+				tr += "<tr><td class='text-nowrap'>"+ paramName +"</td>"
+				+ "<td class='text-nowrap'>"+ paramsChoice +"</td>"
+				+ "<td class='text-nowrap'>"+ paramsType +"</td>"
+				+ "<td class='text-nowrap'>"+ paramsHiddenT +"</td>"
+				+ "<td class='break-word'>"+ param +"</td>"
+				+ "<td class='text-nowrap'>"+ showhide +"&nbsp;&nbsp;&nbsp;&nbsp;<a class='ycl' onclick=\"system.parame.delDeptInfo2(\'" + paramName + "\');\" href='javascript:;'>删除</a></td></tr>";
 			}
 			$("#paramsData").append(tr);
 		}
@@ -161,6 +201,82 @@ Module.define("system.parame", function(page, $) {
 				$("#paramsData").empty();
 				paramslist();
 				return false;
+			}
+		});
+	}
+	
+	page.showhide1 = function(paramName) {
+		$.each(paramss,function(index,item){
+			// index是索引值（即下标）   item是每次遍历得到的值；
+			if(item.paramName== paramName){
+				item.paramsHidden = '1';
+				$("#paramsData").empty();
+				paramslist();
+				if(flag==0){
+					$('.ycl').show();
+				}else{
+					$('.ycl').hide();
+				}
+				return false;
+			}
+		});
+	}
+	page.showhide2 = function(paramName) {
+		$.each(paramss,function(index,item){
+			// index是索引值（即下标）   item是每次遍历得到的值；
+			if(item.paramName== paramName){
+				item.paramsHidden = '0';
+				$("#paramsData").empty();
+				paramslist();
+				if(flag==0){
+					$('.ycl').show();
+				}else{
+					$('.ycl').hide();
+				}
+				return false;
+			}
+		});
+	}
+	
+	page.showhideSC1 = function(paramParentId) {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/merchant/updateHidden",
+			cache: false, //禁用缓存   
+			dataType: "json", 
+			data: {
+				'id': paramParentId,
+				'status': 1
+			},
+			success: function(data) {
+				if (data.code == 0) {
+					$("#paramsData").empty();
+					toUpdateParams();
+					paramslist();
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	page.showhideSC2 = function(paramParentId) {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/merchant/updateHidden",
+			cache: false, //禁用缓存   
+			dataType: "json", 
+			data: {
+				'id': paramParentId,
+				'status': 0
+			},
+			success: function(data) {
+				if (data.code == 0) {
+					$("#paramsData").empty();
+					toUpdateParams();
+					paramslist();
+				} else {
+					alert(data.msg)
+				}
 			}
 		});
 	}
@@ -354,7 +470,7 @@ Module.define("system.parame", function(page, $) {
 			success: function(data) {
 				if (data.code == 0) {
 					var Paramsdata = data.data;
-					
+					paramss.splice(0,paramss.length);
 					for(var i = 0;i < Paramsdata.length; i++){
 						var valuesArr = Paramsdata[i].values;
 						if(!valuesArr || !valuesArr.length){
@@ -369,6 +485,7 @@ Module.define("system.parame", function(page, $) {
 							"paramsChoice" : Paramsdata[i].paramsChoice,
 							"paramParentId" : Paramsdata[i].paramParentId,
 							"paramCode" : Paramsdata[i].paramsCode,
+							"paramsHidden" : Paramsdata[i].paramsHidden,
 							"param" : values
 						}
 						paramss.push(Newsobj2);

@@ -1,4 +1,4 @@
-Module.define("system.parame", function(page, $) {
+Module.define("system.courparam", function(page, $) {
 	var paramss = [];
 	page.ready = function() {
 		init();
@@ -118,7 +118,6 @@ Module.define("system.parame", function(page, $) {
 			"paramName" : $("input[name='parameName']").val(),
 			"paramsType" : $("input[name='format']:checked").val(),
 			"paramsChoice" : $("input[name='fill']:checked").val(),
-			"paramsHidden" : $("input[name='selection']:checked").val(),
 			"param" : parVal
 		}
 		paramss.push(Newsobj);
@@ -150,19 +149,12 @@ Module.define("system.parame", function(page, $) {
 				}else{
 					var paramsChoice = '选填'
 				}
-				if(paramsHidden == 0){
-					var paramsHiddenT = '隐藏';
-					var showhide = "<a onclick=\"system.parame.showhide1(\'" + paramName + "\');\" href='javascript:;'>使用</a>"
-				}else{
-					var paramsHiddenT = '使用';
-					var showhide = "<a onclick=\"system.parame.showhide2(\'" + paramName + "\');\" href='javascript:;'>隐藏</a>"
-				}
+
 				tr += "<tr><td class='text-nowrap'>"+ paramName +"</td>"
 				+ "<td class='text-nowrap'>"+ paramsChoice +"</td>"
 				+ "<td class='text-nowrap'>"+ paramsType +"</td>"
-				+ "<td class='text-nowrap'>"+ paramsHiddenT +"</td>"
 				+ "<td class='break-word'>"+ param +"</td>"
-				+ "<td class='text-nowrap'>"+ showhide +"&nbsp;&nbsp;&nbsp;&nbsp;<a onclick=\"system.parame.delDeptInfo2(\'" + paramName + "\');\" href='javascript:;'>删除</a></td></tr>";
+				+ "<td class='text-nowrap'><a onclick=\"system.courparam.delDeptInfo2(\'" + paramName + "\');\" href='javascript:;'>删除</a></td></tr>";
 			}
 			$("#paramsData").append(tr);
 		}
@@ -178,34 +170,12 @@ Module.define("system.parame", function(page, $) {
 			}
 		});
 	}
-	page.showhide1 = function(paramName) {
-		$.each(paramss,function(index,item){
-			// index是索引值（即下标）   item是每次遍历得到的值；
-			if(item.paramName== paramName){
-				item.paramsHidden = '1';
-				$("#paramsData").empty();
-				paramslist();
-				return false;
-			}
-		});
-	}
-	page.showhide2 = function(paramName) {
-		$.each(paramss,function(index,item){
-			// index是索引值（即下标）   item是每次遍历得到的值；
-			if(item.paramName== paramName){
-				item.paramsHidden = '0';
-				$("#paramsData").empty();
-				paramslist();
-				return false;
-			}
-		});
-	}
 	
 	//分类列表
 	function getClassificationParent() {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/product/getClassificationParent",
+			url: ulrTo+"/azz/api/platform/course/getClassificationParent",
 			cache: false, //禁用缓存   
 			async: false,
 			dataType: "json", 
@@ -219,7 +189,7 @@ Module.define("system.parame", function(page, $) {
 					for(var i = 0;i<data.length;i++){
 						var assortmentCode = data[i].assortmentCode;
 						var assortmentName = data[i].assortmentName;
-						li += "<li class='zhengc' assortmentCode='" + assortmentCode + "' onclick=\"system.parame.getClassificationChild(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i>" + assortmentName + "</li>"
+						li += "<li class='zhengc' assortmentCode='" + assortmentCode + "' onclick=\"system.courparam.getClassificationChild(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i>" + assortmentName + "</li>"
 				    }
 					$(".ones").append(li);
 				} else {
@@ -234,7 +204,7 @@ Module.define("system.parame", function(page, $) {
 		$('.three').empty();
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/product/getClassificationChild",
+			url: ulrTo+"/azz/api/platform/course/getClassificationChild",
 			cache: false, //禁用缓存   
 			async: false,
 			dataType: "json", 
@@ -252,7 +222,7 @@ Module.define("system.parame", function(page, $) {
 						for(var i = 0;i<data.length;i++){
 							var assortmentCode = data[i].assortmentCode;
 							var assortmentName = data[i].assortmentName;
-							li += "<li class='zhengc' assortmentCode='" + assortmentCode + "' onclick=\"system.parame.getClassificationChild2(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i>" + assortmentName + "</li>"
+							li += "<li class='zhengc' assortmentCode='" + assortmentCode + "' onclick=\"system.courparam.getClassificationChild2(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i>" + assortmentName + "</li>"
 					    }
 						$(".toos").append(li);
 					}
@@ -267,7 +237,7 @@ Module.define("system.parame", function(page, $) {
 		$('.three').empty();
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/product/getClassificationChild",
+			url: ulrTo+"/azz/api/platform/course/getClassificationChild",
 			cache: false, //禁用缓存   
 			async: false,
 			dataType: "json", 
@@ -352,7 +322,7 @@ Module.define("system.parame", function(page, $) {
 		
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/addParams",
+			url: ulrTo+"/azz/api/platform/course/addParams",
 			cache: false, //禁用缓存   
 			async: false,
 			contentType: "application/json; charset=utf-8",
@@ -360,7 +330,7 @@ Module.define("system.parame", function(page, $) {
 			data:JSON.stringify(GetJsonData()),
 			success: function(data) {
 				if (data.code == 0) {
-					window.location.href = "#!parame/parame-management.html";
+					window.location.href = "#!courparam/courparam-management.html";
 				} else {
 					alert(data.msg)
 				}

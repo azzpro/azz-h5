@@ -296,3 +296,4 @@
 .yxj{ background: #999;}
 .activity-zi p{ margin: 0; padding: 0; font-size: 12px;}
 .activity-zi p span{ width: 110px; float: left;}
+.break-word{word-wrap: break-word; display: block; width: 400px; min-height: 42px;}
