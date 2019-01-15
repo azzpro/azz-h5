@@ -1,4 +1,6 @@
+var courseCodeDetail = JSON.parse(localStorage.getItem('courseCodeDetail'));
 Module.define("system.courculum", function(page, $) {
+	var paramsDatass =[];
 	var prices = [];
 	var params = [];
 	var valueArra = [];
@@ -7,10 +9,11 @@ Module.define("system.courculum", function(page, $) {
         page.editor = new E('#editor');
         page.editor.customConfig.uploadImgShowBase64 = true;
         page.editor.create();
-        
+		getCourseDetail();
 		initValidate();
 		toAddProduct();
 		getClassificationParent();
+		getPrams();
 		$("#SubmissionBtn").bind("click", submitForm);
 		$("#classifconfirm").bind("click", classifconfirm);
 		$("#Search2").bind("click", function() {		
@@ -47,7 +50,6 @@ Module.define("system.courculum", function(page, $) {
 			}
 		})
 		$("#file").change(function(){
-			$("#pic").show();
 		    $("#pic").attr("src",URL.createObjectURL($(this)[0].files[0]));
 		});
 		
@@ -329,6 +331,13 @@ Module.define("system.courculum", function(page, $) {
 							$(this).val(value);
 						});
 					}
+					var valuess = $('.valuess');
+					for(var i = 0;i < valuess.length; i++){
+						valuess[i].value = paramsDatass[i];
+						if(valuess[i].value == 'undefined'){
+							$(valuess[i]).val('')
+						}
+					}
 				} else {
 					alert(data.msg)
 				}
@@ -357,14 +366,22 @@ Module.define("system.courculum", function(page, $) {
 			return;
 		}
 		var file = document.basicForm.file.files[0];
+		if(!file){
+	   		var isEditPic = 0
+	   	}else{
+	   		var isEditPic = 1
+	   	}
 		
 		var fm = new FormData();
+		
+		fm.append('courseCode', courseCodeDetail);
 		fm.append('classificationCode', $('#classifcord').html());
 		fm.append('courseName', $("input[name='modelname']").val());
 		fm.append('brandCode', $('#brandname').val());
 		fm.append('status', $("input[name='fill']:checked").val());
 		fm.append('courseDescription', $('#textareatext').val());
-		fm.append('coursePicFile', file);
+		if(!file){}else{fm.append('coursePicFile', file);}
+		fm.append('isChangeCoursePic', isEditPic);
 		fm.append('courseInfo', page.editor.txt.html());
 		for(var i = 0;i < params.length; i++){
 			fm.append('params['+ i +'].paramCode', params[i].paramCode);
@@ -376,7 +393,7 @@ Module.define("system.courculum", function(page, $) {
 		}
 		$.ajax({
 	        type :'POST',
-	        url : ulrTo+'/azz/api/platform/course/addCourse',
+	        url : ulrTo+'/azz/api/platform/course/editCourse',
 	        cache: false, //禁用缓存    
 			dataType: "json",
 			contentType: false, //禁止设置请求类型
@@ -384,49 +401,55 @@ Module.define("system.courculum", function(page, $) {
 			data: fm,
 	        success : function(data) {
 	        	if (data.code == 0) {
-	        		alert('新增成功！');
+	        		alert('修改成功！');
 					window.location.href = "#!courculum/courculum-management.html";
 				} else {
 					alert(data.msg);
 				}
 	        }
 	    });
-		
-	    /*$.ajax({
+	}
+
+	//课程详情
+	function getCourseDetail() {
+		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/platform/course/addCourse",
-			cache: false, //禁用缓存   
+			url: ulrTo+"/azz/api/platform/course/getCourseDetail",
+			cache: false, //禁用缓存
 			async: false,
-			contentType: "application/json; charset=utf-8",
+			data: {
+				'courseCode':courseCodeDetail,
+			},
 			dataType: "json", 
-			data:JSON.stringify(GetJsonData()),
 			success: function(data) {
 				if (data.code == 0) {
-					alert('新增产品成功！');
-					window.location.href = "#!model/model-management.html";
+					
+					$("input[name='modelname']").val(data.data.courseName);
+					$('#brandname').val(data.data.brandCode);
+					$("#pic").attr("src",data.data.coursePicUrl);
+					if(data.data.status == 1) {
+						$("#Required").attr("checked", "checked");
+					}else if(data.data.status == 2){
+						$("#Selection").attr("checked", "checked");
+					}
+					
+					$('#classifname').html(data.data.classificationName);
+					$('#classifcord').html(data.data.classificationCode);
+					$('#assortmentId').html('-');
+					$('#textareatext').val(data.data.courseDescription);
+					page.editor.txt.html(data.data.courseInfo);
+					
+					var paramsData = data.data.courseParams.paramTerms;
+					for(var i = 0 ; i < paramsData.length;i++){
+				    	paramsDatass.push(paramsData[i].paramValues)
+				    }
+					
 				} else {
 					alert(data.msg)
 				}
 			}
-		});*/
+		});
 	}
-	
-	/*function GetJsonData(file) {
-		
-		debugger
-	    var json = {
-	        'classificationCode': $('#classifcord').html(),
-			'courseName' : $("input[name='modelname']").val(),
-			'brandCode' : $('#brandname').val(),
-			'status' : $("input[name='fill']:checked").val(),
-			'courseDescription' : $('#textareatext').val(),
-			'coursePicFile' : file,
-			'courseInfo' : page.editor.txt.html(),
-			'params' : params,
-			
-	    };
-	    return json;
-	}*/
 	
 	function initValidate(){
    	// Basic Form

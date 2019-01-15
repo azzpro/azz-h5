@@ -134,7 +134,7 @@ Module.define("system.courculum", function(page, $) {
 						if (row) {
 		            		var html = '<div class="am-btn-toolbar">';
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
-		            		html += '<a href="javascript:;">编辑</a>';
+		            		html += '<a href="javascript:;" onclick="system.courculum.parameDetail(\'' + row.courseCode + '\');">编辑</a>';
 		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.courculum.editUserStatus(\'' + row.courseCode + "','"+ statustoo + '\');">'+ statustoo +'</a>';
 		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.courculum.dele(\'' + row.courseCode + "','"+ row.courseName + '\');">删除</a>';
 		            		html += '</div>';
@@ -211,6 +211,17 @@ Module.define("system.courculum", function(page, $) {
 				}
 			}
 		});
+	}
+	
+	page.parameDetail = function(courseCode)  {
+		if(!window.localStorage){
+	        return false;
+	    }else{
+	        var storage=window.localStorage;
+	        var courseCodeDetail = JSON.stringify(courseCode);
+	        storage["courseCodeDetail"]= courseCodeDetail;
+	        }
+	    window.location.href = "#!courculum/courculum-edit.html"
 	}
 	
 	$('.datepicker_start').datepicker({

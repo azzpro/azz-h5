@@ -316,8 +316,8 @@ Module.define("system.model", function(page, $) {
 			dataType: "json", 
 			success: function(data) {
 				if (data.code == 0) {
-					if(data.data.pvs == null){
-						nodata = "<tr><td colspan='5' height='30'>表中数据为空</td></tr>";
+					if(!data.data.pvs || !data.data.pvs.length){
+						nodata = "<tr><td colspan='3' height='30'>表中数据为空</td></tr>";
 						$("#parameterData").append(nodata);
 					}else{
 						var tr = "";

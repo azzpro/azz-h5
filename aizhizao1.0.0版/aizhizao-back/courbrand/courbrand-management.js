@@ -118,7 +118,7 @@ Module.define("system.courbrand", function(page, $) {
 				},
 				{
 					"title": "课程数量",
-					"data": "createTime",
+					"data": "courseNumber",
 					"className": "text-nowrap",
 					"defaultContent": "无"
 				},
