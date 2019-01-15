@@ -35,11 +35,15 @@ Module.define("system.courculum", function(page, $) {
 	    //调用地址解析类
 	    geocoder = new qq.maps.Geocoder({
 	        complete : function(result){
+	        	if (marker) {
+			        marker.setMap(null);
+			        marker.length = 0;
+			    }
 	            map.setCenter(result.detail.location);
 	            $("input[name='beginsaddress']").val(result.detail.address);
 	            $("input[name='lat']").val(result.detail.location.lat);//纬度
 	            $("input[name='lng']").val(result.detail.location.lng);//经度
-	            var marker = new qq.maps.Marker({
+	            marker = new qq.maps.Marker({
 	                map:map,
 	                position: result.detail.location
 	            });
@@ -67,14 +71,14 @@ Module.define("system.courculum", function(page, $) {
 	    citylocation.searchLocalCity();
 	}
 	
-	var geocoder2,map2,marker2 = null;
+	var geocoder2,map2,marker2 = null,marker3 = null;
 	var init2 = function() {
 	    var center2 = new qq.maps.LatLng($("input[name='lat2']").val(),$("input[name='lng2']").val());
 	    map2 = new qq.maps.Map(document.getElementById('container2'),{
 	        center: center2,
 	        zoom: 15
 	    });
-	    var marker2 = new qq.maps.Marker({
+	    marker2 = new qq.maps.Marker({
             map:map2,
             position: center2,
         });
@@ -82,11 +86,19 @@ Module.define("system.courculum", function(page, $) {
 	    //调用地址解析类
 	    geocoder2 = new qq.maps.Geocoder({
 	        complete : function(result){
+	        	if (marker2) {
+			        marker2.setMap(null);
+			        marker2.length = 0;
+			    }
+	        	if (marker3) {
+			        marker3.setMap(null);
+			        marker3.length = 0;
+			    }
 	            map2.setCenter(result.detail.location);
 	            $("input[name='beginsaddress2']").val(result.detail.address);
 	            $("input[name='lat2']").val(result.detail.location.lat);//纬度
 	            $("input[name='lng2']").val(result.detail.location.lng);//经度
-	            var marker3 = new qq.maps.Marker({
+	            marker3 = new qq.maps.Marker({
 	                map:map2,
 	                position: result.detail.location
 	            });
