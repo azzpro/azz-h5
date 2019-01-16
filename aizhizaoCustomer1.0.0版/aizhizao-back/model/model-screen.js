@@ -232,6 +232,22 @@ Module.define("system.model", function(page, $) {
 		$('.flname').html(assortmentName);
 		assortmentCodeModel = assortmentCode;
 		assortmentTopModel = assortmentTop;
+		
+		var inputParamsEli = $('#inputParams input');
+		for(var i = 0;i<inputParamsEli.length;i++){
+			if(inputParamsEli[i].checked == true){
+				$(inputParamsEli[i]).attr("checked",false);
+			}
+		}
+		var selectParamsEli = $('#selectParams input');
+		for(var i = 0;i<selectParamsEli.length;i++){
+			if(selectParamsEli[i].checked == true){
+				$(selectParamsEli[i]).attr("checked",false);
+			}
+		}
+		selectParams.splice(0,selectParams.length);
+		inputParams.splice(0,inputParams.length);
+		
 		$("#inputParams").empty();
 		$("#selectParams").empty();
 		getSelectionModuleParams();
@@ -306,7 +322,7 @@ Module.define("system.model", function(page, $) {
 									for(var r = 0;r<paramValuess.sort().length;r++){
 										liii +="<label class='checkbox-inline'><input onclick='system.model.checkQx(this)' type='checkbox' paramsTermId='"+ paramsTermId +"' value='"+ paramValuess[r] +"'> "+ paramValuess[r] +"</label>";
 									}
-									lii += "<tr><td width='20%' align='right'>"+ paramsName +"：</td><td width='80%'>"
+									lii += "<tr><td width='20%' align='right'>"+ paramsName +"：</td><td width='80%' class='selectParamsTD'>"
 									    + liii
 			    		  	            + "</td></tr>";
 								}
@@ -338,7 +354,7 @@ Module.define("system.model", function(page, $) {
 									for(var r = 0;r<paramValuess.sort().length;r++){
 										liit +="<label class='checkbox-inline'><input type='checkbox' onclick='system.model.checkQx2(this)' paramsTermId='"+ paramsTermId +"' value='"+ paramValuess[r] +"'> "+ paramValuess[r] +"</label>";
 									}
-									lii += "<tr><td width='20%' align='right'>"+ paramsName +"：</td><td width='80%'>"
+									lii += "<tr><td width='20%' align='right'>"+ paramsName +"：</td><td width='80%' class='inputParamsTD'>"
 									    + liit
 			    		  	            + "</td></tr>";
 								}
@@ -362,6 +378,27 @@ Module.define("system.model", function(page, $) {
 							}
 					    }
 					}
+					var selectParamsTd = $('#selectParams .selectParamsTD');
+					for(var i = 0;i<selectParamsTd.length;i++){
+						var selectParamslabel = $(selectParamsTd[i]).children('label');
+						if(selectParamslabel.length == 1){
+							$(selectParamsTd[i]).parents("tr").attr("class","add");
+						}
+					}
+					var inputParamsTd = $('#inputParams .inputParamsTD');
+					for(var i = 0;i<inputParamsTd.length;i++){
+						var inputParamslabel = $(inputParamsTd[i]).children('label');
+						if(inputParamslabel.length == 1){
+							$(inputParamsTd[i]).parents("tr").attr("class","add");
+						}
+					}
+					var checkboxinline = $('.checkbox-inline input');
+					for(var i = 0;i<checkboxinline.length;i++){
+						if ( checkboxinline[i].checked == true){
+							$(checkboxinline[i]).parents("tr").removeClass('add')
+						}
+					}
+					
 				} else {
 					alert(data.msg)
 				}
