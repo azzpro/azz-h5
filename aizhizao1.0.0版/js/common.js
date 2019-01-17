@@ -268,23 +268,27 @@ function getRequest() {
  * @param <bool> isFull    返回完整时间(Y-m-d 或者 Y-m-d H:i:s)              
  * @param <int>  timeZone   时区              
  */
-function UnixToDate(unixTime, isFull, timeZone) {
-    if (typeof (timeZone) == 'number')
-    {
-        unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;
+function formatTime(number, format) {
+    var formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
+    var returnArr = [];
+
+    var date = new Date(number);
+    returnArr.push(date.getFullYear());
+    returnArr.push(this.formatNumber(date.getMonth() + 1));
+    returnArr.push(this.formatNumber(date.getDate()));
+
+    returnArr.push(this.formatNumber(date.getHours()));
+    returnArr.push(this.formatNumber(date.getMinutes()));
+    returnArr.push(this.formatNumber(date.getSeconds()));
+
+    for (var i in returnArr) {
+      format = format.replace(formateArr[i], returnArr[i]);
     }
-    var time = new Date(unixTime);
-    var ymdhis = "";
-    ymdhis += time.getUTCFullYear() + "-";
-    ymdhis += (time.getUTCMonth()+1) + "-";
-    ymdhis += time.getUTCDate();
-    if (isFull === true)
-    {
-        ymdhis += " " + time.getUTCHours() + ":";
-        ymdhis += time.getUTCMinutes() + ":";
-        ymdhis += time.getUTCSeconds();
-    }
-    return ymdhis;
+    return format;
+}
+function formatNumber(n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
 }
 
 //全局ajax请求设置，页面上所有的ajax请求，如果未登陆跳转则到登录界面

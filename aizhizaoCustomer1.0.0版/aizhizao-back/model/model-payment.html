@@ -6,10 +6,27 @@
 		</div>
 		<div class="panel-body">
 			<h4>订单明细</h4>
-			<p><b>收货人：</b><span id="receiverName"></span></p>
-			<p><b>地址：</b><span id="receiverAddress"></span></p>
-			<p><b>手机：</b><span id="receiverPhoneNumber"></span></p>
-			<p><b>应付金额(元)：</b><span id="grandTotal"></span></p><br>
+			<table class="table table-bordered">
+		      <tbody>
+		        <tr>
+		          <td width="20%" scope="row" align="right" style="background: #f8f6f6;"><b>收货人：</b></td>
+		          <td width="80%"><span id="receiverName"></span></td>
+		        </tr>
+		        <tr>
+		          <td scope="row" align="right" style="background: #f8f6f6;"><b>地址：</b></td>
+		          <td><span id="receiverAddress"></span></td>
+		        </tr>
+		        <tr>
+		          <td scope="row" align="right" style="background: #f8f6f6;"><b>手机：</b></td>
+		          <td><span id="receiverPhoneNumber"></span></td>
+		        </tr>
+		        <tr>
+		          <td scope="row" align="right" style="background: #f8f6f6;"><b>应付金额(元)：</b></td>
+		          <td><span id="grandTotal"></span></td>
+		        </tr>
+		      </tbody>
+		    </table>
+			
 			<!--<h4>选择支付方式</h4>
 			<div class="xzzf">
 				<a class="bg" val='1' href="javascript:;"><img src="../images/wx-ico.png" alt=""></a>

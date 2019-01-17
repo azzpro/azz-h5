@@ -1,178 +1,101 @@
-var clientOrderCode = JSON.parse(localStorage.getItem('clientOrderCode'));
+var orderNumber = JSON.parse(localStorage.getItem('orderNumber'));
 Module.define("system.payment", function(page, $) {
 	page.ready = function() {
 		getClientInvoiceApplyDetail();
-		$("#Subbunnot").bind("click", operationInvoiceStatus);
-		$("#Subbunnotrefuse").bind("click", operationInvoiceStatusrefuse);
-	}
-	
-	function operationInvoiceStatus() {
-		$.ajax({
-			type: "POST",
-			url: ulrTo+"/azz/api/platform/client/invoice/operationInvoiceStatus",
-			cache: false, //禁用缓存
-			data: {
-				'clientInvoiceApplyCode':$("#clientApplyCode").html(),
-				'status' : 1
-			},
-			dataType: "json", 
-			success: function(data) {
-				if (data.code == 0) {
-					alert('操作成功');
-					window.location.href = "#!invoice/invoice-management.html"
-				} else {
-					alert(data.msg)
-				}
-			}
-		});
-	}
-	function operationInvoiceStatusrefuse() {
-		$.ajax({
-			type: "POST",
-			url: ulrTo+"/azz/api/platform/client/invoice/operationInvoiceStatus",
-			cache: false, //禁用缓存
-			data: {
-				'clientInvoiceApplyCode':$("#clientApplyCode").html(),
-				'status' : 0
-			},
-			dataType: "json", 
-			success: function(data) {
-				if (data.code == 0) {
-					alert('操作成功');
-					window.location.href = "#!invoice/invoice-management.html"
-				} else {
-					alert(data.msg)
-				}
-			}
-		});
 	}
 	
 	//详情
 	function getClientInvoiceApplyDetail() {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/platform/client/invoice/getPlatformClientInvoiceOrderDetail",
+			url: ulrTo+"/azz/api/pay/getOrderInfo",
 			cache: false, //禁用缓存
 			data: {
-				'clientOrderCode' : clientOrderCode
+				'number' : orderNumber
 			},
 			dataType: "json", 
 			success: function(data) {
 				if (data.code == 0) {
 					var data=data.data;
 					
-					if(data.invoiceStatus == 0){
-						$('.Application').show();
-						$('#Invoice').hide();
-					}else{
-						$('#Invoice').show();
-					}
-					//关联订单
-					$('#orderCode').html(data.orderCode);
-					switch(data.statusId) {
-						case 7:
+					//支付信息
+					$('#orderNumber').html(data.orderNumber);
+					$('#orderMoney').html(data.orderMoney);
+					var orderTime = String(data.orderTime);
+					var Y = orderTime.substring(0,4);
+					var M = orderTime.substring(4,6);
+					var D = orderTime.substring(6,8);
+					var h = orderTime.substring(8,10);
+					var m = orderTime.substring(10,12);
+					var s = orderTime.substring(12,14);
+					var lastLoginTimeDesc = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s;
+					$('.orderTime').html(lastLoginTimeDesc);
+					switch(data.orderStatus) {
+						case 1:
 							$('#statusId').html('待支付');
 							break;
-						case 8:
-							$('#statusId').html('待确认');
+						case 2:
+							$('#statusId').html('支付成功 ');
 							break;
-						case 9:
-							$('#statusId').html('待配货');
+						case 3:
+							$('#statusId').html('关闭支付');
 							break;
-						case 10:
-							$('#statusId').html('代签收');
-							break;
-						case 11:
-							$('#statusId').html('已完成');
-							break;
-						case 12:
-							$('#statusId').html('已关闭');
+						case 4:
+							$('#statusId').html('支付失败');
 							break;
 					};
-					switch(data.paymentMethod) {
+					switch(data.orderMethod) {
 						case 1:
-							$('#paymentMethod').html('在线支付');
+							$('#orderMethod').html('在线支付');
 							break;
 						case 2:
-							$('#paymentMethod').html('线下支付');
+							$('#orderMethod').html('线下支付');
 							break;
 					};
-					$('#grandTotal').html(data.grandTotal);
-					$('#applyAmount').html(data.applyAmount);
 					
-					//开票详情
-					if(data.invoiceType == 0){
-						$('#ordinarySS').show();
-						$("#clientApplyCode").html(data.clientApplyCode);
-						$('#createTime').html(data.createTime);
-						$('#invoiceTitle').html(data.invoiceTitle);
-						$('#taxIdentificationNumber').html(data.taxIdentificationNumber);
-					}else if(data.invoiceType == 1){
-						$('#incrementSS').show();
-						$("#clientApplyCode2").html(data.clientApplyCode);
-						$('#createTime2').html(data.createTime);
-						$('#companyName').html(data.companyName);
-						$('#taxIdentificationNumber2').html(data.taxIdentificationNumber);
-						$('#regAddress').html(data.regAddress);
-						$('#regTelephone').html(data.regTelephone);
-						$('#bank').html(data.bank);
-						$('#bankAccount').html(data.bankAccount);
-						
-					}
-					//收货地址
-					$('#consignee').html(data.receiverName);
-					$('#pohe').html(data.receiverPhoneNumber);
-					$('#addressAlias').html(data.addressAlias);
-					$('#address').html(data.detailAddress);
+					//渠道信息
+					$('#threePartyNumber').html(data.threePartyNumber);
+					$('#orderType').html(data.orderType);
+					$('#orderMoney2').html(data.orderMoney);
+					$('#orderChannelMoney').html(data.orderChannelMoney);
 					
-					//开票信息
-					var invoiceDelivery = data.relevanceMerchantItem;
-					if(invoiceDelivery){
-						var trr = "";
-						for(var i = 0;i < invoiceDelivery.length; i++){
-							var grandTotal = invoiceDelivery[i].grandTotal;
-							var merchantApplyCode = invoiceDelivery[i].merchantApplyCode;
-							var merchantOrderCode = invoiceDelivery[i].merchantOrderCode;
-							var deliveryType = invoiceDelivery[i].deliveryType;
-							var companyName = invoiceDelivery[i].companyName;
-							var number = invoiceDelivery[i].number;
-							var deliveryPerson = invoiceDelivery[i].deliveryPerson;
-							var deliveryPhone = invoiceDelivery[i].deliveryPhone;
-							var status = invoiceDelivery[i].status;
-							if(deliveryType==0){
-								var invoiceinfo = companyName + '-' + number;
-							}else if(deliveryType==1){
-								var invoiceinfo = deliveryPerson + '-' + deliveryPhone;
-							}else{
-								var invoiceinfo = '-'
-							}
-							switch(status) {
-							case 0:
-								var statuss = '待确认';
-								break;
-							case 1:
-								var statuss = '待开票';
-								break;
-							case 2:
-								var statuss = '待签收';
-								break;
-							case 3:
-								var statuss = '已完成';
-								break;
-							};
-						
-							
-							trr += "<tr><td>"+ merchantOrderCode +"</td>"
-							+ "<td>"+ grandTotal +"</td>"
-							+ "<td>"+ merchantApplyCode +"</td>"
-							+ "<td>"+ merchantApplyCode +"</td>"
-							+ "<td>"+ invoiceinfo +"</td></tr>";
-						}
-						$("#invoiceinformation").append(trr);
-					}else{
-						var trrrr = "<tr><td colspan='5'>无记录</td></tr>";
-						$("#invoiceinformation").append(trrrr);
-					}
+					
+					switch(data.orderStatus) {
+						case 1:
+							$('#orderStatus').html('待支付');
+							break;
+						case 2:
+							$('#orderStatus').html('支付成功 ');
+							break;
+						case 3:
+							$('#orderStatus').html('关闭支付');
+							break;
+						case 4:
+							$('#orderStatus').html('支付失败');
+							break;
+					};
+					
+					//关联客户订单信息
+					$('#clientOrderCode').html(data.coi.clientOrderCode);
+					$('#grandTotal').html(data.coi.grandTotal);
+					$('#orderCreator').html(data.coi.orderCreator);
+					$('#clientPhoneNumber').html(data.coi.clientPhoneNumber);
+					$('#orderTime2').html(data.coi.orderTime);
+					switch(data.coi.paymentStatus) {
+						case 1:
+							$('#paymentStatus').html('待支付');
+							break;
+						case 2:
+							$('#paymentStatus').html('支付成功 ');
+							break;
+						case 3:
+							$('#paymentStatus').html('关闭支付');
+							break;
+						case 4:
+							$('#paymentStatus').html('支付失败');
+							break;
+					};
+					
 					
 					//产品明细
 					var orderItems = data.orderItem;

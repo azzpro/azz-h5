@@ -53,42 +53,32 @@ Module.define("system.payment", function(page, $) {
 				 });
 			},
 			"columns": [{
-					"title": "支付类型",
-					"data": "",
-					"className": "all",
-					"defaultContent": "-",
-					"render" : function (data, type, row, meta) {
-						switch(row.payMethod) {
-							case 1:
-								return '线上支付';
-								break;
-							case 2:
-								return '线下支付';
-								break;
-						};
-					}
-				}, 
-				{
 					"title": "支付流水号",
 					"data": "payNumber",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
-					"title": "三方流水号",
-					"data": "threePartyNumber",
+					"title": "支付通道",
+					"data": "payInstruation",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
-					"title": "订单编号",
+					"title": "平台订单编号",
 					"data": "orderNumber",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
-					"title": "支付状态",
-					"data": "phoneNumber",
+					"title": "三方订单编号",
+					"data": "threePartyNumber",
+					"className": "all",
+					"defaultContent": "-",
+				},
+				{
+					"title": "平台支付状态",
+					"data": "",
 					"className": "all",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
@@ -109,22 +99,35 @@ Module.define("system.payment", function(page, $) {
 					}
 				},
 				{
-					"title": "渠道费用",
-					"data": "channelMoney",
+					"title": "支付金额",
+					"data": "orderMoney",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
-					"title": "客户联系方式",
-					"data": "customerPhone",
+					"title": "渠道费用",
+					"data": "orderChannelMoney",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
 					"title": "支付时间",
-					"data": "payTime",
+					"data": "orderTime",
 					"className": "all",
 					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						/*var lastLoginTimeDesc = row.orderTime ? this.formatTime(parseInt(row.orderTime), 'Y-M-D h:m:s') : '';
+						return lastLoginTimeDesc;*/
+						var orderTime = String(row.orderTime);
+						var Y = orderTime.substring(0,4);
+						var M = orderTime.substring(4,6);
+						var D = orderTime.substring(6,8);
+						var h = orderTime.substring(8,10);
+						var m = orderTime.substring(10,12);
+						var s = orderTime.substring(12,14);
+						var lastLoginTimeDesc = Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s;
+						return lastLoginTimeDesc;
+					}
 				},
 				{
 					"title": "操作",
@@ -160,7 +163,7 @@ Module.define("system.payment", function(page, $) {
             var orderNumber = JSON.stringify(orderNumber);
             storage["orderNumber"]= orderNumber;
         }
-        /*window.location.href = "#!invoice/invoice-detail.html"*/
+        window.location.href = "#!payment/payment-detail.html"
 	}
 	
 	$('.datepicker_start').datepicker({
