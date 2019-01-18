@@ -56,8 +56,26 @@ function winxincallback() {
 			var phone = data.data.phone;
 			var password = data.data.password;
 			if (data.code == 0) {
+				debugger
 				if(data.data.code == '0000' && password!=null && phone!=null){
-					login(phone,password)
+					if(!window.localStorage){
+	            return false;
+	        }else{
+	            var storage=window.localStorage;
+	            var clientUserInfo = JSON.stringify(data.data.clientUserInfo);
+	            var clientType = JSON.stringify(data.data.clientUserInfo.clientType)
+	            var menus = JSON.stringify(data.data.menus);
+	            var clientUserPermissions = JSON.stringify(data.data.clientUserPermissions);
+	            var sessionId = JSON.stringify(data.data.sessionId);
+	            storage["clientUserInfo"]= clientUserInfo;
+	            storage["menus"]= menus;
+	            storage["clientType"]= clientType;
+	            storage["clientUserPermissions"]= clientUserPermissions;
+	            storage["sessionId"]= sessionId;
+	        }
+					
+					window.location.href = "../main.html#!home/home.html";
+					return;
 				}else{
 					if(!window.localStorage){
             return false;
@@ -92,7 +110,7 @@ function winxincallback() {
 function login(phone,password) {
 	$.ajax({
 		type: "POST",
-		url: ulrTo+"/azz/api/wechat/loginAndBind",
+		url: ulrTo+"/azz/api/client/login",
 		data: {'phoneNumber': phone,'password': password},
 		success: function(data) {
 			if (data.code == 0) {

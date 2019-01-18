@@ -36,24 +36,33 @@
    		data: param,
    		success: function(data) {
    			if(data.code == 0) {
-   				if(!window.localStorage){
-	            return false;
-	        }else{
-	            var storage=window.localStorage;
-	            var clientUserInfo = JSON.stringify(data.data.clientUserInfo);
-	            var clientType = JSON.stringify(data.data.clientUserInfo.clientType)
-	            var menus = JSON.stringify(data.data.menus);
-	            var clientUserPermissions = JSON.stringify(data.data.clientUserPermissions);
-	            var sessionId = JSON.stringify(data.data.sessionId);
-	            storage["clientUserInfo"]= clientUserInfo;
-	            storage["menus"]= menus;
-	            storage["clientType"]= clientType;
-	            storage["clientUserPermissions"]= clientUserPermissions;
-	            storage["sessionId"]= sessionId;
-	        }
-					
-			window.location.href = "../main.html#!home/home.html";
-			return;
+				if(!window.localStorage){
+		            return false;
+		        }else{
+		            var storage=window.localStorage;
+		            var clientUserInfo = JSON.stringify(data.data.clientUserInfo);
+		            var clientType = JSON.stringify(data.data.clientUserInfo.clientType)
+		            var menus = JSON.stringify(data.data.menus);
+		            var clientUserPermissions = JSON.stringify(data.data.clientUserPermissions);
+		            var sessionId = JSON.stringify(data.data.sessionId);
+		            storage["clientUserInfo"]= clientUserInfo;
+		            storage["menus"]= menus;
+		            storage["clientType"]= clientType;
+		            storage["clientUserPermissions"]= clientUserPermissions;
+		            storage["sessionId"]= sessionId;
+		        }
+		        
+				localStorage.removeItem('openid');
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('expiresIn');
+				localStorage.removeItem('refreshToken');
+				localStorage.removeItem('scope');
+				localStorage.removeItem('unionid');
+				localStorage.removeItem('headimgurl');
+				localStorage.removeItem('nickname');
+				
+				window.location.href = "../main.html#!home/home.html";
+				return;
 			
    			} else {
    				alert(data.msg);

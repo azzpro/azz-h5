@@ -61,7 +61,16 @@
 	            storage["clientUserPermissions"]= clientUserPermissions;
 	            storage["sessionId"]= sessionId;
 	        }
-					
+	        
+			localStorage.removeItem('openid');
+			localStorage.removeItem('accessToken');
+			localStorage.removeItem('expiresIn');
+			localStorage.removeItem('refreshToken');
+			localStorage.removeItem('scope');
+			localStorage.removeItem('unionid');
+			localStorage.removeItem('headimgurl');
+			localStorage.removeItem('nickname');
+			
 			window.location.href = "../main.html#!home/home.html";
 			return;
    			} else {
