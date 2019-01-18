@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../../images/favicon.png" type="image/png">
+<title>爱智造平台客户端管理系统</title>
+<link href="../../css/pctx.page.css" rel="stylesheet">
+<link href="../../css/login.css" rel="stylesheet">
+<link href="../../css/jquery.datatables.css" rel="stylesheet">
+<style>
+  body{ background: #eee; }
+  .signinpanel form{ padding: 0; border: none; background: none; box-shadow:none}
+  .signinpanel .form-control{ margin-top: 0;}
+  label.error{ margin: 0;}
+  .form-group { margin-bottom: 0; height: 65px;}
+  .wx-ico{ padding-top: 30px; border-bottom: #eee 1px solid; padding-bottom: 30px; width: 90%; margin: 0 auto;}
+  .als{ width: 60%; margin: 0 auto;}
+</style>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+  <div class="top"><h1><img src="../../images/logo.png" alt=""></h1></div>
+  <div class="login-k signinpanel">
+    <h4>未关联平台账号，请先绑定</h4>
+    <div class="wx-ico" align="center"><img src="../../images/ewma.jpg" width="60" height="60" alt="" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;夏重军</div>
+    <div class="als">
+    	<button class="btn btn-lan btn-block" id="submit">绑定已有账号</button>
+    	<button class="btn btn-lan btn-block" id="submit">注册会员账号</button>
+    </div>
+
+  </div>
+<script src="../../js/jquery-1.11.1.min.js"></script>
+<script src="../../js/visitip.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/KinerCode.js"></script>
+
+<!-- 表单验证 -->
+<script src="../../js/jquery.validate.min.js"></script>
+<script src="../../js/messages_zh.js"></script>
+<script>
+// 获取url路径参数
+function getRequest() {
+    var d = new Object();
+    var g = window.location.href;
+    var b = g.split("?");
+    if (b.length > 1) {
+        var a = b[1].split("&");
+        for (var c = 0; c < a.length; c++) {
+            var f = a[c].indexOf("=");
+            if (f == -1) {
+                continue;
+            }
+            var e = a[c].substring(0, f);
+            var j = a[c].substring(f + 1);
+            j = decodeURIComponent(j);
+            d[e] = j;
+        }
+    }
+    return d;
+}
+
+$(document).ready(function() {
+
+});
+
+function initValidate() {
+   	// Basic Form
+   	$("#basicForm").validate({
+   		rules: {
+   			username: {
+   				required: true,
+   				//errorUsername: true,
+   			},
+   			password: {
+   				required: true,
+   				//errorPassword: true,
+   			},
+   			yzm: {
+   				required: true,
+   				validCode: true,
+   			},
+   		},
+   		messages: {
+   			username: {
+   				required: "请输入用户名",
+   			},
+   			password: {
+   				required: "请输入密码",
+   			},
+   			yzm: {
+   				required: "请输入验证码",
+   			},
+   		},
+   		highlight: function(element) {
+   			$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+   		},
+   		success: function(element) {
+   			$(element).closest('.form-group').removeClass('has-error');
+   		}
+   	});
+}
+</script>
+</body>
+</html>
