@@ -57,7 +57,7 @@ function winxincallback() {
 			var password = data.data.password;
 			if (data.code == 0) {
 				debugger
-				if(data.data.code == '0000' && password!=null && phone!=null){
+				if(data.data.clientUserInfo != undefined){
 					if(!window.localStorage){
 	            return false;
 	        }else{
