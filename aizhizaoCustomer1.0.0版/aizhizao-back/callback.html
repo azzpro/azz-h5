@@ -56,7 +56,6 @@ function winxincallback() {
 			var phone = data.data.phone;
 			var password = data.data.password;
 			if (data.code == 0) {
-				debugger
 				if(data.data.code == '0000' && password!=null && phone!=null){
 					login(phone,password)
 				}else{
@@ -70,12 +69,16 @@ function winxincallback() {
 	            var refreshToken = JSON.stringify(data.data.refreshToken);
 	            var scope = JSON.stringify(data.data.scope);
 	            var unionid = JSON.stringify(data.data.unionid);
+	            var headimgurl = JSON.stringify(data.data.headimgurl);
+	            var nickname = JSON.stringify(data.data.nickname);
 	            storage["openid"]= openid;
 	            storage["accessToken"]= accessToken;
 	            storage["expiresIn"]= expiresIn;
 	            storage["refreshToken"]= refreshToken;
 	            storage["scope"]= scope;
 	            storage["unionid"]= unionid;
+	            storage["headimgurl"]= headimgurl;
+	            storage["nickname"]= nickname;
 	        }
 	        window.location.href = "system/wxfist.html";
 				}

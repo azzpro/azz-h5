@@ -31,7 +31,7 @@
   <div class="top"><h1><img src="../../images/logo.png" alt=""></h1></div>
   <div class="login-k signinpanel">
     <h4>未关联平台账号，请先绑定</h4>
-    <div class="wx-ico" align="center"><img src="../../images/ewma.jpg" width="60" height="60" alt="" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;夏重军</div>
+    <div class="wx-ico" align="center"><img id="headimgurl" src="" width="60" height="60" alt="" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="nickname"></span></div>
     <div class="als">
     	<button class="btn btn-lan btn-block" id="submit">绑定已有账号</button>
     	<button class="btn btn-lan btn-block" id="submit">注册会员账号</button>
@@ -47,52 +47,12 @@
 <script src="../../js/jquery.validate.min.js"></script>
 <script src="../../js/messages_zh.js"></script>
 <script>
-var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
-var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
-var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
-var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
-var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
-var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
+var headimgurl = JSON.parse(localStorage.getItem('headimgurl'));
+var nickname = JSON.parse(localStorage.getItem('nickname'));
 $(document).ready(function() {
-
+	$("#nickname").html(nickname);
+	$("#headimgurl").attr("src",headimgurl);
 });
-
-function initValidate() {
-   	// Basic Form
-   	$("#basicForm").validate({
-   		rules: {
-   			username: {
-   				required: true,
-   				//errorUsername: true,
-   			},
-   			password: {
-   				required: true,
-   				//errorPassword: true,
-   			},
-   			yzm: {
-   				required: true,
-   				validCode: true,
-   			},
-   		},
-   		messages: {
-   			username: {
-   				required: "请输入用户名",
-   			},
-   			password: {
-   				required: "请输入密码",
-   			},
-   			yzm: {
-   				required: "请输入验证码",
-   			},
-   		},
-   		highlight: function(element) {
-   			$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-   		},
-   		success: function(element) {
-   			$(element).closest('.form-group').removeClass('has-error');
-   		}
-   	});
-}
 </script>
 </body>
 </html>
