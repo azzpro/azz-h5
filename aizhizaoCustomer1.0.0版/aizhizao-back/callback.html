@@ -53,13 +53,30 @@ function winxincallback() {
 		url: ulrTo+"/azz/api/wechat/callback",
 		data: {'code': code,'state': state},
 		success: function(data) {
-			var phone = /*data.data.phone*/'13243735177';
-			var password = /*data.data.password*/'123456';
+			var phone = data.data.phone;
+			var password = data.data.password;
 			if (data.code == 0) {
 				if(data.data.code == '0000' && password!=null && phone!=null){
 					login(phone,password)
 				}else{
-					
+					if(!window.localStorage){
+            return false;
+	        }else{
+	            var storage=window.localStorage;
+	            var openid = JSON.stringify(data.data.openid);
+	            var accessToken = JSON.stringify(data.data.accessToken)
+	            var expiresIn = JSON.stringify(data.data.expiresIn);
+	            var refreshToken = JSON.stringify(data.data.refreshToken);
+	            var scope = JSON.stringify(data.data.scope);
+	            var unionid = JSON.stringify(data.data.unionid);
+	            storage["openid"]= openid;
+	            storage["accessToken"]= accessToken;
+	            storage["expiresIn"]= expiresIn;
+	            storage["refreshToken"]= refreshToken;
+	            storage["scope"]= scope;
+	            storage["unionid"]= unionid;
+	        }
+	        window.location.href = "system/wxfist.html";
 				}
 			} else {
 				alert(data.msg)
