@@ -4,6 +4,27 @@
    var refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
    var scope = JSON.parse(localStorage.getItem('scope'));
    var unionid = JSON.parse(localStorage.getItem('unionid'));
+   
+   // 获取url路径参数
+	function getRequest() {
+	    var d = new Object();
+	    var g = window.location.href;
+	    var b = g.split("?");
+	    if (b.length > 1) {
+	        var a = b[1].split("&");
+	        for (var c = 0; c < a.length; c++) {
+	            var f = a[c].indexOf("=");
+	            if (f == -1) {
+	                continue;
+	            }
+	            var e = a[c].substring(0, f);
+	            var j = a[c].substring(f + 1);
+	            j = decodeURIComponent(j);
+	            d[e] = j;
+	        }
+	    }
+	    return d;
+	}
    $(function() {
 	   	initValidate();
 	   	$("#registerBtn").bind("click", submitForm);
@@ -56,7 +77,7 @@
 		           if (param.redirct) {
 		        	   window.location.href = param.redirct;
 		           } else {
-		        	   window.location.href = "./main.html#!home/home.html";
+		        	   window.location.href = "../main.html#!home/home.html";
 		           }
 		      }, 100);
    			} else {

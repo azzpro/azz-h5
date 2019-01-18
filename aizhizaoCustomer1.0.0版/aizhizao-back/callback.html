@@ -92,7 +92,7 @@ function winxincallback() {
 function login(phone,password) {
 	$.ajax({
 		type: "POST",
-		url: ulrTo+"/azz/api/client/login",
+		url: ulrTo+"/azz/api/wechat/loginAndBind",
 		data: {'phoneNumber': phone,'password': password},
 		success: function(data) {
 			if (data.code == 0) {
