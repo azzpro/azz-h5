@@ -77,7 +77,7 @@
 		           if (param.redirct) {
 		        	   window.location.href = param.redirct;
 		           } else {
-		        	   window.location.href = "../main.html#!home/home.html";
+		        	   window.location.href = "./main.html#!home/home.html";
 		           }
 		      }, 100);
    			} else {

@@ -81,7 +81,7 @@
 	            storage["sessionId"]= sessionId;
 	        }
 					
-					setTimeout(function() {
+			setTimeout(function() {
 		           var param = getRequest();
 		           if (param.redirct) {
 		        	   window.location.href = param.redirct;
