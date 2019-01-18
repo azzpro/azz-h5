@@ -54,7 +54,12 @@ function winxincallback() {
 		data: {'code': code,'state': state},
 		success: function(data) {
 			if (data.code == 0) {
-				
+				debugger
+				/*if(){
+					
+				}else{
+					
+				}*/
 			} else {
 				alert(data.msg)
 			}
@@ -62,6 +67,53 @@ function winxincallback() {
 	});
 }
 
+function login() {
+
+	var validFlag = $('#basicForm').valid();
+	if(!validFlag) {
+		return;
+	}
+	var uname = $(".uname").val();
+	var pword = $(".pword").val();
+	$.ajax({
+		type: "POST",
+		url: ulrTo+"/azz/api/client/login",
+		data: {'phoneNumber': uname,'password': pword},
+		success: function(data) {
+			if (data.code == 0) {
+        if(!window.localStorage){
+            return false;
+        }else{
+            var storage=window.localStorage;
+            var clientUserInfo = JSON.stringify(data.data.clientUserInfo);
+            var clientType = JSON.stringify(data.data.clientUserInfo.clientType)
+            var menus = JSON.stringify(data.data.menus);
+            var clientUserPermissions = JSON.stringify(data.data.clientUserPermissions);
+            var sessionId = JSON.stringify(data.data.sessionId);
+            storage["clientUserInfo"]= clientUserInfo;
+            storage["menus"]= menus;
+            storage["clientType"]= clientType;
+            storage["clientUserPermissions"]= clientUserPermissions;
+            storage["sessionId"]= sessionId;
+        }
+				
+				setTimeout(function() {
+	           var param = getRequest();
+	           if (param.redirct) {
+	        	   window.location.href = param.redirct;
+	           } else {
+	        	   window.location.href = "./main.html#!home/home.html";
+	           }
+	      }, 100);
+				
+			} else {
+				$(".passwordhtml").html(data.msg);
+				$('.form-group2').removeClass('has-success').addClass('has-error');
+			  $('.form-group3').removeClass('has-success').addClass('has-error');
+			}
+		}
+	});
+}
 
 </script>
 </body>
