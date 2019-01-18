@@ -47,27 +47,12 @@
 <script src="../../js/jquery.validate.min.js"></script>
 <script src="../../js/messages_zh.js"></script>
 <script>
-// 获取url路径参数
-function getRequest() {
-    var d = new Object();
-    var g = window.location.href;
-    var b = g.split("?");
-    if (b.length > 1) {
-        var a = b[1].split("&");
-        for (var c = 0; c < a.length; c++) {
-            var f = a[c].indexOf("=");
-            if (f == -1) {
-                continue;
-            }
-            var e = a[c].substring(0, f);
-            var j = a[c].substring(f + 1);
-            j = decodeURIComponent(j);
-            d[e] = j;
-        }
-    }
-    return d;
-}
-
+var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
+var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
+var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
+var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
+var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
+var moduleCodemodel = JSON.parse(localStorage.getItem('moduleCodemodel'));
 $(document).ready(function() {
 
 });
