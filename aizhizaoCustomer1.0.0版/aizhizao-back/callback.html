@@ -45,9 +45,9 @@ var param = getRequest();
 var code = param["code"];
 var state = param["state"];
 $(document).ready(function() {
-	
+	winxincallback();
 });
-function winxinlogin() {
+function winxincallback() {
 	$.ajax({
 		type: "POST",
 		url: ulrTo+"/azz/api/wechat/callback",
