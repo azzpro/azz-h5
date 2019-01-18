@@ -9,7 +9,9 @@ body{ background:#eff3f9; }
 .login-k h4{ text-align: center; padding-top: 40px; }
 .signinpanel .userlogin{width: 80%; margin:30px auto 0; border: none; padding: 0; border-radius: 0;}
 .signinpanel .form-control{ margin-top: 20px; }
-.signinpanel p a{ text-align: center; display: block; margin-top: 5px; color: #00a0e9; }
+.signinpanel p a{ margin-top: 5px; color: #00a0e9; }
+.signinpanel p.wjmm{padding-top: 5px;  text-align: center;}
+.signinpanel p.wjmm span{ color: #999; padding: 0 5px;}
 .btn-lan{ background-color: #00a0e9; border-color: #00a0e9; color: #fff;}
 .btn-lan:hover{ color: #fff; }
 .yzm-k{ width: 25%;}

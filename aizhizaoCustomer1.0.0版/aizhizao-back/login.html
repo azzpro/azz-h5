@@ -35,7 +35,7 @@
       <p class="form-group form-group3"><input type="password" name="password" class="form-control pword" placeholder="密码"><label for="password" class="error passwordhtml"></label></p>
       <p class="form-group"><span class="yzm-k pull-right"><span id="code" class="mycode"></span></span><input type="text" class="form-control yzm" name="yzm" style=" width:70%;" id="inputCode" placeholder="验证码"></p>
       <button class="btn btn-lan btn-block" id="submit">登录</button>
-       <!--<p><a href="system/back-password.html">忘记密码?</a></p>-->
+      <p class="wjmm"><a href="javascript:;" id="winxinlogin">微信扫码登录</a> <!--<span>|</span> <a href="system/back-password.html">忘记密码?</a>--></p>
                     
     </div>
     </form>
@@ -51,8 +51,6 @@
 <script src="../js/messages_zh.js"></script>
 <!--<script src="BIBA-hybrid/js/custom.js"></script>-->
 <script>
-function login() {
-
 // 获取url路径参数
 function getRequest() {
     var d = new Object();
@@ -73,7 +71,8 @@ function getRequest() {
     }
     return d;
 }
-	
+function login() {
+
 	var validFlag = $('#basicForm').valid();
 	if(!validFlag) {
 		return;
@@ -120,6 +119,20 @@ function getRequest() {
 	});
 }
 
+function winxinlogin() {
+	$.ajax({
+		type: "POST",
+		url: ulrTo+"/azz/api/wechat/goWxScanPage",
+		success: function(data) {
+			if (data.code == 0) {
+        
+			} else {
+				
+			}
+		}
+	});
+}
+
 function func() {
 	return false;
 }
@@ -127,6 +140,7 @@ function func() {
 $(document).ready(function() {
 	localStorage.removeItem('merchantCodeLogin');
 	$("#submit").bind("click", login);
+	$("#winxinlogin").bind("click", winxinlogin);
   initValidate();
   $.validator.addMethod("validCode", function(value, element, params) {
 			return value.toLowerCase() == c.myCode.strCode.toLowerCase();
