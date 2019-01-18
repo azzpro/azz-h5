@@ -125,9 +125,10 @@ function winxinlogin() {
 		url: ulrTo+"/azz/api/wechat/goWxScanPage",
 		success: function(data) {
 			if (data.code == 0) {
-        
+				var urladd = data.data.url;
+        window.location.href = urladd;
 			} else {
-				
+				alert(data.msg)
 			}
 		}
 	});
