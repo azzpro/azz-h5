@@ -53,8 +53,6 @@ function winxincallback() {
 		url: ulrTo+"/azz/api/wechat/callback",
 		data: {'code': code,'state': state},
 		success: function(data) {
-			var phone = data.data.phone;
-			var password = data.data.password;
 			if (data.code == 0) {
 				if(data.data.clientUserInfo != undefined){
 					if(!window.localStorage){
