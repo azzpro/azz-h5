@@ -22,9 +22,47 @@
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/messages_zh.js"></script>
 <script>
+function getRequest() {
+    var d = new Object();
+    var g = window.location.href;
+    var b = g.split("?");
+    if (b.length > 1) {
+        var a = b[1].split("&");
+        for (var c = 0; c < a.length; c++) {
+            var f = a[c].indexOf("=");
+            if (f == -1) {
+                continue;
+            }
+            var e = a[c].substring(0, f);
+            var j = a[c].substring(f + 1);
+            j = decodeURIComponent(j);
+            d[e] = j;
+        }
+    }
+    return d;
+}
+var param = getRequest();
+var code = param["code"];
+var state = param["state"];
 $(document).ready(function() {
-
+	
 });
+function winxinlogin() {
+	$.ajax({
+		type: "POST",
+		url: ulrTo+"/azz/api/wechat/callback",
+		data: {'code': code,'state': state},
+		success: function(data) {
+			if (data.code == 0) {
+				
+			} else {
+				alert(data.msg)
+			}
+		}
+	});
+}
+
+
 </script>
 </body>
 </html>
