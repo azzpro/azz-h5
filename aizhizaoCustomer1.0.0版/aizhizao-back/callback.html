@@ -112,14 +112,8 @@ function login(phone,password) {
             storage["sessionId"]= sessionId;
         }
 				
-				setTimeout(function() {
-	           var param = getRequest();
-	           if (param.redirct) {
-	        	   window.location.href = param.redirct;
-	           } else {
-	        	   window.location.href = "./main.html#!home/home.html";
-	           }
-	      }, 100);
+				window.location.href = "./main.html#!home/home.html";
+				return;
 				
 			} else {
 				alert(data.msg)
