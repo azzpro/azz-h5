@@ -52,7 +52,7 @@
 	            storage["sessionId"]= sessionId;
 	        }
 					
-			window.location.href = "./main.html#!home/home.html";
+			window.location.href = "../main.html#!home/home.html";
 			return;
 			
    			} else {
