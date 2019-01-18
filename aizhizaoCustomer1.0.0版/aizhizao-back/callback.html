@@ -53,13 +53,14 @@ function winxincallback() {
 		url: ulrTo+"/azz/api/wechat/callback",
 		data: {'code': code,'state': state},
 		success: function(data) {
+			var phone = /*data.data.phone*/'13243735177';
+			var password = /*data.data.password*/'123456';
 			if (data.code == 0) {
-				debugger
-				/*if(){
-					
+				if(data.data.code == '0000' && password!=null && phone!=null){
+					login(phone,password)
 				}else{
 					
-				}*/
+				}
 			} else {
 				alert(data.msg)
 			}
@@ -67,18 +68,11 @@ function winxincallback() {
 	});
 }
 
-function login() {
-
-	var validFlag = $('#basicForm').valid();
-	if(!validFlag) {
-		return;
-	}
-	var uname = $(".uname").val();
-	var pword = $(".pword").val();
+function login(phone,password) {
 	$.ajax({
 		type: "POST",
 		url: ulrTo+"/azz/api/client/login",
-		data: {'phoneNumber': uname,'password': pword},
+		data: {'phoneNumber': phone,'password': password},
 		success: function(data) {
 			if (data.code == 0) {
         if(!window.localStorage){
@@ -107,9 +101,7 @@ function login() {
 	      }, 100);
 				
 			} else {
-				$(".passwordhtml").html(data.msg);
-				$('.form-group2').removeClass('has-success').addClass('has-error');
-			  $('.form-group3').removeClass('has-success').addClass('has-error');
+				alert(data.msg)
 			}
 		}
 	});
