@@ -4,6 +4,8 @@
    var refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
    var scope = JSON.parse(localStorage.getItem('scope'));
    var unionid = JSON.parse(localStorage.getItem('unionid'));
+   var headimgurl = JSON.parse(localStorage.getItem('headimgurl'));
+   var nickname = JSON.parse(localStorage.getItem('nickname'));
    var smsCode = '';
 
    $(function() {
@@ -39,6 +41,8 @@
    		'refreshToken': refreshToken,
    		'scope': scope,
    		'unionid': unionid,
+   		'avatarUrl': headimgurl,
+   		'nickName':nickname
    	};
    	$.ajax({
    		type: "POST",
