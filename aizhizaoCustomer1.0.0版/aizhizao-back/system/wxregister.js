@@ -55,7 +55,7 @@
 	        }else{
 	            var storage=window.localStorage;
 	            var clientUserInfo = JSON.stringify(data.data.clientUserInfo);
-	            var clientType = JSON.stringify(data.data.clientUserInfo.clientType)
+	            var clientType = JSON.stringify(data.data.clientUserInfo.clientType);
 	            var menus = JSON.stringify(data.data.menus);
 	            var clientUserPermissions = JSON.stringify(data.data.clientUserPermissions);
 	            var sessionId = JSON.stringify(data.data.sessionId);
