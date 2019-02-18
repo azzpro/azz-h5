@@ -29,7 +29,7 @@ header{ width: 100%; background: #333;}
 .top{width: 100%; min-width: 1000px; max-width:1360px; margin:0 auto; height: 48px; position: relative; color: #ccc;}
 .topzi{ line-height: 48px; font-size: 16px; padding-left: 30px;}
 .logo{ padding: 20px 0; padding-left: 30px;}
-nav{font-size: 16px; font-weight: bold; right: 320px; line-height: 48px; position: absolute; top: 0;}
+nav{font-size: 16px; font-weight: bold; right: 380px; line-height: 48px; position: absolute; top: 0;}
 nav a{ margin: 0 20px; color: #ccc; font-weight: normal;}
 nav a:hover,nav a.bg{ color: #30b8e2;}
 .top-right{ font-size: 16px; top: 0; right: 30px; position: absolute; line-height: 48px;}
