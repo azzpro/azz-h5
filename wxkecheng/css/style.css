@@ -1,0 +1,27 @@
+h1,h2,h3,h4,h5,h6{ font-weight:normal;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+audio,canvas,video{display:inline-block;*display: inline;*zoom:1;}
+a{ color: #333; text-decoration: none; }
+input,select,textarea,button{font-size:100%;padding:0;margin:0; font-family:Arial,\5FAE\8F6F\96C5\9ED1; outline:none;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0; vertical-align:top;}
+img,embed{max-width:100%;height:auto;}
+ul,li{list-style:none; padding: 0; margin: 0; }
+.left{float:left}
+.right{float:right}
+.clear{display:block;clear:both;font-size:0px;height:0px;line-height:0px;width:0px;margin:0px;padding:0px;overflow:hidden}
+.c:after{content:".";display:block;font-size:0;height:0;clear:both;visibility:hidden}
+.c{zoom:1}
+a{color:#333; text-decoration:none;outline: none;blr:expression(this.onFocus=this.blur());}
+.f14{ font-size:14px;}
+select::-ms-expand { display: none; }
+.mt{ margin-top: 20px;}
+.position{ position:relative;}
+button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
+
+.banner{ width: 100%;}
+.banner img{ width: 100%; height: auto;}
+.s-tu{ width: 100%; overflow: hidden;}
+.s-tu li{ float: left; width: 50%;}
+.s-tu li img{ width: 99%;}
+.s-tu li p{ margin-top: 3px;}

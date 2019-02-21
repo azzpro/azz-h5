@@ -319,13 +319,13 @@ Module.define("system.model", function(page, $) {
 				{
 					"title": "单价",
 					"data": "price",
-					"className": "",
+					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
 					"title": "状态",
 					"data": "",
-					"className": "",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
 						switch(row.productStatus) {
@@ -341,7 +341,7 @@ Module.define("system.model", function(page, $) {
 				{
 					"title": "交期",
 					"data": "deliveryDate",
-					"className": "",
+					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
@@ -352,8 +352,8 @@ Module.define("system.model", function(page, $) {
 				},
 				{
 					"title": "操作",
-					"data": "merchantName",
-					"className": "",
+					"data": "",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
 						if (row) {

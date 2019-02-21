@@ -47,10 +47,10 @@ Module.define("system.model", function(page, $) {
 			},
 			dataType: "json", 
 			success: function(data) {
-				if (data.code == 0) {
+				if (data.code == 0000) {
 					$('#myModal').modal('show');
-					var data = data.data;
-					$("#gatewayFORM").attr('action',data.req_url)
+					window.location.href = data.msg;
+					/*$("#gatewayFORM").attr('action',data.req_url)
 					$("input[name='acct_name']").val(data.acct_name);
 					$("input[name='back_url']").val(data.back_url);
 					$("input[name='bank_code']").val(data.bank_code);
@@ -78,8 +78,8 @@ Module.define("system.model", function(page, $) {
 					$("input[name='user_id']").val(data.user_id);
 					$("input[name='userreq_ip']").val(data.userreq_ip);
 					$("input[name='valid_order']").val(data.valid_order);
-					$("input[name='version']").val(data.version);
-					document.getElementById("gatewayFORM").submit();
+					$("input[name='version']").val(data.version);*/
+					/*document.getElementById("gatewayFORM").submit();*/
 				} else {
 					alert(data.msg)
 				}
