@@ -49,7 +49,7 @@ Module.define("system.model", function(page, $) {
 			success: function(data) {
 				if (data.code == 0000) {
 					$('#myModal').modal('show');
-					window.location.href = data.msg;
+					window.open(data.msg);
 					/*$("#gatewayFORM").attr('action',data.req_url)
 					$("input[name='acct_name']").val(data.acct_name);
 					$("input[name='back_url']").val(data.back_url);
