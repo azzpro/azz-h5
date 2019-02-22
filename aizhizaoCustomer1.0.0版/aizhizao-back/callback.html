@@ -54,7 +54,7 @@ function winxincallback() {
 		data: {'code': code,'state': state},
 		success: function(data) {
 			if (data.code == 0) {
-				if(data.data.clientUserInfo != undefined){
+			if(data.data.clientUserInfo != undefined){
 					if(!window.localStorage){
 	            return false;
 	        }else{

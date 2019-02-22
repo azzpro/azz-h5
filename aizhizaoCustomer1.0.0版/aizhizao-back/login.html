@@ -35,7 +35,7 @@
       <p class="form-group form-group3"><input type="password" name="password" class="form-control pword" placeholder="密码"><label for="password" class="error passwordhtml"></label></p>
       <p class="form-group"><span class="yzm-k pull-right"><span id="code" class="mycode"></span></span><input type="text" class="form-control yzm" name="yzm" style=" width:70%;" id="inputCode" placeholder="验证码"></p>
       <button class="btn btn-lan btn-block" id="submit">登录</button>
-      <p class="wjmm"><a href="javascript:;" id="winxinlogin">微信扫码登录</a> <!--<span>|</span> <a href="system/back-password.html">忘记密码?</a>--></p>
+      <p class="wjmm"><a href="javascript:;" id="winxinlogin">微信扫码登录</a><span>|</span><a href="javascript:;" id="QQlogin">QQ扫码登录</a> <!--<span>|</span> <a href="system/back-password.html">忘记密码?</a>--></p>
                     
     </div>
     </form>
@@ -134,6 +134,21 @@ function winxinlogin() {
 	});
 }
 
+function QQlogin() {
+	$.ajax({
+		type: "POST",
+		url: ulrTo+"/azz/api/qq/goQQScanPage",
+		success: function(data) {
+			if (data.code == 0) {
+				var urladd = data.data.url;
+        window.location.href = urladd;
+			} else {
+				alert(data.msg)
+			}
+		}
+	});
+}
+
 function func() {
 	return false;
 }
@@ -142,6 +157,7 @@ $(document).ready(function() {
 	localStorage.removeItem('merchantCodeLogin');
 	$("#submit").bind("click", login);
 	$("#winxinlogin").bind("click", winxinlogin);
+	$("#QQlogin").bind("click", QQlogin);
   initValidate();
   $.validator.addMethod("validCode", function(value, element, params) {
 			return value.toLowerCase() == c.myCode.strCode.toLowerCase();
