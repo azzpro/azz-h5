@@ -50,7 +50,7 @@ $(document).ready(function() {
 function winxincallback() {
 	$.ajax({
 		type: "POST",
-		url: ulrTo+"/azz/api/wechat/callback",
+		url: ulrTo+"/azz/api/qq/callback",
 		data: {'code': code,'state': state},
 		success: function(data) {
 			if (data.code == 0) {
@@ -81,17 +81,11 @@ function winxincallback() {
 	            var openid = JSON.stringify(data.data.openid);
 	            var accessToken = JSON.stringify(data.data.accessToken)
 	            var expiresIn = JSON.stringify(data.data.expiresIn);
-	            var refreshToken = JSON.stringify(data.data.refreshToken);
-	            var scope = JSON.stringify(data.data.scope);
-	            var unionid = JSON.stringify(data.data.unionid);
 	            var headimgurl = JSON.stringify(data.data.headimgurl);
 	            var nickname = JSON.stringify(data.data.nickname);
 	            storage["openid"]= openid;
 	            storage["accessToken"]= accessToken;
 	            storage["expiresIn"]= expiresIn;
-	            storage["refreshToken"]= refreshToken;
-	            storage["scope"]= scope;
-	            storage["unionid"]= unionid;
 	            storage["headimgurl"]= headimgurl;
 	            storage["nickname"]= nickname;
 	        }
