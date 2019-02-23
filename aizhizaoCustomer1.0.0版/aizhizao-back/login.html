@@ -141,8 +141,8 @@ function QQlogin() {
 		url: ulrTo+"/azz/api/qq/goQQScanPage",
 		success: function(data) {
 			if (data.code == 0) {
-				/*var urladd = data.data.url;
-        window.location.href = urladd;*/
+				var urladd = data.data.url;
+        window.location.href = urladd;
 			} else {
 				alert(data.msg)
 			}
