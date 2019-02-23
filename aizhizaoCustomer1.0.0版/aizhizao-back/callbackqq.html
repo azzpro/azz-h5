@@ -46,7 +46,7 @@ var access_token = param["access_token"];
 var expires_in = param["expires_in"];
 $(document).ready(function() {
 	var path = "https://graph.qq.com/oauth2.0/me?";
-        var queryParams = ['access_token='+access_token, 'callback=winxincallback'];
+        var queryParams = ['access_token='+access_token, 'callback=callback'];
         var query = queryParams.join('&');
         var url = path + query;
         openImplict(url);
@@ -58,8 +58,9 @@ function openImplict(url){
             document.body.appendChild(script);        
 }
 
-function winxincallback(obj) {
+function callback(obj) {
 	var openid = obj.openid;
+	$("#openid").text(openid);
 	$.ajax({
 		type: "POST",
 		url: ulrTo+"/azz/api/qq/callback",
