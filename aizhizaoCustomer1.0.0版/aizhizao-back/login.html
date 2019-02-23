@@ -49,11 +49,7 @@
 <!-- 表单验证 -->
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/messages_zh.js"></script>
-<script type="text/javascript"  charset="utf-8"
-    src="http://connect.qq.com/qc_jssdk.js"
-    data-appid="101553764"
-    data-redirecturi="http://c.izz2025.com/callbackqq.html"
-></script>
+
 <!--<script src="BIBA-hybrid/js/custom.js"></script>-->
 <script>
 // 获取url路径参数
@@ -139,33 +135,30 @@ function winxinlogin() {
 	});
 }
 
-/*function QQlogin() {
+function QQlogin() {
 	$.ajax({
 		type: "POST",
 		url: ulrTo+"/azz/api/qq/goQQScanPage",
 		success: function(data) {
 			if (data.code == 0) {
-				var urladd = data.data.url;
-        window.location.href = urladd;
+				/*var urladd = data.data.url;
+        window.location.href = urladd;*/
 			} else {
 				alert(data.msg)
 			}
 		}
 	});
-}*/
+}
 
 function func() {
 	return false;
 }
 
 $(document).ready(function() {
-	QC.Login({
-	       btnId:"QQlogin",	//插入按钮的节点id
-	});
 	localStorage.removeItem('merchantCodeLogin');
 	$("#submit").bind("click", login);
 	$("#winxinlogin").bind("click", winxinlogin);
-	/*$("#QQlogin").bind("click", QQlogin);*/
+	$("#QQlogin").bind("click", QQlogin);
   initValidate();
   $.validator.addMethod("validCode", function(value, element, params) {
 			return value.toLowerCase() == c.myCode.strCode.toLowerCase();
