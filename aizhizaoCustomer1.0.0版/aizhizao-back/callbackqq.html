@@ -13,7 +13,7 @@
 </head>
 
 <body>
-
+<span id="openid" style="display: none;"></span>
 <script src="../js/jquery-1.11.1.min.js"></script>
 <script src="../js/visitip.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -21,7 +21,6 @@
 <!-- 表单验证 -->
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/messages_zh.js"></script>
-<script type="text/javascript" src="//connect.qq.com/qc_jssdk.js" charset="utf-8" data-callback="true"></script>
 <script>
 function getRequest() {
     var d = new Object();
@@ -47,7 +46,7 @@ var access_token = param["access_token"];
 var expires_in = param["expires_in"];
 $(document).ready(function() {
 	var path = "https://graph.qq.com/oauth2.0/me?";
-        var queryParams = ['access_token='+access_token, 'callback=callback'];
+        var queryParams = ['access_token='+access_token, 'callback=winxincallback'];
         var query = queryParams.join('&');
         var url = path + query;
         openImplict(url);
@@ -58,24 +57,13 @@ function openImplict(url){
             script.src = url;
             document.body.appendChild(script);        
 }
-//获得openid的回调
-function callback(obj)
-        {
-           var openid = obj.openid;
-           $("#openid").text(openid);
-           
-           //跳转服务端登录url
-           //var resulturl = "@{openapi.QQs.login_result()}"; 
-           var accessToken = $("#accessToken").text();
-           console.log(openid)
-           //向服务端传输access_token及openid参数
-           //document.location.href=resulturl + "?access_token=" + accessToken + "&openid=" + openid;
-        }
-function winxincallback() {
+
+function winxincallback(obj) {
+	var openid = obj.openid;
 	$.ajax({
 		type: "POST",
 		url: ulrTo+"/azz/api/qq/callback",
-		data: {'access_token': expires_in,'expires_in': expires_in},
+		data: {'access_token': access_token,'openid': openid},
 		success: function(data) {
 			if (data.code == 0) {
 				if(data.data.clientUserInfo != undefined){
