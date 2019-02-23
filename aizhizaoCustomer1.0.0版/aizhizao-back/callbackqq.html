@@ -21,6 +21,7 @@
 <!-- 表单验证 -->
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/messages_zh.js"></script>
+<script type="text/javascript" src="//connect.qq.com/qc_jssdk.js" charset="utf-8" data-callback="true"></script>
 <script>
 function getRequest() {
     var d = new Object();
@@ -42,8 +43,8 @@ function getRequest() {
     return d;
 }
 var param = getRequest();
-var code = param["code"];
-var state = param["state"];
+var access_token = param["access_token"];
+var expires_in = param["expires_in"];
 $(document).ready(function() {
 	winxincallback();
 });
@@ -51,7 +52,7 @@ function winxincallback() {
 	$.ajax({
 		type: "POST",
 		url: ulrTo+"/azz/api/qq/callback",
-		data: {'code': code,'state': state},
+		data: {'access_token': expires_in,'expires_in': expires_in},
 		success: function(data) {
 			if (data.code == 0) {
 				if(data.data.clientUserInfo != undefined){
