@@ -49,7 +49,6 @@
 <!-- 表单验证 -->
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/messages_zh.js"></script>
-
 <!--<script src="BIBA-hybrid/js/custom.js"></script>-->
 <script>
 // 获取url路径参数
@@ -136,18 +135,14 @@ function winxinlogin() {
 }
 
 function QQlogin() {
-	$.ajax({
-		type: "POST",
-		url: ulrTo+"/azz/api/qq/goQQScanPage",
-		success: function(data) {
-			if (data.code == 0) {
-				var urladd = data.data.url;
-        window.location.href = urladd;
-			} else {
-				alert(data.msg)
-			}
-		}
-	});
+	var path = 'https://graph.qq.com/oauth2.0/authorize?';
+        var queryParams = ['client_id=' + 101553764,
+                           'redirect_uri=' + 'http://c.izz2025.com/callbackqq.html',
+                           'scope=' + 'get_user_info,list_album,upload_pic,add_feeds,do_like','response_type=token'];
+
+        var query = queryParams.join('&');
+        var url = path + query;
+        window.location.href= url;
 }
 
 function func() {
