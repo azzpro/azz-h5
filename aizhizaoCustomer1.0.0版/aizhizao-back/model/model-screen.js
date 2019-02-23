@@ -276,11 +276,12 @@ Module.define("system.model", function(page, $) {
 							for(var i = 0;i<rows.length;i++){
 							var assortmentCode = rows[i].assortmentCode;
 							var assortmentName = rows[i].assortmentName;
+							var assortmentPicUrl = rows[i].assortmentPicUrl;
 							var assortmentTop = rows[i].assortmentTop + 1;
 							if(assortmentTop == 3){
-								li += "<div class='col-xs-2'><a class='nodecoration' href='javascript:;' onclick=\"system.model.screen2(\'" + assortmentCode + "','" + assortmentTop + "','" + assortmentName + "\');\"><img src='../images/ewma.jpg' width='100%' height='80px' alt='' /><div class='faan'>"+ assortmentName +"</div></a></div>";
+								li += "<div class='col-xs-2'><a class='nodecoration' href='javascript:;' onclick=\"system.model.screen2(\'" + assortmentCode + "','" + assortmentTop + "','" + assortmentName + "\');\"><img src='" + assortmentPicUrl + "' width='100%' height='80px' alt='' /><div class='faan'>"+ assortmentName +"</div></a></div>";
 							}else{
-								li += "<div class='col-xs-2'><a class='nodecoration' href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode + "','" + assortmentTop + "','" + assortmentName + "\');\"><img src='../images/ewma.jpg' width='100%' height='80px' alt='' /><div class='faan'>"+ assortmentName +"</div></a></div>";
+								li += "<div class='col-xs-2'><a class='nodecoration' href='javascript:;' onclick=\"system.model.screen(\'" + assortmentCode + "','" + assortmentTop + "','" + assortmentName + "\');\"><img src='" + assortmentPicUrl + "' width='100%' height='80px' alt='' /><div class='faan'>"+ assortmentName +"</div></a></div>";
 							}
 						}
 				    }
