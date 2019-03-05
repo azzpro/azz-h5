@@ -1,3 +1,4 @@
+.page, .page-group{ background: #fafafa;}
 h1,h2,h3,h4,h5,h6{ font-weight:normal;}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
 audio,canvas,video{display:inline-block;*display: inline;*zoom:1;}
@@ -25,3 +26,61 @@ button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 .s-tu li{ float: left; width: 50%;}
 .s-tu li img{ width: 99%;}
 .s-tu li p{ margin-top: 3px;}
+.menulist{ width: 30%; font-size: .8rem;}
+.menulist li{ text-align: center;}
+.menulist li a{ display: block; line-height: 2.8rem;}
+.menulist li.active a{ color: #4d70e0; border-left: #4d70e0 .2rem solid; background: #fff;}
+.lr-right{ width: 70%; background: #fff; overflow: auto; height: 25.8rem; position: relative;}
+.kc-bt{ width: 63.8%; margin: 0 auto; font-size: .8rem; line-height: 2.8rem; background: #fff; position: fixed; top: 0; right: 0%;}
+.kc-bt span{ float: right; font-size: .6rem; color: #999; margin-right: 1rem;}
+.bt-k{ width: 100%; height: 2.8rem;}
+.kc-list{ width: 82%; margin: 0 auto;}
+.kc-list li{ height: 6rem; background: #8d8d8d; margin-bottom: .3rem;}
+.kc-list li a{ display: block; height: 6rem;}
+.soutop{ background: #fff; width: 100%; height: 5rem; position: fixed; top: 0; left: 0;}
+.soutopgao{ height: 5rem;}
+.ssk{ width: 96%; margin: 0 auto; padding-top: .8rem;}
+.ssk input{ background: url(../images/sou.png) no-repeat #f7f7f7 .8rem center; background-size:8%; border: #f7f7f7 1px solid; width: 100%; height: 2rem; border-radius: 1rem; padding-left: 2.5rem; font-size: .7rem;}
+.sele-ds{ width: 96%; margin: 0 auto; padding-top: .3rem;}
+.sele-ds a{ float: left; margin-right: .8rem; font-size: .7rem; padding: .2rem .8rem;}
+.sele-ds a span{ display: none;}
+.sele-ds a.curr{ background: #f7f7f7; border-radius: .8rem;}
+.sele-ds a.curr span{ display: block; float: right; background: url(../images/ico1.png) no-repeat; background-size: 80%; margin-left: .2rem; margin-top: .25rem; width: 9px; height: 12px;}
+.sele-ds a.curr span.icos{ background: url(../images/ico2.png) no-repeat; background-size: 80%;}
+.curricuList{ width: 100%; margin: 0 auto;}
+.curricuList li{ width: 100%; overflow: hidden; margin-top: .5rem; background: #fff; border-radius: .6rem;}
+.curricuList li a{ display: block;}
+.curricuList li img{ width: 35%; height:6.2rem;}
+.curricuList li .right{ width: 62%; padding: .4rem 2% 0 0;}
+.curricuList li .right h3{ margin: 0; font-size: .75rem; height: 4rem;}
+.timejg{ text-align: right; font-size: .9rem; color: #4d70e0; font-weight: bold;}
+.timejg span{ float: left; font-weight: normal; font-size: .7rem; background: #4d70e0; border-radius: .8rem; color: #fff; padding: .2rem .6rem;}
+.currname{ background: #fff; width: 100%; position: relative; padding: .8rem 0;}
+.currname h3{ font-size: 1rem; color: #333; padding-left: 1.3rem; margin: 0; font-weight: bold; margin-bottom: .3rem;}
+.currname p{ font-size: .7rem; color: #999; padding-left: 1.3rem; margin: 0;}
+.icon-share{ position: absolute; right: 2rem; top: 2.5rem; color: #4d70e0; font-size: 1.5rem; display: block;}
+.bar .cartico{ position: fixed; bottom: .6rem; left: .5rem; font-size:2.6rem; font-weight: bold; color: #4d70e0;}
+.tabs .tab{ font-size: .7rem; height: 17.5rem; overflow: auto; padding: 0 .8rem;}
+.jiage{ position: fixed; left: 4rem; bottom: .2rem; font-size: .7rem;}
+.jiage h4{ margin: 0; font-weight: bold; line-height: .8rem;}
+.jiage h4 span{ font-size: .9rem;}
+.baoming{ line-height: 2.5rem; border-left: #eee 1px solid; width: 6rem; color: #4d70e0; float: right; text-align: center;}
+.signuptop{ background: #fff; width: 100%; padding: .4rem 0 .6rem; border-bottom: #f7f7f7 1px solid; position: fixed; top: 0; left: 0;}
+.signuptopgao{ height: 2.8rem;}
+.kelist{ width: 96%; margin: 0 auto;}
+.kelist li{ padding: .7rem 0; border-bottom: #cacaca 1px solid;}
+.kelist li h4{ margin: 0; font-size: .8rem;}
+.kelist li h4 .hot{ width: 1rem; height: auto;}
+.kelist li p{ margin: 0; font-size: .5rem; color: #999;}
+.kelist li .addpic{ font-size: .65rem; margin-top: .5rem;}
+.kelist li .addpic .icotu{ width: .8rem; height: auto;}
+.kelist li .cykc{ float: right; margin-top: .8rem;}
+.kelist li .cykc .button.button-big{ font-size: .6rem; height: 1.5rem; line-height: 1.5rem; color: #4d70e0; border-color: #4d70e0;}
+.perfecttop{ background: #fff; padding: .8rem 1.5rem; height: 5rem; width: 100%; font-size: .7rem;}
+.navigation{ float: right;}
+.navigation .button.button-big{ font-size: .8rem; height: 2rem; line-height: 2rem; color: #4d70e0; border-color: #4d70e0;}
+.navigation img{ width: 1rem; margin-top: .4rem;}
+.list-block{ margin: .6rem 0 0;}
+.item-content{ font-size: .7rem;}
+.list-block .item-content input{ font-size: .7rem;}
+.cart{ color: #4d70e0; display: block; text-align: center; line-height: 2.5rem; font-weight: bold;}
