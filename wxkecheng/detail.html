@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>订单详情-爱智造产业研究学院</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="page-group">
+			<div class="page">
+			  <nav class="bar bar-tab">
+			  	<a class="caidan" href="#">关闭订单</a>  <a class="caidan" href="#">支付订单</a>
+			  </nav>
+			  <div class="content">
+			  	<div class="ztd"><img src="images/ico6.png" alt="" /> 待确认</div>
+			  	<div class="rxx" id="alert-text">
+			  		<i class="icon icon-right"></i>
+			  		报名姓名：韩鼎君<br />
+			  		联系电话：13254885694<br />
+			  		任职公司：13254885694<br />
+			  	</div>
+			  	<div class="rxx">
+			  		<h3><img src="images/ico15.png" alt="" /> 开课编号KC00100-PLC伺服定位控制课程</h3>
+			  		<div class="kecxx c">
+		  				<div class="ketu left"></div>
+		  				<div class="kezi right">
+		  					开课时间：2019年01月01日<br />
+		  					开课课时：50H<br />
+		  					开课人数：37<br />
+		  					开课名称：PLC伺服定位控制课程<br />
+		  					开课编号：KC0010001
+		  				</div>
+		  			</div>
+			  		<div class="dht"><span>实付：1111.11元</span><a href="#"><img src="images/ico4.png" alt="" /> 导航</a></div>
+			  	</div>
+			  	<div class="rxx huis">
+			  		订单编号：KC001000001<br />
+			  		下单时间：2019-01-01 11：11<br />
+			  		支付时间：2019-01-01 11：11
+			  	</div>
+			  </div>
+			</div>
+    </div>
+
+    <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+	<script>
+		$(document).ready(function() {
+			
+		});
+		$(document).on('click','#alert-text',function () {
+        $.alert('<div>报名姓名：韩鼎君</div><div>联系电话：13254885694</div><div>联系邮箱：13254885694</div><div>任职公司：13254885694</div><div>毕业院校：13254885694</div>');
+     });
+	</script>
+	
+  </body>
+</html>

@@ -138,7 +138,7 @@ Module.define("system.payment", function(page, $) {
 						if (row) {
 			            	var html = '<div class="am-btn-toolbar">';
 			            		html += '<div class="am-btn-group am-btn-group-xs">';
-			            		html += '<a href="javascript:;" onclick="system.payment.details(\'' + row.orderNumber + '\');">详情</a>';
+			            		html += '<a href="javascript:;" onclick="system.payment.details(\'' + row.payNumber + '\');">详情</a>';
 			            		html += '&nbsp;&nbsp;<a href="javascript:;" onclick="system.payment.refund(\'' + row.orderNumber + '\');">退款</a>';
 			            		html += '</div>';
 			            		html += '</div>';

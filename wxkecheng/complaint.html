@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>投诉建议-爱智造产业研究学院</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="stylesheet" href="css/sm.min.css">
+<link rel="stylesheet" href="css/sm-extend.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="page-group">
+		<div class="page">
+		  <nav class="bar bar-tab">
+		    <a class="tab-item external" href="index.html">
+		      <span class="icon icon-home"></span>
+		      <span class="tab-label">首页</span>
+		    </a>
+		    <a class="tab-item external" href="recommend.html">
+		      <span class="icon icon-edit"></span>
+		      <span class="tab-label">推荐</span>
+		    </a>
+		    <a class="tab-item external" href="participate.html">
+		      <span class="icon icon-message"></span>
+		      <span class="tab-label">参与</span>
+		    </a>
+		    <a class="tab-item external active" href="me.html">
+		      <span class="icon icon-me"></span>
+		      <span class="tab-label">我的</span>
+		    </a>
+		  </nav>
+		  <div class="content">
+		  	
+		  	<div class="list-block" style="margin: 0;">
+			    <ul>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-name"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label"><span class="hong">*</span> 问题类型</div>
+			            <div class="item-input">
+			              <input type="text" placeholder="请选择类型" id='picker'>
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-name"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label"><span class="hong">*</span> 联系方式</div>
+			            <div class="item-input">
+			              <input type="number" maxlength="11" placeholder="请输入手机号码">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li class="align-top">
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-comment"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label"><span class="hong">*</span> 问题描述</div>
+			            <div class="item-input">
+			              <textarea placeholder="请输入描述"></textarea>
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			    </ul>
+			  </div>
+			  <a href="#" class="external jbpohe">提交</a>
+		  </div>
+		</div>
+  </div>
+  
+	<script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+	<script>
+		$(document).ready(function() {
+			
+		});
+		$("#picker").picker({
+		  toolbarTemplate: '<header class="bar bar-nav">\
+		  <button class="button button-link pull-right close-picker">确定</button>\
+		  <h1 class="title">选择类型</h1>\
+		  </header>',
+		  cols: [
+		    {
+		      textAlign: 'center',
+		      values: ['iPhone 4', 'iPhone 4S', 'iPhone 5', 'iPhone 5S', 'iPhone 6']
+		    }
+		  ]
+		});
+	</script>
+	
+  </body>
+</html>
