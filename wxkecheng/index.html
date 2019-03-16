@@ -55,6 +55,8 @@
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
     
 	<script>
+		var param = getRequest();
+		var code = param["code"];
 		$(document).ready(function() {
 			login();
 		});
@@ -65,7 +67,7 @@
 					cache: false, //禁用缓存   
 					dataType: "json", 
 					data: {
-						'code': '123'
+						'code': code
 					},
 					success: function(data) {
 						if (data.code == 0) {
