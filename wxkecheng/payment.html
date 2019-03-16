@@ -21,10 +21,10 @@
 			  </nav>
 			  <div class="content">
 			  	<div class="perfecttop" style="height: 6rem;">
-			  		<h3>PLC伺服定位控制课程</h3>
-			  		开课编号：KC001000100<br />开课时间：2019-01-01<br />开课地点：龙华一路小区
+			  		<h3 id="name"></h3>
+			  		订单编号：<span id="orderCode"></span><br />开课编号：<span id="startClassCode"></span><br />开课时间：<span id="startClassTime"></span>
 			  	</div>
-			  	<div class="picr"><img src="images/ico6.png" alt="" /> 待支付：9999元</div>
+			  	<div class="picr"><img src="images/ico6.png" alt="" /> 待支付：<span id="price"></span>元</div>
 			  </div>
 			</div>
     </div>
@@ -32,10 +32,37 @@
     <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
+		var param = getRequest();
+		var startClassCode = param["startClassCode"];
+		var applyInfoCode = param["applyInfoCode"];
 		$(document).ready(function() {
-			
+			generatePayOrderInfo()
 		});
+		function generatePayOrderInfo() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/course/order/generatePayOrderInfo",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'startClassCode': startClassCode,
+						'applyInfoCode': applyInfoCode,
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$('#name').html(data.data.courseName);
+							$('#startClassCode').html(data.data.startClassCode);
+							$('#startClassTime').html(data.data.startClassTime);
+							$('#orderCode').html(data.data.orderCode);
+							$('#price').html(data.data.price);
+						} else {
+							$.toast(data.msg);
+						}
+					}
+			});
+		}
 	</script>
 	
   </body>

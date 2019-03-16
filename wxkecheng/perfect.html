@@ -17,23 +17,45 @@
     <div class="page-group">
 			<div class="page">
 			  <nav class="bar bar-tab">
-			    <a class="cart external" href="payment.html">去支付</a>
+			    <a class="cart external" id="Topay">去支付</a>
 			  </nav>
 			  <div class="content">
 			  	<div class="perfecttop">
 			  		<p class="navigation"><a href="javascript:;" class="button button-big button-round external"><img src="images/ico4.png" alt="" /> 导航</a></p>
-			  		开课编号：KC001000100<br />开课时间：2019-01-01<br />开课地点：龙华一路小区
+			  		开课编号：<span class="startClassCode"></span><br />开课时间：<span class="time"></span><br />开课地点：<br /><span class="addre"></span>
 			  	</div>
-			    <div class="list-block" style="display: none;">
+				  <div class="bmxxlist">
+				  	<ul id="bmxxlist">
+				  		
+				  		<!--<li>
+				  			<div class="zixx left">
+				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
+				  			</div>
+				  			<a class="edit right open-eidperson" href="javascript:;">编辑</a>
+				  		</li>-->
+				  	</ul>
+				  	<a href="#" class="addzixx open-person"><span>+</span>新增报名信息</a>
+				  </div>
+				  
+			  </div>
+			</div>
+    </div>
+    
+    <!-- phoe Popup -->
+		<div class="popup popup-person">
+		  <div class="content-block-all">
+		  	<a href="#" class="close-popup close-x">x</a>
+		    <h3 class="tcbt">新增报名信息</h3>
+		    <div class="list-block">
 				    <ul>
 				      <!-- Text inputs -->
 				      <li>
 				        <div class="item-content">
 				          <div class="item-media"><i class="icon icon-form-name"></i></div>
 				          <div class="item-inner">
-				            <div class="item-title label">报名姓名：</div>
+				            <div class="item-title label"><span class="hong">*</span> 报名姓名：</div>
 				            <div class="item-input">
-				              <input type="text" placeholder="请输入报名人的真实姓名">
+				              <input type="text" name="name" placeholder="请输入报名人的真实姓名">
 				            </div>
 				          </div>
 				        </div>
@@ -42,9 +64,9 @@
 				        <div class="item-content">
 				          <div class="item-media"><i class="icon icon-form-email"></i></div>
 				          <div class="item-inner">
-				            <div class="item-title label">联系电话：</div>
+				            <div class="item-title label"><span class="hong">*</span> 联系电话：</div>
 				            <div class="item-input">
-				              <input type="number" maxlength="11" placeholder="请输入联系手机号码">
+				              <input type="number" name="phoe" maxlength="11" placeholder="请输入联系手机号码">
 				            </div>
 				          </div>
 				        </div>
@@ -53,9 +75,9 @@
 				        <div class="item-content">
 				          <div class="item-media"><i class="icon icon-form-email"></i></div>
 				          <div class="item-inner">
-				            <div class="item-title label">联系邮箱：</div>
+				            <div class="item-title label"><span class="hong">*</span> 联系邮箱：</div>
 				            <div class="item-input">
-				              <input type="email" placeholder="请输入联系邮箱地址">
+				              <input type="email" name="email" placeholder="请输入联系邮箱地址">
 				            </div>
 				          </div>
 				        </div>
@@ -64,9 +86,9 @@
 				        <div class="item-content">
 				          <div class="item-media"><i class="icon icon-form-email"></i></div>
 				          <div class="item-inner">
-				            <div class="item-title label">任职公司：</div>
+				            <div class="item-title label"><span class="hong">*</span> 任职公司：</div>
 				            <div class="item-input">
-				              <input type="text" placeholder="请输入联系邮箱地址">
+				              <input type="text" name="company" placeholder="非任职人员可填(教师、姓名)">
 				            </div>
 				          </div>
 				        </div>
@@ -75,68 +97,314 @@
 				        <div class="item-content">
 				          <div class="item-media"><i class="icon icon-form-email"></i></div>
 				          <div class="item-inner">
-				            <div class="item-title label">毕业院校：</div>
+				            <div class="item-title label"><span class="hong">*</span> 毕业院校：</div>
 				            <div class="item-input">
-				              <input type="text" placeholder="学生、教师可填写当前就读院校名称">
+				              <input type="text" name="school" placeholder="学生、教师可填写当前就读院校名称">
 				            </div>
 				          </div>
 				        </div>
 				      </li>
 				    </ul>
 				  </div>
-				  <div class="bmxxlist">
-				  	<ul>
-				  		<li class="active">
-				  			<div class="zixx left">
-				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
-				  			</div>
-				  			<a class="edit right" href="#">编辑</a>
-				  		</li>
-				  		<li>
-				  			<div class="zixx left">
-				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
-				  			</div>
-				  			<a class="edit right" href="#">编辑</a>
-				  		</li>
-				  		<li>
-				  			<div class="zixx left">
-				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
-				  			</div>
-				  			<a class="edit right" href="#">编辑</a>
-				  		</li>
-				  		<li>
-				  			<div class="zixx left">
-				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
-				  			</div>
-				  			<a class="edit right" href="#">编辑</a>
-				  		</li>
-				  		<li>
-				  			<div class="zixx left">
-				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
-				  			</div>
-				  			<a class="edit right" href="#">编辑</a>
-				  		</li>
-				  		<li>
-				  			<div class="zixx left">
-				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
-				  			</div>
-				  			<a class="edit right" href="#">编辑</a>
-				  		</li>
-				  	</ul>
-				  	<a href="#" class="addzixx external"><span>+</span>新增报名信息</a>
-				  </div>
-				  
+			  <div class="button-block">
+			    <div class="row">
+			    	<div class="col-50"><a href="javascript:;" id="Submission" class="button button-big button-fill button-success">提交</a></div>
+			      <div class="col-50"><a href="javascript:;" class="button button-big button-fill button-hui close-popup">取消</a></div>
+			    </div>
 			  </div>
-			</div>
-    </div>
+				  
+		  </div>
+		</div>
+		
+		<!-- phoe Popup -->
+		<div class="popup popup-eidperson">
+		  <div class="content-block-all">
+		  	<a href="#" class="close-popup close-x">x</a>
+		    <h3 class="tcbt">编辑报名信息</h3>
+		    <div class="list-block">
+				    <ul>
+				      <!-- Text inputs -->
+				      <li>
+				        <div class="item-content">
+				          <div class="item-media"><i class="icon icon-form-name"></i></div>
+				          <div class="item-inner">
+				            <div class="item-title label"><span class="hong">*</span> 报名姓名：</div>
+				            <div class="item-input">
+				              <input type="text" name="nameEid" placeholder="请输入报名人的真实姓名">
+				            </div>
+				          </div>
+				        </div>
+				      </li>
+				      <li>
+				        <div class="item-content">
+				          <div class="item-media"><i class="icon icon-form-email"></i></div>
+				          <div class="item-inner">
+				            <div class="item-title label"><span class="hong">*</span> 联系电话：</div>
+				            <div class="item-input">
+				              <input type="number" name="phoeEid" maxlength="11" placeholder="请输入联系手机号码">
+				            </div>
+				          </div>
+				        </div>
+				      </li>
+				      <li>
+				        <div class="item-content">
+				          <div class="item-media"><i class="icon icon-form-email"></i></div>
+				          <div class="item-inner">
+				            <div class="item-title label"><span class="hong">*</span> 联系邮箱：</div>
+				            <div class="item-input">
+				              <input type="email" name="emailEid" placeholder="请输入联系邮箱地址">
+				            </div>
+				          </div>
+				        </div>
+				      </li>
+				      <li>
+				        <div class="item-content">
+				          <div class="item-media"><i class="icon icon-form-email"></i></div>
+				          <div class="item-inner">
+				            <div class="item-title label"><span class="hong">*</span> 任职公司：</div>
+				            <div class="item-input">
+				              <input type="text" name="companyEid" placeholder="非任职人员可填(教师、姓名)">
+				            </div>
+				          </div>
+				        </div>
+				      </li>
+				      <li>
+				        <div class="item-content">
+				          <div class="item-media"><i class="icon icon-form-email"></i></div>
+				          <div class="item-inner">
+				            <div class="item-title label"><span class="hong">*</span> 毕业院校：</div>
+				            <div class="item-input">
+				              <input type="text" name="schoolEid" placeholder="学生、教师可填写当前就读院校名称">
+				            </div>
+				          </div>
+				        </div>
+				      </li>
+				    </ul>
+				  </div>
+			  <div class="button-block">
+			    <div class="row">
+			    	<div class="col-50"><a href="javascript:;" id="SubmissionEid" class="button button-big button-fill button-success">保存</a></div>
+			      <div class="col-50"><a href="javascript:;" class="button button-big button-fill button-hui close-popup">取消</a></div>
+			    </div>
+			  </div>
+				  
+		  </div>
+		</div>
 
     <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
-		$(document).ready(function() {
-			
+		var param = getRequest();
+		var startClassCode = param["startClassCode"];
+		var hours = param["hours"];
+		var locations = param["location"];
+		var latitude = param["latitude"];
+		var longitude = param["longitude"];
+		$(document).on('click','.open-person', function () {
+		  $.popup('.popup-person');
 		});
+		$(document).ready(function() {
+			$('.startClassCode').html(startClassCode);
+			$('.time').html(hours);
+			$('.addre').html(locations);
+			getCourseSignUp();
+			$("#Submission").bind("click", addCourseApply);
+			$("#Topay").bind("click", Topay);
+			$("#bmxxlist").on('click','#bmxxlist li',function(){
+				$(this).addClass('active');
+				$(this).siblings('li').removeClass('active');
+			})
+		});
+		
+		function Topay() {
+			var applyInfoCode = $('.active').attr('applycode');
+			window.location.href = "payment.html?startClassCode="+startClassCode+"&applyInfoCode="+applyInfoCode
+		}
+		function getCourseSignUp() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/center/getCourseSignUp",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'userCode': clientUserCode
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							var arrLen = data.data;
+							var result = '';
+							for(var i=0; i<arrLen.length; i++){
+	            	var applyCode = arrLen[i].applyCode;
+	            	var company = arrLen[i].company;
+	            	var personName = arrLen[i].personName;
+	            	var phoneNumber = arrLen[i].phoneNumber
+	            	if(arrLen[i].isDefault == 1){
+	            		var isDefault = 'active'
+	            	}else{
+	            		var isDefault = ''
+	            	}
+	            	
+                result += "<li class='"+ isDefault +"' applyCode='"+ applyCode +"'><div class='zixx left'>报名姓名："+ personName +"<br />联系电话："+ phoneNumber +"<br />任职公司："+ company +"</div>"
+                       + "<a class='edit right' onclick=\"editapply(\'" + applyCode + "\');\" href='javascript:;'>编辑</a></li>";
+	            }
+							$('#bmxxlist').append(result);
+							
+						} else {
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
+		
+		function addCourseApply() {
+			if(!$("input[name='name']").val()){
+				$.toast('请输入报名姓名');
+				return;
+			}
+			if(!$("input[name='phoe']").val()){
+				$.toast('请输入联系电话');
+				return;
+			}
+			var phonees = $('input[name="phoe"]').val();
+	   	if(!/^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(19[0-9]{9})|(15[0-9]{9})$/.test(phonees)) {
+	   		$.toast("请输入正确的手机号");
+	   		return;
+	   	}
+			if(!$("input[name='email']").val()){
+				$.toast('请输入联系邮箱');
+				return;
+			}
+			var emailes = $('input[name="email"]').val();
+	   	if(!/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(emailes)) {
+	   		$.toast("请输入正确的邮箱地址");
+	   		return;
+	   	}
+	   	if(!$("input[name='company']").val()){
+				$.toast('请输入任职公司');
+				return;
+			}
+			if(!$("input[name='school']").val()){
+				$.toast('请输入毕业院校');
+				return;
+			}
+			
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/center/addCourseApply",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'userCode': clientUserCode,
+						'personName':$("input[name='name']").val(),
+						'phoneNumber':$("input[name='phoe']").val(),
+						'company':$("input[name='company']").val(),
+						'email':$("input[name='email']").val(),
+						'graduateSchool':$("input[name='school']").val(),
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$('#bmxxlist').empty();
+							getCourseSignUp();
+							$.toast('添加成功！')
+							$.closeModal('.popup-person');
+							$("input[name='name']").val('');
+							$("input[name='phoe']").val('');
+							$("input[name='company']").val('');
+							$("input[name='email']").val('');
+							$("input[name='school']").val('');
+						} else {
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
+		function editapply(applyCode) {
+			$.popup('.popup-eidperson');
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/center/getCourseSignUpInfo",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'applyCode': applyCode,
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$("input[name='nameEid']").val(data.data.personName);
+							$("input[name='phoeEid']").val(data.data.phoneNumber);
+							$("input[name='emailEid']").val(data.data.email);
+							$("input[name='companyEid']").val(data.data.company);
+							$("input[name='schoolEid']").val(data.data.graduateSchool);
+						} else {
+							$.toast(data.msg);
+							
+						}
+					}
+			});
+			$('#SubmissionEid').attr("onclick", "editCourseApply(\'" + applyCode + "\');")
+		}
+		function editCourseApply(applyCode) {
+			if(!$("input[name='nameEid']").val()){
+				$.toast('请输入报名姓名');
+				return;
+			}
+			if(!$("input[name='phoeEid']").val()){
+				$.toast('请输入联系电话');
+				return;
+			}
+			var phoneesEid = $('input[name="phoeEid"]').val();
+	   	if(!/^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(19[0-9]{9})|(15[0-9]{9})$/.test(phoneesEid)) {
+	   		$.toast("请输入正确的手机号");
+	   		return;
+	   	}
+			if(!$("input[name='emailEid']").val()){
+				$.toast('请输入联系邮箱');
+				return;
+			}
+			var emailesEid = $('input[name="emailEid"]').val();
+	   	if(!/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(emailesEid)) {
+	   		$.toast("请输入正确的邮箱地址");
+	   		return;
+	   	}
+	   	if(!$("input[name='companyEid']").val()){
+				$.toast('请输入任职公司');
+				return;
+			}
+			if(!$("input[name='schoolEid']").val()){
+				$.toast('请输入毕业院校');
+				return;
+			}
+			
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/center/editCourseApply",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'userCode': clientUserCode,
+						'personName':$("input[name='nameEid']").val(),
+						'phoneNumber':$("input[name='phoeEid']").val(),
+						'company':$("input[name='companyEid']").val(),
+						'email':$("input[name='emailEid']").val(),
+						'graduateSchool':$("input[name='schoolEid']").val(),
+						'applyCode' : applyCode
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$('#bmxxlist').empty();
+							getCourseSignUp();
+							$.toast('保存成功！')
+							$.closeModal('.popup-eidperson');
+							
+						} else {
+							$.toast(data.msg);
+							
+						}
+					}
+			});
+		}
 	</script>
 	
   </body>

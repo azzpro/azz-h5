@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>课程报名信息新增-爱智造产业研究学院</title>
+    <title>编辑课程报名信息-爱智造产业研究学院</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href="images/favicon.png" type="image/png">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -110,9 +110,35 @@
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
+		var param = getRequest();
+		var applyCode = param["applyCode"];
 		$(document).ready(function() {
 			$("#Submission").bind("click", addCourseApply);
+			editapply();
 		});
+		function editapply() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/center/getCourseSignUpInfo",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'applyCode': applyCode,
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$("input[name='name']").val(data.data.personName);
+							$("input[name='phoe']").val(data.data.phoneNumber);
+							$("input[name='email']").val(data.data.email);
+							$("input[name='company']").val(data.data.company);
+							$("input[name='school']").val(data.data.graduateSchool);
+						} else {
+							$.toast(data.msg);
+							
+						}
+					}
+			});
+		}
 		function addCourseApply() {
 			if(!$("input[name='name']").val()){
 				$.toast('请输入报名姓名');
@@ -147,7 +173,7 @@
 			
 			$.ajax({
 					type: "POST",
-					url: ulrTo + "/azz/api/client/center/addCourseApply",
+					url: ulrTo + "/azz/api/client/center/editCourseApply",
 					cache: false, //禁用缓存   
 					dataType: "json", 
 					data: {
@@ -157,10 +183,11 @@
 						'company':$("input[name='company']").val(),
 						'email':$("input[name='email']").val(),
 						'graduateSchool':$("input[name='school']").val(),
+						'applyCode' : applyCode
 					},
 					success: function(data) {
 						if (data.code == 0) {
-							$.toast('添加成功！')
+							$.toast('编辑成功！')
 							window.location.href = "signupinformation.html"
 						} else {
 							$.toast(data.msg)

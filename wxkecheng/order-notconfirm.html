@@ -22,9 +22,9 @@
     
 		  	<div class="metop" style=" position: fixed; top: 0; left: 0;">
 		  		<ul class="danG">
-		  			<li><a class="external active" href="order.html"><b id="allOrders"></b>全部订单</a></li>
+		  			<li><a class="external" href="order.html"><b id="allOrders"></b>全部订单</a></li>
 		  			<li><a class="external" href="order-notpaid.html"><b id="pendingOrder"></b>待支付</a></li>
-		  			<li><a class="external" href="order-notconfirm.html"><b id="toBeConfirmed"></b>待确认</a></li>
+		  			<li><a class="external active" href="order-notconfirm.html"><b id="toBeConfirmed"></b>待确认</a></li>
 		  			<li><a class="external" href="order-notevl.html"><b id="comment"></b>待评价</a></li>
 		  		</ul>
 		  	</div>
@@ -110,7 +110,7 @@
           url: ulrTo + '/azz/api/client/course/order/getCourseOrders',
           dataType: 'json',
           data: {
-          	'orderStatusId': '',
+          	'orderStatusId': '15',
 						'pageNum' : page,
 						'pageSize' : '4',
 					},

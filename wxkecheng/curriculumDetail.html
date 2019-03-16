@@ -11,22 +11,25 @@
 
     <link rel="stylesheet" href="css/sm.min.css">
     <link rel="stylesheet" href="css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/dropload.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+    </style>
   </head>
   <body>
     <div class="page-group">
 			<div class="page">
 			  <nav class="bar bar-tab">
 			    <span class="icon icon-cart cartico"></span>
-			    <div class="jiage"><h4>起步价：<span>9999</span>元</h4>已有3680人购买</div>
-			    <a class="baoming external" href="signup.html">立即报名</a>
+			    <div class="jiage"><h4>起步价：<span id="minPrice"></span>元</h4>已有<font id="buyCount"></font>人购买</div>
+			    <a class="baoming external" href="javascript:;">立即报名</a>
 			  </nav>
 			  <div class="content">
 			  	<div class="currname">
-			  		<h3>PLC伺服定位控制课程讲解</h3>
-			  		<p>近期开课时间：2019-01-01</p>
-			  		<p>近期开课课时：32H</p>
-			  		<a href="javascript:;" class="icon icon-share"></a>
+			  		<h3 id="courseName"></h3>
+			  		<p>近期开课时间：<span id="time"></span></p>
+			  		<p>近期开课课时：<span id="hours"></span>H</p>
+			  		<!--<a href="javascript:;" class="icon icon-share"></a>-->
 			  	</div>
 			    <div class="buttons-tab">
 				    <a href="#tab1" class="tab-link active button">课程详情</a>
@@ -36,35 +39,18 @@
 				  <div class="content-block">
 				    <div class="tabs">
 				      <div id="tab1" class="tab active">
-				        <div class="content-block">
-				          伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控
-				          	制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺
-				          	服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解
-				          	伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定
-				          	位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲
-				          	解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解
-				          	<p>伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控
-				          	制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺
-				          	服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解
-				          	伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定
-				          	位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲
-				          	解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解</p>
-				          	<p>伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控
-				          	制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺
-				          	服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解
-				          	伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定
-				          	位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲
-				          	解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解伺服定位控制课程讲解</p>
+				        <div class="content-block" id="courseInfo">
+				          
 				        </div>
 				      </div>
 				      <div id="tab2" class="tab">
-				        <div class="content-block">
-				          <p>This is tab 2 content</p>
+				        <div class="content-block" id="brandInfo">
+				          
 				        </div>
 				      </div>
 				      <div id="tab3" class="tab">
-				        <div class="content-block">
-				          <div class="plList">
+				        <div class="content-block" id="EvaluationInfo">
+				          <!--<div class="plList">
 				          	<div class="left tu">
 				          		<div class="pltu"></div>
 				          		微信昵称XX
@@ -99,7 +85,7 @@
 				          			评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容......
 				          		</div>
 				          	</div>
-				          </div>
+				          </div>-->
 				          
 				        </div>
 				      </div>
@@ -112,10 +98,124 @@
     <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+    <script src="js/dropload.min.js"></script>
+    <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
+		var param = getRequest();
+		var courseCode = param["courseCode"];
 		$(document).ready(function() {
-			
+			getIndexCourseDetail();
+			getEvaluationInfos();
+			$(".baoming").bind("click", function() {		
+				window.location.href = "signup.html?courseCode="+courseCode
+			});
 		});
+		
+		function getIndexCourseDetail() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/course/getIndexCourseDetail",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'courseCode': courseCode
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							var data = data.data;
+							$('#minPrice').html(data.minPrice);
+							$('#buyCount').html(data.buyCount);
+							$('#hours').html(data.hours);
+							$('#time').html(data.latelyStartClassTime);
+							$('#brandInfo').html(data.brandInfo);
+							$('#courseInfo').html(data.courseInfo);
+							$('#courseName').html(data.courseName);
+							
+						} else {
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
+		function getEvaluationInfos() {
+				  // 页数
+		      var page = 0;
+		      // 每页展示5个
+		      var size = 5;
+		 
+		     // dropload
+		    $('#tab3').dropload({
+		      scrollArea : window,
+		      threshold : 100,//提前加载距离
+		      
+			    loadDownFn : function(me){
+		        page++;
+		        // 拼接HTML
+		        var result = '';
+		        $.ajax({
+		          type: 'POST',
+		          url: ulrTo + '/azz/api/client/course/getEvaluationInfos',
+		          dataType: 'json',
+		          data: {
+		          	'courseCode': courseCode,
+								'pageNum' : page,
+								'pageSize' : '5',
+							},
+		          success: function(data){
+		          	if (data.code == 0) {
+		              var rows = data.data.rows;
+		              var arrLen = rows.length;
+		              
+			              if(arrLen > 0){
+			                for(var i=0; i<arrLen; i++){
+			                	var nickName = rows[i].nickName;
+			                	var avatarUrl = rows[i].avatarUrl;
+			                	var createTime = rows[i].createTime;
+			                	var evaluationContent = rows[i].evaluationContent;
+			                	if(rows[i].grade==1){
+			                		var grade ="<span></span><span class='no-xx'></span><span class='no-xx'></span><span class='no-xx'></span><span class='no-xx'></span>"
+			                	}else if(rows[i].grade==2){
+			                		var grade ="<span></span><span></span><span class='no-xx'></span><span class='no-xx'></span><span class='no-xx'></span>"
+			                	}else if(rows[i].grade==3){
+			                		var grade ="<span></span><span></span><span></span><span class='no-xx'></span><span class='no-xx'></span>"
+			                	}else if(rows[i].grade==4){
+			                		var grade ="<span></span><span></span><span></span><span></span><span class='no-xx'></span>"
+			                	}else if(rows[i].grade==5){
+			                		var grade ="<span></span><span></span><span></span><span></span><span></span>"
+			                	}
+			                	
+			                    result += "<div class='plList'><div class='left tu'><div class='pltu'><img src='"+ avatarUrl +"' alt='' /></div>"+ nickName +"</div><div class='right plzi'>"
+			                           + "<div class='plxx'>"+grade
+			                           + "<div class='timed'>"+ createTime +"</div></div><div class='pltail'>"+ evaluationContent +"</div></div></div>";
+			                }
+			                 // 如果没有数据
+			              }else{
+			                     // 锁定
+			                     me.lock('down');
+			                     // 无数据
+			                     me.noData();
+			              }
+			                 // 为了测试，延迟1秒加载
+			              setTimeout(function(){
+			                     // 插入数据到页面，放到最后面
+			                     $('#EvaluationInfo').append(result);
+			                     // 每次数据插入，必须重置
+			                     me.resetload();
+			              },1000);
+		              
+		            }else{
+		            	alert(data.msg);
+		            }
+		          },
+			        error: function(xhr, type){
+			             $.toast(data.msg);
+			             // 即使加载出错，也得重置
+			             me.resetload();
+			        }
+		        });
+			    }
+		    });
+		}
 	</script>
 	
   </body>

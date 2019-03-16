@@ -1,0 +1,96 @@
+﻿ <!doctype html>
+   <html lang="zh-cn">
+   <head>
+       <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui" charset="UTF-8">
+       <title>移动端下拉刷新、上拉加载更多插件 </title>
+       
+      
+     <link rel="stylesheet" href="css/dropload.css">
+     <style>
+     	.content{ position:  static;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;}
+     </style>
+ </head>
+ <body>
+ <div class="header">
+     <h1>就当我是新闻页吧</h1>
+ </div>
+ <div class="content">
+     <div class="curricuList">
+     </div>
+ </div>
+ <!-- jQuery1.7以上 或者 Zepto 二选一，不要同时都引用 -->
+ <script src="js/zepto.min.js"></script>
+ <script src="js/dropload.min.js"></script>
+ <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
+ <script>
+     // 页数
+     var page = 0;
+     // 每页展示5个
+     var size = 5;
+ 
+     // dropload
+     $('.content').dropload({
+         scrollArea : window,
+         threshold : 100,//提前加载距离
+         
+         loadDownFn : function(me){
+        page++;
+        // 拼接HTML
+        var result = '';
+        $.ajax({
+          type: 'POST',
+          url: ulrTo + '/azz/api/client/course/getIndexCourseInfos',
+          dataType: 'json',
+          data: {
+          	'courseName': $("input[name='searchname']").val(),
+						'status' : 1,
+						'sortType' : 1,
+						'classificationCode' : '1547264475170',
+						'pageNum' : page,
+						'pageSize' : '4',
+					},
+          success: function(data){
+          	if (data.code == 0) {
+              var rows = data.data.rows;
+              var arrLen = rows.length;
+              
+	              if(arrLen > 0){
+	                for(var i=0; i<arrLen; i++){
+	                    result += "<li class='opacity'><a class='external' href='curriculumDetail.html'><img src='images/list-tu.jpg' class='left' alt='' />"
+										    			+ "<div class='right'><h3>PLC伺服定位控制课程讲解——以程序实例的方式讲解顺序...</h3>"
+										    			+ "<div class='timejg'><span>11-12</span>999元/起</div></div></a></li>";
+	                }
+	                 // 如果没有数据
+	              }else{
+	                     // 锁定
+	                     me.lock();
+	                     // 无数据
+	                     me.noData();
+	              }
+	                 // 为了测试，延迟1秒加载
+	              setTimeout(function(){
+	                     // 插入数据到页面，放到最后面
+	                     $('.curricuList').append(result);
+	                     // 每次数据插入，必须重置
+	                     me.resetload();
+	              },1000);
+              
+            }
+          },
+	        error: function(xhr, type){
+	             $.toast(data.msg);
+	             // 即使加载出错，也得重置
+	             me.resetload();
+	        }
+        });
+	    }
+     });
+ 
+ </script>
+ </body>
+ </html>

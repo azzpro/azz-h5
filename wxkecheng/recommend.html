@@ -36,19 +36,13 @@
 			  </nav>
 			  <div class="content">
 			    	<ul class="menulist left">
-			    		<li class="active"><a href="#">电控类</a></li>
-			    		<li><a href="#">机械类</a></li>
-			    		<li><a href="#">软件类</a></li>
-			    		<li><a href="#">合作类</a></li>
+			    		
 			    	</ul>
 			    	<div class="lr-right right">
-			    		<div class="kc-bt"><span class="icon icon-right"></span>电控类</div>
-			    		<div class="bt-k"></div>
+			    		<!--<div class="kc-bt"><span class="icon icon-right"></span>电控类</div>
+			    		<div class="bt-k"></div>-->
 			    		<ul class="kc-list">
-			    			<li><a class="external" href="curriculumList.html"></a></li>
-			    			<li></li>
-			    			<li></li>
-			    			<li></li>
+			    			
 			    		</ul>
 			    	</div>
 			  </div>
@@ -58,11 +52,111 @@
     <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
-	<script>
-		$(document).ready(function() {
-			
-		});
-	</script>
+    <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
+		<script>
+			$(document).ready(function() {
+				$(".menulist").on('click','.menulist li',function(){
+					$(this).addClass('active');
+					$(this).siblings().removeClass('active');
+				})
+				getClassificationParent();
+			});
+			//分类列表
+			function getClassificationParent() {
+				$.ajax({
+					type: "POST",
+					url: ulrTolist+"/azz/api/platform/course/getClassificationParent",
+					cache: false, //禁用缓存   
+					async: false,
+					dataType: "json", 
+					data: {
+						'param': $("input[name='nameNo']").val()
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							var data = data.data;
+							var li = '';
+							for(var i = 0;i<data.length;i++){
+								var assortmentCode = data[i].assortmentCode;
+								var assortmentName = data[i].assortmentName;
+								var assortmentId = data[i].id;
+								li += "<li onclick=\"getClassificationChild(\'" + assortmentCode + "\');\"><a href='#'>" + assortmentName + "</a></li>"
+						    }
+							$(".menulist").append(li);
+							$(".menulist li").first().addClass("active");
+							
+							$.ajax({
+								type: "POST",
+								url: ulrTolist+"/azz/api/platform/course/getClassificationChild",
+								cache: false, //禁用缓存   
+								async: false,
+								dataType: "json", 
+								data: {
+									'parentCode': data[0].assortmentCode
+								},
+								success: function(data) {
+									if (data.code == 0) {
+										var data = data.data;
+										var lii = '';
+										if(!data || !data.length){
+											lii += "<li>无任何分类</li>";
+											$(".kc-list").append(lii);
+										}else{
+											for(var i = 0;i<data.length;i++){
+												var assortmentCode = data[i].assortmentCode;
+												var assortmentName = data[i].assortmentName;
+												var assortmentPicUrl = data[i].assortmentPicUrl;
+												var assortmentId = data[i].id;
+												lii += "<li  onclick=\"getClassificationChild2(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i><a href='curriculumList.html?assortmentCode=" + assortmentCode + "' class='external'><img src=" + assortmentPicUrl + " alt='' /></a></li>"
+										    }
+											$(".kc-list").append(lii);
+										}
+									} else {
+										alert(data.msg)
+									}
+								}
+							});
+						} else {
+							alert(data.msg)
+						}
+					}
+				});
+			}
+			function getClassificationChild(assortmentCode) {
+				$('.kc-list').empty();
+				$.ajax({
+					type: "POST",
+					url: ulrTolist+"/azz/api/platform/course/getClassificationChild",
+					cache: false, //禁用缓存   
+					async: false,
+					dataType: "json", 
+					data: {
+						'parentCode': assortmentCode
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							var data = data.data;
+							var li = '';
+							if(!data || !data.length){
+								li += "<li>无任何分类</li>";
+								$(".kc-list").append(li);
+							}else{
+								for(var i = 0;i<data.length;i++){
+									var assortmentCode = data[i].assortmentCode;
+									var assortmentName = data[i].assortmentName;
+									var assortmentPicUrl = data[i].assortmentPicUrl;
+									var assortmentId = data[i].id;
+									li += "<li  onclick=\"getClassificationChild2(\'" + assortmentCode + "\');\"><i class='fa fa-angle-right'></i><a href='curriculumList.html?assortmentCode=" + assortmentCode + "' class='external'><img src=" + assortmentPicUrl + " alt='' /></a></li>"
+							    }
+								$(".kc-list").append(li);
+							}
+						} else {
+							alert(data.msg)
+						}
+					}
+				});
+			}
+		</script>
 	
   </body>
 </html>

@@ -36,31 +36,8 @@
 			  </nav>
 			  <div class="content">
 			  	<div class="informlist">
-				  	<ul class="c">
-				  		<li>
-				  			<div class="zixx2">
-				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
-				  			</div>
-				  			<div class="informbottom">
-				  				<a href="#">编辑</a> | <a class="open-del" href="#">删除</a> <span style="display: none;">| <a href="#">设为默认</a></span>
-				  			</div>
-				  		</li>
-				  		<li>
-				  			<div class="zixx2">
-				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
-				  			</div>
-				  			<div class="informbottom">
-				  				<a href="#">编辑</a> | <a class="open-del" href="#">删除</a> <span>| <a href="#">设为默认</a></span>
-				  			</div>
-				  		</li>
-				  		<li>
-				  			<div class="zixx2">
-				  				报名姓名：韩鼎君<br />联系电话：13254885694<br />任职公司：13254885694
-				  			</div>
-				  			<div class="informbottom">
-				  				<a href="#">编辑</a> | <a class="open-del" href="#">删除</a> <span>| <a href="#">设为默认</a></span>
-				  			</div>
-				  		</li>
+				  	<ul class="c" id="bmxxlist">
+				  		
 				  	</ul>
 				  	<a href="addsign.html" class="addzixx external"><span>+</span>新增报名信息</a>
 				  </div>
@@ -73,11 +50,11 @@
 		  <div class="content-block-all">
 		  	<a href="#" class="close-popup close-x">x</a>
 		    <h3 class="tcbt">操作确认</h3>
-		    <div class="tszi">是否删除“韩鼎君”的报名信息！</div>
+		    <div class="tszi">是否删除“<span id="applyname"></span>”的报名信息！</div>
 			  <div class="button-block">
 			    <div class="row">
-			    	<div class="col-50"><a href="#" class="button button-big button-fill button-success">确定</a></div>
-			      <div class="col-50"><a href="#" class="button button-big button-fill button-hui close-popup">取消</a></div>
+			    	<div class="col-50"><a href="javascript:;" id="SubmissionDel" class="button button-big button-fill button-success">确定</a></div>
+			      <div class="col-50"><a href="javascript:;" class="button button-big button-fill button-hui close-popup">取消</a></div>
 			    </div>
 			  </div>
 				  
@@ -87,13 +64,101 @@
     <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
-		$(document).on('click','.open-del', function () {
-		  $.popup('.popup-del');
-		});
 		$(document).ready(function() {
-			
+			getCourseSignUp();
 		});
+		function getCourseSignUp() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/center/getCourseSignUp",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'userCode': clientUserCode
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							var arrLen = data.data;
+							var result = '';
+							for(var i=0; i<arrLen.length; i++){
+	            	var applyCode = arrLen[i].applyCode;
+	            	var company = arrLen[i].company;
+	            	var personName = arrLen[i].personName;
+	            	var phoneNumber = arrLen[i].phoneNumber
+	            	if(arrLen[i].isDefault == 1){
+	            		var isDefault = ''
+	            	}else{
+	            		var isDefault = "<span>| <a onclick=\"Defaultapply(\'" + applyCode + "\');\" href='javascript:;'>设为默认</a></span>"
+	            	}
+	            	
+                result += "<li><div class='zixx2'>报名姓名："+ personName +"<br />联系电话："+ phoneNumber +"<br />任职公司："+ company +"</div>"
+				  			       + "<div class='informbottom'><a onclick=\"eidtapply(\'" + applyCode + "\');\" href='javascript:;'>编辑</a> | <a onclick=\"Delapply(\'" + applyCode + "','" + personName + "\');\" href='javascript:;'>删除</a> "+ isDefault +"</div></li>";
+	            }
+							$('#bmxxlist').append(result);
+							
+						} else {
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
+		//编辑
+		function eidtapply(applyCode) {
+			window.location.href = "editsign.html?applyCode="+applyCode
+		}
+		
+		function Delapply(applyCode,personName) {
+			$.popup('.popup-del');
+			$('#applyname').html(personName);
+			$('#SubmissionDel').attr("onclick", "DelCourseApply(\'" + applyCode + "\');")
+		}
+		//删除
+		function DelCourseApply(applyCode) {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/center/deletCourseApply",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'applyCode': applyCode,
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$('#bmxxlist').empty();
+							getCourseSignUp();
+							$.closeModal('.popup-del');
+							$.toast("操作成功");
+						} else {
+							$.toast(data.msg);
+							
+						}
+					}
+			});
+		}
+		//默认
+		function Defaultapply(applyCode) {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/center/setDefault",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'applyCode': applyCode,
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$('#bmxxlist').empty();
+							getCourseSignUp();
+							$.toast("操作成功");
+						} else {
+							$.toast(data.msg);
+							
+						}
+					}
+			});
+		}
 	</script>
 	
   </body>

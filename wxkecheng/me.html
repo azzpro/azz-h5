@@ -1,105 +1,155 @@
 ﻿<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>个人中心-爱智造产业研究学院</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-    <link rel="stylesheet" href="css/sm.min.css">
-    <link rel="stylesheet" href="css/sm-extend.min.css">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <div class="page-group">
-			<div class="page">
-			  <nav class="bar bar-tab">
-			    <a class="tab-item external" href="index.html">
-			      <span class="icon icon-home"></span>
-			      <span class="tab-label">首页</span>
-			    </a>
-			    <a class="tab-item external" href="recommend.html">
-			      <span class="icon icon-edit"></span>
-			      <span class="tab-label">推荐</span>
-			    </a>
-			    <a class="tab-item external" href="participate.html">
-			      <span class="icon icon-message"></span>
-			      <span class="tab-label">参与</span>
-			    </a>
-			    <a class="tab-item external active" href="me.html">
-			      <span class="icon icon-me"></span>
-			      <span class="tab-label">我的</span>
-			    </a>
-			  </nav>
-			  <div class="content">
-			  	<div class="metop">
-			  		<div class="tx">
-			  			<i><img src="images/list-tu.jpg" alt="" /></i>
-			  			<div class="wxname"><h3>我是我自己</h3><p>每天陪你进步，时刻快人一步。</p></div>
-			  		</div>
-			  		<ul class="danG">
-			  			<li><a class="external" href="order.html"><b>99</b>全部订单</a></li>
-			  			<li><a class="external" href="#"><b>99</b>待支付</a></li>
-			  			<li><a class="external" href="#"><b>99</b>待确认</a></li>
-			  			<li><a class="external" href="#"><b>99</b>待评价</a></li>
-			  		</ul>
-			  	</div>
-			  	
-			  	<div class="list-block">
-				    <ul>
-				      <li id="phoeeide" class="item-content item-link">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>个人中心-爱智造产业研究学院</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+	<link rel="stylesheet" href="css/sm.min.css">
+	<link rel="stylesheet" href="css/sm-extend.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="page-group">
+		<div class="page">
+		  <nav class="bar bar-tab">
+		    <a class="tab-item external" href="index.html">
+		      <span class="icon icon-home"></span>
+		      <span class="tab-label">首页</span>
+		    </a>
+		    <a class="tab-item external" href="recommend.html">
+		      <span class="icon icon-edit"></span>
+		      <span class="tab-label">推荐</span>
+		    </a>
+		    <a class="tab-item external" href="participate.html">
+		      <span class="icon icon-message"></span>
+		      <span class="tab-label">参与</span>
+		    </a>
+		    <a class="tab-item external active" href="me.html">
+		      <span class="icon icon-me"></span>
+		      <span class="tab-label">我的</span>
+		    </a>
+		  </nav>
+		  <div class="content">
+		  	<div class="metop">
+		  		<div class="tx">
+		  			<i id="avatar"></i>
+		  			<div class="wxname"><h3 id="wxname"></h3><p>每天陪你进步，时刻快人一步。</p></div>
+		  		</div>
+		  		<ul class="danG" id="login" style="display: none;">
+		  			<li><a class="external" href="order.html"><b id="allOrders"></b>全部订单</a></li>
+		  			<li><a class="external" href="order-notpaid.html"><b id="pendingOrder"></b>待支付</a></li>
+		  			<li><a class="external" href="order-notconfirm.html"><b id="toBeConfirmed"></b>待确认</a></li>
+		  			<li><a class="external" href="order-notevl.html"><b id="comment"></b>待评价</a></li>
+		  		</ul>
+		  		<ul class="danG" id="Nologin" style="display: none;">
+		  			<li class="nologin"><a class="external" href="binding.html">暂未登录，点击登录</a></li>
+		  		</ul>
+		  	</div>
+		  	
+		  	<div class="list-block">
+			    <ul>
+			      <li id="phoeeide" class="item-content item-link">
+			        <div class="item-media"><i class="icon icon-f7"></i></div>
+			        <div class="item-inner">
+				          <div class="item-title"><img class="me-ico" src="images/ico11.png" alt="" /> 绑定手机号</div>
+				          <div class="item-after" id="phoneNumber"></div>
+			        </div>
+			      </li>
+			      <li id="signupinformation" class="item-content item-link">
+			        <div class="item-media"><i class="icon icon-f7"></i></div>
+			        <div class="item-inner">
+				          <div class="item-title"><img class="me-ico" src="images/ico12.png" alt="" /> 报名表信息</div>
+				          <div class="item-after">共<span id="signUp"></span>条</div>
+			          </a>
+			        </div>
+			      </li>
+			      <!--<li id="service" class="item-content item-link">
+			        <div class="item-media"><i class="icon icon-f7"></i></div>
+			        <div class="item-inner">
+			          	<div class="item-title"><img class="me-ico" src="images/ico13.png" alt="" /> 客服咨询</div>
+			        </div>
+			      </li>
+			      <li id="complaint" class="item-content item-link">
 				        <div class="item-media"><i class="icon icon-f7"></i></div>
 				        <div class="item-inner">
-					          <div class="item-title"><img class="me-ico" src="images/ico11.png" alt="" /> 绑定手机号</div>
-					          <div class="item-after">131****7829</div>
+				         	<div class="item-title"><img class="me-ico" src="images/ico14.png" alt="" /> 投诉建议</div>
 				        </div>
-				      </li>
-				      <li id="signupinformation" class="item-content item-link">
-				        <div class="item-media"><i class="icon icon-f7"></i></div>
-				        <div class="item-inner">
-					          <div class="item-title"><img class="me-ico" src="images/ico12.png" alt="" /> 报名表信息</div>
-					          <div class="item-after">共1条</div>
-				          </a>
-				        </div>
-				      </li>
-				      <li id="service" class="item-content item-link">
-				        <div class="item-media"><i class="icon icon-f7"></i></div>
-				        <div class="item-inner">
-				          	<div class="item-title"><img class="me-ico" src="images/ico13.png" alt="" /> 客服咨询</div>
-				        </div>
-				      </li>
-				      <li id="complaint" class="item-content item-link">
-					        <div class="item-media"><i class="icon icon-f7"></i></div>
-					        <div class="item-inner">
-					         	<div class="item-title"><img class="me-ico" src="images/ico14.png" alt="" /> 投诉建议</div>
-					        </div>
-				      </li>
-				    </ul>
-				  </div>
-			  </div>
+			      </li>-->
+			    </ul>
 			</div>
-    </div>
+		  </div>
+		</div>
+	</div>
 
-    <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
-	<script>
-		$(document).on('click','#phoeeide', function () {
-		  window.location.href = "binding.html";
+<script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
+<script>
+	var wxUserInfo = JSON.parse(localStorage.getItem('wxUserInfo'));
+	
+	$(document).on('click','#phoeeide', function () {
+	  window.location.href = "binding.html";
+	});
+	$(document).on('click','#signupinformation', function () {
+	  if(clientUserInfo){
+	  	window.location.href = "signupinformation.html";
+	  }else{
+	  	$.toast('请先绑定手机号码');
+	  }
+	});
+	$(document).on('click','#complaint', function () {
+	  window.location.href = "complaint.html";
+	});
+	$(document).ready(function() {
+	  if(clientUserInfo){
+	  	$('#login').show();
+	  }else{
+	  	$('#Nologin').show();
+	  }
+	  
+	  $('#avatar').html('<img src="'+ wxUserInfo.headimgurl +'" alt="" />');
+	  $('#wxname').html(wxUserInfo.nickname);
+	  if(clientUserInfo){
+	  	getIndexCenter();
+	  }else{
+	  	$('#phoneNumber').html('去绑定');
+	  	$('#signUp').html('0');
+	  }
+	});
+	function getIndexCenter() {
+		$.ajax({
+				type: "POST",
+				url: ulrTo + "/azz/api/client/center/getIndexCenter",
+				cache: false, //禁用缓存   
+				dataType: "json", 
+				data: {
+					'openId': wxUserInfo.openid
+				},
+				success: function(data) {
+					if (data.code == 0) {
+	  					$('#allOrders').html(data.data.allOrders);
+	  					$('#pendingOrder').html(data.data.pendingOrder);
+	  					$('#toBeConfirmed').html(data.data.toBeConfirmed);
+	  					$('#comment').html(data.data.comment);
+	  					if(data.data.signUp){
+	  						$('#signUp').html(data.data.signUp);
+	  					}else{
+	  						$('#signUp').html('0');
+	  					}
+  						$('#phoneNumber').html(data.data.cellphoneNumber.substr(0,3)+"****"+data.data.cellphoneNumber.substr(7));
+					} else {
+						$.toast(data.msg);
+					}
+				}
 		});
-		$(document).on('click','#signupinformation', function () {
-		  window.location.href = "signupinformation.html";
-		});
-		$(document).on('click','#complaint', function () {
-		  window.location.href = "complaint.html";
-		});
-		$(document).ready(function() {
-			
-		});
-	</script>
+	}
+</script>
 	
   </body>
 </html>

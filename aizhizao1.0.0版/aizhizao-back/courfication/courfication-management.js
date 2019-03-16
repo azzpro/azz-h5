@@ -20,7 +20,7 @@ Module.define("system.courfication", function(page, $) {
 			$("#img2").attr("src",'');
 		});
 		
-		$("#Search").bind("click", function() {		
+		$("#Search").bind("click", function() {
 			$("#tabs").empty();
 			getClassificationList();
 		});

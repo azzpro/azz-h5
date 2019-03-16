@@ -49,14 +49,44 @@
 			  </div>
 			</div>
     </div>
-
     <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+    
 	<script>
 		$(document).ready(function() {
-			
+			login();
 		});
+		function login() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/course/login",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'code': '123'
+					},
+					success: function(data) {
+						if (data.code == 0) {
+			        if(!window.localStorage){
+			            return false;
+			        }else{
+		            var storage=window.localStorage;
+		            var clientUserInfo = JSON.stringify(data.data.clientUserInfo.clientUserInfo);
+		            var wxUserInfo = JSON.stringify(data.data.wxUserInfo);
+		            var sessionId = JSON.stringify(data.data.clientUserInfo.sessionId);
+		            storage["clientUserInfo"]= clientUserInfo;
+		            storage["wxUserInfo"]= wxUserInfo;
+		            storage["sessionId"]= sessionId;
+			        }
+							return;
+						}else if(data.code != 40004){
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
 	</script>
 	
   </body>
