@@ -17,7 +17,7 @@
     <div class="page-group">
 			<div class="page">
 			  <nav class="bar bar-tab">
-			    <a class="cart external" href="paymentOk.html">立即支付</a>
+			    <a class="cart external" href="javascript:;" id="OrderPay">立即支付</a>
 			  </nav>
 			  <div class="content">
 			  	<div class="perfecttop" style="height: 6rem;">
@@ -34,11 +34,13 @@
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
+		var wxUserInfo = JSON.parse(localStorage.getItem('wxUserInfo'));
 		var param = getRequest();
 		var startClassCode = param["startClassCode"];
 		var applyInfoCode = param["applyInfoCode"];
 		$(document).ready(function() {
-			generatePayOrderInfo()
+			generatePayOrderInfo();
+			$("#OrderPay").bind("click", submitWxOrderPay);
 		});
 		function generatePayOrderInfo() {
 			$.ajax({
@@ -57,6 +59,28 @@
 							$('#startClassTime').html(data.data.startClassTime);
 							$('#orderCode').html(data.data.orderCode);
 							$('#price').html(data.data.price);
+						} else {
+							$.toast(data.msg);
+						}
+					}
+			});
+		}
+		function submitWxOrderPay() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/wx/pay/submitWxOrderPay",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'courseName': $('#name').html(),
+						'courseNum': $('#startClassCode').html(),
+						'coursePayNum':$('#orderCode').html(),
+						'orderMoney':$('#price').html(),
+						'openid': wxUserInfo.openid
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							debugger
 						} else {
 							$.toast(data.msg);
 						}
