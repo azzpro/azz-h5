@@ -40,6 +40,10 @@
 					},
 					success: function(data) {
 						if (data.code == 0) {
+							alert("成功");
+							alert(data.data.clientUserInfo.clientUserInfo);
+							alert(data.data.wxUserInfo);
+							debugger
 			        if(!window.localStorage){
 			            return false;
 			        }else{
