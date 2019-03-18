@@ -41,7 +41,8 @@
 					success: function(data) {
 						//0等于用户信息和微信信息  40004等于微信信息
 						alert(data.code);
-						if (data.code == 0 && data.code == 40004) {
+						if (data.code == 0 || data.code == 40004) {
+							debugger
 			        if(!window.localStorage){
 			            return false;
 			        }else{
