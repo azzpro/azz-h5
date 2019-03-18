@@ -38,11 +38,9 @@
 		var param = getRequest();
 		var startClassCode = param["startClassCode"];
 		var applyInfoCode = param["applyInfoCode"];
-		var appId,timeStamp,nonceStr,package,signType,paySign;
 		$(document).ready(function() {
 			generatePayOrderInfo();
-			submitWxOrderPay();
-			$("#OrderPay").bind("click", onBridgeReadynos);
+			$("#OrderPay").bind("click", submitWxOrderPay);
 		});
 		function generatePayOrderInfo() {
 			$.ajax({
@@ -84,46 +82,31 @@
 					},
 					success: function(data) {
 						if(data.package) {
-							appId = data.appId;
-							timeStamp = data.timeStamp;
-							nonceStr = data.nonceStr;
-							package = data.package;
-							signType = data.signType;
-							paySign = data.paySign;
+							 if(!window.localStorage){
+			            return false;
+				        }else{
+			            var storage=window.localStorage;
+			            var appId = JSON.stringify(data.appId);
+			            var timeStamp = JSON.stringify(data.timeStamp);
+			            var nonceStr = JSON.stringify(data.nonceStr);
+			            var package = JSON.stringify(data.package);
+			            var signType = JSON.stringify(data.signType);
+			            var paySign = JSON.stringify(data.paySign);
+			            storage["appId"]= appId;
+			            storage["timeStamp"]= timeStamp;
+			            storage["nonceStr"]= nonceStr;
+			            storage["package"]= package;
+			            storage["signType"]= signType;
+			            storage["paySign"]= paySign;
+				        }
+				        window.location.href = "paymentin.html";
+								return;
 						}else {
 							$.toast('出错了！');
 						}
 					}
 					
 			});
-		}
-		function onBridgeReadynos(){
-		   WeixinJSBridge.invoke(
-		      'getBrandWCPayRequest', {
-		         "appId":appId,     //公众号名称，由商户传入     
-		         "timeStamp":timeStamp,         //时间戳，自1970年以来的秒数     
-		         "nonceStr":nonceStr, //随机串     
-		         "package":package,     
-		         "signType":signType,         //微信签名方式：     
-		         "paySign":paySign //微信签名 
-		      },
-		      function(res){
-		      if(res.err_msg == "get_brand_wcpay_request:ok" ){
-		      	// 使用以上方式判断前端返回,微信团队郑重提示：
-            //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-		        $.toast('支付成功！');
-		      } 
-		   }); 
-		}
-		if (typeof WeixinJSBridge == "undefined"){
-		   if( document.addEventListener ){
-		       document.addEventListener('WeixinJSBridgeReady', onBridgeReadynos, false);
-		   }else if (document.attachEvent){
-		       document.attachEvent('WeixinJSBridgeReady', onBridgeReadynos); 
-		       document.attachEvent('onWeixinJSBridgeReady', onBridgeReadynos);
-		   }
-		}else{
-		   onBridgeReadynos();
 		}
 	</script>
 	
