@@ -192,8 +192,10 @@
 					success: function(data) {
 						if (data.code == 0) {
 							login();
-							$.toast("操作成功");
-							window.location.href = "me.html"
+							$.toast("绑定成功");
+							setInterval(function(){
+							    window.location.href = "me.html"
+							},2000);
 						} else {
 							$.toast(data.msg);
 							
@@ -224,7 +226,6 @@
 		            storage["clientUserInfo"]= clientUserInfo;
 		            storage["sessionId"]= sessionId;
 			        }
-			        debugger
 						}else {
 							$.toast(data.msg)
 						}
@@ -251,11 +252,12 @@
 					},
 					success: function(data) {
 						if (data.code == 0) {
-							login();
-							$.toast("操作成功");
+							$.toast("解绑成功");
 							localStorage.removeItem('clientUserInfo');
 							localStorage.removeItem('sessionId');
-							window.location.href = "me.html"
+							setInterval(function(){
+							    window.location.href = "me.html"
+							},2000);
 						} else {
 							$.toast(data.msg);
 							

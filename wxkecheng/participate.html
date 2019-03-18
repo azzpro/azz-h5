@@ -63,7 +63,15 @@
 	<script>
 		var wxUserInfo = JSON.parse(localStorage.getItem('wxUserInfo'));
 		$(document).ready(function() {
-			getPersonalCourseOrders();
+			if(clientUserInfo){
+				getPersonalCourseOrders();
+			}else{
+				$.toast("未绑定手机，请先绑定手机！");
+				setInterval(function(){
+				    window.location.href = "binding.html"
+				},2000);
+			}
+			
 		});
 		function getPersonalCourseOrders() {
 		// 页数

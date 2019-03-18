@@ -188,7 +188,9 @@
 					success: function(data) {
 						if (data.code == 0) {
 							$.toast('编辑成功！')
-							window.location.href = "signupinformation.html"
+							setInterval(function(){
+							    window.location.href = "signupinformation.html"
+							},2000);
 						} else {
 							$.toast(data.msg)
 						}
