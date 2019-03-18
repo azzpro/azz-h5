@@ -12,12 +12,14 @@ if(clientUserInfo){
 
 
 $.ajaxSettings.beforeSend = function(xhr,request){
-    var sessionId = JSON.parse(localStorage.getItem('sessionId'));
-	if (!sessionId) {
-		localStorage.removeItem('clientUserInfo');
-	    localStorage.removeItem('sessionId');
-	}
-	xhr.setRequestHeader("token",sessionId);
+    if(clientUserInfo){
+    	var sessionId = JSON.parse(localStorage.getItem('sessionId'));
+		if (!sessionId) {
+			localStorage.removeItem('clientUserInfo');
+		    localStorage.removeItem('sessionId');
+		}
+		xhr.setRequestHeader("token",sessionId);
+    }
 }
 
 // 获取url路径参数
