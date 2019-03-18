@@ -39,12 +39,7 @@
 						'code': code
 					},
 					success: function(data) {
-						alert("成功");
-						if (data.code == 0) {
-							alert("成功");
-							alert(data.data.clientUserInfo.clientUserInfo);
-							alert(data.data.wxUserInfo);
-							debugger
+						if (data.code == 0 || data.code == 40004) {
 			        if(!window.localStorage){
 			            return false;
 			        }else{
@@ -58,7 +53,7 @@
 			        }
 			        window.location.href = "home.html";
 							return;
-						}else if(data.code != 40004){
+						}else{
 							$.toast(data.msg)
 						}
 					}
