@@ -198,7 +198,7 @@
 	<script>
 		var param = getRequest();
 		var startClassCode = param["startClassCode"];
-		var hours = param["hours"];
+		var startClassTime = param["startClassTime"];
 		var locations = param["location"];
 		var latitude = param["latitude"];
 		var longitude = param["longitude"];
@@ -207,7 +207,7 @@
 		});
 		$(document).ready(function() {
 			$('.startClassCode').html(startClassCode);
-			$('.time').html(hours);
+			$('.time').html(startClassTime);
 			$('.addre').html(locations);
 			getCourseSignUp();
 			$("#Submission").bind("click", addCourseApply);
