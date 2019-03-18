@@ -42,7 +42,7 @@
 		$(document).ready(function() {
 			generatePayOrderInfo();
 			submitWxOrderPay();
-			$("#OrderPay").bind("click", onBridgeReady);
+			$("#OrderPay").bind("click", onBridgeReadynos);
 		});
 		function generatePayOrderInfo() {
 			$.ajax({
@@ -97,7 +97,7 @@
 					
 			});
 		}
-		function onBridgeReady(){
+		function onBridgeReadynos(){
 		   WeixinJSBridge.invoke(
 		      'getBrandWCPayRequest', {
 		         "appId":appId,     //公众号名称，由商户传入     
