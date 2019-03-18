@@ -220,7 +220,12 @@
 		
 		function Topay() {
 			var applyInfoCode = $('.active').attr('applycode');
-			window.location.href = "payment.html?startClassCode="+startClassCode+"&applyInfoCode="+applyInfoCode
+			if(applyInfoCode){
+				window.location.href = "payment.html?startClassCode="+startClassCode+"&applyInfoCode="+applyInfoCode
+			}else{
+				$.toast("请先选择报名信息！")
+			}
+			
 		}
 		function getCourseSignUp() {
 			$.ajax({
