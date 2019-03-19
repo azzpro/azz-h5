@@ -211,7 +211,7 @@
 					    	$('#close').show();
 					    	$('#payment').show();
 					    	$(document).on('click','#payment',function () {
-					    		window.location.href = "payment.html?startClassCode=" + data.startClassCode + "&applyInfoCode=" + data.applyInfoCode
+					    		window.location.href = "paymentOrder.html?orderCode=" + data.orderCode
 					   		});
 					    }
 					    if(data.orderStatus==14){

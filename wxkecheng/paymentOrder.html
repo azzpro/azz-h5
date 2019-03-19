@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>课程费用支付-爱智造产业研究学院</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="page-group">
+			<div class="page">
+			  <nav class="bar bar-tab">
+			    <a class="cart external" href="javascript:;" id="OrderPay">立即支付</a>
+			  </nav>
+			  <div class="content">
+			  	<div class="perfecttop" style="height: 6rem;">
+			  		<h3 id="name"></h3>
+			  		订单编号：<span id="orderCode"></span><br />开课编号：<span id="startClassCode"></span><br />开课时间：<span id="startClassTime"></span>
+			  	</div>
+			  	<div class="picr"><img src="images/ico6.png" alt="" /> 待支付：<span id="price"></span>元</div>
+			  </div>
+			</div>
+    </div>
+
+    <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
+	<script>
+		var wxUserInfo = JSON.parse(localStorage.getItem('wxUserInfo'));
+		var param = getRequest();
+		var orderCode = param["orderCode"];
+		$(document).ready(function() {
+			getCourseOrderDetail();
+			$("#OrderPay").bind("click", submitWxOrderPay);
+		});
+		function getCourseOrderDetail() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/course/order/getCourseOrderDetail",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					async: false,
+					data: {
+						'orderCode': orderCode,
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$('#name').html(data.courseName);
+							$('#startClassCode').html(data.startClassCode);
+							$('#startClassTime').html(data.startClassTime);
+							$('#orderCode').html(data.orderCode);
+							$('#price').html(data.grandTotal);
+						} else {
+							$.toast(data.msg);
+						}
+					}
+			});
+		}
+		function submitWxOrderPay() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/wx/pay/submitWxOrderPay",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					async: false,
+					data: {
+						'courseName': $('#name').html(),
+						'courseNum': $('#startClassCode').html(),
+						'coursePayNum':$('#orderCode').html(),
+						'orderMoney':$('#price').html(),
+						'openid': wxUserInfo.openid
+					},
+					success: function(data) {
+						if(data.package) {
+							 if(!window.localStorage){
+			            return false;
+				        }else{
+			            var storage=window.localStorage;
+			            var appId = JSON.stringify(data.appId);
+			            var timeStamp = JSON.stringify(data.timeStamp);
+			            var nonceStr = JSON.stringify(data.nonceStr);
+			            var package = JSON.stringify(data.package);
+			            var signType = JSON.stringify(data.signType);
+			            var paySign = JSON.stringify(data.paySign);
+			            storage["appId"]= appId;
+			            storage["timeStamp"]= timeStamp;
+			            storage["nonceStr"]= nonceStr;
+			            storage["package"]= package;
+			            storage["signType"]= signType;
+			            storage["paySign"]= paySign;
+				        }
+				        window.location.href = "paymentin.html";
+								return;
+						}else {
+							$.toast('出错了！');
+						}
+					}
+					
+			});
+		}
+	</script>
+	
+  </body>
+</html>
