@@ -48,7 +48,6 @@
 					url: ulrTo + "/azz/api/client/course/order/generatePayOrderInfo",
 					cache: false, //禁用缓存   
 					dataType: "json", 
-					async: false,
 					data: {
 						'startClassCode': startClassCode,
 						'applyInfoCode': applyInfoCode,
@@ -72,7 +71,6 @@
 					url: ulrTo + "/azz/api/wx/pay/submitWxOrderPay",
 					cache: false, //禁用缓存   
 					dataType: "json", 
-					async: false,
 					data: {
 						'courseName': $('#name').html(),
 						'courseNum': $('#startClassCode').html(),

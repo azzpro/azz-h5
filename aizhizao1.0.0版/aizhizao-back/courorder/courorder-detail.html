@@ -1,0 +1,133 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="fr mt10 spacing">
+        <a class="btn btn-primary zlan add" id="receiptS" href="javascript:;">确认订单</a>&nbsp;&nbsp;<a class="btn btn-primary zlan" href="#!courorder/courorder-management.html">返回上一页</a>
+   </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">订单详情</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>订单编号：<span id="orderCode"></span></td>
+    		  	<td>订单状态：<span id="orderStatus"></span></td>
+    		  	<td>下单时间：<span id="orderTime"></span></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">下单信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>姓名：<span id="personName"></span></td>
+    		  	<td>联系电话：<span id="phoneNumber"></span></td>
+    		  	<td>联系邮箱：<span id="email"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>任职公司：<span id="company"></span></td>
+    		  	<td>毕业院校：<span id="graduateSchool"></span></td>
+    		  	<td></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">用户信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>昵称：<span id="nickName"></span></td>
+    		  	<td>OPENID：<span id="openid"></span></td>
+    		  	<td>绑定手机号：<span id="wxBindingPhone"></span></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">课程信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>课程名称：<span id="courseName"></span></td>
+    		  	<td>所属分类：<span id="classificationName"></span></td>
+    		  	<td>参数信息：<span id="courseParams"></span></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">开课信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>开课编号：<span id="startClassCode"></span></td>
+    		  	<td>开课名称：<span id="startClassName"></span></td>
+    		  	<td>课时人数：<span id="peopleNumber"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td>开课时间：<span id="startClassTime"></span></td>
+    		  	<td>开课地址：<span id="location"></span></td>
+    		  	<td>开课价格：<span id="price"></span></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default" id="evaluate" style="display: none;">
+      <div class="panel-heading">
+            <h4 class="panel-title">评价信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>用户评分：<span id="grade"></span></td>
+    		  	<td>评价内容：<span id="evaluationContent"></span></td>
+    		  	<td></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+
+
+    
+	
+
+</div>
+<!-- 这里开始 End-->
+
+<script type="text/javascript" src="courorder/courorder-detail.js"></script>
