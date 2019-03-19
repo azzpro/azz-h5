@@ -53,6 +53,7 @@
 					},
 					success: function(data) {
 						if (data.code == 0) {
+							var data = data.data;
 							$('#name').html(data.courseName);
 							$('#startClassCode').html(data.startClassCode);
 							$('#startClassTime').html(data.startClassTime);
