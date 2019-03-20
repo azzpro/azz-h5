@@ -1,0 +1,138 @@
+﻿<style>
+	.table>tbody>tr>td{ vertical-align: top; width: 33.33%;}
+	.dse{ width: 130px; float: left; text-align: right; padding-right: 10px; line-height: 38px;}
+	.applicatinoinput{ float: left; width: 200px;}
+	.error{ display: block; padding-left: 130px; padding-top: 5px;}
+	.addinput{ width: 55%;}
+</style>
+<!-- 这里开始 -->
+<div class="container-content">
+	<div class="fr mt5 spacing">
+        <a class="btn btn-primary zlan mt10" id="SubmissionBtn" href="javascript:;">立即提交</a>
+   </div>
+   <form class="form-horizontal" id="basicForm" name="basicForm" enctype="multipart/form-data">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">商户基础信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        	<table width="100%" class="table mb30">
+			    <tbody>
+	              <tr>
+	    		  	<td><span class="dse">企业名称：</span><input name="Enterprisename" class="applicatinoinput" type="text" /><label for="Enterprisename" class="error"></label></td>
+	    		  	<td><span class="dse">商户简称：</span><input name="EnterpriseAbb" class="applicatinoinput" type="text" /><label for="EnterpriseAbb" class="error"></label></td>
+	    		  	<td><span class="dse">证件类型：</span><select name="type" class="applicatinoselect"><option value="UNI_CREDIT_CODE">统一社会信用代码证</option><option value="CORP_CODE">营业执照</option></select></td>
+	    		  </tr>
+	    		  <tr>
+	    		  	
+	    		  	<td><span class="dse">证件号：</span><input name="CertificateNo" class="applicatinoinput" type="text" /><label for="CertificateNo" class="error"></label></td>
+	    		  	<td><span class="dse">省：</span><input class="applicatinoinput" name="province" type="text" /><label for="province" class="error"></label></td>
+	    		  	<td><span class="dse">市：</span><input name="city" class="applicatinoinput" type="text" /><label for="city" class="error"></label></td>
+	    		  </tr>
+	              <tr>
+	              	<td><span class="dse">区：</span><input name="area" class="applicatinoinput" type="text" /><label for="area" class="error"></label></td>
+	    		  	<td colspan="2"><span class="dse">详细地址：</span><input name="address" class="applicatinoinput addinput" type="text" /><label for="address" class="error"></label></td>
+	    		  </tr>
+	    		  <tr>
+	    			<td>ICP备案：<input type="file" title="请选择图片" id="file1" name="file" class="form-control mt10" accept="image/jpg,image/jpeg,image/png,image/bmp" /><div class="imgtu"><img src="" id="img1"></div></td>
+	    		  	<td>营业执照：(需要在空白处盖上企业公章)<input type="file" title="请选择图片" id="file2" name="file2" class="form-control mt10" accept="image/jpg,image/jpeg,image/png,image/bmp" /><div class="imgtu"><img src="" id="img2"></div></td>
+	    		  </tr>
+			    </tbody>
+	        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h4 class="panel-title">联系人信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td><span class="dse">姓名：</span><input name="name" class="applicatinoinput" type="text" /><label for="name" class="error"></label></td>
+    		  	<td><span class="dse">手机号：</span><input name="phoe" class="applicatinoinput" type="text" /><label for="phoe" class="error"></label></td>
+    		  	<td><span class="dse">邮箱：</span><input name="email" class="applicatinoinput" type="email" /><label for="email" class="error"></label></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h4 class="panel-title">法人信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td><span class="dse">姓名：</span><input class="applicatinoinput" name="legalname" type="text" /><label for="legalname" class="error"></label></td>
+    		  	<td><span class="dse">身份证号：</span><input class="applicatinoinput" name="IDnumber" type="number" /><label for="IDnumber" class="error"></label></td>
+    		  </tr>
+    		  <tr>
+    		  	<td style="vertical-align: top;">身份证正面：<input type="file" title="请选择图片" id="file3" name="file" class="form-control mt10" accept="image/jpg,image/jpeg,image/png,image/bmp" /><div class="imgtu"><img src="" id="img3"></div></td>
+    		  	<td style="vertical-align: top;">身份证反面：<input type="file" title="请选择图片" id="file4" name="file" class="form-control mt10" accept="image/jpg,image/jpeg,image/png,image/bmp" /><div class="imgtu"><img src="" id="img4"></div></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h4 class="panel-title">开户行信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td><span class="dse">开户许可证编号：</span><input name="Opennumber" class="applicatinoinput" type="text" /><label for="Opennumber" class="error"></label></td>
+    		  	<td><span class="dse">银行对公账户：</span><input name="BankAccount" class="applicatinoinput" type="text" /><label for="BankAccount" class="error"></label></td>
+    		  	<td><span class="dse">开户支行名称：</span><input name="branchname" class="applicatinoinput" type="text" /><label for="branchname" class="error"></label></td>
+    		  </tr>
+    		  <tr>
+    		  	<td><span class="dse">开户行编码：</span><input name="BankCoding" class="applicatinoinput" type="text" /><label for="BankCoding" class="error"></label></td>
+    		  	<td><span class="dse">省：</span><input name="province2" class="applicatinoinput" type="text" /><label for="province2" class="error"></label></td>
+    		  	<td><span class="dse">市：</span><input name="city2" class="applicatinoinput" type="text" /><label for="city2" class="error"></label></td>
+    		  </tr>
+    		  <tr>
+    		  	<td style="vertical-align: top;">开户许可证：<input type="file" title="请选择图片" id="file5" name="file" class="form-control mt10" accept="image/jpg,image/jpeg,image/png,image/bmp" /><div class="imgtu"><img src="" id="img5"></div></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    </form>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<script type="text/javascript" src="merchant/business-application.js"></script>

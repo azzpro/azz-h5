@@ -279,6 +279,10 @@
 		}
 		//评价课程
 		function evaluateCourse() {
+			if(!grade){
+				$.toast('请先评分！');
+				return;
+			}
 			if(!$("#evaluat").val()){
 				$.toast('请输入评价内容');
 				return;

@@ -99,7 +99,7 @@
 			          <div class="item-inner">
 			            <div class="item-title label">验证码：</div>
 			            <div class="item-input">
-			              <input type="number" class="yzmInput" name="yzmadd" maxlength="6" placeholder="请输入验证码"><a id="sendadd" class="yzmbotton" href="#">发送</a>
+			              <input type="number" oninput="if(value.length>6)value=value.slice(0,6)" class="yzmInput" name="yzmadd" maxlength="6" placeholder="请输入验证码"><a id="sendadd" class="yzmbotton" href="#">发送</a>
 			            </div>
 			          </div>
 			        </div>

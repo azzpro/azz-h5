@@ -305,3 +305,7 @@
     padding-left: 15px;
     border-radius: 3px;
 }
+
+.applicatinoinput{ border-radius: 3px; padding: 8px; border: 1px solid #ccc;}
+.addinput{ width: 55%;}
+.applicatinoselect{ border-radius: 3px; padding: 8px; border: 1px solid #ccc; width: 200px;}

@@ -1,0 +1,126 @@
+﻿<!-- 这里开始 -->
+<div class="container-content">
+	<div class="fr mt5 spacing">
+        <a class="btn btn-primary zlan" href="#!merchant/business-application.html">三方商户注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary zlan" href="#!merchant/business-management.html">返回上一页</a>
+    </div>
+	<ul class="nav nav-tabs">
+      <li><a href="#!merchant/business-detail.html"><strong>商户信息</strong></a></li>
+      <li class="active"><a href="#!merchant/business-detail3.html"><strong>账户信息</strong></a></li>
+      <li><a href="#!merchant/business-detail2.html"><strong>成员信息</strong></a></li>
+    </ul>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+            <h4 class="panel-title">商户基础信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>三方商户编号：<span id="merchantCode"></span></td>
+    		  	<td>企业名称：<span id="statuss"></span></td>
+    		  	<td>商户简称：<span id="createTime"></span></td>
+    		  </tr>
+              <tr>
+    		  	<td>省市区：<span id="companyTel"></span></td>
+    		  	<td colspan="2">详细地址：<span id="address"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />营业执照</p></td>
+    		  	<td colspan="2"><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />ICP授权</p></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h4 class="panel-title">联系人信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>姓名：<span id="legalPersonName"></span></td>
+    		  	<td>手机号：<span id="legalPersonIdCard"></span></td>
+    		  	<td>邮箱：<span id="accountName"></span></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h4 class="panel-title">法人信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>姓名：<span id="legalPersonName"></span></td>
+    		  	<td>身份证号：<span id="legalPersonIdCard"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />身份证正面</p></td>
+    		  	<td><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />身份证反面</p></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h4 class="panel-title">开户行信息</h4>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <table width="100%" class="table mb30">
+		    <tbody>
+              <tr>
+    		  	<td>开户许可证编号：<span id="legalPersonName"></span></td>
+    		  	<td>银行对公账户：<span id="legalPersonIdCard"></span></td>
+    		  	<td>开户支行名称：<span id="legalPersonIdCard"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td colspan="3">开户所在地区：<span id="legalPersonName"></span></td>
+    		  </tr>
+    		  <tr>
+    		  	<td colspan="3"><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />开户许可证</p></td>
+    		  </tr>
+		    </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+</div>
+<!-- 这里开始 End-->
+<!-- 提示 弹出窗 -->
+<div class="modal fade" id="myModal111">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">
+				<h4 class="panel-title">提示</h4>
+			</div>
+			<div class="form-horizontal form-bordered">
+				<div class="text-center ptb20">
+					
+				</div>
+				<div class="text-center ptb20">
+					<button class="btn btn-primary zlan" data-dismiss="modal" aria-label="Close">知道了</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 提示 弹出窗 End-->
+<script type="text/javascript" src="merchant/business-detail3.js"></script>
