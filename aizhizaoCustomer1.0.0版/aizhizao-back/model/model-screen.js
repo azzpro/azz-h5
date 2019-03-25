@@ -321,7 +321,12 @@ Module.define("system.model", function(page, $) {
 									var liii = '';
 									
 									for(var r = 0;r<paramValuess.sort().length;r++){
-										liii +="<label class='checkbox-inline'><input onclick='system.model.checkQx(this)' type='checkbox' paramsTermId='"+ paramsTermId +"' value='"+ paramValuess[r] +"'> "+ paramValuess[r] +"</label>";
+										if(paramValuess[r]){
+											liii +="<label class='checkbox-inline'><input onclick='system.model.checkQx(this)' type='checkbox' paramsTermId='"+ paramsTermId +"' value='"+ paramValuess[r] +"'> "+ paramValuess[r] +"</label>";
+										}else{
+											liii +=""
+										}
+										
 									}
 									lii += "<tr><td width='20%' align='right'>"+ paramsName +"：</td><td width='80%' class='selectParamsTD'>"
 									    + liii

@@ -1,8 +1,7 @@
-﻿<link href="../css/filepic.css" rel="stylesheet">
-<!-- 这里开始 -->
+﻿<!-- 这里开始 -->
 <div class="container-content">
 	<div class="fr mt10 spacing">
-        <a class="btn btn-primary zlan" href="javascript:;">通过申请</a>&nbsp;&nbsp;<a class="btn btn-primary zlan" href="javascript:;" data-toggle="modal" data-target="#myModal">拒绝申请</a>&nbsp;&nbsp;<a class="btn btn-primary zlan" href="javascript:;">重新提交</a>&nbsp;&nbsp;<a class="btn btn-primary zlan" href="#!putforward/putforward-management.html">返回上一页</a>
+        <a class="btn btn-primary zlan add" id="adopt" href="javascript:;">通过申请</a>&nbsp;&nbsp;<a class="btn btn-primary zlan add" href="javascript:;" id="refuse" data-toggle="modal" data-target="#myModal">拒绝申请</a>&nbsp;&nbsp;<a class="btn btn-primary zlan add" id="reapply" href="javascript:;">重新提交</a>&nbsp;&nbsp;<a class="btn btn-primary zlan" href="#!putforward/putforward-management.html">返回上一页</a>
    </div>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -12,15 +11,15 @@
         <div class="table-responsive">
         <table width="100%" class="table mb30">
 		    <tbody>
-              <tr>
-    		  	<td>提现单号：<span id=""></span></td>
-    		  	<td>提现状态：<span id=""></span></td>
-    		  	<td>提现金额：<span id=""></span></td>
+    		  <tr>
+    		  	<td>提现单号：<span id="applyCode"></span></td>
+    		  	<td>提现状态：<span id="statustoo"></span></td>
+    		  	<td>提现金额：<span id="totalWithdrawDepositMoney"></span></td>
     		  </tr>
     		  <tr>
-    		  	<td>发起人：<span id=""></span></td>
-    		  	<td>联系方式：<span id=""></span></td>
-    		  	<td>发起时间：<span id=""></span></td>
+    		  	<td>发起人：<span id="creator"></span></td>
+    		  	<td>联系方式：<span id="phoneNumber"></span></td>
+    		  	<td>发起时间：<span id="createTime"></span></td>
     		  </tr>
 		    </tbody>
         </table>
@@ -36,9 +35,9 @@
         <table width="100%" class="table mb30">
 		    <tbody>
               <tr>
-    		  	<td>三方单号：<span id=""></span></td>
-    		  	<td>三方状态：<span id=""></span></td>
-    		  	<td>提现金额：<span id=""></span></td>
+    		  	<td>三方单号：<span id="thirdInfoCode">-</span></td>
+    		  	<td>三方状态：<span id="thirdInfoStatus">-</span></td>
+    		  	<td>提现金额：<span id="thirdInfoWithdrawDepositMoney">-</span></td>
     		  </tr>
 		    </tbody>
         </table>
@@ -54,14 +53,14 @@
         <table width="100%" class="table mb30">
 		    <tbody>
               <tr>
-    		  	<td>商户名称：<span id=""></span></td>
-    		  	<td>信用代码：<span id=""></span></td>
-    		  	<td>开户名称：<span id=""></span></td>
+    		  	<td>商户名称：<span id="merchantName"></span></td>
+    		  	<td>信用代码：<span id="creditCode"></span></td>
+    		  	<td>开户名称：<span id="accountName"></span></td>
     		  </tr>
     		  <tr>
-    		  	<td>对公账号：<span id=""></span></td>
-    		  	<td>开户银行：<span id=""></span></td>
-    		  	<td>开户支行：<span id=""></span></td>
+    		  	<td>对公账号：<span id="accountBankCardNumber"></span></td>
+    		  	<td>开户银行：<span id="accountBank"></span></td>
+    		  	<td>开户支行：<span id="accountSubBranch"></span></td>
     		  </tr>
 		    </tbody>
         </table>
@@ -74,7 +73,7 @@
             <h4 class="panel-title">订单信息</h4>
       </div>
       <div class="row" style="padding: 0 20px;">
-				<div class="col-xs-12 col-sm-6 col-md-3">
+				<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="panel panel-primary panel-stat">
 							<div class="panel-heading">
 								<div class="stat">
@@ -82,7 +81,7 @@
 										<div class="col-xs-3 fa fa-list-alt font-60"></div>
 												<div class="col-xs-4">
 													<small class="stat-label">订单总数量</small>
-													<h1 id="xxjl">20000</h1>
+													<h1 id="totalOrderCount">0</h1>
 												</div>
 									</div>
 								</div>
@@ -92,7 +91,7 @@
 						</div>
 						<!-- panel -->
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-3">
+					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="panel panel-warning panel-stat">
 							<div class="panel-heading">
 								<div class="stat">
@@ -100,7 +99,7 @@
 										<div class="col-xs-3 fa fa-list-ol font-60"></div>
 												<div class="col-xs-4">
 													<small class="stat-label">订单总金额</small>
-													<h1 id="dzf">0</h1>
+													<h1 id="totalOrderMoney">0</h1>
 												</div>
 									</div>
 								</div>
@@ -110,7 +109,7 @@
 						</div>
 						<!-- panel -->
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-3">
+					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="panel panel-success panel-stat">
 							<div class="panel-heading">
 								<div class="stat">
@@ -118,7 +117,7 @@
 										<div class="col-xs-3 fa fa-align-left font-60"></div>
 												<div class="col-xs-4">
 													<small class="stat-label">提现总金额</small>
-													<h1 id="dqc">100000</h1>
+													<h1 id="totalWithdrawDepositMoneytoo">0</h1>
 												</div>
 									</div>
 								</div>
@@ -137,7 +136,6 @@
 					<th>商户订单编号</th>
 					<th>订单金额</th>
 					<th>渠道费用</th>
-					<th>交易费用</th>
 					<th>提现金额</th>
 					<th>下单时间</th>
 				</tr>

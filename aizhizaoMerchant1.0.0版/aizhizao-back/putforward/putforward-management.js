@@ -1,6 +1,7 @@
 Module.define("system.putforward", function(page, $) {
 	page.ready = function() {
 		initDataTable();
+		getWithdrawDepositCount();
 		$("#Search").bind("click", function() {
 			dataTable.ajax.reload();
 		});
@@ -26,12 +27,11 @@ Module.define("system.putforward", function(page, $) {
 				param = data;
 				param.pageNum = data.start/10+1;
 				param.pageSize = data.length;
-				param.param = $("input[name='searchname']").val();
-				param.status = $('#approvalType').val();
+				param.searchInput = $("input[name='searchname']").val();
 				//当前页码
 				 $.ajax({
 				 	type: "GET",   
-				 	url: ulrTo + "/azz/api/merchant/product/selectProductList",
+				 	url: ulrTo + "/azz/api/merchant/finance/getWithdrawDepositApplyInfos",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -54,21 +54,27 @@ Module.define("system.putforward", function(page, $) {
 			},
 			"columns": [{
 					"title": "提现单号",
-					"data": "productCode",
+					"data": "applyCode",
 					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
 					"title": "提现金额",
-					"data": "moduleName",
+					"data": "",
 					"className": "text-nowrap",
-					"defaultContent": "-"
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						return row.totalWithdrawDepositMoney.toFixed(2)
+					}
 				},
 				{
 					"title": "手续费用",
-					"data": "deliveryDate",
+					"data": "",
 					"className": "text-nowrap",
 					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						return row.commissionCharge.toFixed(2)
+					}
 				},
 				{
 					"title": "提现状态",
@@ -78,23 +84,32 @@ Module.define("system.putforward", function(page, $) {
 					"render" : function (data, type, row, meta) {
 						switch(row.status) {
 							case 1:
-								return '上架';
+								return '待审核';
 								break;
 							case 2:
-								return '下架';
+								return '待打款 ';
+								break;
+							case 3:
+								return '已打款 ';
+								break;
+							case 4:
+								return '已关闭 ';
+								break;
+							case 5:
+								return '待打款';
 								break;
 						};
 					}
 				},
 				{
 					"title": "提现账户",
-					"data": "price",
+					"data": "withdrawDepositAccount",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{
 					"title": "打款时间",
-					"data": "createTime",
+					"data": "payWithTime",
 					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
@@ -107,7 +122,7 @@ Module.define("system.putforward", function(page, $) {
 						if (row) {
 		            		var html = '<div class="am-btn-toolbar">';
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
-		            		html += '<a href="#!putforward/putforward-detail.html?productId={0}">详情</a>'.format(row.productId);
+		            		html += '<a href="#!putforward/putforward-detail.html?applyCode={0}">详情</a>'.format(row.applyCode);
 		            		html += '</div>';
 		            		html += '</div>';
 			         		return html;
@@ -116,6 +131,27 @@ Module.define("system.putforward", function(page, $) {
 		            }
 				}
 			],
+		});
+	}
+	function getWithdrawDepositCount() {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/merchant/finance/getWithdrawDepositCount",
+			cache: false, //禁用缓存   
+			dataType: "json", 
+			data: {
+				
+			},
+			success: function(data) {
+				if (data.code == 0) {
+					var rows = data.data;
+					$('#xxjl').html(rows.totalIncome);
+					$('#dzf').html(rows.withdrawDepositMoney);
+					$('#dqc').html(rows.notWithdrawDepositMoney);
+				} else {
+					alert(data.msg)
+				}
+			}
 		});
 	}
 	

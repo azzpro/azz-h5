@@ -8,10 +8,6 @@
      <link rel="stylesheet" href="css/dropload.css">
      <style>
      	.content{ position:  static;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     overflow: auto;}
      </style>
  </head>
@@ -20,9 +16,11 @@
      <h1>就当我是新闻页吧</h1>
      <input type="number" oninput="if(value.length>6)value=value.slice(0,6)" name="" id="" value="" />
  </div>
+ <div class="" style="position:absolute;top:auto; right:auto; bottom:auto; left:auto; overflow:initial;">
  <div class="content">
      <div class="curricuList">
      </div>
+ </div>
  </div>
  <!-- jQuery1.7以上 或者 Zepto 二选一，不要同时都引用 -->
  <script src="js/zepto.min.js"></script>
@@ -32,7 +30,7 @@
      // 页数
      var page = 0;
      // 每页展示5个
-     var size = 5;
+     var size = 1;
  
      // dropload
      $('.content').dropload({
@@ -45,19 +43,11 @@
         var result = '';
         $.ajax({
           type: 'POST',
-          url: ulrTo + '/azz/api/client/course/getIndexCourseInfos',
+          url: 'http://120.78.162.226:8080/azz/api/platform/course/getClassificationParent?page='+page+'&size='+size,
           dataType: 'json',
-          data: {
-          	'courseName': $("input[name='searchname']").val(),
-						'status' : 1,
-						'sortType' : 1,
-						'classificationCode' : '1547264475170',
-						'pageNum' : page,
-						'pageSize' : '4',
-					},
           success: function(data){
           	if (data.code == 0) {
-              var rows = data.data.rows;
+              var rows = data.data;
               var arrLen = rows.length;
               
 	              if(arrLen > 0){

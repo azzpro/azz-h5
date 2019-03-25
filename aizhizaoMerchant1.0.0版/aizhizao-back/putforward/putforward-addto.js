@@ -1,31 +1,50 @@
-/*var param = getRequest();
-var orderCode = param["orderCode"];*/
+var paramData=[];
+var valueArra=[];
+var withdrawDepositMoneyarr=[];
+var grandtotalarr=[];
 Module.define("system.putforward", function(page, $) {
 	page.ready = function() {
-		getMerchantOrderDetail();
+		getAccountInfoByMerchantCode();
+		paramDatalist();
+		initDataTable();
+		$("#SubmissionBtn").bind("click", submitForm);
 		$("#PreservationButton").bind("click", Select);
 		$("#Search").bind("click", function() {
 			dataTable.ajax.reload();
 		});
 	}
-	function getMerchantOrderDetail() {
+	function getAccountInfoByMerchantCode() {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/order/getMerchantOrderDetail",
+			url: ulrTo+"/azz/api/merchant/finance/getAccountInfoByMerchantCode",
 			cache: false, //禁用缓存
 			data: {
-				'orderCode':orderCode,
+				
 			},
 			dataType: "json", 
 			success: function(data) {
 				if (data.code == 0) {
-					
-					
+					if(!data.data){
+					 alert('非合法提现商户');
+					 window.location.href = "#!putforward/putforward-management.html";
+					 return;
+					}
+					$('#accountName').html(data.data.accountName);
+					$('#accountBankCardNumber').html(data.data.accountBankCardNumber);
+					$('#creditCode').html(data.data.creditCode);
+					$('#accountBank').html(data.data.accountBank);
+					$('#accountSubBranch').html(data.data.accountSubBranch);
 				} else {
 					alert(data.msg)
 				}
 			}
 		});
+	}
+	
+	function sum(arr){
+	  return arr.reduce(function(prep,curr,idx,arr){
+	    return prep+curr;
+	  });
 	}
 	
 	function initDataTable() {
@@ -48,12 +67,11 @@ Module.define("system.putforward", function(page, $) {
 				param = data;
 				param.pageNum = data.start/10+1;
 				param.pageSize = data.length;
-				param.param = $("input[name='searchname']").val();
-				param.assortmentId = $('#assortmentId').html();
+				param.searchInput = $("input[name='searchname']").val();
 				//当前页码
 				 $.ajax({
 				 	type: "POST",   
-				 	url: ulrTo + "/azz/api/merchant/case/getCaseParamList",
+				 	url: ulrTo + "/azz/api/merchant/finance/getMerchantOrders",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -75,45 +93,81 @@ Module.define("system.putforward", function(page, $) {
 				 });
 			},
 			"columns": [{
-					"title": '<input id="checkUuid" onclick="system.programme.checkAll()" type="checkbox">',
+					"title": '<input id="checkUuid" onclick="system.putforward.checkAll()" type="checkbox">',
 					"data": "",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render": function(data, type, row, meta) {
-						return '<input onclick="system.programme.checkQx()" name="deviceUuid" uuid="'+row.id+'" paramCode="'+row.paramCode+'" paramName="'+row.paramName+'" paramsType="'+row.paramsType+'" paramValue="'+row.paramValue+'" type="checkbox">';
+						if(row.withdrawDepositStatus == 1){
+							return '<input onclick="system.putforward.checkQx()" name="deviceUuid" merchantOrderCode="'+row.merchantOrderCode+'" grandTotal="'+row.grandTotal.toFixed(2)+'" withdrawDepositMoney="'+row.withdrawDepositMoney.toFixed(2)+'" transactionCost="'+row.transactionCost.toFixed(2)+'" orderDate="'+row.orderDate+'" type="checkbox">';
+						}else{
+							return '-'
+						}
+						
 					}
 				}, // 序号
 				{
-					"title": "产品参数编号",
-					"data": "paramCode",
+					"title": "订单编号",
+					"data": "merchantOrderCode",
 					"className": "text-nowrap",
 					"defaultContent": "-"
 				}, // 序号
 				{
-					"title": "产品参数名称",
-					"data": "paramName",
-					"className": "text-nowrap",
-					"defaultContent": "-"
-				},
-				{
-					"title": "产品参数格式",
+					"title": "订单金额",
 					"data": "",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
-						switch(row.paramsType) {
+						return row.grandTotal.toFixed(2)
+					}
+				},
+				{
+					"title": "订单状态",
+					"data": "",
+					"className": "text-nowrap",
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						switch(row.orderStatusId) {
 							case 1:
-								return '下拉选择';
+								return '待确认';
 								break;
 							case 2:
-								return '参数填写';
+								return '待发货';
+								break;
+							case 3:
+								return '待签收';
+								break;
+							case 4:
+								return '已完成';
+								break;
+							case 5:
+								return '已取消';
 								break;
 						};
 					}
 				},
 				{
-					"title": "参数值",
-					"data": "paramValue",
+					"title": "提现状态",
+					"data": "",
+					"className": "text-nowrap",
+					"defaultContent": "-",
+					"render" : function (data, type, row, meta) {
+						switch(row.withdrawDepositStatus) {
+							case 1:
+								return '可提现';
+								break;
+							case 2:
+								return '提现中';
+								break;
+							case 3:
+								return '已提现';
+								break;
+						};
+					}
+				},
+				{
+					"title": "下单时间",
+					"data": "orderDate",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 				}
@@ -148,11 +202,10 @@ Module.define("system.putforward", function(page, $) {
          }
 	}
 	function Select() {
-		paramsId.splice(0,paramsId.length);
 		$('input[name="deviceUuid"]:checked').each(function(){
 			var existsFlag = false;
 			for(var i=0;i<paramData.length;i++){
-				if($(this).attr("paramCode") == paramData[i].paramCode){
+				if($(this).attr("merchantordercode") == paramData[i].merchantordercode){
 					// 如果moduleCode的值在原来数组中已经存在，则标识为已存在，则跳出当前循环
 					existsFlag = true;
 					continue;
@@ -163,61 +216,94 @@ Module.define("system.putforward", function(page, $) {
 				return true;
 			}
 			var Newsobj = {
-				"id" : $(this).attr("uuid"),
-				"paramCode" : $(this).attr("paramCode"),
-				"paramName" : $(this).attr("paramName"),
-				"paramsType" : $(this).attr("paramsType"),
-				"paramValue" : $(this).attr("paramValue"),
+				"merchantordercode" : $(this).attr("merchantordercode"),
+				"grandtotal" : $(this).attr("grandtotal"),
+				"withdrawDepositMoney" : $(this).attr("withdrawDepositMoney"),
+				"transactionCost" : $(this).attr("transactionCost"),
+				"orderdate" : $(this).attr("orderdate"),
 			}
 			paramData.push(Newsobj);
 		});
 		
-		$("#parameData").empty();
+		$("#prodetail").empty();
 		paramDatalist();
 		$('#myModal2').modal('hide');
 	}
 	
 	function paramDatalist() {
 		if(!paramData || !paramData.length){
-			nodata = "<tr><td colspan='5' height='30'>表中数据为空</td></tr>";
-			$("#parameData").append(nodata);
+			nodata = "<tr><td colspan='6' height='30'>表中数据为空</td></tr>";
+			$("#prodetail").append(nodata);
 		}else{
 			var tr = "";
+			$('#xxjl').html(paramData.length);
+			withdrawDepositMoneyarr.splice(0,withdrawDepositMoneyarr.length);
+			grandtotalarr.splice(0,grandtotalarr.length);
 			for(var i = 0;i < paramData.length; i++){
-				var paramCode = paramData[i].paramCode;
-				var paramName = paramData[i].paramName;
-				var paramsType = paramData[i].paramsType;
-				var paramValue = paramData[i].paramValue;
-				if(paramsType==1){
-					var paramsType = '下拉选择'
-				}else{
-					var paramsType = '参数填写'
-				}
-				if(paramValue=="undefined"){
-					var paramValue = '-'
-				}else{
-					var paramValue = paramValue
-				}
-				tr += "<tr><td>"+ paramName +"</td>"
-				+ "<td>"+ paramCode +"</td>"
-				+ "<td>"+ paramsType +"</td>"
-				+ "<td>"+ paramValue +"</td>"
-				+ "<td><a onclick=\"system.programme.delDeptInfo2(\'" + paramCode + "\');\" href='javascript:;'>删除</a></td></tr>";
+				var merchantordercode = paramData[i].merchantordercode;
+				var grandtotal = paramData[i].grandtotal;
+				var withdrawDepositMoney = paramData[i].withdrawDepositMoney;
+				var transactionCost = paramData[i].transactionCost;
+				var orderdate = paramData[i].orderdate;
+				tr += "<tr><td>"+ merchantordercode +"</td>"
+				+ "<td>"+ grandtotal +"</td>"
+				+ "<td>"+ transactionCost +"</td>"
+				+ "<td>"+ withdrawDepositMoney +"</td>"
+				+ "<td>"+ orderdate +"</td>"
+				+ "<td><a onclick=\"system.putforward.delDeptInfo2(\'" + merchantordercode + "\');\" href='javascript:;'>移除</a></td></tr>";
+				withdrawDepositMoneyarr.push(parseFloat(paramData[i].withdrawDepositMoney));
+				grandtotalarr.push(parseFloat(paramData[i].grandtotal));
 			}
-			$("#parameData").append(tr);
+			var s=sum(withdrawDepositMoneyarr);
+			var g=sum(grandtotalarr);
+			$('#dqc').html(s.toFixed(2));
+			$('#dzf').html(g.toFixed(2));
+			$("#prodetail").append(tr);
 		}
 	}
-	page.delDeptInfo2 = function(paramCode) {
+	page.delDeptInfo2 = function(merchantordercode) {
 		$.each(paramData,function(index,item){
 			// index是索引值（即下标）   item是每次遍历得到的值；
-			if(item.paramCode== paramCode){
+			if(item.merchantordercode== merchantordercode){
 				paramData.splice(index,1);
-				$("#parameData").empty();
+				$("#prodetail").empty();
 				paramDatalist();
 				return false;
 			}
 		});
-		paramsId.splice(0,paramsId.length);
+	}
+	
+	//申请
+	function submitForm() {
+		valueArra.splice(0,valueArra.length);
+		for(var i = 0;i < paramData.length; i++){
+			valueArra.push(paramData[i].merchantordercode);
+		}
+	    $.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/merchant/finance/withdrawDepositApply",
+			cache: false, //禁用缓存   
+			async: false,
+			contentType: "application/json; charset=utf-8",
+			dataType: "json", 
+			data:JSON.stringify(GetJsonData()),
+			success: function(data) {
+				if (data.code == 0) {
+					alert('申请提现成功！');
+					window.location.href = "#!putforward/putforward-management.html";
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
+	}
+	
+	function GetJsonData() {
+	    var json = {
+	        'withdrawDepositAccount': $('#accountBankCardNumber').html(),
+			'merchantOrderCodes' : valueArra,
+	    };
+	    return json;
 	}
 	
 	$('.datepicker_start').datepicker({

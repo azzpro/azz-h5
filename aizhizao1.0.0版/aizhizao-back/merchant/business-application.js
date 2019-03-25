@@ -1,3 +1,4 @@
+var merchantCode = JSON.parse(localStorage.getItem('merchantCode'));
 Module.define("system.business", function(page, $) {
 	page.ready = function() {
 		
@@ -53,6 +54,8 @@ Module.define("system.business", function(page, $) {
 	   	}
 
 		var fm = new FormData();
+		
+		fm.append('merchantCode', merchantCode);
 		fm.append('merFullName', $("input[name='Enterprisename']").val());
 		fm.append('merShortName', $("input[name='EnterpriseAbb']").val());
 		fm.append('merCertType', $("select[name='type']").val());
