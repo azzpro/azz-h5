@@ -7,8 +7,7 @@
       
      <link rel="stylesheet" href="css/dropload.css">
      <style>
-     	.content{ position:  static;
-    overflow: auto;}
+    .fgdf{position:absolute;top:0; right:0; bottom:0; left:0;    overflow:  auto;}
      </style>
  </head>
  <body>
@@ -16,12 +15,14 @@
      <h1>就当我是新闻页吧</h1>
      <input type="number" oninput="if(value.length>6)value=value.slice(0,6)" name="" id="" value="" />
  </div>
- <div class="" style="position:absolute;top:auto; right:auto; bottom:auto; left:auto; overflow:initial;">
+  <div class="fgdf">
+ <div class="fgdf" style="position:static;top:auto; right:auto; bottom:auto; left:auto;    overflow:  inherit;">
  <div class="content">
      <div class="curricuList">
      </div>
  </div>
  </div>
+</div>
  <!-- jQuery1.7以上 或者 Zepto 二选一，不要同时都引用 -->
  <script src="js/zepto.min.js"></script>
  <script src="js/dropload.min.js"></script>
