@@ -1,81 +1,71 @@
 var merchantCode = JSON.parse(localStorage.getItem('merchantCode'));
 Module.define("system.business", function(page, $) {
 	page.ready = function() {
-		searchMerchantInfo();
+		enterpriseInfo();
 	}
-	function searchMerchantInfo() {
+	function enterpriseInfo() {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/merchant/getMerchantInfo",
+			url: ulrTo+"/azz/api/merchant/enterpriseInfo",
 			cache: false, //禁用缓存
 			data: {
-				'code':merchantCode,
+				'merchantCode':merchantCode,
 			},
 			dataType: "json", 
 			success: function(data) {
 				if (data.code == 0) {
-					var data = data.data
-					$('#merchantCode').html(data.merchantCode);
-					switch(data.status) {
-							case 0:
-								$('#statuss').html('已拒绝');
-								break;
-							case 1:
-								$('#statuss').html('待审核');
-								break;
-							case 2:
-								$('#statuss').html('已通过');
-								break;
-					};
-					$('#createTime').html(data.createTime);
-					$('#merchantName').html(data.merchantName);
-					$('#legalPersonName').html(data.legalPersonName);
-					$('#legalPersonIdCard').html(data.legalPersonIdCard);
-					$('#companyName').html(data.companyName);
-					$('#creditCode').html(data.creditCode);
-					$('#companyTel').html(data.companyTel);
-					$('#address').html(data.address);
-					$('#accountName').html(data.accountName);
-					$('#accountBankCardNumber').html(data.accountBankCardNumber);
-					$('#accountBank').html(data.accountBank);
-					$('#accountSubBranch').html(data.accountSubBranch);
-					if(data.businessLicenseFileUrl == null){
+					var data = data.data;
+					if(!data.merchantNo){
+						$('#threereg').show();
+					}
+					$('#merchantNo').html(data.merchantNo?data.merchantNo:'');
+					$('#merFullName').html(data.merFullName?data.merFullName:'');
+					$('#merShortName').html(data.merShortName?data.merShortName:'');
+					$('#merAddress').html(data.merAddress?data.merAddress:'');
+					$('#merProvince').html(data.merProvince?data.merProvince+'/'+data.merCity+'/'+data.merDistrict:'');
+					$('#merContactName').html(data.merContactName?data.merContactName:'');
+					$('#merContactPhone').html(data.merContactPhone?data.merContactPhone:'');
+					$('#merContactEmail').html(data.merContactEmail?data.merContactEmail:'');
+					$('#legalName').html(data.legalName?data.legalName:'');
+					$('#legalIdCard').html(data.legalIdCard?data.legalIdCard:'');
+					$('#accountLicense').html(data.accountLicense?data.accountLicense:'');
+					$('#cardNo').html(data.cardNo?data.cardNo:'');
+					$('#bankCode').html(data.bankCode?data.bankCode:'');
+					$('#bankProvince').html(data.bankProvince?data.bankProvince+'/'+data.bankCity:'');
+					
+					if(data.icpAuthPic == null){
 						$('#pic1').hide()
 					}else{
 						$('#pic1').show();
-						$('#pic1').attr("src", data.businessLicenseFileUrl); 
-						/*$('#picname1').html(data.legalPersonIdCardFileName);*/
+						$('#pic1').attr("src", data.icpAuthPic); 
 					}
-					if(data.tradingCertificateFirstFileUrl == null){
+					if(data.businessPic == null){
+						$('#pic2').hide()
+					}else{
+						$('#pic2').show();
+						$('#pic2').attr("src", data.businessPic); 
+					}
+					if(data.legalFrontPic == null){
 						$('#pic3').hide()
 					}else{
 						$('#pic3').show();
-						$('#pic3').attr("src", data.tradingCertificateFirstFileUrl); 
-						/*$('#picname3').html(data.tradingCertificateFirstFileName);*/
+						$('#pic3').attr("src", data.legalFrontPic); 
 					}
-					if(data.tradingCertificateSecondFileUrl == null){
+					if(data.legalBackPic == null){
 						$('#pic4').hide()
 					}else{
 						$('#pic4').show();
-						$('#pic4').attr("src", data.tradingCertificateSecondFileUrl); 
-						/*$('#picname4').html(data.tradingCertificateSecondFileName);*/
+						$('#pic4').attr("src", data.legalBackPic); 
 					}
-					if(data.tradingCertificateThirdFileUrl == null){
+					if(data.openAccountPic == null){
 						$('#pic5').hide()
 					}else{
 						$('#pic5').show();
-						$('#pic5').attr("src", data.tradingCertificateThirdFileUrl); 
-						/*$('#picname5').html(data.tradingCertificateThirdFileName);*/
+						$('#pic5').attr("src", data.openAccountPic); 
 					}
 					
 					
-					if(data.businessLicenseFileUrl == null){
-						$('#pic6').hide()
-					}else{
-						$('#pic6').show();
-						$('#pic6').attr("src", data.businessLicenseFileUrl); 
-						/*$('#picname6').html(data.businessLicenseFileName);*/
-					}
+					
 					
 				} else {
 					alert(data.msg)

@@ -1,4 +1,4 @@
-var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+var merchantUserInfo = JSON.parse(localStorage.getItem('merchantUserInfo'));
 Module.define("system.password", function(page, $) {
 	var password = "";
 	var password2 = "";
@@ -33,7 +33,7 @@ Module.define("system.password", function(page, $) {
 			url: ulrTo+"/azz/api/user/editPassword",
 			async: false,
 			data: {
-				'userCode': userInfo.userCode,
+				'merchantCode': merchantUserInfo.merchantCode,
          	    'firstPassword': $("#password").val(),
 				'secondPassword': $("#password2").val()
 			},

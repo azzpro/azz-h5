@@ -1,7 +1,7 @@
 ﻿<!-- 这里开始 -->
 <div class="container-content">
 	<div class="fr mt5 spacing">
-        <a class="btn btn-primary zlan" href="#!merchant/business-application.html">三方商户注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary zlan" href="#!merchant/business-management.html">返回上一页</a>
+        <a class="btn btn-primary zlan add" id="threereg" href="#!merchant/business-application.html">三方商户注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary zlan add" id="nothreereg" href="#!merchant/business-application.html">重新提交注册</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary zlan" href="#!merchant/business-management.html">返回上一页</a>
     </div>
 	<ul class="nav nav-tabs">
       <li><a href="#!merchant/business-detail.html"><strong>商户信息</strong></a></li>
@@ -17,17 +17,17 @@
         <table width="100%" class="table mb30">
 		    <tbody>
               <tr>
-    		  	<td>三方商户编号：<span id="merchantCode"></span></td>
-    		  	<td>企业名称：<span id="statuss"></span></td>
-    		  	<td>商户简称：<span id="createTime"></span></td>
+    		  	<td>三方商户编号：<span id="merchantNo"></span></td>
+    		  	<td>企业名称：<span id="merFullName"></span></td>
+    		  	<td>商户简称：<span id="merShortName"></span></td>
     		  </tr>
               <tr>
-    		  	<td>省市区：<span id="companyTel"></span></td>
-    		  	<td colspan="2">详细地址：<span id="address"></span></td>
+    		  	<td>省市区：<span id="merProvince"></span></td>
+    		  	<td colspan="2">详细地址：<span id="merAddress"></span></td>
     		  </tr>
     		  <tr>
-    		  	<td><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />营业执照</p></td>
-    		  	<td colspan="2"><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />ICP授权</p></td>
+    		  	<td><p align="center"><img id="pic1" width="200" src="" alt="" /></p></td>
+    		  	<td colspan="2"><p align="center"><img id="pic2" width="200" src="" alt="" /></p></td>
     		  </tr>
 		    </tbody>
         </table>
@@ -43,9 +43,9 @@
         <table width="100%" class="table mb30">
 		    <tbody>
               <tr>
-    		  	<td>姓名：<span id="legalPersonName"></span></td>
-    		  	<td>手机号：<span id="legalPersonIdCard"></span></td>
-    		  	<td>邮箱：<span id="accountName"></span></td>
+    		  	<td>姓名：<span id="merContactName"></span></td>
+    		  	<td>手机号：<span id="merContactPhone"></span></td>
+    		  	<td>邮箱：<span id="merContactEmail"></span></td>
     		  </tr>
 		    </tbody>
         </table>
@@ -61,12 +61,12 @@
         <table width="100%" class="table mb30">
 		    <tbody>
               <tr>
-    		  	<td>姓名：<span id="legalPersonName"></span></td>
-    		  	<td>身份证号：<span id="legalPersonIdCard"></span></td>
+    		  	<td>姓名：<span id="legalName"></span></td>
+    		  	<td>身份证号：<span id="legalIdCard"></span></td>
     		  </tr>
     		  <tr>
-    		  	<td><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />身份证正面</p></td>
-    		  	<td><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />身份证反面</p></td>
+    		  	<td><p align="center"><img id="pic3" width="200" src="" alt="" /></p></td>
+    		  	<td><p align="center"><img id="pic4" width="200" src="" alt="" /></p></td>
     		  </tr>
 		    </tbody>
         </table>
@@ -82,15 +82,15 @@
         <table width="100%" class="table mb30">
 		    <tbody>
               <tr>
-    		  	<td>开户许可证编号：<span id="legalPersonName"></span></td>
-    		  	<td>银行对公账户：<span id="legalPersonIdCard"></span></td>
-    		  	<td>开户支行名称：<span id="legalPersonIdCard"></span></td>
+    		  	<td>开户许可证编号：<span id="accountLicense"></span></td>
+    		  	<td>银行对公账户：<span id="cardNo"></span></td>
+    		  	<td>开户支行名称：<span id="bankCode"></span></td>
     		  </tr>
     		  <tr>
-    		  	<td colspan="3">开户所在地区：<span id="legalPersonName"></span></td>
+    		  	<td colspan="3">开户所在地区：<span id="bankProvince"></span></td>
     		  </tr>
     		  <tr>
-    		  	<td colspan="3"><p align="center"><img width="200" src="../images/ewma.jpg" alt="" /><br />开户许可证</p></td>
+    		  	<td colspan="3"><p align="center"><img id="pic5" width="200" src="" alt="" /></p></td>
     		  </tr>
 		    </tbody>
         </table>
