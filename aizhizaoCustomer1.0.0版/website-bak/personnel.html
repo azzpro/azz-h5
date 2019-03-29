@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../images/favicon.png" type="image/png">
+<title>爱智造科技服务有限公司</title>
+<link href="css/swiper.min.css" rel="stylesheet">
+<link href="css/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+	<div class="top">
+	  <div class="topzi">爱智造 · 中国制造2025</div>
+	  <nav>
+	  	<a href="index.html">首页</a>
+	  	<a href="programme.html">智能选型</a>
+	  	<!--<a href="financial.html">金融租赁</a>-->
+	  	<a href="industrial.html">产业学院</a>
+	  	<a class="bg" href="personnel.html">人才滴滴</a>
+	  	<!--<a href="aiwelfare.html">爱公益</a>-->
+	 	</nav>
+	 	<div class="top-right"><a href="http://c.izz2025.com/" target="_blank">客户登录</a> | <a href="http://s.izz2025.com/" target="_blank">商户登录</a><span><img style="margin-top: 8px;" width="28" height="28" src="images/telico.png" alt="" /> 0755-23018388</span></div>
+ 	</div>
+</header>
+<div>
+	<img src="images/rc-tu1.jpg" alt="" />
+	<img src="images/rc-tu2.jpg" alt="" />
+	<img src="images/rc-tu3.jpg" alt="" />
+	<img src="images/rc-tu4.jpg" alt="" />
+	<img src="images/rc-tu5.jpg" alt="" />
+	<img src="images/rc-tu6.jpg" alt="" />
+</div>
+
+<div class="bottom-bg" style="margin-top: 0;">
+  <footer class="c">
+    	<a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备18144663号</a> Copyright © 2018-2020 IZZ All rights reserved. <br />
+    	爱智造科技服务有限公司
+  </footer>
+</div>
+
+
+<!-- script -->
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/visitip.js"></script>
+<script>
+var sideBar = $ ("header"), tp = sideBar.prop ("offsetTop");
+    $(window).scroll (function (){
+        var top=$(window).scrollTop();
+        //top = top <= tp ? tp : top;
+        //console.info(top);
+        if( top>=40 ){
+        	sideBar.css (
+        {
+            "position" : "fixed",
+            "z-index" : "33",
+            "width" :"100%",
+            "background" : "#333",
+            "top": "0",
+        });
+        } else if( top <= 40 ){
+        	sideBar.css (
+        {
+            "position" : "relative",
+        });
+        }
+    })
+</script>
+</body>
+</html>

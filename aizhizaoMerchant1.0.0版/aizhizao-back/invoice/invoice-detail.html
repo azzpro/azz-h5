@@ -219,7 +219,7 @@
 		                <div class="form-group add" id="selfSR">
 		                  <label class="col-sm-3 control-label"><span class="hong">*</span> 手机号：</label>
 		                  <div class="col-sm-8">
-		                    <input type="text" name="phonenumber" class="form-control">
+		                    <input type="number" name="phonenumber" oninput="if(value.length>11)value=value.slice(0,11)" class="form-control">
 		                  </div>
 		                </div>
 		                

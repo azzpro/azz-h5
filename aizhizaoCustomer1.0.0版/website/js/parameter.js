@@ -25,7 +25,7 @@ $(document).ready(function() {
 	})
     $("#Submission").bind("click", Submission);
     
-    var sideBar = $ ("header"), tp = sideBar.prop ("offsetTop");
+    /*var sideBar = $ ("header"), tp = sideBar.prop ("offsetTop");
     $(window).scroll (function (){
         var top=$(window).scrollTop();
         //top = top <= tp ? tp : top;
@@ -45,7 +45,7 @@ $(document).ready(function() {
             "position" : "relative",
         });
         }
-    })
+    })*/
 });
 function getInitParamsByCaseCode() {
 	$.ajax({
