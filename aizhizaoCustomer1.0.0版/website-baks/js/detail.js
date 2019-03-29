@@ -30,7 +30,7 @@ $(document).ready(function() {
 			alert('ddddd')
 		});
 		
-	var sideBar = $ ("header"), tp = sideBar.prop ("offsetTop");
+	/*var sideBar = $ ("header"), tp = sideBar.prop ("offsetTop");
     $(window).scroll (function (){
         var top=$(window).scrollTop();
         //top = top <= tp ? tp : top;
@@ -50,7 +50,7 @@ $(document).ready(function() {
             "position" : "relative",
         });
         }
-    })
+    })*/
 });
 function getCombinationDetail() {
 	$.ajax({
