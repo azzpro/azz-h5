@@ -227,7 +227,7 @@ Module.define("system.putforward", function(page, $) {
 		
 		$("#prodetail").empty();
 		paramDatalist();
-		$('#myModal2').modal('hide');
+		$('#myModal').modal('hide');
 	}
 	
 	function paramDatalist() {
