@@ -59,7 +59,7 @@ Module.define("system.courorder", function(page, $) {
 					if(orderInfo.orderStatus==17){
 						$('#evaluate').show();
 						$('#evaluationContent').html(orderInfo.evaluationContent);
-						switch(orderInfo.orderStatus) {
+						switch(orderInfo.grade) {
 							case 1:
 								$('#grade').html('<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span>');
 								break;
