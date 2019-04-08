@@ -39,6 +39,9 @@ body{ background:#eff3f9; }
 .tz-zi{ padding-top: 7px; color: #999; }
 .tips{ margin-bottom: 20px;}
 
+@media (max-width:1300px){
+  .login-k{ width: 300px; margin-top: 33%;}
+}
 
 @media (max-width:1200px){
   .zc-l{ width: 70%;}
@@ -54,7 +57,8 @@ body{ background:#eff3f9; }
   .top{ width: 90%; }
   .top h1{ font-size: 18px; }
   .top p{ font-size: 12px; }
-  .login-k{ width: 300px; margin-top: 15%;}
+  .login-k{ width: 300px; margin-top: 40%; height: 380px;}
+  .login-k h4{padding-top: 10px;}
   .zc-l ul li p span{ width: 30%;}
   .zc-l ul li p input{ width: 68%;}
   .zc-l ul li p .input-zdy2{ width: 45.5%; }

@@ -7,6 +7,7 @@ body{ background:#eff3f9; }
 .top p{ float: right; line-height: 50px; margin-bottom: 0;}
 .login-k{ margin: auto; width: 400px; height: 400px; position: absolute; top: 0; left:0; right: 0; bottom: 0; background: #fff; border-radius: 8px; }
 .login-k h4{ text-align: center; padding-top: 40px; }
+.login-k .form-group { margin-bottom: 0; height: 65px;}
 .signinpanel .userlogin{width: 80%; margin:30px auto 0; border: none; padding: 0; border-radius: 0;}
 .signinpanel .form-control{ margin-top: 20px; }
 .signinpanel p a{ text-align: center; display: block; margin-top: 5px; color: #00a0e9; }
@@ -41,7 +42,9 @@ body{ background:#eff3f9; }
 
 /* 找回密码 */
 .mm-jdt li{ width: 25%; }
-
+@media (max-width:1300px){
+  .login-k{ width: 300px; margin-top: 33%;}
+}
 @media (max-width:1200px){
   .zc-l{ width: 70%;}
   .zc-r{ width: 20%;}
@@ -56,7 +59,8 @@ body{ background:#eff3f9; }
   .top{ width: 90%; }
   .top h1{ font-size: 18px; }
   .top p{ font-size: 12px; }
-  .login-k{ width: 300px; margin-top: 15%;}
+  .login-k{ width: 300px; margin-top: 40%; height: 380px;}
+  .login-k h4{padding-top: 10px;}
   .zc-l ul li p span{ width: 30%;}
   .zc-l ul li p input{ width: 68%;}
   .zc-l ul li p .input-zdy2{ width: 45.5%; }
