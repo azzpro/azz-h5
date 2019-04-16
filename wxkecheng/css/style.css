@@ -193,3 +193,16 @@ button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
              opacity:1;
          }
       }
+//活动
+.activitysign{ width: 100%; overflow: hidden; margin-top: .5rem;}
+.activitysign li{ border-bottom: #eee 1px solid; margin-bottom: .5rem; padding: 0 3% .5rem; width: 94%; overflow: hidden;}
+.activitysign li a{ display: block; margin: 0; padding: 0;}
+.activitysign li img{ float: left; width: 8rem; height: 5rem;}
+.activiright{ float: right; width: 9rem;}
+.activiright h3{ font-size: .75rem; margin: 0 ; padding: 0; height: 2rem; overflow: hidden;}
+.activiright .ing{ font-size: .5rem; display: block; background: #007AFF; width: 3rem; color: #fff; text-align: center; line-height: 1rem; border-radius: .5rem; margin-top: .3rem;}
+.activiright .end{ font-size: .5rem; display: block; background: #ccc; width: 3.5rem; color: #fff; text-align: center; line-height: 1rem; border-radius: .5rem; margin-top: .3rem;}
+.activiright .nodisplay{ display: none;}
+.activibottom{ font-size: .7rem; color: #4d70e0; margin-top: .6rem;}
+.activibottom span{ float: right; border: #4d70e0 1px solid; padding: 0 .6rem; border-radius: .5rem;}
+.bannerdetail{ width: 100%;}

@@ -1,4 +1,11 @@
-﻿<!-- 这里开始 -->
+﻿<style>
+	.modal-dialog{ width: 900px;}
+	@media (max-width:668px){
+		.w-e-toolbar{ width: 100%; overflow: auto;}
+		.modal-dialog{ width: auto;}
+	}
+</style>
+<!-- 这里开始 -->
 <div class="container-content">
 	<button class="btn pull-right btn-primary zlan" style="margin-top: 20px; margin-right: 10px;" id="SubmissionBtn">保存</button>
 	<div class="panel-heading"><h4>编辑模组</h4></div>
@@ -29,13 +36,13 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label"><span class="asterisk">*</span> 模组状态：</label>
 								<div class="col-sm-6">
-									<div class="col-sm-2 mt10">
+									<div class="col-xs-5 col-sm-2 mt10">
 						                <div class="rdio rdio-primary">
 					                        <input type="radio" name="fill" checked="" value="1" id="Required">
 					                        <label for="Required">上架</label>
 					                    </div>
 									</div>
-									<div class="col-sm-2 mt10">
+									<div class="col-xs-5 col-sm-2 mt10">
 										<div class="rdio rdio-primary">
 					                        <input type="radio" name="fill" value="2" id="Selection">
 					                        <label for="Selection">下架</label>
@@ -78,7 +85,7 @@
 <!-- 这里开始 End-->
 <!-- 分类选择 弹出窗 -->
 <div class="modal fade" id="myModal">
-	<div class="modal-dialog" style="width: 900px;">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<button type="button" class="close mlr" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<div class="panel-heading">
