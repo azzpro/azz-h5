@@ -120,19 +120,24 @@ Module.define("system.courculum", function(page, $) {
 	}
 	
 	jeDate("#beginstime",{
-        isTime:false,
-        festival: false,
-        minDate:'2015-06-16 10:20:25',
-        maxDate:'2025-06-16 18:30:35',
-        format: 'YYYY-MM-DD hh:mm:ss'
+        isinitVal:false,
+        minDate: '2016-06-16',
+        maxDate: '2035-06-16',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        zIndex:3000
     });
     
     jeDate("#beginstime2",{
-        isTime:false,
+        /*isTime:false,
         festival: false,
         minDate:'2015-06-16 10:20:25',
         maxDate:'2025-06-16 18:30:35',
-        format: 'YYYY-MM-DD hh:mm:ss'
+        format: 'YYYY-MM-DD hh:mm:ss'*/
+        isinitVal:false,
+	    minDate: '2016-06-16',
+	    maxDate: '2035-06-16',
+	    format: 'YYYY-MM-DD hh:mm:ss',
+	    zIndex:3000
     });
 	
 	

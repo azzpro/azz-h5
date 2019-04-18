@@ -60,9 +60,9 @@
 			        <div class="item-content">
 			          <div class="item-media"><i class="icon icon-form-comment"></i></div>
 			          <div class="item-inner">
-			            <div class="item-title label"><span class="hong">*</span>备注</div>
+			            <div class="item-title label"><span class="hong">*</span>职位</div>
 			            <div class="item-input">
-			              <textarea placeholder="请输入备注"></textarea>
+			              <input type="text" placeholder="请输入职位">
 			            </div>
 			          </div>
 			        </div>
@@ -76,10 +76,40 @@
 	<script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
 	<script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
 	<script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
 		$(document).ready(function() {
-			
+			/*getAccesstoken();*/
+			info()
 		});
+		
+		function getAccesstoken() {
+			$.ajax({
+					type: "get",
+					url: ulrTo + "/azz/api/client/activity/getAccesstoken",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					success: function(data) {
+						alert(data.data)
+					}
+			});
+		}
+		function info() {
+			$.ajax({
+					type: "get",
+					url: "https://api.weixin.qq.com/cgi-bin/user/info",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'access_token': '20_-XFrcaqNhCm22AH8c_j34pMLLV_d3UMgH3CKdDVNAqahJ3cIPgLoDgaUwVUZgN1y7wiCp9GwGkvasRN6T93_5exYbsXa-C-kbCbjEILCFY4zcE8LGdcqGTroPGrxwrLEh6Ac2HklRzHPXTfGPJGjAGAXRO',
+						'openid':'ojvtV5wES2t7r68iQ00sW1_EA6C0',
+						'lang':'zh_CN'
+					},
+					success: function(data) {
+						
+					}
+			});
+		}
 	</script>
 	
   </body>

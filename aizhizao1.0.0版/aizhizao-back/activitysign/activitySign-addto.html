@@ -1,0 +1,101 @@
+﻿<style>
+	.pullright{ position: absolute; right: 50px; top: 380px;}
+</style>
+<!-- 这里开始 -->
+<div class="container-content">
+	<button class="btn pull-right btn-primary zlan" style="margin-top: 20px; margin-right: 10px;" id="SubmissionBtn">保存</button>
+	<div class="panel-heading"><h4>活动新增</h4></div>
+	
+	<div class="panel panel-default">
+	  
+      <form class="form-horizontal" id="basicForm" name="basicForm">
+      	<div class="pullright" style=" margin: 0 20px 0 0;"><img class="sfz add" style="width: 160px; height: 100px;" id="pic" src=""></div>
+      	<div style="padding: 20px;"><h4>基础信息</h4></div>
+      			
+				<dl class="reg-xx">
+					<dd>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"> <span class="asterisk">*</span> 活动主图：</label>
+								<div class="col-sm-4">
+									<input type="file" title="请选择图片" id="file" name="file" class="form-control" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+								</div>
+								<div class="col-sm-2 mt10" style="color: #999;">最佳尺寸414*259</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 活动名称：</label>
+								<div class="col-sm-4">
+									<input type="text" maxlength="" name="modelname" class="form-control">
+								</div>
+								<div class="col-sm-3 tz-zi">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 活动开始时间：</label>
+								<div class="col-sm-4">
+									<input type="text" maxlength="" name="beginstime" id="beginstime" class="form-control">
+								</div>
+								<div class="col-sm-3 tz-zi">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 报名截止时间：</label>
+								<div class="col-sm-4">
+									<input type="text" maxlength="" name="beginstimeEnd" id="beginstimeEnd" class="form-control">
+								</div>
+								<div class="col-sm-3 tz-zi">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 活动地点：</label>
+								<div class="col-sm-4">
+									<input type="text" maxlength="" name="modelname" class="form-control">
+								</div>
+								<div class="col-sm-3 tz-zi">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">报名人数限制：</label>
+								<div class="col-sm-4">
+									<input type="text" maxlength="" name="modelname" class="form-control">
+								</div>
+								<div class="col-sm-3 mt10 tz-zi" style="color: #999;">
+									不填表示不限人数
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 活动状态：</label>
+								<div class="col-sm-4">
+									<div class="col-sm-4 mt10">
+						                <div class="rdio rdio-primary">
+					                        <input type="radio" name="fill" checked="" value="1" id="Required">
+					                        <label for="Required">上架</label>
+					                    </div>
+									</div>
+									<div class="col-sm-4 mt10">
+										<div class="rdio rdio-primary">
+					                        <input type="radio" name="fill" value="2" id="Selection">
+					                        <label for="Selection">下架</label>
+					                    </div>
+					                </div>
+								</div>
+								<div class="col-sm-3 tz-zi">
+								</div>
+							</div>
+
+						</div>
+					</dd>
+				</dl>
+				
+				<div style="padding: 0 20px;"><h4>活动详情</h4></div>
+				<div style="padding: 20px;" id="editor">
+				  
+				</div>
+			</form>
+      <div class="clearfix"></div>
+    </div>
+
+</div>
+<!-- 这里开始 End-->
+
+<script type="text/javascript" src="activitysign/activitySign-addto.js"></script>
