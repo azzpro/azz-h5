@@ -459,14 +459,12 @@ Module.define("system.courculum", function(page, $) {
    			brandname: "required",
    			textareatext: "required",
    			btd: "required",
-   			file: "required",
    		},
    		messages: {
    			modelname: "请输入课程名称",
    			brandname: "请选择品牌",
    			textareatext: "请输入课程简介",
    			btd: "必填项",
-   			file: "请上传课程主图",
    		},
    		highlight: function(element) {
    			$(element).closest('.form-group').removeClass('has-success').addClass('has-error');

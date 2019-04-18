@@ -1,3 +1,4 @@
+var activityCodeEdit = JSON.parse(localStorage.getItem('activityCodeEdit'));
 Module.define("system.activitysign", function(page, $) {
 	page.ready = function() {
 		var E = window.wangEditor;
@@ -5,6 +6,7 @@ Module.define("system.activitysign", function(page, $) {
         page.editor.customConfig.uploadImgShowBase64 = true;
         page.editor.create();
 		initValidate();
+		getCourseDetail();
 		$("#SubmissionBtn").bind("click", submitForm);
 
 		$("#file").change(function(){
@@ -30,26 +32,33 @@ Module.define("system.activitysign", function(page, $) {
 		
 	}
 	
-	//增加
+	//编辑
 	function submitForm() {
 		var validFlag = $('#basicForm').valid();
 		if(!validFlag) {
 				return;
 		}
 		var file = document.basicForm.file.files[0];
-		
+		if(!file){
+	   		var isEditPic = 0
+	   	}else{
+	   		var isEditPic = 1
+	   	}
+	   	
 		var fm = new FormData();
+		fm.append('activityCode', activityCodeEdit);
 		fm.append('activityAddress', $("input[name='place']").val());
 		fm.append('activityName', $("input[name='activityname']").val());
 		fm.append('activityTime', $("input[name='beginstime']").val());
 		fm.append('status', $("input[name='fill']:checked").val());
 		fm.append('deadline', $("input[name='beginstimeEnd']").val());
 		fm.append('signUpLimit', $("input[name='limit']").val());
-		fm.append('activityPicFile', file);
+		if(!file){}else{fm.append('activityPicFile', file);}
+		fm.append('isChangeActivityPic', isEditPic);
 		fm.append('activityContent', page.editor.txt.html());
 		$.ajax({
 	        type :'POST',
-	        url : ulrTo+'/azz/api/platform/activity/addActivity',
+	        url : ulrTo+'/azz/api/platform/activity/editActivity',
 	        cache: false, //禁用缓存    
 			dataType: "json",
 			contentType: false, //禁止设置请求类型
@@ -57,7 +66,7 @@ Module.define("system.activitysign", function(page, $) {
 			data: fm,
 	        success : function(data) {
 	        	if (data.code == 0) {
-	        		alert('新增成功！');
+	        		alert('编辑成功！');
 					window.location.href = "#!activitysign/activitySign-management.html";
 				} else {
 					alert(data.msg);
@@ -65,6 +74,43 @@ Module.define("system.activitysign", function(page, $) {
 	        }
 	    });
 
+	}
+	
+	//活动详情
+	function getCourseDetail() {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/platform/activity/getPlatformActivityDetail",
+			cache: false, //禁用缓存
+			async: false,
+			data: {
+				'activityCode':activityCodeEdit,
+			},
+			dataType: "json", 
+			success: function(data) {
+				if (data.code == 0) {
+					
+					$("input[name='place']").val(data.data.activityInfo.activityAddress);
+					$("input[name='activityname']").val(data.data.activityInfo.activityName);
+					$("#pic").attr("src",data.data.activityInfo.activityPicUrl);
+					if(data.data.activityInfo.status == 1) {
+						$("#Required").attr("checked", "checked");
+					}else if(data.data.activityInfo.status == 2){
+						$("#Selection").attr("checked", "checked");
+					}
+					$("input[name='beginstime']").val(data.data.activityInfo.activityTime);
+					$("input[name='beginstimeEnd']").val(data.data.activityInfo.deadline);
+					$("input[name='limit']").val(data.data.activityInfo.signUpLimit);
+					
+					
+					
+					page.editor.txt.html(data.data.activityInfo.activityContent);
+					
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
 	}
 	
 	function initValidate(){
@@ -75,14 +121,12 @@ Module.define("system.activitysign", function(page, $) {
    			beginstime: "required",
    			beginstimeEnd: "required",
    			place: "required",
-   			file: "required",
    		},
    		messages: {
    			activityname: "请输入活动名称",
    			beginstime: "请选择活动开始时间",
    			beginstimeEnd: "请选择报名截止时间",
    			place: "请输入活动地点",
-   			file: "请上传活动主图",
    		},
    		highlight: function(element) {
    			$(element).closest('.form-group').removeClass('has-success').addClass('has-error');

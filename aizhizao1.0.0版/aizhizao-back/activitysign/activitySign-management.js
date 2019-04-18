@@ -125,7 +125,7 @@ Module.define("system.activitysign", function(page, $) {
 		            		html += '<a href="javascript:;" onclick="system.activitysign.parameDetail(\'' + row.activityCode + '\');">详情</a>';
 		            		html += '&nbsp;&nbsp;<a href="javascript:;" onclick="system.activitysign.parameEdit(\'' + row.activityCode + '\');">编辑</a>';
 		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.activitysign.editUserStatus(\'' + row.activityCode + "','"+ statustoo + '\');">'+ statustoo +'</a>';
-		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.activitysign.dele(\'' + row.activityCode + "','"+ row.courseName + '\');">删除</a>';
+		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.activitysign.dele(\'' + row.activityCode + "','"+ row.activityName + '\');">删除</a>';
 		            		html += '</div>';
 		            		html += '</div>';
 			         		return html;
@@ -141,11 +141,11 @@ Module.define("system.activitysign", function(page, $) {
 		if(statustoo == '上架') {
 			$.ajax({
 				type: "POST",
-				url: ulrTo+"/azz/api/platform/course/putOnOrPutOffOrDelCourse",
+				url: ulrTo+"/azz/api/platform/activity/putOnOrPutOffOrDelActivity",
 				cache: false, //禁用缓存    
 				dataType: "json", 
 				data: {
-					'courseCode': courseCode,
+					'activityCode': activityCode,
 					'status': 1
 				},
 				success: function(data) {
@@ -159,11 +159,11 @@ Module.define("system.activitysign", function(page, $) {
 		}else if(statustoo == '下架'){
 			$.ajax({
 				type: "POST",
-				url: ulrTo+"/azz/api/platform/course/putOnOrPutOffOrDelCourse",
+				url: ulrTo+"/azz/api/platform/activity/putOnOrPutOffOrDelActivity",
 				cache: false, //禁用缓存    
 				dataType: "json", 
 				data: {
-					'courseCode': courseCode,
+					'activityCode': activityCode,
 					'status': 2
 				},
 				success: function(data) {
@@ -177,19 +177,19 @@ Module.define("system.activitysign", function(page, $) {
 		}
 	}
 	//删除
-	page.dele = function(activityCode,courseName) {
-		$('#bmName').html(courseName);
+	page.dele = function(activityCode,activityName) {
+		$('#bmName').html(activityName);
 		$('#myModal112').modal('show');
 		$('#deletebunnot').attr("onclick", "system.activitysign.delDeptInfo(\'" + activityCode + "\');")
 	}
 	page.delDeptInfo = function(activityCode) {
 		$.ajax({
 			type: "POST",
-			url: ulrTo+"/azz/api/platform/course/putOnOrPutOffOrDelCourse",
+			url: ulrTo+"/azz/api/platform/activity/putOnOrPutOffOrDelActivity",
 			cache: false, //禁用缓存    
 			dataType: "json", 
 			data: {
-				'courseCode': courseCode,
+				'activityCode': activityCode,
 				'status': 0
 			},
 			success: function(data) {
@@ -207,8 +207,8 @@ Module.define("system.activitysign", function(page, $) {
 	        return false;
 	    }else{
 	        var storage=window.localStorage;
-	        var courseCodeDetail = JSON.stringify(courseCode);
-	        storage["courseCodeDetail"]= courseCodeDetail;
+	        var activityCodeDetail = JSON.stringify(activityCode);
+	        storage["activityCodeDetail"]= activityCodeDetail;
         }
 	    window.location.href = "#!activitysign/activitySign-detail.html"
 	}
