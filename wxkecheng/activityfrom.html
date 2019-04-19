@@ -104,8 +104,8 @@
 						//0等于用户信息和微信信息  40004等于微信信息
 						if (data.code == 0) {
 			        $('#openid').html(data.data.openid);
-							$('#nickname').html(data.data.nickname);
-							$('#headImageUrl').html(data.data.headImageUrl);
+							$('#nickname').html(data.data.nickName);
+							$('#headImageUrl').html(data.data.headimgurl);
 						}else{
 							$.toast(data.msg)
 						}
