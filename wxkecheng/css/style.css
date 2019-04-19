@@ -198,7 +198,7 @@ button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 .activitysign li{ border-bottom: #eee 1px solid; margin-bottom: .5rem; padding: 0 3% .5rem; width: 94%; overflow: hidden;}
 .activitysign li a{ display: block; margin: 0; padding: 0;}
 .activitysign li img{ float: left; width: 8rem; height: 5rem;}
-.activiright{ float: right; width: 9rem;}
+.activiright{ float: right; width: 51%;}
 .activiright h3{ font-size: .75rem; margin: 0 ; padding: 0; height: 2rem; overflow: hidden;}
 .activiright .ing{ font-size: .5rem; display: block; background: #007AFF; width: 3rem; color: #fff; text-align: center; line-height: 1rem; border-radius: .5rem; margin-top: .3rem;}
 .activiright .end{ font-size: .5rem; display: block; background: #ccc; width: 3.5rem; color: #fff; text-align: center; line-height: 1rem; border-radius: .5rem; margin-top: .3rem;}
