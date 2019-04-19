@@ -1,6 +1,47 @@
+var activityCodeDetail = JSON.parse(localStorage.getItem('activityCodeDetail'));
 Module.define("system.activitysign", function(page, $) {
 	page.ready = function() {
 		initDataTable();
+		getCourseDetail();
+	}
+	
+	//活动详情
+	function getCourseDetail() {
+		$.ajax({
+			type: "POST",
+			url: ulrTo+"/azz/api/platform/activity/getPlatformActivityDetail",
+			cache: false, //禁用缓存
+			async: false,
+			data: {
+				'activityCode':activityCodeDetail,
+			},
+			dataType: "json", 
+			success: function(data) {
+				if (data.code == 0) {
+					
+					$("#place").html(data.data.activityAddress);
+					$("#activityname").html(data.data.activityName);
+					$("#pic").attr("src",data.data.activityPicUrl);
+					if(data.data.status == 1) {
+						$("#Required").html("上架");
+					}else if(data.data.activityInfo.status == 2){
+						$("#Required").html("下架");
+					}
+					$("#beginstime").html(data.data.activityTime);
+					$("#beginstimeEnd").html(data.data.deadline);
+					$("#limit").html(data.data.signUpLimit+'人');
+					$("#signUpCount").html(data.data.signUpCount);
+					
+					
+					
+					
+					$('#editorsa').html(data.data.activityContent);
+					
+				} else {
+					alert(data.msg)
+				}
+			}
+		});
 	}
 	
 	function initDataTable() {
@@ -23,12 +64,11 @@ Module.define("system.activitysign", function(page, $) {
 				param = data;
 				param.pageNum = data.start/10+1;
 				param.pageSize = data.length;
-				param.searchInput = $("input[name='searchname']").val();
-				param.moduleStatus = $('#approvalType').val();
+				param.activityCode = activityCodeDetail;
 				//当前页码
 				 $.ajax({
 				 	type: "POST",   
-				 	url: ulrTo + "/azz/api/platform/course/getCourseInfos",
+				 	url: ulrTo + "/azz/api/platform/activity/getPlatformSignUpInfos",
 				 	cache: false, //禁用缓存   
 				 	data: param, //传入组装的参数   
 				 	dataType: "json", 
@@ -55,43 +95,43 @@ Module.define("system.activitysign", function(page, $) {
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {
-						var img = '<div class="wxtu"><img src=' + row.coursePicUrl +' width="100" height="60" alt="" /></div>';
+						var img = '<div class="wxtu"><img src=' + row.headImageUrl +' width="100" height="60" alt="" /></div>';
 						return img;
 					}
 				}, // 序号
 				{
 					"title": "微信名称",
-					"data": "courseName",
+					"data": "nickname",
 					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
 					"title": "报名人姓名",
-					"data": "",
+					"data": "userName",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{
 					"title": "手机号",
-					"data": "",
+					"data": "phoneNumber",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
 					"title": "公司名称",
-					"data": "",
+					"data": "companyName",
 					"className": "all",
 					"defaultContent": "-",
 				},
 				{
 					"title": "职位",
-					"data": "",
+					"data": "position",
 					"className": "text-nowrap",
 					"defaultContent": "-"
 				},
 				{
 					"title": "报名时间",
-					"data": "createTime",
+					"data": "signUpTime",
 					"className": "text-nowrap",
 					"defaultContent": "-"
 				},

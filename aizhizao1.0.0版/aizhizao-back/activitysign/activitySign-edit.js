@@ -90,21 +90,21 @@ Module.define("system.activitysign", function(page, $) {
 			success: function(data) {
 				if (data.code == 0) {
 					
-					$("input[name='place']").val(data.data.activityInfo.activityAddress);
-					$("input[name='activityname']").val(data.data.activityInfo.activityName);
-					$("#pic").attr("src",data.data.activityInfo.activityPicUrl);
-					if(data.data.activityInfo.status == 1) {
+					$("input[name='place']").val(data.data.activityAddress);
+					$("input[name='activityname']").val(data.data.activityName);
+					$("#pic").attr("src",data.data.activityPicUrl);
+					if(data.data.status == 1) {
 						$("#Required").attr("checked", "checked");
-					}else if(data.data.activityInfo.status == 2){
+					}else if(data.data.status == 2){
 						$("#Selection").attr("checked", "checked");
 					}
-					$("input[name='beginstime']").val(data.data.activityInfo.activityTime);
-					$("input[name='beginstimeEnd']").val(data.data.activityInfo.deadline);
-					$("input[name='limit']").val(data.data.activityInfo.signUpLimit);
+					$("input[name='beginstime']").val(data.data.activityTime);
+					$("input[name='beginstimeEnd']").val(data.data.deadline);
+					$("input[name='limit']").val(data.data.signUpLimit);
 					
 					
 					
-					page.editor.txt.html(data.data.activityInfo.activityContent);
+					page.editor.txt.html(data.data.activityContent);
 					
 				} else {
 					alert(data.msg)

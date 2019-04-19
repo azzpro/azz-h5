@@ -15,23 +15,17 @@
     <style>
     	html{ font-size: 20px;}
     	body{background: #fff; margin: 0; padding: 0;}
-    	.ssk input{ width: 17.9rem;}
-    	.soutop{ border-bottom: #eee 1px solid;}
+    	.soutop{ border-bottom: #eee 1px solid; height: 3.5rem;}
     </style>
   </head>
   <body>
 			  	<div class="soutop">
 			  		<div class="ssk"><input type="search" id="myinput" name="searchname" placeholder="请输入活动名称" /></div>
-			  		<div class="sele-ds">
-			  			<a class="zh curr zhx" href="javascript:;"><span></span>综合</a>
-			  			<a class="time" href="javascript:;"><span></span>时间</a>
-			  			<a class="pire" href="javascript:;"><span></span>价格</a>
-			  		</div>
 			  	</div>
-			  	<div class="soutopgao"></div>
+			  	<div class="soutopgao" style=" height: 3.5rem;"></div>
 			    <div class="content-padded">
 				    	<ul class="activitysign">
-				    		<li>
+				    		<!--<li>
 				    			<a class="external" href="activitysignDetail.html">
 					    			<img src="images/banner.jpg" alt="" />
 					    			<div class="activiright">
@@ -40,27 +34,7 @@
 					    				<div class="activibottom"><span>28人已报名</span>免费</div>
 					    			</div>
 				    			</a>
-				    		</li>
-				    		<li>
-				    			<a class="external" href="activitysignDetail.html">
-					    			<img src="images/banner.jpg" alt="" />
-					    			<div class="activiright">
-					    				<h3>自动化高级机器人工业大行就业培训班</h3>
-					    				<span class="ing">报名中</span><span class="end nodisplay">报名结束</span>
-					    				<div class="activibottom"><span>28人已报名</span>免费</div>
-					    			</div>
-				    			</a>
-				    		</li>
-				    		<li>
-				    			<a class="external" href="activitysignDetail.html">
-					    			<img src="images/banner.jpg" alt="" />
-					    			<div class="activiright">
-					    				<h3>自动化高级机器人工业大行就业培训班</h3>
-					    				<span class="ing">报名中</span><span class="end nodisplay">报名结束</span>
-					    				<div class="activibottom"><span>28人已报名</span>免费</div>
-					    			</div>
-				    			</a>
-				    		</li>
+				    		</li>-->
 				    	</ul>
 				  </div>
 
@@ -74,181 +48,18 @@
 	<script>
 		var sortType = 1;
 		$(document).ready(function() {
-			/*getIndexCourseInfos();
+			getIndexCourseInfos();
 			$('#myinput').bind('search', function () {
-				$(".curricuList").empty();
+				$(".activitysign").empty();
 				$('.dropload-down').detach();
 				getIndexCourseInfos();
-			});*/
-			$(".sele-ds").on('click','.zh',function(){
-				if($(this).hasClass('zhx')){  //加
-					
-					$(this).addClass('curr');
-					$(this).addClass('zhs');
-					$(this).removeClass('zhx');
-					$(this).find("span").addClass('icos');
-					sortType = 2;
-					
-					$(this).siblings("a").removeClass('curr');
-					$(this).siblings(".time").removeClass('timex');
-					$(this).siblings(".time").removeClass('times');
-					$(this).siblings(".pire").removeClass('pirex');
-					$(this).siblings(".pire").removeClass('pires');
-					
-					/*$(".curricuList").empty();
-					$('.dropload-down').detach();
-					getIndexCourseInfos();*/
-					
-		
-				}else if($(this).hasClass('zhs')){
-					$(this).addClass('curr');
-					$(this).addClass('zhx');
-					$(this).removeClass('zhs');
-					$(this).find("span").removeClass('icos');
-					sortType = 1;
-					
-					$(this).siblings("a").removeClass('curr');
-					$(this).siblings(".time").removeClass('timex');
-					$(this).siblings(".time").removeClass('times');
-					$(this).siblings(".pire").removeClass('pirex');
-					$(this).siblings(".pire").removeClass('pires');
-					
-					/*$(".curricuList").empty();
-					$('.dropload-down').detach();
-					getIndexCourseInfos();*/
-		
-				}else{
-					$(this).addClass('curr');
-					$(this).addClass('zhx');
-					$(this).removeClass('zhs');
-					$(this).find("span").removeClass('icos');
-					sortType = 1;
-					
-					$(this).siblings("a").removeClass('curr');
-					$(this).siblings(".time").removeClass('timex');
-					$(this).siblings(".time").removeClass('times');
-					$(this).siblings(".pire").removeClass('pirex');
-					$(this).siblings(".pire").removeClass('pires');
-					
-					/*$(".curricuList").empty();
-					$('.dropload-down').detach();
-					getIndexCourseInfos();*/
-				}
-			})
-			$(".sele-ds").on('click','.time',function(){
-				if($(this).hasClass('timex')){  //加
-					
-					$(this).addClass('curr');
-					$(this).addClass('times');
-					$(this).removeClass('timex');
-					$(this).find("span").addClass('icos');
-					sortType = 4;
-					
-					$(this).siblings("a").removeClass('curr');
-					$(this).siblings(".zh").removeClass('zhx');
-					$(this).siblings(".zh").removeClass('zhs');
-					$(this).siblings(".pire").removeClass('pirex');
-					$(this).siblings(".pire").removeClass('pires');
-					
-					/*$(".curricuList").empty();
-					$('.dropload-down').detach();
-					getIndexCourseInfos();*/
-		
-				}else if($(this).hasClass('times')){
-					$(this).addClass('curr');
-					$(this).addClass('timex');
-					$(this).removeClass('times');
-					$(this).find("span").removeClass('icos');
-					sortType = 3;
-					
-					$(this).siblings("a").removeClass('curr');
-					$(this).siblings(".zh").removeClass('zhx');
-					$(this).siblings(".zh").removeClass('zhs');
-					$(this).siblings(".pire").removeClass('pirex');
-					$(this).siblings(".pire").removeClass('pires');
-					
-					/*$(".curricuList").empty();
-					$('.dropload-down').detach();
-					getIndexCourseInfos();*/
-		
-				}else{
-					$(this).addClass('curr');
-					$(this).addClass('timex');
-					$(this).removeClass('times');
-					$(this).find("span").removeClass('icos');
-					sortType = 3;
-					
-					$(this).siblings("a").removeClass('curr');
-					$(this).siblings(".zh").removeClass('zhx');
-					$(this).siblings(".zh").removeClass('zhs');
-					$(this).siblings(".pire").removeClass('pirex');
-					$(this).siblings(".pire").removeClass('pires');
-					
-					/*$(".curricuList").empty();
-					$('.dropload-down').detach();
-					getIndexCourseInfos();*/
-				}
-			})
-			$(".sele-ds").on('click','.pire',function(){
-				if($(this).hasClass('pirex')){  //加
-					
-					$(this).addClass('curr');
-					$(this).addClass('pires');
-					$(this).removeClass('pirex');
-					$(this).find("span").addClass('icos');
-					sortType = 6;
-					
-					$(this).siblings("a").removeClass('curr');
-					$(this).siblings(".zh").removeClass('zhx');
-					$(this).siblings(".zh").removeClass('zhs');
-					$(this).siblings(".time").removeClass('timex');
-					$(this).siblings(".time").removeClass('times');
-					
-					/*$(".curricuList").empty();
-					$('.dropload-down').detach();
-					getIndexCourseInfos();*/
-		
-				}else if($(this).hasClass('pires')){
-					$(this).addClass('curr');
-					$(this).addClass('pirex');
-					$(this).removeClass('pires');
-					$(this).find("span").removeClass('icos');
-					sortType = 5;
-					
-					$(this).siblings("a").removeClass('curr');
-					$(this).siblings(".zh").removeClass('zhx');
-					$(this).siblings(".zh").removeClass('zhs');
-					$(this).siblings(".time").removeClass('timex');
-					$(this).siblings(".time").removeClass('times');
-					
-					/*$(".curricuList").empty();
-					$('.dropload-down').detach();
-					getIndexCourseInfos();*/
-		
-				}else{
-					$(this).addClass('curr');
-					$(this).addClass('pirex');
-					$(this).removeClass('pires');
-					$(this).find("span").removeClass('icos');
-					sortType = 5;
-					
-					$(this).siblings("a").removeClass('curr');
-					$(this).siblings(".zh").removeClass('zhx');
-					$(this).siblings(".zh").removeClass('zhs');
-					$(this).siblings(".time").removeClass('timex');
-					$(this).siblings(".time").removeClass('times');
-					
-					/*$(".curricuList").empty();
-					$('.dropload-down').detach();
-					getIndexCourseInfos();*/
-				}
-			})
+			});
 		});	
-		/*function getIndexCourseInfos() {
+		function getIndexCourseInfos() {
 		// 页数
     var page = 0;
     // 每页展示5个
-    var size = 4;
+    var size = 5;
  
     // dropload
     $('.content-padded').dropload({
@@ -261,15 +72,12 @@
         var result = '';
         $.ajax({
           type: 'POST',
-          url: ulrTo + '/azz/api/client/course/getIndexCourseInfos',
+          url: ulrTo + '/azz/api/client/activity/getActivityInfos',
           dataType: 'json',
           data: {
-          	'courseName': $("input[name='searchname']").val(),
-						'status' : 1,
-						'sortType' : sortType,
-						'classificationCode' : assortmentCode,
+          	'activityName': $("input[name='searchname']").val(),
 						'pageNum' : page,
-						'pageSize' : '4',
+						'pageSize' : '5',
 					},
           success: function(data){
           	if (data.code == 0) {
@@ -278,22 +86,30 @@
               
 	              if(arrLen > 0){
 	                for(var i=0; i<arrLen; i++){
-	                	var coursePicUrl = rows[i].coursePicUrl;
-	                	var courseName = rows[i].courseName;
-	                	var minPrice = rows[i].minPrice;
-	                	var courseCode = rows[i].courseCode;
-	                	if(rows[i].latelyStartClassTime!=null){
+	                	var activityCode = rows[i].activityCode;
+	                	var activityName = rows[i].activityName;
+	                	var activityPicUrl = rows[i].activityPicUrl;
+	                	var signUpCount = rows[i].signUpCount;
+	                	var activityStatus = rows[i].activityStatus;
+	                	if(activityName.length>20){
+	                		var activityNamediv = activityName.substring(0,20)+'...';
+	                	}else{
+	                		var activityNamediv = activityName;
+	                	}
+	                	if(activityStatus==1){
+	                		var activityStatusdiv = "<span class='ing'>报名中</span>";
+	                	}else{
+	                		var activityStatusdiv = "<span class='end'>已结束</span>";
+	                	}
+	                	/*if(rows[i].latelyStartClassTime!=null){
 	                		var latelyStartClassTime = rows[i].latelyStartClassTime.substring(5,10);
 	                	}else{
 	                		var latelyStartClassTime = '-'
-	                	}
-	                	if(!minPrice){
-	                		var minPrice ='--'
-	                	}
+	                	}*/
 	                	
-	                    result += "<li class='opacity'><a class='external' href='curriculumDetail.html?courseCode=" + courseCode + "'><img src='"+ coursePicUrl +"' class='left' alt='' />"
-										    			+ "<div class='right'><h3>"+ courseName +"</h3>"
-										    			+ "<div class='timejg'><span>"+ latelyStartClassTime +"</span>"+ minPrice +"元/起</div></div></a></li>";
+	                    result += "<li><a class='external' href='activitysignDetail.html?activityCode=" + activityCode + "'><img src='"+ activityPicUrl +"' alt='' /><div class='activiright'><h3>"+ activityNamediv +"</h3>"
+					    			        	+ activityStatusdiv
+					    			        	+ "<div class='activibottom'><span>"+ signUpCount +"人已报名</span>免费</div></div></a></li>";
 	                }
 	                 // 如果没有数据
 	              }else{
@@ -305,7 +121,7 @@
 	                 // 为了测试，延迟1秒加载
 	              setTimeout(function(){
 	                     // 插入数据到页面，放到最后面
-	                     $('.curricuList').append(result);
+	                     $('.activitysign').append(result);
 	                     // 每次数据插入，必须重置
 	                     me.resetload();
 	              },1000);
@@ -323,7 +139,7 @@
 	    }
     });
 			
-		}	*/
+		}
 		
 	</script>
 	

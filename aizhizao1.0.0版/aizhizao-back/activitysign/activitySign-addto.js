@@ -75,6 +75,7 @@ Module.define("system.activitysign", function(page, $) {
    			beginstime: "required",
    			beginstimeEnd: "required",
    			place: "required",
+   			limit: "required",
    			file: "required",
    		},
    		messages: {
@@ -82,6 +83,7 @@ Module.define("system.activitysign", function(page, $) {
    			beginstime: "请选择活动开始时间",
    			beginstimeEnd: "请选择报名截止时间",
    			place: "请输入活动地点",
+   			limit: "请输入报名人数",
    			file: "请上传活动主图",
    		},
    		highlight: function(element) {

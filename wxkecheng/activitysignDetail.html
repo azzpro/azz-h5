@@ -20,38 +20,34 @@
   <body>
     <div class="page-group">
 			<div class="page">
-			  <nav class="bar bar-tab" style="position: fixed; bottom: 0; left: 0;">
-			    <a class="baoming2 external" href="activityfrom.html">立即报名</a>
+			  <nav class="bar bar-tab" style="position: fixed; bottom: 0; left: 0;" id="activityStatus">
+			    
 			  </nav>
 			  <div class="content">
-			  	<img class="bannerdetail" src="images/banner.jpg" alt="" />
+			  	<img class="bannerdetail" src="" id="activityPicUrl" alt="" />
 			  	<div class="content-padded position">
-			  		<div class="btactiv"><h3>自动化高级机器人工业大行就业培训班</h3></div>
+			  		<div class="btactiv"><h3 id="activityName"></h3></div>
 			  		<div class="xxsd">
-			  			<p><img src="images/time.png" alt="" /> 2019-04-20 10:00:00</p>
-			  			<p><img src="images/add.png" alt="" /> 深圳市龙华区民治大道民治小学17栋636室</p>
-			  			<p><img src="images/my.png" alt="" /> 已报名32人</p>
+			  			<p><img src="images/time.png" alt="" /> <span id="activityTime"></span></p>
+			  			<p><img src="images/add.png" alt="" /> <span id="activityAddress"></span></p>
+			  			<p><img src="images/my.png" alt="" /> 已报名<span id="signUpCount"></span>人</p>
 			  			<p><img src="images/mol.png" alt="" /> 免费</p>
 			  		</div>
 			  	</div>
 			  	<div class="huibian">
 			  		<div class="content-padded position">
-			  			<div class="detailxx">
-			  				活动内容详情
+			  			<div class="detailxx" id="activityContent">
+			  				
 			  			</div>
 			  		</div>
 			  	</div>
 			  	<div class="huibian">
 			  		<div class="content-padded position">
 			  			<div class="detailbt">
-			  				<span><a href="javascript:;" class="open-sign">更多报名 ></a></span>已报名(16)
+			  				<span id="signmore"><a href="javascript:;" class="open-sign">更多报名 ></a></span>已报名(<font class="total"></font>)
 			  			</div>
-			  			<ul class="dsdlist">
-			  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-			  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-			  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-			  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-			  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
+			  			<ul class="dsdlist" id="dsdlist">
+			  				
 			  			</ul>
 			  		</div>
 			  	</div>
@@ -62,24 +58,10 @@
     <!-- sign Popup -->
 		<div class="popup popup-sign">
 		  <div class="content-block-all">
-		  	<a href="#" class="close-popup close-x">x</a>
-		    <h3 class="tcbt">已报名(16)</h3>
-		    <ul class="dsdlist">
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
-  				<li><div class="tu"><img src="images/ico7.png" alt="" /></div>我是名字</li>
+		  	<a href="javascript:;" class="close-popup close-x">x</a>
+		    <h3 class="tcbt">已报名(<span class="total"></span>)</h3>
+		    <ul class="dsdlist" id="dsdlist2">
+					
   			</ul>
 			  
 				  
@@ -89,15 +71,120 @@
     <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
-    <script src="js/dropload.min.js"></script>
     <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
+		var param = getRequest();
+		var activityCode = param["activityCode"];
 		$(document).on('click','.open-sign', function () {
 		  $.popup('.popup-sign');
 		});
 		$(document).ready(function() {
-			
+			getActivityDetail();
+			getSignUpInfos();
+			getSignUpInfosmore();
 		});
+		function getActivityDetail() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/activity/getActivityDetail",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'activityCode': activityCode
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							var data = data.data;
+							$('#activityPicUrl').attr('src',data.activityPicUrl)
+							$('#activityName').html(data.activityName);
+							$('#activityContent').html(data.activityContent);
+							$('#activityTime').html(data.activityTime);
+							$('#activityAddress').html(data.activityAddress);
+							$('#signUpCount').html(data.signUpCount);
+							if(data.activityStatus == 1){
+								$('#activityStatus').html("<a class='baoming2 external' onclick=\"activityfrom(\'" + data.activityCode + "\');\" href='javascript:;'>立即报名</a>");
+							}else{
+								$('#activityStatus').html("<p align='center' style='color: #999;'>已结束</p>");
+							}
+							
+						} else {
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
+		function activityfrom(activityCode){
+			if(!window.localStorage){
+	        return false;
+	    }else{
+	    var storage=window.localStorage;
+	    var activityCode = JSON.stringify(activityCode);
+	    storage["activityCode"]= activityCode;
+	    }
+	    window.location.href = "activityfrom.html";
+			return;
+		}
+		function getSignUpInfos() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/activity/getSignUpInfos",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'activityCode': activityCode,
+						'pageNum' : '1',
+						'pageSize' : '5',
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$('.total').html(data.data.total);
+							var rows = data.data.rows;
+							if(!rows || !rows.length){
+								$('#signmore').hide();
+								$("#dsdlist").html('<li style="width: 100%; color: #999;">还没有人报名哦，赶紧报名吧！</li>');
+							}else{
+								var li = '';
+								for(var i = 0;i<rows.length;i++){
+									var nickname = rows[i].nickname;
+									var headImageUrl = rows[i].headImageUrl;
+									li +="<li><div class='tu'><img src='"+ headImageUrl +"' alt='' /></div>"+ nickname +"</li>";
+							  }
+								$("#dsdlist").append(li);
+							}
+						} else {
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
+		function getSignUpInfosmore() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/activity/getSignUpInfos",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'activityCode': activityCode,
+						'pageNum' : '1',
+						'pageSize' : '99999',
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							var rows = data.data.rows;
+							var li = '';
+							for(var i = 0;i<rows.length;i++){
+								var nickname = rows[i].nickname;
+								var headImageUrl = rows[i].headImageUrl;
+								li +="<li><div class='tu'><img src='"+ headImageUrl +"' alt='' /></div>"+ nickname +"</li>";
+						  }
+							$("#dsdlist2").append(li);
+							
+						} else {
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
 	</script>
 	
   </body>

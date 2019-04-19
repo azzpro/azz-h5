@@ -7,13 +7,13 @@
 </style>
 <!-- 这里开始 -->
 <div class="container-content">
-	<button class="btn pull-right btn-primary zlan" style="margin-top: 20px; margin-right: 10px;" id="SubmissionBtn">保存</button>
+	<a class="btn pull-right btn-primary zlan" style="margin-top: 20px; margin-right: 10px;" href="#!activitysign/activitySign-management.html">返回上一页</a>
 	<div class="panel-heading"><h4>活动详情</h4></div>
 	
 	<div class="panel panel-default">
 	  
       <form class="form-horizontal" id="basicForm" name="basicForm">
-      	<div class="pullright" style=" margin: 0 20px 0 0;"><img class="sfz" style="width: 160px; height: 100px;" src="../images/ewma.jpg"></div>
+      	<div class="pullright" style=" margin: 0 20px 0 0;"><img class="sfz" id="pic" style="width: 160px; height: 100px;" src=""></div>
       	<div style="padding: 20px;"><h4>基础信息</h4></div>
       			
 				<dl class="reg-xx">
@@ -21,28 +21,28 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 活动名称：</label>
-								<div class="col-sm-4 mt10">
-									活动名称
+								<div class="col-sm-4 mt10" id="activityname">
+									
 								</div>
 								<div class="col-sm-3 tz-zi">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 活动开始时间：</label>
-								<div class="col-sm-4 mt10">
-									2019-02-03 18:00:00
+								<div class="col-sm-4 mt10" id="beginstime">
+									
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 报名截止时间：</label>
-								<div class="col-sm-4 mt10">
-									2019-02-03 18:00:00
+								<div class="col-sm-4 mt10" id="beginstimeEnd">
+									
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 活动地点：</label>
-								<div class="col-sm-4 mt10">
-									活动地点
+								<div class="col-sm-4 mt10" id="place">
+									
 								</div>
 								<div class="col-sm-3 tz-zi">
 								</div>
@@ -50,13 +50,13 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">报名人数限制：</label>
 								<div class="col-sm-4 mt10">
-									30人
+									<span id="limit"></span>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><span class="asterisk">*</span> 活动状态：</label>
-								<div class="col-sm-4 mt10">
-									上架
+								<div class="col-sm-4 mt10" id="Required">
+									
 								</div>
 								<div class="col-sm-3 tz-zi">
 								</div>
@@ -67,10 +67,10 @@
 				</dl>
 				
 				<div style="padding: 0 20px;"><h4>活动详情</h4></div>
-				<div style="padding: 20px;" id="editorsa">
-				  持续改善夺
+				<div style="padding: 20px; margin: 0 20px; height: 500px; overflow: auto; border: #eee 1px solid;" id="editorsa">
+					
 				</div>
-				<div style="padding: 0 20px;"><h4>已报名(36人)</h4></div>
+				<div style="padding: 0 20px;"><h4>已报名(<span id="signUpCount"></span>人)</h4></div>
 				<div style="padding: 0 20px;">
 					<div class="table-responsive">
 						<table class="table table-striped table-bordered table-hover text-center dataTable no-footer dtr-inline" id="table" width="100%">
