@@ -93,37 +93,19 @@
 		function login() {
 			$.ajax({
 					type: "POST",
-					url: ulrTo + "/azz/api/client/course/login",
+					url: ulrTo + "/azz/api/client/course/getWxUserInfoByCode",
 					cache: false, //禁用缓存   
 					dataType: "json", 
 					data: {
 						'code': code
 					},
 					success: function(data) {
-						$('#openid').html(data.data.wxUserInfo.openid);
-						$('#nickname').html(data.data.wxUserInfo.nickname);
-						$('#headImageUrl').html(data.data.wxUserInfo.headImageUrl);
+						
 						//0等于用户信息和微信信息  40004等于微信信息
 						if (data.code == 0) {
-			        if(!window.localStorage){
-			            return false;
-			        }else{
-		            var storage=window.localStorage;
-		            var clientUserInfo = JSON.stringify(data.data.clientUserInfo.clientUserInfo);
-		            var wxUserInfo = JSON.stringify(data.data.wxUserInfo);
-		            var sessionId = JSON.stringify(data.data.clientUserInfo.sessionId);
-		            storage["clientUserInfo"]= clientUserInfo;
-		            storage["wxUserInfo"]= wxUserInfo;
-		            storage["sessionId"]= sessionId;
-			        }
-						}else if(data.code == 40004){
-							if(!window.localStorage){
-			            return false;
-			        }else{
-		            var storage=window.localStorage;
-		            var wxUserInfo = JSON.stringify(data.data.wxUserInfo);
-		            storage["wxUserInfo"]= wxUserInfo;
-			        }
+			        $('#openid').html(data.data.openid);
+							$('#nickname').html(data.data.nickname);
+							$('#headImageUrl').html(data.data.headImageUrl);
 						}else{
 							$.toast(data.msg)
 						}
