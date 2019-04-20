@@ -18,6 +18,8 @@
 		<div class="page">
 		  <nav class="bar bar-tab">
 		    <a class="baoming2 external" id="Submission" href="javascript:;">提交</a>
+		    <p id="submissing" align='center' style='color: #999; display: none;'>提交中...</p>
+		    <p id="submissOK" align='center' style='color: #999; display: none;'>报名成功！正在跳转页面</p>
 		  </nav>
 		  <div class="content">
 		  	
@@ -128,6 +130,8 @@
 		}
 		
 		function addCourseApply() {
+			$('#submissing').show();
+			$('#Submission').hide();
 			if(!$("input[name='name']").val()){
 				$.toast('请输入报名姓名');
 				return;
@@ -167,8 +171,13 @@
 					},
 					success: function(data) {
 						if (data.code == 0) {
+							$('#submissing').hide();
+							$('#Submission').hide();
+							$('#submissOK').show();
 							info();
 						} else {
+							$('#submissing').hide();
+							$('#Submission').show();
 							$.toast(data.msg)
 						}
 					}
