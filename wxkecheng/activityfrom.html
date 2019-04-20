@@ -177,7 +177,8 @@
 						'openid':$('#openid').html(),
 					},
 					success: function(data) {
-						if(data.data.subscribe == 1){
+						debugger
+						if(data.subscribe == 1){
 							$.toast('提交成功！即将返回活动列表页.');
 							setInterval(function(){
 							    window.location.href = "activitySign.html";
