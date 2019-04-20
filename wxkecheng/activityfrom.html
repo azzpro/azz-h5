@@ -74,7 +74,6 @@
 		  </div>
 		</div>
   </div>
-  <div id="getAccesstoken" style="display: none;"></div>
   <div id="openid" style="display: none;"></div>
   <div id="nickname" style="display: none;"></div>
   <div id="headImageUrl" style="display: none;"></div>
@@ -110,20 +109,6 @@
 							$('#headImageUrl').html(data.data.headimgurl);
 						}else{
 							$.toast(data.msg)
-						}
-					}
-			});
-		}
-		
-		function getAccesstoken() {
-			$.ajax({
-					type: "get",
-					url: ulrTo + "/azz/api/client/activity/getAccesstoken",
-					cache: false, //禁用缓存   
-					dataType: "json", 
-					success: function(data) {
-						if (data.code == 0) {
-							$('#getAccesstoken').html(data.data);
 						}
 					}
 			});
@@ -173,7 +158,7 @@
 							$('#submissing').hide();
 							$('#Submission').hide();
 							$('#submissOK').show();
-							info();
+							getWxUserSubscribe();
 						} else {
 							$('#submissing').hide();
 							$('#Submission').show();
@@ -183,19 +168,17 @@
 			});
 		}
 		
-		function info() {
+		function getWxUserSubscribe() {
 			$.ajax({
-					type: "get",
-					url: "https://api.weixin.qq.com/cgi-bin/user/info",
+					type: "POST",
+					url: "azz/api/client/activity/getWxUserSubscribe",
 					cache: false, //禁用缓存   
 					dataType: "json", 
 					data: {
-						'access_token': $('#getAccesstoken').html(),
 						'openid':$('#openid').html(),
-						'lang':'zh_CN'
 					},
 					success: function(data) {
-						if(data.subscribe == 1){
+						if(data.data.subscribe == 1){
 							$.toast('提交成功！即将返回活动列表页.');
 							setInterval(function(){
 							    window.location.href = "activitySign.html";
