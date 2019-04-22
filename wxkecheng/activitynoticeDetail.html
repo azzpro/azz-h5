@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>活动详情-爱智造产业学院</title>
+    <title></title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href="images/favicon.png" type="image/png">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,8 +30,8 @@
 			  		<div class="xxsd">
 			  			<p><img src="images/time.png" alt="" /> <span id="activityTime"></span></p>
 			  			<p><img src="images/add.png" alt="" /> <span id="activityAddress"></span></p>
-			  			<p><img src="images/my.png" alt="" /> 已报名<span id="signUpCount"></span>人</p>
-			  			<p><img src="images/mol.png" alt="" /> 免费</p>
+			  			<p><img src="images/my.png" alt="" /> <span>已报名<font id="signUpCount"></font>人</span></p>
+			  			<p><img src="images/mol.png" alt="" /> <span>免费</span></p>
 			  		</div>
 			  	</div>
 			  	<div class="huibian">
@@ -95,12 +95,14 @@
 					success: function(data) {
 						if (data.code == 0) {
 							var data = data.data;
-							$('#activityPicUrl').attr('src',data.activityPicUrl)
+							$('#activityPicUrl').attr('src',data.activityPicUrl);
+							$('title').html(data.activityName + '-爱智造产业学院');
 							$('#activityName').html(data.activityName);
 							$('#activityContent').html(data.activityContent);
 							$('#activityTime').html(data.activityTime);
 							$('#activityAddress').html(data.activityAddress);
 							$('#signUpCount').html(data.signUpCount);
+							$('.total').html(data.signUpCount);
 							if(data.activityStatus == 1){
 								$('#activityStatus').html("<p align='center' style='color: #999; line-height: 1rem;'>已报名</p>");
 							}else{
@@ -137,7 +139,7 @@
 					},
 					success: function(data) {
 						if (data.code == 0) {
-							$('.total').html(data.data.total);
+							/*$('.total').html(data.data.total);*/
 							var rows = data.data.rows;
 							if(!rows || !rows.length){
 								$('#signmore').hide();
@@ -172,6 +174,9 @@
 						if (data.code == 0) {
 							var rows = data.data.rows;
 							var li = '';
+							if(rows.length < 6){
+								$('#signmore').hide();
+							}
 							for(var i = 0;i<rows.length;i++){
 								var nickname = rows[i].nickname;
 								var headImageUrl = rows[i].headImageUrl;
