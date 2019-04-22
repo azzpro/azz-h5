@@ -86,7 +86,14 @@
 		var param = getRequest();
 		var code = param["code"];
 		$(document).ready(function() {
-			login();
+			if(!code){
+				$.toast('打开方式不正确！即将返回活动列表页.');
+				setInterval(function(){
+				    window.location.href = "activitySign.html";
+				},2000);
+			}else{
+				login();
+			}
 			$("#Submission").bind("click", addCourseApply);
 			
 		});
@@ -108,6 +115,9 @@
 							$('#headImageUrl').html(data.data.headimgurl);
 						}else{
 							$.toast(data.msg)
+							setInterval(function(){
+							    window.location.href = "activitySign.html";
+							},2000);
 						}
 					}
 			});
