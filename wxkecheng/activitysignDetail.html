@@ -102,6 +102,7 @@
 							$('#activityTime').html(data.activityTime);
 							$('#activityAddress').html(data.activityAddress);
 							$('#signUpCount').html(data.signUpCount);
+							$('.total').html(data.signUpCount);
 							if(data.activityStatus == 1){
 								$('#activityStatus').html("<a class='baoming2 external' onclick=\"activityfrom(\'" + data.activityCode + "\');\" href='javascript:;'>立即报名</a>");
 							}else{
@@ -138,7 +139,7 @@
 					},
 					success: function(data) {
 						if (data.code == 0) {
-							$('.total').html(data.data.total);
+							/*$('.total').html(data.data.total);*/
 							var rows = data.data.rows;
 							if(!rows || !rows.length){
 								$('#signmore').hide();
