@@ -114,7 +114,7 @@
 							$('#nickname').html(data.data.nickName);
 							$('#headImageUrl').html(data.data.headimgurl);
 						}else{
-							$.toast(data.msg)
+							$.toast(data.msg);
 							setInterval(function(){
 							    window.location.href = "activitySign.html";
 							},2000);
