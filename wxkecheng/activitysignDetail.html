@@ -173,6 +173,9 @@
 						if (data.code == 0) {
 							var rows = data.data.rows;
 							var li = '';
+							if(rows.length < 6){
+								$('#signmore').hide();
+							}
 							for(var i = 0;i<rows.length;i++){
 								var nickname = rows[i].nickname;
 								var headImageUrl = rows[i].headImageUrl;
