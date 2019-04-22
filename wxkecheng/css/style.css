@@ -207,7 +207,7 @@ button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 .activibottom span{ float: right; border: #4d70e0 1px solid; padding: 0 .6rem; border-radius: .5rem;}
 .bannerdetail{ width: 100%;}
 .btactiv{ width: 100%; height: 4rem; background: #fff; border-radius: .2rem; position: absolute; top: -1.6rem;}
-.btactiv h3{ padding: .9rem .6rem; margin: 0; font-size: .8rem;}
+.btactiv h3{ padding: .9rem .6rem; margin: 0; font-size: .8rem; font-weight: bold;}
 .xxsd{ padding-top: 2.2rem;}
 .xxsd p{ width: 100%; overflow: hidden;}
 .xxsd p img{ width: 1rem; vertical-align: middle; float: left;}
