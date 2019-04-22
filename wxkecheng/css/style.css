@@ -209,7 +209,9 @@ button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 .btactiv{ width: 100%; height: 4rem; background: #fff; border-radius: .2rem; position: absolute; top: -1.6rem;}
 .btactiv h3{ padding: .9rem .6rem; margin: 0; font-size: .8rem;}
 .xxsd{ padding-top: 2.2rem;}
-.xxsd p img{ width: 1rem; vertical-align: middle;}
+.xxsd p{ width: 100%; overflow: hidden;}
+.xxsd p img{ width: 1rem; vertical-align: middle; float: left;}
+.xxsd p span{ width: 90%; float: left; margin-left: 1.5%;}
 .xxsd p{ font-size: .7rem; line-height: 1rem; margin: 0; padding: .2rem 0;}
 .huibian{ width: 100%; border-top: #fafafa 4px solid;}
 .detailxx{ font-size: .7rem;}
