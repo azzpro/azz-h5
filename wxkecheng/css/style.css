@@ -213,6 +213,7 @@ button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 .xxsd p{ font-size: .7rem; line-height: 1rem; margin: 0; padding: .2rem 0;}
 .huibian{ width: 100%; border-top: #fafafa 4px solid;}
 .detailxx{ font-size: .7rem;}
+.detailxx p{ margin: 0; padding: 0;}
 .detailbt{ width: 100%; font-size: .7rem;}
 .detailbt span{ float: right;}
 .detailbt span a{ color: #4d70e0;}
