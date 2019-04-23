@@ -92,6 +92,7 @@
 					url: ulrTo + "/azz/api/client/activity/getActivityDetail",
 					cache: false, //禁用缓存   
 					dataType: "json", 
+					async: false,
 					data: {
 						'activityCode': activityCode
 					},
@@ -134,6 +135,7 @@
 					type: "POST",
 					url: ulrTo + "/azz/api/client/activity/getSignUpInfos",
 					cache: false, //禁用缓存   
+					async: false,
 					dataType: "json", 
 					data: {
 						'activityCode': activityCode,
@@ -167,6 +169,7 @@
 					type: "POST",
 					url: ulrTo + "/azz/api/client/activity/getSignUpInfos",
 					cache: false, //禁用缓存   
+					async: false,
 					dataType: "json", 
 					data: {
 						'activityCode': activityCode,
