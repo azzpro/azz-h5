@@ -71,8 +71,10 @@
     <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
+		var testurl = window.location.href;
 		var param = getRequest();
 		var activityCode = param["activityCode"];
 		$(document).on('click','.open-sign', function () {
@@ -82,6 +84,7 @@
 			getActivityDetail();
 			getSignUpInfos();
 			getSignUpInfosmore();
+			getWxConfig();
 		});
 		function getActivityDetail() {
 			$.ajax({
@@ -188,6 +191,85 @@
 							$.toast(data.msg)
 						}
 					}
+			});
+		}
+		
+		function getWxConfig() {
+	    $.ajax({
+	        type: "POST",
+	        cache: false, //禁用缓存 
+	        async: false,
+	        url: ulrTo + "/azz/api/client/activity/getWxConfig",
+	        data: {
+	            url: testurl
+	        },
+	        success(data) {
+	        	if (data.code == 0) {
+	            wx.config({
+				        debug:true, //调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题
+				        appId: data.data.appid,
+				        timestamp:data.data.timestamp,
+				        nonceStr: data.data.nonceStr ,
+				        signature:  data.data.signature ,
+				        jsApiList: [ //需要使用的网页服务接口
+				            'checkJsApi', //判断当前客户端版本是否支持指定JS接口
+				            'onMenuShareTimeline', //分享给好友
+				            'onMenuShareAppMessage', //分享到朋友圈
+				            'onMenuShareQQ', //分享到QQ
+				        ]
+					    });
+					    wx.ready(function () {
+					    	wx.onMenuShareTimeline({ //例如分享到朋友圈的API 
+					        title: $('#activityName').html(), // 分享标题
+					        link: testurl, // 分享链接
+					        imgUrl: $('#activityPicUrl').attr("src"), // 分享图标
+					        success: function () {
+					            // 用户确认分享后执行的回调函数
+					            
+					        },
+					        cancel: function () {
+					            // 用户取消分享后执行的回调函数
+					 
+					        }
+						    });
+						    wx.onMenuShareAppMessage({
+						        title:$('#activityName').html(), // 分享标题
+						        desc: '我也不知道我是什么', // 分享描述
+						        link: testurl, // 分享链接
+						        imgUrl: $('#activityPicUrl').attr("src"), // 分享图标
+						        type: '', // 分享类型,music、video或link，不填默认为link
+						        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+						        success: function () {
+						            // 用户确认分享后执行的回调函数
+						            
+						        },
+						        cancel: function () {
+						            // 用户取消分享后执行的回调函数
+						        }
+						   	});
+						    wx.onMenuShareQQ({
+					        title: $('#activityName').html(), // 分享标题
+					        desc: '我也不知道我是什么', // 分享描述
+					        link: testurl, // 分享链接
+					        imgUrl: $('#activityPicUrl').attr("src"), // 分享图标
+					        success: function () {
+					            // 用户确认分享后执行的回调函数
+					 						
+					        },
+					        cancel: function () {
+					            // 用户取消分享后执行的回调函数
+					        }
+								});    	
+							});
+							
+							wx.error(function (res) {
+							    $.toast(res.errMsg); 
+							//打印错误消息。及把 debug:false,设置为debug:ture就可以直接在网页上看到弹出的错误提示
+							});
+				    } else {
+							$.toast(data.msg)
+						}
+	        }
 			});
 		}
 	</script>
