@@ -216,8 +216,8 @@
 				        signature:  data.data.signature,
 				        jsApiList: [ //需要使用的网页服务接口
 				            'checkJsApi', //判断当前客户端版本是否支持指定JS接口
-				            'onMenuShareTimeline', //分享给好友
-				            'onMenuShareAppMessage', //分享到朋友圈
+				            'onMenuShareTimeline', //分享到朋友圈
+				            'onMenuShareAppMessage', //分享给好友
 				            'onMenuShareQQ', //分享到QQ
 				        ]
 					    });
@@ -237,7 +237,7 @@
 						    });
 						    wx.onMenuShareAppMessage({
 						        title:$('#activityName').html(), // 分享标题
-						        desc: $('#activityName').html(), // 分享描述
+						        desc: '还等什么，赶紧报名吧！提升自己从现在开始.', // 分享描述
 						        link: testurl, // 分享链接
 						        imgUrl: 'http://a.izz2025.com/images/shoollogo.png', // 分享图标
 						        type: '', // 分享类型,music、video或link，不填默认为link
@@ -253,7 +253,7 @@
 						   	});
 						    wx.onMenuShareQQ({
 					        title: $('#activityName').html(), // 分享标题
-					        desc: $('#activityName').html(), // 分享描述
+					        desc: '还等什么，赶紧报名吧！提升自己从现在开始.', // 分享描述
 					        link: testurl, // 分享链接
 					        imgUrl: $('#activityPicUrl').attr("src"), // 分享图标
 					        success: function () {
