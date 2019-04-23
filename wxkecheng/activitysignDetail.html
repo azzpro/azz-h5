@@ -209,7 +209,7 @@
 	        success(data) {
 	        	if (data.code == 0) {
 	            wx.config({
-				        debug:true, //调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题
+				        debug:false, //调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题
 				        appId: data.data.appid,
 				        timestamp:data.data.timestamp,
 				        nonceStr: data.data.nonceStr,
@@ -237,7 +237,7 @@
 						    });
 						    wx.onMenuShareAppMessage({
 						        title:$('#activityName').html(), // 分享标题
-						        desc: '我也不知道我是什么', // 分享描述
+						        desc: $('#activityName').html(), // 分享描述
 						        link: testurl, // 分享链接
 						        imgUrl: $('#activityPicUrl').attr("src"), // 分享图标
 						        type: '', // 分享类型,music、video或link，不填默认为link
@@ -252,7 +252,7 @@
 						   	});
 						    wx.onMenuShareQQ({
 					        title: $('#activityName').html(), // 分享标题
-					        desc: '我也不知道我是什么', // 分享描述
+					        desc: $('#activityName').html(), // 分享描述
 					        link: testurl, // 分享链接
 					        imgUrl: $('#activityPicUrl').attr("src"), // 分享图标
 					        success: function () {
