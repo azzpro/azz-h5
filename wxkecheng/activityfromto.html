@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>报名信息-爱智造产业学院</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="stylesheet" href="css/sm.min.css">
+<link rel="stylesheet" href="css/sm-extend.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="page-group">
+		<div class="page">
+		  <nav class="bar bar-tab">
+		    <a class="baoming2 external" id="Submission" href="javascript:;">提交</a>
+		    <p id="submissing" align='center' style='color: #999; display: none; line-height: 1rem;'>提交中...</p>
+		    <p id="submissOK" align='center' style='color: #999; display: none; line-height: 1rem;'>报名成功！正在跳转页面</p>
+		  </nav>
+		  <div class="content">
+		  	
+		  	<div class="list-block" style="margin: 0;">
+			    <ul>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-name"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label"><span class="hong">*</span> 姓名</div>
+			            <div class="item-input">
+			              <input type="text" name="name" placeholder="请输入姓名">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-name"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label"><span class="hong">*</span> 手机号码</div>
+			            <div class="item-input">
+			              <input type="number" name="phoe" oninput="if(value.length>11)value=value.slice(0,11)" maxlength="11" placeholder="请输入手机号码">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-name"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label"><span class="hong">*</span> 公司名称</div>
+			            <div class="item-input">
+			              <input type="text" name="company" placeholder="请输入公司名称">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li class="align-top">
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-comment"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label"><span class="hong">*</span>职位</div>
+			            <div class="item-input">
+			              <input type="text" name="position" placeholder="请输入职位">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			    </ul>
+			  </div>
+		  </div>
+		</div>
+  </div>
+	<script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
+	<script>
+		var activityCode = JSON.parse(localStorage.getItem('activityCode'));
+		var activityOpenid = JSON.parse(localStorage.getItem('activityOpenid'));
+		var activityNickName = JSON.parse(localStorage.getItem('activityNickName'));
+		var activityHeadimgurl = JSON.parse(localStorage.getItem('activityHeadimgurl'));
+		$(document).ready(function() {
+			$("#Submission").bind("click", addCourseApply);
+		});
+		
+		function addCourseApply() {
+			if(!$("input[name='name']").val()){
+				$.toast('请输入报名姓名');
+				return;
+			}
+			if(!$("input[name='phoe']").val()){
+				$.toast('请输入联系电话');
+				return;
+			}
+			var phonees = $('input[name="phoe"]').val();
+	   	if(!/^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(19[0-9]{9})|(15[0-9]{9})$/.test(phonees)) {
+	   		$.toast("请输入正确的手机号");
+	   		return;
+	   	}
+	   	if(!$("input[name='company']").val()){
+				$.toast('请输入公司名称');
+				return;
+			}
+			if(!$("input[name='position']").val()){
+				$.toast('请输入职位');
+				return;
+			}
+			$('#submissing').show();
+			$('#Submission').hide();
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/activity/signUp",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'activityCode': activityCode,
+						'openid': activityOpenid,
+						'nickname': activityNickName,
+						'headImageUrl': activityHeadimgurl,
+						'userName':$("input[name='name']").val(),
+						'phoneNumber':$("input[name='phoe']").val(),
+						'companyName':$("input[name='company']").val(),
+						'position':$("input[name='position']").val(),
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							$('#submissing').hide();
+							$('#Submission').hide();
+							$('#submissOK').show();
+							getWxUserSubscribe();
+						} else {
+							$('#submissing').hide();
+							$('#Submission').show();
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
+		
+		function getWxUserSubscribe() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/activity/getWxUserSubscribe",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'openid':activityOpenid,
+					},
+					success: function(data) {
+						if(data.data == 1){
+							$.toast('提交成功！即将返回活动列表页.');
+							setInterval(function(){
+							    window.location.href = "activitySign.html";
+							},2000);
+						}else{
+							$.toast('提交成功！请关注爱智造公众号.');
+							setInterval(function(){
+							    /*window.location.href = "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzg4NDA0NTQwMw==#wechat_redirect";*/
+							    window.location.href = "follow.html";
+							},2000);
+						}
+					}
+			});
+		}
+		
+	</script>
+	
+  </body>
+</html>
