@@ -225,7 +225,7 @@
 					    	wx.onMenuShareTimeline({ //例如分享到朋友圈的API 
 					        title: $('#activityName').html(), // 分享标题
 					        link: testurl, // 分享链接
-					        imgUrl: $('#activityPicUrl').attr("src"), // 分享图标
+					        imgUrl: 'http://a.izz2025.com/images/shoollogo.png', // 分享图标
 					        success: function () {
 					            // 用户确认分享后执行的回调函数
 					            $.toast('已分享');
@@ -237,7 +237,7 @@
 						    });
 						    wx.onMenuShareAppMessage({
 						        title:$('#activityName').html(), // 分享标题
-						        desc: '还等什么，赶紧报名吧！提升自己从现在开始.', // 分享描述
+						        desc: '还等什么，赶紧报名吧！提升自己从现在开始。', // 分享描述
 						        link: testurl, // 分享链接
 						        imgUrl: 'http://a.izz2025.com/images/shoollogo.png', // 分享图标
 						        type: '', // 分享类型,music、video或link，不填默认为link
@@ -253,9 +253,9 @@
 						   	});
 						    wx.onMenuShareQQ({
 					        title: $('#activityName').html(), // 分享标题
-					        desc: '还等什么，赶紧报名吧！提升自己从现在开始.', // 分享描述
+					        desc: '还等什么，赶紧报名吧！提升自己从现在开始。', // 分享描述
 					        link: testurl, // 分享链接
-					        imgUrl: $('#activityPicUrl').attr("src"), // 分享图标
+					        imgUrl: 'http://a.izz2025.com/images/shoollogo.png', // 分享图标
 					        success: function () {
 					            // 用户确认分享后执行的回调函数
 					 						$.toast('已分享');
