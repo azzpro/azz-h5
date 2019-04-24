@@ -223,4 +223,5 @@ button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 .dsdlist li{ float: left; width: 20%; font-size: .6rem; text-align: center; margin-bottom: .8rem;}
 .dsdlist li .tu{ width: 2.5rem; height: 2.5rem; overflow: hidden; border-radius: 50%; margin: 0 auto .2rem; background: #eee;}
 .dsdlist li .tu img{ width: 100%; height: 100%;}
+.dsdlist li p{ height: 1.8rem; overflow: hidden;}
 .baoming2{ line-height: 2.5rem; border-left: #eee 1px solid; width: 100%; color: #4d70e0; text-align: center; display: block;}
