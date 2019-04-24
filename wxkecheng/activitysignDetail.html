@@ -107,7 +107,11 @@
 							$('#activityTime').html(data.activityTime);
 							$('#activityAddress').html(data.activityAddress);
 							$('#signUpCount').html(data.signUpCount);
-							$('#remark').html(data.remark);
+							if(!data.remark){
+								$('#remark').html('0');
+							}else{
+								$('#remark').html(data.remark);
+							}
 							$('.total').html(data.signUpCount);
 							if(data.activityStatus == 1){
 								$('#activityStatus').html("<a class='baoming2 external' onclick=\"activityfrom(\'" + data.activityCode + "\');\" href='javascript:;'>立即报名</a>");
