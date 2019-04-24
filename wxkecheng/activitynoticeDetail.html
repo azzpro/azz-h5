@@ -31,6 +31,7 @@
 			  			<p><img src="images/time.png" alt="" /> <span id="activityTime"></span></p>
 			  			<p><img src="images/add.png" alt="" /> <span id="activityAddress"></span></p>
 			  			<p><img src="images/my.png" alt="" /> <span>已报名<font id="signUpCount"></font>人</span></p>
+			  			<p><img src="images/lll.png" alt="" /> <span>已有<font id="remark"></font>人浏览</span></p>
 			  			<p><img src="images/mol.png" alt="" /> <span>免费</span></p>
 			  		</div>
 			  	</div>
@@ -102,6 +103,7 @@
 							$('#activityTime').html(data.activityTime);
 							$('#activityAddress').html(data.activityAddress);
 							$('#signUpCount').html(data.signUpCount);
+							$('#remark').html(data.remark);
 							$('.total').html(data.signUpCount);
 							if(data.activityStatus == 1){
 								$('#activityStatus').html("<p align='center' style='color: #999; line-height: 1rem;'>已报名</p>");
