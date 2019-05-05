@@ -48,10 +48,9 @@
     
 	<script>
 		var activityOpenid = JSON.parse(localStorage.getItem('activityOpenid'));
-		var activityNickName = JSON.parse(localStorage.getItem('activityNickName'));
-		var activityHeadimgurl = JSON.parse(localStorage.getItem('activityHeadimgurl'));
+		var sessionId = JSON.parse(localStorage.getItem('sessionId'));
 		var sortType = 1;
-		alert(activityOpenid+','+activityNickName+','+activityHeadimgurl);
+		alert(sessionId);
 		$(document).ready(function() {
 			if(activityOpenid){
 				getIndexCourseInfos();
@@ -92,7 +91,6 @@
 					},
           success: function(data){
           	if (data.code == 0) {
-          		alert(data.code);
               var rows = data.data.rows;
               var arrLen = rows.length;
               
