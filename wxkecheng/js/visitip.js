@@ -20,8 +20,10 @@ $.ajaxSettings.beforeSend = function(xhr,request){
 	xhr.setRequestHeader("token",sessionId);
 }
 $.ajaxSettings.complete = function(xhr,request){
+	debugger
 	var response = JSON.parse(xhr.response);
 	if (response.code == 40001) {
+		debugger
 	    localStorage.removeItem('sessionId');
 		window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6657c21ece08b798&redirect_uri=http%3a%2f%2fa.izz2025.com/authorization.html&response_type=code&scope=snsapi_userinfo#wechat_redirect";
 	}
