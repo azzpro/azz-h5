@@ -53,6 +53,7 @@ Module.define("system.activitysign", function(page, $) {
 		fm.append('status', $("input[name='fill']:checked").val());
 		fm.append('deadline', $("input[name='beginstimeEnd']").val());
 		fm.append('signUpLimit', $("input[name='limit']").val());
+		fm.append('price', $("input[name='price']").val());
 		if(!file){}else{fm.append('activityPicFile', file);}
 		fm.append('isChangeActivityPic', isEditPic);
 		fm.append('activityContent', page.editor.txt.html());
@@ -101,8 +102,7 @@ Module.define("system.activitysign", function(page, $) {
 					$("input[name='beginstime']").val(data.data.activityTime);
 					$("input[name='beginstimeEnd']").val(data.data.deadline);
 					$("input[name='limit']").val(data.data.signUpLimit);
-					
-					
+					$("input[name='price']").val(data.data.price);
 					
 					page.editor.txt.html(data.data.activityContent);
 					
@@ -121,12 +121,14 @@ Module.define("system.activitysign", function(page, $) {
    			beginstime: "required",
    			beginstimeEnd: "required",
    			place: "required",
+   			price: "required",
    		},
    		messages: {
    			activityname: "请输入活动名称",
    			beginstime: "请选择活动开始时间",
    			beginstimeEnd: "请选择报名截止时间",
    			place: "请输入活动地点",
+   			price: "请输入活动费用",
    		},
    		highlight: function(element) {
    			$(element).closest('.form-group').removeClass('has-success').addClass('has-error');

@@ -87,6 +87,12 @@ Module.define("system.activitysign", function(page, $) {
 					"defaultContent": "-",
 				},
 				{
+					"title": "活动费用",
+					"data": "price",
+					"className": "text-nowrap",
+					"defaultContent": "-",
+				},
+				{
 					"title": "状态",
 					"data": "",
 					"className": "text-nowrap",
@@ -110,7 +116,7 @@ Module.define("system.activitysign", function(page, $) {
 				},
 				{
 					"title": "操作",
-					"data": "mobile",
+					"data": "",
 					"className": "text-nowrap",
 					"defaultContent": "-",
 					"render" : function (data, type, row, meta) {

@@ -45,6 +45,7 @@ Module.define("system.activitysign", function(page, $) {
 		fm.append('status', $("input[name='fill']:checked").val());
 		fm.append('deadline', $("input[name='beginstimeEnd']").val());
 		fm.append('signUpLimit', $("input[name='limit']").val());
+		fm.append('price', $("input[name='price']").val());
 		fm.append('activityPicFile', file);
 		fm.append('activityContent', page.editor.txt.html());
 		$.ajax({
@@ -77,6 +78,7 @@ Module.define("system.activitysign", function(page, $) {
    			place: "required",
    			limit: "required",
    			file: "required",
+   			price: "required",
    		},
    		messages: {
    			activityname: "请输入活动名称",
@@ -85,6 +87,7 @@ Module.define("system.activitysign", function(page, $) {
    			place: "请输入活动地点",
    			limit: "请输入报名人数",
    			file: "请上传活动主图",
+   			price: "请输入活动费用",
    		},
    		highlight: function(element) {
    			$(element).closest('.form-group').removeClass('has-success').addClass('has-error');

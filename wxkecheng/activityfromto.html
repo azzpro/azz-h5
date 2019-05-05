@@ -18,8 +18,7 @@
 		<div class="page">
 		  <nav class="bar bar-tab">
 		    <a class="baoming2 external" id="Submission" href="javascript:;">提交</a>
-		    <p id="submissing" align='center' style='color: #999; display: none; line-height: 1rem;'>提交中...</p>
-		    <p id="submissOK" align='center' style='color: #999; display: none; line-height: 1rem;'>报名成功！正在跳转页面</p>
+		    <!--<p id="submissing" align='center' style='color: #999; display: none; line-height: 1rem;'>提交中...</p>-->
 		  </nav>
 		  <div class="content">
 		  	
@@ -47,6 +46,17 @@
 			          </div>
 			        </div>
 			      </li>
+			      <li class="align-top">
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-comment"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label"><span class="hong">*</span> 邮箱</div>
+			            <div class="item-input">
+			              <input type="email" name="email" placeholder="请输入邮箱">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
 			      <li>
 			        <div class="item-content">
 			          <div class="item-media"><i class="icon icon-form-name"></i></div>
@@ -62,9 +72,20 @@
 			        <div class="item-content">
 			          <div class="item-media"><i class="icon icon-form-comment"></i></div>
 			          <div class="item-inner">
-			            <div class="item-title label"><span class="hong">*</span>职位</div>
+			            <div class="item-title label"><span class="hong">*</span> 职位</div>
 			            <div class="item-input">
 			              <input type="text" name="position" placeholder="请输入职位">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li class="align-top">
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-comment"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label"><span class="hong">*</span> 公司主营</div>
+			            <div class="item-input">
+			              <textarea id="mainProductOrService" placeholder="请输入公司核心产品或服务"></textarea>
 			            </div>
 			          </div>
 			        </div>
@@ -96,9 +117,18 @@
 				$.toast('请输入联系电话');
 				return;
 			}
+			if(!$("input[name='email']").val()){
+				$.toast('请输入邮箱');
+				return;
+			}
 			var phonees = $('input[name="phoe"]').val();
 	   	if(!/^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(19[0-9]{9})|(15[0-9]{9})$/.test(phonees)) {
 	   		$.toast("请输入正确的手机号");
+	   		return;
+	   	}
+	   	var emailes = $('input[name="email"]').val();
+	   	if(!/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/.test(emailes)) {
+	   		$.toast("请输入正确的邮箱");
 	   		return;
 	   	}
 	   	if(!$("input[name='company']").val()){
@@ -109,11 +139,13 @@
 				$.toast('请输入职位');
 				return;
 			}
-			$('#submissing').show();
-			$('#Submission').hide();
+			if(!$("#mainProductOrService").val()){
+				$.toast('请输入公司主营');
+				return;
+			}
 			$.ajax({
 					type: "POST",
-					url: ulrTo + "/azz/api/client/activity/signUp",
+					url: ulrTo + "/azz/api/client/activity/generatePayOrderInfo",
 					cache: false, //禁用缓存   
 					dataType: "json", 
 					data: {
@@ -125,16 +157,29 @@
 						'phoneNumber':$("input[name='phoe']").val(),
 						'companyName':$("input[name='company']").val(),
 						'position':$("input[name='position']").val(),
+						'email':$("input[name='email']").val(),
+						'mainProductOrService':$("#mainProductOrService").val(),
 					},
 					success: function(data) {
 						if (data.code == 0) {
-							$('#submissing').hide();
-							$('#Submission').hide();
-							$('#submissOK').show();
-							getWxUserSubscribe();
+							if(!window.localStorage){
+			            return false;
+				        }else{
+			            var storage=window.localStorage;
+			            var activityCodePay = JSON.stringify(data.data.activityCode);
+			            var activityTime = JSON.stringify(data.data.activityTime);
+			            var orderCode = JSON.stringify(data.data.orderCode);
+			            var price = JSON.stringify(data.data.price);
+			            var activityName = JSON.stringify(data.data.activityName);
+			            storage["activityCodePay"]= activityCodePay;
+			            storage["activityTime"]= activityTime;
+			            storage["orderCode"]= orderCode;
+			            storage["price"]= price;
+			            storage["activityName"]= activityName;
+				        window.location.href = "paymentSign.html";
+								return;
+								}
 						} else {
-							$('#submissing').hide();
-							$('#Submission').show();
 							$.toast(data.msg)
 						}
 					}

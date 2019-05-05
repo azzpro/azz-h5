@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>课程费用支付-爱智造产业学院</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="page-group">
+			<div class="page">
+			  <nav class="bar bar-tab">
+			    <a class="cart external displayno" href="javascript:;" id="OrderPay">立即支付</a>
+			    <a class="cart external displayno" href="javascript:;" id="OrderPayZero">立即支付</a>
+			  </nav>
+			  <div class="content">
+			  	<div class="perfecttop" style="height: 7rem;">
+			  		<h3 id="name"></h3>
+			  		订单编号：<span id="orderCode"></span><br />活动编号：<span id="activityCode"></span><br />活动时间：<span id="activityTime"></span>
+			  	</div>
+			  	<div class="picr"><img src="images/ico6.png" alt="" /> 待支付：<span id="price"></span>元</div>
+			  </div>
+			</div>
+    </div>
+
+    <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
+	<script>
+		var activityOpenid = JSON.parse(localStorage.getItem('activityOpenid'));
+		var activityCodePay = JSON.parse(localStorage.getItem('activityCodePay'));
+		var activityTime = JSON.parse(localStorage.getItem('activityTime'));
+		var orderCode = JSON.parse(localStorage.getItem('orderCode'));
+		var price = JSON.parse(localStorage.getItem('price'));
+		var activityName = JSON.parse(localStorage.getItem('activityName'));
+		
+		$(document).ready(function() {
+			$("#orderCode").html(orderCode);
+			$("#activityCode").html(activityCodePay);
+			$("#price").html(price);
+			$("#name").html(activityName);
+			$("#activityTime").html(activityTime);
+			if(price == 0){
+				$("#OrderPayZero").css("display","block");
+			}else{
+				$("#OrderPay").css("display","block");
+			}
+			$("#OrderPay").bind("click", submitWxOrderPay);
+			$("#OrderPayZero").bind("click", activityOrderPaySuccessOpt);
+		});
+		
+		function activityOrderPaySuccessOpt() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/activity/activityOrderPaySuccessOpt",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'orderCode': orderCode,
+						'orderType': 0,
+						'payMethod':0,
+					},
+					success: function(data) {
+						if(data.code == 0) {
+								getWxUserSubscribe();
+						}else {
+							$.toast('出错了！');
+						}
+					}
+					
+			});
+		}
+
+		function submitWxOrderPay() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/wx/pay/submitWxActiveOrderPay",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'courseName': activityName,
+						'courseNum': activityCodePay,
+						'coursePayNum':orderCode,
+						'orderMoney':price,
+						'openid': activityOpenid
+					},
+					success: function(data) {
+						if(data.package) {
+							 if(!window.localStorage){
+			            return false;
+				        }else{
+			            var storage=window.localStorage;
+			            var appId = JSON.stringify(data.appId);
+			            var timeStamp = JSON.stringify(data.timeStamp);
+			            var nonceStr = JSON.stringify(data.nonceStr);
+			            var package = JSON.stringify(data.package);
+			            var signType = JSON.stringify(data.signType);
+			            var paySign = JSON.stringify(data.paySign);
+			            storage["appId"]= appId;
+			            storage["timeStamp"]= timeStamp;
+			            storage["nonceStr"]= nonceStr;
+			            storage["package"]= package;
+			            storage["signType"]= signType;
+			            storage["paySign"]= paySign;
+				        }
+				        window.location.href = "paymentinSign.html";
+								return;
+						}else {
+							$.toast('出错了！');
+						}
+					}
+					
+			});
+		}
+		
+		function getWxUserSubscribe() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/activity/getWxUserSubscribe",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'openid':activityOpenid,
+					},
+					success: function(data) {
+						if(data.data == 1){
+							$.toast('付款成功！即将返回活动列表页.');
+							setInterval(function(){
+							    window.location.href = "activitySign.html";
+							},2000);
+						}else{
+							$.toast('付款成功！请关注爱智造公众号.');
+							setInterval(function(){
+							    /*window.location.href = "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzg4NDA0NTQwMw==#wechat_redirect";*/
+							    window.location.href = "follow.html";
+							},2000);
+						}
+					}
+			});
+		}
+	</script>
+	
+  </body>
+</html>

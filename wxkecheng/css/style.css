@@ -102,7 +102,7 @@ button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 .plxx{ width: 100%; overflow: hidden;}
 .plxx span{ float: left; width: .7rem; height: .7rem; background: url(../images/ico8.png) no-repeat; background-size: cover; margin-right: .2rem; margin-top: .1rem;}
 .plxx span.no-xx{ background: url(../images/ico9.png) no-repeat; background-size: cover;}
-.timed{ float: left; margin-left: .9rem; color: #999;}
+.timed{ float: left; margin-left: .9rem; color: #999; font-size: .7rem;}
 .pltail{ width: 13rem; margin-top: .4rem; font-size: .6rem;}
 .content-block-all{ margin: .5rem 0; color: #6d6d72; padding: 0 .75rem; position: relative;}
 .close-x{ position: absolute; right: .8rem; top: -.5rem; font-size: 1rem; color: #4d70e0;}
@@ -225,3 +225,5 @@ button{outline:0 none !important; blr:expression(this.onFocus=this.blur());}
 .dsdlist li .tu img{ width: 100%; height: 100%;}
 .dsdlist li p{ height: 1.8rem; overflow: hidden;}
 .baoming2{ line-height: 2.5rem; border-left: #eee 1px solid; width: 100%; color: #4d70e0; text-align: center; display: block;}
+.evaluatelist{ margin-top: .8rem;}
+.evaluatelist .plList:last-child{ border-bottom: none;}

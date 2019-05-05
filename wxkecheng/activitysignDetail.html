@@ -32,7 +32,7 @@
 			  			<p><img src="images/add.png" alt="" /> <span id="activityAddress"></span></p>
 			  			<p><img src="images/my.png" alt="" /> <span>已报名<font id="signUpCount"></font>人</span></p>
 			  			<p><img src="images/lll.png" alt="" /> <span>已有<font id="remark"></font>人浏览</span></p>
-			  			<p><img src="images/mol.png" alt="" /> <span>免费</span></p>
+			  			<p><img src="images/mol.png" alt="" /> <span id="price"></span></p>
 			  		</div>
 			  	</div>
 			  	<div class="huibian">
@@ -52,6 +52,58 @@
 			  			</ul>
 			  		</div>
 			  	</div>
+			  	<div class="huibian displayno" id="evaluatedsed">
+			  		<div class="content-padded position">
+			  			<div class="detailbt">
+			  				<span id="evaluatemore"><a href="javascript:;" class="open-evaluate">更多评价 ></a></span>评价详情
+			  			</div>
+			  			<div class="evaluatelist" id="evaluatelist">
+			  				
+
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="huibian displayno" id="evaluateActivit">
+			  		<div class="content-padded position">
+			  			<div class="detailbt">
+			  				评价活动
+			  			</div>
+		  			</div>
+				    <div class="list-block">
+					    <ul>
+					      <!-- Text inputs -->
+					      <li>
+					        <div class="item-content">
+					          <div class="item-media"><i class="icon icon-form-name"></i></div>
+					          <div class="item-inner">
+					            <div class="item-title label"><span class="hong">*</span> 评分：</div>
+					            <div class="item-input">
+					              <div class="plxx"><span class="no-xx oncikxx1"></span><span class="no-xx oncikxx2"></span><span class="no-xx oncikxx3"></span><span class="no-xx oncikxx4"></span><span class="no-xx oncikxx5"></span></div>
+					            </div>
+					          </div>
+					        </div>
+					      </li>
+					      <li class="align-top">
+					        <div class="item-content">
+					          <div class="item-media"><i class="icon icon-form-comment"></i></div>
+					          <div class="item-inner">
+					            <div class="item-title label"><span class="hong">*</span> 评价文字：</div>
+					            <div class="item-input">
+					              <textarea id="evaluat" placeholder="请输入描述"></textarea>
+					            </div>
+					          </div>
+					        </div>
+					      </li>
+					    </ul>
+					  </div>
+					  <div class="button-block">
+					    <div class="row">
+					    	<div class="col-50"><a href="javascript:;" id="Submission" class="button button-big button-fill button-success">提交</a></div>
+					      <div class="col-50"><a href="javascript:;" class="button button-big button-fill button-hui close-popup">取消</a></div>
+					    </div>
+					  </div>
+			  		<div style="height: .8rem;"></div>
+			  	</div>
 			  </div>
 			</div>
     </div>
@@ -68,25 +120,107 @@
 				  
 		  </div>
 		</div>
+		
+		<!-- sign evaluate -->
+		<div class="popup popup-evaluate">
+		  <div class="content-block-all">
+		  	<a href="javascript:;" class="close-popup close-x">x</a>
+		    <h3 class="tcbt">评价详情(<span class="total"></span>)</h3>
+		    
+			  <div class="evaluatelist" id="evaluatelistmore">
+	  				
+	  		</div>
+				  
+		  </div>
+		</div>
 
     <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="js/json2.js"></script>
+    <script src="js/dropload.min.js"></script>
     <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
 	<script>
+		var activityOpenid = JSON.parse(localStorage.getItem('activityOpenid'));
+		var activityNickName = JSON.parse(localStorage.getItem('activityNickName'));
+		var activityHeadimgurl = JSON.parse(localStorage.getItem('activityHeadimgurl'));
 		var testurl = window.location.href;
 		var param = getRequest();
 		var activityCode = param["activityCode"];
+		var grade;
 		$(document).on('click','.open-sign', function () {
 		  $.popup('.popup-sign');
+		});
+		$(document).on('click','.open-evaluate', function () {
+		  $.popup('.popup-evaluate');
 		});
 		$(document).ready(function() {
 			getActivityDetail();
 			getSignUpInfos();
 			getSignUpInfosmore();
 			getWxConfig();
+			$("#Submission").bind("click", evaluateCourse);
+			
+			$(".plxx").on('click','.oncikxx1',function(){
+				$(this).removeClass('no-xx');
+				$(this).siblings(".oncikxx2").addClass('no-xx');
+				$(this).siblings(".oncikxx3").addClass('no-xx');
+				$(this).siblings(".oncikxx4").addClass('no-xx');
+				$(this).siblings(".oncikxx5").addClass('no-xx');
+				grade = '1';
+			})
+			$(".plxx").on('click','.oncikxx2',function(){
+				$(this).removeClass('no-xx');
+				$(this).siblings(".oncikxx1").removeClass('no-xx');
+				$(this).siblings(".oncikxx3").addClass('no-xx');
+				$(this).siblings(".oncikxx4").addClass('no-xx');
+				$(this).siblings(".oncikxx5").addClass('no-xx');
+				grade = '2';
+			})
+			$(".plxx").on('click','.oncikxx3',function(){
+				$(this).removeClass('no-xx');
+				$(this).siblings(".oncikxx1").removeClass('no-xx');
+				$(this).siblings(".oncikxx2").removeClass('no-xx');
+				$(this).siblings(".oncikxx4").addClass('no-xx');
+				$(this).siblings(".oncikxx5").addClass('no-xx');
+				grade = '3';
+			})
+			$(".plxx").on('click','.oncikxx4',function(){
+				$(this).removeClass('no-xx');
+				$(this).siblings(".oncikxx1").removeClass('no-xx');
+				$(this).siblings(".oncikxx2").removeClass('no-xx');
+				$(this).siblings(".oncikxx3").removeClass('no-xx');
+				$(this).siblings(".oncikxx5").addClass('no-xx');
+				grade = '4';
+			})
+			$(".plxx").on('click','.oncikxx5',function(){
+				$(this).removeClass('no-xx');
+				$(this).siblings(".oncikxx1").removeClass('no-xx');
+				$(this).siblings(".oncikxx2").removeClass('no-xx');
+				$(this).siblings(".oncikxx3").removeClass('no-xx');
+				$(this).siblings(".oncikxx4").removeClass('no-xx');
+				grade = '5';
+			})
+			
+			
 		});
+		function getNow(s) {
+		    return s < 10 ? '0' + s: s;
+		}
+		
+		var myDate = new Date();
+		//获取当前年
+		var year=myDate.getFullYear();
+		//获取当前月
+		var month=myDate.getMonth()+1;
+		//获取当前日
+		var date=myDate.getDate(); 
+		var h=myDate.getHours();       //获取当前小时数(0-23)
+		var m=myDate.getMinutes();     //获取当前分钟数(0-59)
+		var s=myDate.getSeconds();  
+		
+		var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
 		function getActivityDetail() {
 			$.ajax({
 					type: "POST",
@@ -95,7 +229,8 @@
 					dataType: "json", 
 					async: false,
 					data: {
-						'activityCode': activityCode
+						'activityCode': activityCode,
+						'openid': activityOpenid
 					},
 					success: function(data) {
 						if (data.code == 0) {
@@ -112,12 +247,31 @@
 							}else{
 								$('#remark').html(data.remark);
 							}
+							if(data.price==0){
+								$('#price').html('免费');
+							}else{
+								$('#price').html(data.price+'元');
+							}
 							$('.total').html(data.signUpCount);
 							if(data.activityStatus == 1){
 								$('#activityStatus').html("<a class='baoming2 external' onclick=\"activityfrom(\'" + data.activityCode + "\');\" href='javascript:;'>立即报名</a>");
 							}else{
 								$('#activityStatus').html("<p align='center' style='color: #999; line-height: 1rem;'>已结束</p>");
 							}
+							if(data.isSignUp == 1){
+								$('#activityStatus').html("<p align='center' style='color: #999; line-height: 1rem;'>已报名</p>");
+							}
+							if(now > data.activityTime){
+								getEvaluationInfos();
+								getEvaluationInfosmore();
+								$('#evaluatedsed').show();
+								if(data.isSignUp == 1){
+									if(data.isEvaluated == 0){
+										$('#evaluateActivit').show();
+									}
+								}
+							}
+							
 							
 						} else {
 							$.toast(data.msg)
@@ -133,7 +287,7 @@
 	    var activityCode = JSON.stringify(activityCode);
 	    storage["activityCode"]= activityCode;
 	    }
-	    window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6657c21ece08b798&redirect_uri=http%3a%2f%2fa.izz2025.com/activityfrom.html&response_type=code&scope=snsapi_userinfo#wechat_redirect";
+	    window.location.href = "activityfromto.html";/*https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6657c21ece08b798&redirect_uri=http%3a%2f%2fa.izz2025.com/activityfrom.html&response_type=code&scope=snsapi_userinfo#wechat_redirect*/
 			return;
 		}
 		function getSignUpInfos() {
@@ -282,6 +436,173 @@
 						}
 	        }
 			});
+		}
+		
+		//评价
+		function evaluateCourse() {
+			if(!grade){
+				$.toast('请先评分！');
+				return;
+			}
+			if(!$("#evaluat").val()){
+				$.toast('请输入评价内容');
+				return;
+			}
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/activity/evaluateActivity",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'activityCode': activityCode,
+						'openid': activityOpenid,
+						'nickname': activityNickName,
+						'headImageUrl': activityHeadimgurl,
+						'grade': grade,
+						'evaluationContent': $("#evaluat").val(),
+					},
+					success: function(data) {
+						if (data.code == 0) {
+		  					$.toast("评价成功！即将返回列表页");
+		  					setInterval(function(){
+								    window.location.href = "activitySign.html"
+								},2000);
+						} else {
+							$.toast(data.msg);
+						}
+					}
+			});
+		}
+		
+		//评价详情
+		function getEvaluationInfos() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/activity/getEvaluationInfos",
+					cache: false, //禁用缓存   
+					async: false,
+					dataType: "json", 
+					data: {
+						'activityCode': activityCode,
+						'pageNum' : '1',
+						'pageSize' : '5',
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							var rows = data.data.rows;
+							if(!rows || !rows.length){
+								$("#evaluatelist").html('<div style="width: 100%; color: #999; font-size: .6rem; text-align: center;">还没有人评价哦！</div>');
+							}else{
+								var li = '';
+								for(var i = 0;i<rows.length;i++){
+									var nickName = rows[i].nickname;
+                	var avatarUrl = rows[i].headImageUrl;
+                	var createTime = rows[i].createTime;
+                	var evaluationContent = rows[i].evaluationContent;
+                	if(rows[i].grade==1){
+                		var grade ="<span></span><span class='no-xx'></span><span class='no-xx'></span><span class='no-xx'></span><span class='no-xx'></span>"
+                	}else if(rows[i].grade==2){
+                		var grade ="<span></span><span></span><span class='no-xx'></span><span class='no-xx'></span><span class='no-xx'></span>"
+                	}else if(rows[i].grade==3){
+                		var grade ="<span></span><span></span><span></span><span class='no-xx'></span><span class='no-xx'></span>"
+                	}else if(rows[i].grade==4){
+                		var grade ="<span></span><span></span><span></span><span></span><span class='no-xx'></span>"
+                	}else if(rows[i].grade==5){
+                		var grade ="<span></span><span></span><span></span><span></span><span></span>"
+                	}
+									li +="<div class='plList'><div class='left tu'><div class='pltu'><img src='"+ avatarUrl +"' alt='' /></div>"+ nickName +"</div><div class='right plzi'>"
+	                   + "<div class='plxx'>"+grade
+	                   + "<div class='timed'>"+ createTime +"</div></div><div class='pltail'>"+ evaluationContent +"</div></div></div>";
+							  }
+								$("#evaluatelist").append(li);
+							}
+						} else {
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
+		
+		function getEvaluationInfosmore() {
+				  // 页数
+		      var page = 0;
+		      // 每页展示5个
+		      var size = 5;
+		 
+		     // dropload
+		    $('#tab3').dropload({
+		      scrollArea : window,
+		      threshold : 100,//提前加载距离
+		      
+			    loadDownFn : function(me){
+		        page++;
+		        // 拼接HTML
+		        var result = '';
+		        $.ajax({
+		          type: 'POST',
+		          url: ulrTo + '/azz/api/client/activity/getEvaluationInfos',
+		          dataType: 'json',
+		          data: {
+		          	'activityCode': activityCode,
+								'pageNum' : page,
+								'pageSize' : '5',
+							},
+		          success: function(data){
+		          	if (data.code == 0) {
+		              var rows = data.data.rows;
+		              var arrLen = rows.length;
+		              if(arrLen < 6){
+										$('#evaluatemore').hide();
+									}
+			              if(arrLen > 0){
+			                for(var i=0; i<arrLen; i++){
+			                	var nickName = rows[i].nickname;
+			                	var avatarUrl = rows[i].headImageUrl;
+			                	var createTime = rows[i].createTime;
+			                	var evaluationContent = rows[i].evaluationContent;
+			                	if(rows[i].grade==1){
+			                		var grade ="<span></span><span class='no-xx'></span><span class='no-xx'></span><span class='no-xx'></span><span class='no-xx'></span>"
+			                	}else if(rows[i].grade==2){
+			                		var grade ="<span></span><span></span><span class='no-xx'></span><span class='no-xx'></span><span class='no-xx'></span>"
+			                	}else if(rows[i].grade==3){
+			                		var grade ="<span></span><span></span><span></span><span class='no-xx'></span><span class='no-xx'></span>"
+			                	}else if(rows[i].grade==4){
+			                		var grade ="<span></span><span></span><span></span><span></span><span class='no-xx'></span>"
+			                	}else if(rows[i].grade==5){
+			                		var grade ="<span></span><span></span><span></span><span></span><span></span>"
+			                	}
+			                	
+		                    result += "<div class='plList'><div class='left tu'><div class='pltu'><img src='"+ avatarUrl +"' alt='' /></div>"+ nickName +"</div><div class='right plzi'>"
+		                           + "<div class='plxx'>"+grade
+		                           + "<div class='timed'>"+ createTime +"</div></div><div class='pltail'>"+ evaluationContent +"</div></div></div>";
+			                }
+			                 // 如果没有数据
+			              }else{
+			                     // 锁定
+			                     me.lock('down');
+			                     // 无数据
+			                     me.noData();
+			              }
+			                 // 为了测试，延迟1秒加载
+			              setTimeout(function(){
+			                     // 插入数据到页面，放到最后面
+			                     $('#evaluatelistmore').append(result);
+			                     // 每次数据插入，必须重置
+			                     me.resetload();
+			              },1000);
+		              
+		            }else{
+		            	alert(data.msg);
+		            }
+		          },
+			        error: function(xhr, type){
+			             $.toast(data.msg);
+			             // 即使加载出错，也得重置
+			             me.resetload();
+			        }
+		        });
+			    }
+		    });
 		}
 	</script>
 	
