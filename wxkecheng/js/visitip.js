@@ -12,6 +12,7 @@ if(clientUserInfo){
 
 
 $.ajaxSettings.beforeSend = function(xhr,request){
+	debugger
 	var sessionId = JSON.parse(localStorage.getItem('sessionId'));
 	if (!sessionId) {
 		localStorage.removeItem('clientUserInfo');
