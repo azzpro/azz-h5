@@ -36,7 +36,7 @@
 			  		</div>
 			  	</div>
 			  	<div class="huibian">
-			  		<div class="content-padded position">
+			  		<div class="content-padded position" style="margin-left: 0; margin-right: 0;">
 			  			<div class="detailxx" id="activityContent">
 			  				
 			  			</div>
@@ -162,7 +162,14 @@
 				getSignUpInfosmore();
 				getWxConfig();
 			}else{
-				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6657c21ece08b798&redirect_uri=http%3a%2f%2fa.izz2025.com/authorization.html&response_type=code&scope=snsapi_userinfo#wechat_redirect";
+				if(!window.localStorage){
+            return false;
+        }else{
+        var storage=window.localStorage;
+        var authoractivityCode = JSON.stringify(activityCode);
+        storage["authoractivityCode"]= authoractivityCode;
+        }
+				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6657c21ece08b798&redirect_uri=http%3a%2f%2fa.izz2025.com/authorizationdetail.html&response_type=code&scope=snsapi_userinfo#wechat_redirect";
 			}
 			
 			$("#Submission").bind("click", evaluateCourse);
