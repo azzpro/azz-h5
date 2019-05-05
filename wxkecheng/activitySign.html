@@ -92,6 +92,7 @@
 					},
           success: function(data){
           	if (data.code == 0) {
+          		alert(data.code);
               var rows = data.data.rows;
               var arrLen = rows.length;
               
