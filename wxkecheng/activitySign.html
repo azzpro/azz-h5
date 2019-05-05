@@ -49,8 +49,10 @@
 	<script>
 		var activityOpenid = JSON.parse(localStorage.getItem('activityOpenid'));
 		var sortType = 1;
+		alert(activityOpenid);
 		$(document).ready(function() {
 			if(activityOpenid){
+				debugger
 				getIndexCourseInfos();
 			}else{
 				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6657c21ece08b798&redirect_uri=http%3a%2f%2fa.izz2025.com/authorization.html&response_type=code&scope=snsapi_userinfo#wechat_redirect";
