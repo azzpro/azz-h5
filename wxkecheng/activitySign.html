@@ -76,7 +76,7 @@
           url: ulrTo + '/azz/api/client/activity/getActivityInfos',
           dataType: 'json',
           cache: false, //禁用缓存 
-          async: false,
+          async: true,
           data: {
           	'activityName': $("input[name='searchname']").val(),
 						'pageNum' : page,
