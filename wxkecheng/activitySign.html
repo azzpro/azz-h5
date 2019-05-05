@@ -48,8 +48,10 @@
     
 	<script>
 		var activityOpenid = JSON.parse(localStorage.getItem('activityOpenid'));
+		var activityNickName = JSON.parse(localStorage.getItem('activityNickName'));
+		var activityHeadimgurl = JSON.parse(localStorage.getItem('activityHeadimgurl'));
 		var sortType = 1;
-		alert(activityOpenid);
+		alert(activityOpenid+','+activityNickName+','+activityNickName);
 		$(document).ready(function() {
 			if(activityOpenid){
 				debugger
