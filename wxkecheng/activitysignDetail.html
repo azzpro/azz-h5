@@ -156,10 +156,15 @@
 		  $.popup('.popup-evaluate');
 		});
 		$(document).ready(function() {
-			getActivityDetail();
-			getSignUpInfos();
-			getSignUpInfosmore();
-			getWxConfig();
+			if(activityOpenid){
+				getActivityDetail();
+				getSignUpInfos();
+				getSignUpInfosmore();
+				getWxConfig();
+			}else{
+				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6657c21ece08b798&redirect_uri=http%3a%2f%2fa.izz2025.com/authorization.html&response_type=code&scope=snsapi_userinfo#wechat_redirect";
+			}
+			
 			$("#Submission").bind("click", evaluateCourse);
 			
 			$(".plxx").on('click','.oncikxx1',function(){
@@ -274,7 +279,6 @@
 							
 							
 						} else {
-							alert('我这里出错了');
 							$.toast(data.msg)
 						}
 					}

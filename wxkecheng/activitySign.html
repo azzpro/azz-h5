@@ -47,9 +47,14 @@
     <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
     
 	<script>
+		var activityOpenid = JSON.parse(localStorage.getItem('activityOpenid'));
 		var sortType = 1;
 		$(document).ready(function() {
-			getIndexCourseInfos();
+			if(activityOpenid){
+				getIndexCourseInfos();
+			}else{
+				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6657c21ece08b798&redirect_uri=http%3a%2f%2fa.izz2025.com/authorization.html&response_type=code&scope=snsapi_userinfo#wechat_redirect";
+			}
 			$('#myinput').bind('search', function () {
 				$(".activitysign").empty();
 				$('.dropload-down').detach();
@@ -76,7 +81,7 @@
           url: ulrTo + '/azz/api/client/activity/getActivityInfos',
           dataType: 'json',
           cache: false, //禁用缓存 
-          async: true,
+          async: false,
           data: {
           	'activityName': $("input[name='searchname']").val(),
 						'pageNum' : page,

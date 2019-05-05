@@ -19,6 +19,8 @@
 			  <nav class="bar bar-tab">
 			    <a class="cart external displayno" href="javascript:;" id="OrderPay">立即支付</a>
 			    <a class="cart external displayno" href="javascript:;" id="OrderPayZero">立即支付</a>
+			    <p id="submissing" align='center' style='color: #999; display: none; line-height: 1rem;'>支付中...</p>
+			    <p id="submissOk" align='center' style='color: #999; display: none; line-height: 1rem;'>支付成功，正在跳转...</p>
 			  </nav>
 			  <div class="content">
 			  	<div class="perfecttop" style="height: 7rem;">
@@ -58,6 +60,8 @@
 		});
 		
 		function activityOrderPaySuccessOpt() {
+			$('#submissing').show();
+			$("#OrderPayZero").css("display","none");
 			$.ajax({
 					type: "POST",
 					url: ulrTo + "/azz/api/client/activity/activityOrderPaySuccessOpt",
@@ -70,8 +74,12 @@
 					},
 					success: function(data) {
 						if(data.code == 0) {
+								$('#submissing').hide();
+								$('#submissOk').show();
 								getWxUserSubscribe();
 						}else {
+							$('#submissing').hide();
+							$("#OrderPayZero").css("display","block");
 							$.toast('出错了！');
 						}
 					}
@@ -80,6 +88,8 @@
 		}
 
 		function submitWxOrderPay() {
+			$('#submissing').show();
+			$("#OrderPay").css("display","none");
 			$.ajax({
 					type: "POST",
 					url: ulrTo + "/azz/api/wx/pay/submitWxActiveOrderPay",
