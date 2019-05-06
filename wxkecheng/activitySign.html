@@ -95,9 +95,15 @@
 	                	var activityCode = rows[i].activityCode;
 	                	var activityName = rows[i].activityName;
 	                	var activityPicUrl = rows[i].activityPicUrl;
+	                	//报名人数
 	                	var signUpCount = rows[i].signUpCount;
+	                	
 	                	var activityStatus = rows[i].activityStatus;
 	                	var price = rows[i].price;
+	                	var remark = rows[i].remark;
+	                	if(!rows[i].remark){
+											var remark = '0';
+										}
 	                	if(activityName.length>20){
 	                		var activityNamediv = activityName.substring(0,20)+'...';
 	                	}else{
@@ -121,7 +127,7 @@
 	                	
 	                    result += "<li><a class='external' href='activitysignDetail.html?activityCode=" + activityCode + "'><img src='"+ activityPicUrl +"' alt='' /><div class='activiright'><h3>"+ activityNamediv +"</h3>"
 					    			        	+ activityStatusdiv
-					    			        	+ "<div class='activibottom'><span>"+ signUpCount +"人已报名</span>"+ pricede +"</div></div></a></li>";
+					    			        	+ "<div class='activibottom'><span>"+ remark +"人已浏览</span>"+ pricede +"</div></div></a></li>";
 	                }
 	                 // 如果没有数据
 	              }else{
