@@ -30,7 +30,7 @@
 			  		<div class="xxsd">
 			  			<p><img src="images/time.png" alt="" /> <span id="activityTime"></span></p>
 			  			<p><img src="images/add.png" alt="" /> <span id="activityAddress"></span></p>
-			  			<p><img src="images/my.png" alt="" /> <span>已报名<font id="signUpCount"></font>人</span></p>
+			  			<p class="displayno"><img src="images/my.png" alt="" /> <span>已报名<font id="signUpCount"></font>人</span></p>
 			  			<p><img src="images/lll.png" alt="" /> <span>已有<font id="remark"></font>人浏览</span></p>
 			  			<p><img src="images/mol.png" alt="" /> <span id="price"></span></p>
 			  		</div>
@@ -42,7 +42,7 @@
 			  			</div>
 			  		</div>
 			  	</div>
-			  	<div class="huibian">
+			  	<div class="huibian displayno">
 			  		<div class="content-padded position">
 			  			<div class="detailbt">
 			  				<span id="signmore"><a href="javascript:;" class="open-sign">更多报名 ></a></span>已报名(<font class="total"></font>)
@@ -604,7 +604,7 @@
 			              },1000);
 		              
 		            }else{
-		            	alert(data.msg);
+		            	$.toast(data.msg);
 		            }
 		          },
 			        error: function(xhr, type){

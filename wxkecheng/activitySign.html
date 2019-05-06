@@ -80,8 +80,6 @@
           type: 'POST',
           url: ulrTo + '/azz/api/client/activity/getActivityInfos',
           dataType: 'json',
-          cache: false, //禁用缓存 
-          async: false,
           data: {
           	'activityName': $("input[name='searchname']").val(),
 						'pageNum' : page,
@@ -141,7 +139,7 @@
 	              },1000);
               
             }else{
-            	alert(data.msg);
+            	$.toast(data.msg);
             }
           },
 	        error: function(xhr, type){
