@@ -296,13 +296,13 @@ Module.define("system.activitysign", function(page, $) {
 				{
 					"title": "手机号",
 					"data": "phoneNumber",
-					"className": "all",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{
 					"title": "邮箱",
 					"data": "email",
-					"className": "all",
+					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
 				{
@@ -320,7 +320,7 @@ Module.define("system.activitysign", function(page, $) {
 				{
 					"title": "公司主营",
 					"data": "mainProductOrService",
-					"className": "text-nowrap",
+					"className": "all",
 					"defaultContent": "-"
 				},
 				{
