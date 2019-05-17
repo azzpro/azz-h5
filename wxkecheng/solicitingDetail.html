@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/dropload.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    	.content{background: #fff;}
+    	.bt{ padding: 0 1rem; text-align: center; font-size: 1rem;}
+    	.bt p{ font-size: .6rem; color: #999; margin: 0; padding: .3rem 0;}
+    	.lr{ padding: 0 .8rem; font-size: .7rem;}
+    	.lr img{ width: 100%; height: auto;}
+    	.lr p{ margin: 0; padding: 0;}
+    </style>
+  </head>
+  <body>
+    <div class="page-group">
+			<div class="page">
+			  <div class="content">
+			  	<h2 class="bt"><span id="solicitContributionName"></span><p>发表时间：<span id="createTime"></span>&nbsp;&nbsp;&nbsp;&nbsp;浏览人数：<span id="remark"></span>人</p></h2>
+			  	<div class="lr" id="solicitContributionContent">
+			  		
+			  	</div>
+			  </div>
+			</div>
+    </div>
+
+    <script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/visitip.js' charset='utf-8'></script>
+	<script>
+		var param = getRequest();
+		var solicitContributionCode = param["solicitContributionCode"];
+		$(document).ready(function() { 
+			getActivityDetail();
+		});
+		function getActivityDetail() {
+			$.ajax({
+					type: "POST",
+					url: ulrTo + "/azz/api/client/solicitContribution/getSolicitContributionDetail",
+					cache: false, //禁用缓存   
+					dataType: "json", 
+					data: {
+						'solicitContributionCode': solicitContributionCode
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							var data = data.data;
+							$('#solicitContributionName').html(data.solicitContributionName);
+							$('#createTime').html(data.createTime);
+							$('#remark').html(data.remark);
+							$('#solicitContributionContent').html(data.solicitContributionContent);
+							
+							$('title').html(data.solicitContributionName + '-爱智造产业学院');
+							
+							
+						} else {
+							$.toast(data.msg)
+						}
+					}
+			});
+		}
+		
+	</script>
+	
+  </body>
+</html>

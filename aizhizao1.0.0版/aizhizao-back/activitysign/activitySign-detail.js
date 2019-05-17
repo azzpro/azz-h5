@@ -25,7 +25,7 @@ Module.define("system.activitysign", function(page, $) {
 					$("#pic").attr("src",data.data.activityPicUrl);
 					if(data.data.status == 1) {
 						$("#Required").html("上架");
-					}else if(data.data.activityInfo.status == 2){
+					}else if(data.data.status == 2){
 						$("#Required").html("下架");
 					}
 					$("#beginstime").html(data.data.activityTime);
