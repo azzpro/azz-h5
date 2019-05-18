@@ -2,7 +2,7 @@
 /*var ulrTo = 'http://192.168.1.222:8081';*/
 var ulrTo = 'http://120.78.162.226:8081';
 
-var ulrTolist = 'http://192.168.1.119:8080';
+/*var ulrTolist = 'http://192.168.1.119:8080';*/
 var ulrTolist = 'http://120.78.162.226:8080';
 
 var clientUserInfo = JSON.parse(localStorage.getItem('clientUserInfo'));
