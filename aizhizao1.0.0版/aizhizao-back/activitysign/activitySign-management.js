@@ -130,6 +130,7 @@ Module.define("system.activitysign", function(page, $) {
 		            		html += '<div class="am-btn-group am-btn-group-xs">';
 		            		html += '<a href="javascript:;" onclick="system.activitysign.parameDetail(\'' + row.activityCode + '\');">详情</a>';
 		            		html += '&nbsp;&nbsp;<a href="javascript:;" onclick="system.activitysign.parameEdit(\'' + row.activityCode + '\');">编辑</a>';
+		            		html += '&nbsp;&nbsp;<a href="javascript:;" onclick="system.activitysign.generate(\'' + row.activityCode + '\');">生成链接</a>';
 		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.activitysign.editUserStatus(\'' + row.activityCode + "','"+ statustoo + '\');">'+ statustoo +'</a>';
 		            		html += '&nbsp;&nbsp;<a class="text-nowrap" href="javascript:;" onclick="system.activitysign.dele(\'' + row.activityCode + "','"+ row.activityName + '\');">删除</a>';
 		            		html += '</div>';
@@ -228,6 +229,11 @@ Module.define("system.activitysign", function(page, $) {
 	        storage["activityCodeEdit"]= activityCodeEdit;
         }
 	    window.location.href = "#!activitysign/activitySign-edit.html"
+	}
+	//生成链接
+	page.generate = function(activityCode) {
+		$('#activitycode').html(activityCode);
+		$('#myModal113').modal('show');
 	}
 	
 	$('.datepicker_start').datepicker({
