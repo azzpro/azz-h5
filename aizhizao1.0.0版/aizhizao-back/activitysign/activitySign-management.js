@@ -74,12 +74,12 @@ Module.define("system.activitysign", function(page, $) {
 					"className": "text-nowrap",
 					"defaultContent": "-",
 				},
-				{
+				/*{
 					"title": "活动地点",
 					"data": "activityAddress",
 					"className": "all",
 					"defaultContent": "-",
-				},
+				},*/
 				{
 					"title": "已报名人数",
 					"data": "signUpCount",
